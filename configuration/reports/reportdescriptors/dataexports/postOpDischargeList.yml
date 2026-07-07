@@ -1,0 +1,21 @@
+key: "postopdischargelist"
+uuid: "c6c4c26b-46f0-4271-821b-1c3b4dc12066"
+name: "Post-Op Discharge List"
+description: "Patients discharged from the Post-Op ward on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "a39ec469-d1f9-11f0-9d46-169316be6a48"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

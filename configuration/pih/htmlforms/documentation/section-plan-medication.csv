@@ -1,0 +1,4 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+HIV counselling provided,Coded,Yes | No | Unknown,radio,No,no,PIH:11381,CIEL:1065|CIEL:1066|CIEL:1067,,
+Drug orders subform,Other,Drug order widget/subform,subform,Yes,no,subform:configuration/pih/subforms/drug-order-widget.xml,,,
+Medication remarks,Text,N/A,textarea,No,no,PIH:10637,,,

@@ -1,0 +1,28 @@
+Uuid,Name
+${providerRole.CHW.uuid},CHW
+${providerRole.CHW_SUPERVISOR.uuid},CHW Supervisor
+${providerRole.NURSE_ACCOMPAGNATEUR.uuid},Nurse Accompagnateur
+${providerRole.CLINICIAN.uuid},Clinician
+${providerRole.MH_CHW_SUPERVISOR.uuid},MH CHW Supervisor
+${providerRole.PARACLINICAL.uuid},Paraclinical
+${providerRole.SOCIAL_WORKER.uuid},Social Worker
+${providerRole.VCT_COUNSELOR.uuid},VCT Counselor
+${providerRole.NURSE_MIDWIFE.uuid},Nurse Midwife
+${providerRole.PHARMACIST.uuid},Pharmacist
+${providerRole.ANAESTHETIST.uuid},Anaesthetist
+${providerRole.ADMINISTRATOR.uuid},Administrator
+${providerRole.NURSING_AUXILIARY.uuid},Nursing Auxiliary
+${providerRole.ADVANCE_PRACTICE_NURSE.uuid},Advance Practice Nurse
+${providerRole.PHARMACY_AIDE.uuid},Pharmacy Aide
+${providerRole.SURGEON.uuid},Surgeon
+${providerRole.GENERAL_ADMIN.uuid},General Admin
+${providerRole.PHYSICAL_THERAPIST.uuid},Physical Therapist
+${providerRole.LAB_TECHNICIAN.uuid},Lab Technician
+${providerRole.PHYSICIAN.uuid},Physician
+${providerRole.ASSISTANT_SOCIAL.uuid},Assistant Social
+${providerRole.PSYCHOLOGIST.uuid},Psychologist
+${providerRole.ARCHIVIST_CLERK.uuid},Archivist/Clerk
+${providerRole.MEDICAL_STUDENT.uuid},Medical Student
+${providerRole.NURSE_RN.uuid},Nurse (RN)
+${providerRole.RESIDENT.uuid},Resident
+${providerRole.RADIOLOGY_TECHNICIAN.uuid},Radiology Technician

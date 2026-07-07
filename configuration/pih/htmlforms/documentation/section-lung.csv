@@ -1,0 +1,5 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Restrictive lung disease list,Coded,Interstitial lung disease | Post-TB | Occupational | Other,checkbox,No,Only for intake,PIH:DIAGNOSIS,CIEL:116711|PIH:14601|CIEL:132486|CIEL:127611,Visit Diagnoses,PIH:Visit Diagnoses
+Obstructive lung diagnoses,Coded,COPD | Asthma | Other,checkbox,No,no,PIH:DIAGNOSIS,CIEL:...,,
+Symptoms & suggested treatment (rendered),Other,See rendered text,info,No,no,,,,
+Chest x-ray / radiology obs,Other,Order widget / obs,order/obs,No,no,PIH:Radiology report construct,PIH:12847,,

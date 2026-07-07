@@ -1,0 +1,53 @@
+key: "morningmaternalhandoff"
+uuid: "9c3d2a6f-8e5a-4c6b-b8c4-9f7e2a1d6e0b"
+name: "Morning Maternal Handoff"
+description: "Activity from the 24 hours leading up to 8am of the handover date. (8am to 8am) Current Census will show the live numbers"
+parameters:
+  - key: "handoverDate"
+    type: "java.util.Date"
+    label: "Handover Date"  
+datasets:
+  - key: "Current_Census"
+    type: "sql"
+    config: "sql/maternal_handoff_current_census.sql" 
+    parameters:
+      - key: "shift"
+        type: "java.lang.String"
+        value: "morning" 
+  - key: "Deliveries"
+    type: "sql"
+    config: "sql/maternal_handoff_deliveries.sql"
+    parameters:
+      - key: "shift"
+        type: "java.lang.String"
+        value: "morning"    
+  - key: "Ward_Activity"
+    type: "sql"
+    config: "sql/maternal_handoff_ward_activity.sql"
+    parameters:
+      - key: "shift"
+        type: "java.lang.String"
+        value: "morning"
+  - key: "Deaths"
+    type: "sql"
+    config: "sql/maternal_handoff_death_list.sql"   
+    parameters:
+      - key: "shift"
+        type: "java.lang.String"
+        value: "morning"        
+designs:
+  - type: "csv"
+    properties:
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"
+config:
+  category: "dataExport"
+  order: 50
+  components:
+    - "dataExports"
+    - "allDataExports"  

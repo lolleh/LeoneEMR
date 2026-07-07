@@ -1,0 +1,28 @@
+.bordered-section {
+    display: block;
+    width: fit-content;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.side-by-side label {
+    display: inline-block;
+}
+.light-blue {
+    color: #4A90E2;
+}
+.bolder-blue {
+    color: blue;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.indented {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.boundary {
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,85 @@
+<div id="vital-signs-widget">
+    <subform path="configuration/pih/subforms/vital-signs-widget.css"/>
+    <subform path="configuration/pih/subforms/vital-signs-widget.js"/>
+
+    <div class="vitals five-columns">
+        <div class="vitals-cell">
+            <label>
+                <uimessage code="mirebalais.vitals.weight.title"/>
+            </label>
+            <span class="small">
+                <obs conceptId="CIEL:5089" id="weight" class="vitals-values"
+                     showUnits="kg" unitsCssClass="append-to-value"/>
+            </span>
+        </div>
+
+        <div class="vitals-cell">
+            <label>
+                <uimessage code="mirebalais.vitals.height.title"/>
+            </label>
+            <span class="small">
+                <obs conceptId="CIEL:5090" id="height" class="vitals-values"
+                     showUnits="cm" unitsCssClass="append-to-value"/>
+            </span>
+        </div>
+
+        <div class="vitals-cell">
+            <div class="colorCodingValue">
+                <label>
+                    <uimessage code="mirebalais.vitals.bloodPressure.short.title"/>
+                </label>
+                <span class="small">
+                    <span class="append-to-value left">
+                        <obs conceptId="CIEL:5085" id="bp_systolic" class="vitals-values"/>
+                    </span>
+                    <span class="append-to-value left">/</span>
+                    <span class="append-to-value left">
+                        <obs conceptId="CIEL:5086" id="bp_diastolic" class="vitals-values"/>
+                    </span>
+                    <ifMode mode="VIEW" include="false">
+                    <br></br>
+                    </ifMode>
+                    <span class="append-to-value">mm/Hg</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="vitals-cell">
+            <label>
+                <uimessage code="pihcore.fundalHeight"/>
+            </label>
+            <span class="small">
+                <obs conceptId="CIEL:1439" id="fundal-ht"
+                     showUnits="cm" unitsCssClass="append-to-value"/>
+            </span>
+        </div>
+
+        <div id="fhrDiv" style="vertical-align: top;">
+            <div class="colorCodingValue" style="display: block;">
+                <label>
+                    <uimessage code="FHR"/>
+                </label>
+                <span class="small">
+                    <obs conceptId="CIEL:1440" id="fhr" class="vitals-values"
+                         showUnits="true" unitsCssClass="append-to-value"/>
+                </span>
+            </div>
+            <div class="colorCodingValue">
+                <label>
+                    <uimessage code="Second FHR"/>
+                </label>
+                <span class="small">
+                    <obs conceptId="PIH:21416" id="fhr_second" class="vitals-values"
+                         showUnits="true" unitsCssClass="append-to-value"/>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmMsg">
+        <obs id="contactDr" style="checkbox"
+             conceptId="PIH:20925" answerConceptId="CIEL:1065" answerLabel=""
+             labelText="Contact doctor about early intervention due to 1 red, 1 orange, or 2 yellow vital score(s).">
+        </obs>
+    </div>
+</div>

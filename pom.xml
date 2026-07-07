@@ -1,0 +1,193 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.sl.openmrs</groupId>
+    <artifactId>leone-emr</artifactId>
+    <name>LeoneEMR OpenMRS Configuration</name>
+    <description>Top-Level configuration for LeoneEMR (Sierra Leone) OpenMRS distro</description>
+    <url>https://github.com/SL-EMR/leone-emr</url>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>Partners In Health</name>
+        <url>http://pih.org</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Partners In Health</name>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Mozilla Public License 2.0 with Healthcare Disclaimer</name>
+            <url>http://openmrs.org/license</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/SL-EMR/leone-emr.git</connection>
+        <developerConnection>scm:git:https://github.com/SL-EMR/leone-emr.git</developerConnection>
+        <url>https://github.com/SL-EMR/leone-emr</url>
+      <tag>HEAD</tag>
+  </scm>
+
+    <modules>
+        <module>content</module>
+    </modules>
+
+    <build>
+        <filters>
+            <filter>${project.build.directory}/openmrs-packager-config/configuration/constants.properties</filter>
+        </filters>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.openmrs.maven.plugins</groupId>
+                    <artifactId>openmrs-packager-maven-plugin</artifactId>
+                    <version>1.9.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.7.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.2.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+                        <projectVersionPolicyId>SemVerVersionPolicy</projectVersionPolicyId>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openmrs.maven.plugins</groupId>
+                <artifactId>openmrs-packager-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-resource-filters</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate-resource-filters</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-configurations</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile-configurations</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>package-configurations</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package-configurations</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>deployRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <signer>bc</signer>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>openmrs-repo</id>
+            <name>OpenMRS Nexus Repository</name>
+            <url>https://openmrs.jfrog.io/artifactory/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Snapshots Repo</name>
+            <url>https://openmrs.jfrog.io/artifactory/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>mks-repo</id>
+            <name>Mekom Solutions Maven repository</name>
+            <url>https://nexus.mekomsolutions.net/repository/maven-public</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+</project>

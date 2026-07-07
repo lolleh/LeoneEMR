@@ -1,0 +1,46 @@
+<div>
+    <subform path="configuration/pih/subforms/vital-signs-widget.css"/>
+
+<div class="three-columns">
+    <div>
+        <label>
+            <uimessage code="mirebalais.vitals.bloodPressure.short.title"/>
+        </label>
+        <span class="small">
+            <span class="append-to-value left">
+                <obs conceptId="CIEL:5085" id="bp_systolic" class="vitals-values"/>
+            </span>
+            <span class="append-to-value left">/</span>
+            <span class="append-to-value left">
+                <obs conceptId="CIEL:5086" id="bp_diastolic" class="vitals-values"/>
+            </span>
+            <ifMode mode="VIEW" include="false">
+            <br></br>
+            </ifMode>
+            <span class="append-to-value">mm/Hg</span>
+        </span>
+    </div>
+
+    <div>
+        <label>
+            <uimessage code="mirebalais.vitals.weight.title"/>
+        </label>
+        <span class="small-input">
+            <obs conceptId="CIEL:5089" id="weight" class="vitals-values"
+                 showUnits="kg" unitsCssClass="append-to-value"/>
+        </span>
+    </div>
+
+    <div>
+        <label>
+            <uimessage code="mirebalais.vitals.height.title"/>
+        </label>
+        <span class="small-input">
+            <obs conceptId="CIEL:5090" id="height" class="vitals-values"
+                 showUnits="cm" unitsCssClass="append-to-value"/>
+        </span>
+    </div>
+
+</div>
+
+</div>

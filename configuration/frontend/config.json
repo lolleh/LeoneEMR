@@ -1,0 +1,455 @@
+{
+  "@openmrs/esm-appointments-app": {
+    "checkInButton": {
+      "customUrl": "${openmrsBase}/htmlformentryui/htmlform/enterHtmlFormWithSimpleUi.page?patientId=${patientUuid}&definitionUiResource=file:pih/htmlforms/checkin.xml&createVisit=true&returnUrl=${openmrsSpaBase}%2Fhome%2Fappointments"
+    },
+    "patientIdentifierType": "KGHEMRID"
+  },
+  "@openmrs/esm-dispensing-app": {
+    "customTabs": [
+      {
+        "title": "Discharge prescriptions",
+        "customPrescriptionsTableEndpoint": "${fhirBaseUrl}/Encounter?_query=encountersWithMedicationRequests&_getpagesoffset=${pageOffset}&_count=${pageSize}&date=ge${date}&status=ACTIVE&type=${encounterType.MATERNAL_DISCHARGE.uuid},${encounterType.NEWBORN_DISCHARGE.uuid}&location=${location}&patientSearchTerm=${patientSearchTerm}",
+        "associatedLocations": [
+          "${location.mcoeInpatientPharmacy.uuid}"
+        ]
+      }
+    ]
+  },
+
+  "@openmrs/esm-login-app": {
+    "chooseLocation": {
+      "enabled": true,
+      "useLoginLocationTag": true,
+      "numberToShow": 5
+    },
+    "logo": {
+      "src": "site/logo.png",
+      "alt": "Partners In Health - Sierra Leone"
+    }
+  },
+  "@openmrs/esm-patient-registration-app": {
+    "sections": [
+      "demographics",
+      "contact",
+      "social",
+      "identifiers"
+    ],
+    "sectionDefinitions": [
+      {
+        "id": "demographics",
+        "name": "Demographics",
+        "fields": [
+          "name",
+          "gender",
+          "dob",
+          "mothers_name"
+        ]
+      },
+      {
+        "id": "contact",
+        "name": "Contact Info",
+        "fields": [
+          "address",
+          "phone"
+        ]
+      },
+      {
+        "id": "social",
+        "name": "Social",
+        "fields": [
+          "birthplace",
+          "civilStatus",
+          "occupation"
+        ]
+      },
+      {
+        "id": "identifiers",
+        "name": "Identifiers",
+        "fields": [
+          "id"
+        ]
+      }
+    ],
+    "fieldDefinitions": [
+      {
+        "id": "mothers_name",
+        "type": "person attribute",
+        "uuid": "${personAttributeType.MOTHERS_FIRST_NAME.uuid}",
+        "label": "Mother's First Name"
+      },
+      {
+        "id": "phone",
+        "type": "person attribute",
+        "uuid": "${personAttributeType.TELEPHONE_NUMBER.uuid}",
+        "label": "Phone Number"
+      },
+      {
+        "id": "birthplace",
+        "type": "obs",
+        "uuid": "${concept.birthplace.uuid}",
+        "label": "Place of Birth"
+      },
+      {
+        "id": "civilStatus",
+        "type": "obs",
+        "uuid": "${concept.civilStatus.uuid}",
+        "label": "Civil Status",
+        "customConceptAnswers": [
+          {
+            "uuid": "${concept.singleOrChild.uuid}",
+            "label": "Single"
+          },
+          {
+            "uuid": "${concept.married.uuid}",
+            "label": "Married"
+          },
+          {
+            "uuid": "${concept.livingWithPartner.uuid}",
+            "label": "Living with Partner"
+          },
+          {
+            "uuid": "${concept.separated.uuid}",
+            "label": "Separated"
+          },
+          {
+            "uuid": "${concept.divorced.uuid}",
+            "label": "Divorced"
+          },
+          {
+            "uuid": "${concept.widowed.uuid}",
+            "label": "Widowed"
+          }
+        ]
+      },
+      {
+        "id": "occupation",
+        "type": "obs",
+        "uuid": "${concept.occupation.uuid}",
+        "label": "Occupation",
+        "customConceptAnswers": [
+          {
+            "uuid": "${concept.civilServant.uuid}",
+            "label": "Civil servant"
+          },
+          {
+            "uuid": "${concept.commerce.uuid}",
+            "label": "Commerce"
+          },
+          {
+            "uuid": "${concept.motorcycletaxi.uuid}",
+            "label": "Commercial bike rider"
+          },
+          {
+            "uuid": "${concept.cowherd.uuid}",
+            "label": "Cowherd"
+          },
+          {
+            "uuid": "${concept.driver.uuid}",
+            "label": "Driver"
+          },
+          {
+            "uuid": "${concept.factoryWorker.uuid}",
+            "label": "Factory worker"
+          },
+          {
+            "uuid": "${concept.farmer.uuid}",
+            "label": "Farmer"
+          },
+          {
+            "uuid": "${concept.fisherman.uuid}",
+            "label": "Fisherman"
+          },
+          {
+            "uuid": "${concept.fruitOrVegetableVendor.uuid}",
+            "label": "Fruit or vegetable vendor"
+          },
+          {
+            "uuid": "${concept.healthCareWorker.uuid}",
+            "label": "Health care worker"
+          },
+          {
+            "uuid": "${concept.housework.uuid}",
+            "label": "Housework"
+          },
+          {
+            "uuid": "${concept.houseworkFieldwork.uuid}",
+            "label": "Housework/Fieldwork"
+          },
+          {
+            "uuid": "${concept.manualLaborer.uuid}",
+            "label": "Manual Laborer"
+          },
+          {
+            "uuid": "${concept.marketVendor.uuid}",
+            "label": "Market Vendor"
+          },
+          {
+            "uuid": "${concept.military.uuid}",
+            "label": "Military"
+          },
+          {
+            "uuid": "${concept.miner.uuid}",
+            "label": "Miner"
+          },
+          {
+            "uuid": "${concept.police.uuid}",
+            "label": "Police"
+          },
+          {
+            "uuid": "${concept.professional.uuid}",
+            "label": "Professional"
+          },
+          {
+            "uuid": "${concept.retired.uuid}",
+            "label": "Retired"
+          },
+          {
+            "uuid": "${concept.shopOwner.uuid}",
+            "label": "Shop owner"
+          },
+          {
+            "uuid": "${concept.student.uuid}",
+            "label": "Student"
+          },
+          {
+            "uuid": "${concept.teacher.uuid}",
+            "label": "Teacher"
+          },
+          {
+            "uuid": "${concept.unemployed.uuid}",
+            "label": "Unemployed"
+          },
+          {
+            "uuid": "${concept.otherNonCoded.uuid}",
+            "label": "Other"
+          }
+        ]
+      }
+    ],
+    "fieldConfigurations": {
+      "name": {
+        "displayMiddleName": true,
+        "unidentifiedPatient": false
+      },
+      "address": {
+        "useAddressHierarchy": {
+          "enabled": true,
+          "useQuickSearch": true,
+          "searchAddressByLevel": true
+        }
+      }
+    },
+    "defaultPatientIdentifierTypes": [
+      "${patientIdentifierType.wellbodyEmrId.uuid}",
+      "${patientIdentifierType.kghEmrId.uuid}"
+    ],
+    "registrationObs": {
+      "encounterTypeUuid": "${encounterType.PATIENT_REGISTRATION.uuid}",
+      "encounterProviderRoleUuid": "${encounterRole.administrativeClerk.uuid}"
+    }
+  },
+  "@openmrs/esm-patient-search-app": {
+    "defaultIdentifierTypes": [
+      "${patientIdentifierType.wellbodyEmrId.uuid}",
+      "${patientIdentifierType.kghEmrId.uuid}",
+      "${patientIdentifierType.ncdId.uuid}"
+    ]
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "logo": {
+      "src": "site/logo.png",
+      "alt": "Partners In Health - Sierra Leone",
+      "name": "Partners In Health - Sierra Leone",
+      "link": "${openmrsBase}/index.htm"
+    }
+  },
+  "@openmrs/esm-service-queues-app": {
+    "priorityConfigs": [
+      {
+        "conceptUuid": "${concept.emergency.uuid}",
+        "tagClassName": "tag",
+        "tagType": "red"
+      }
+    ],
+    "statusConfigs": [
+      {
+        "conceptUuid": "${concept.waiting.uuid}",
+        "iconComponent": "InProgress"
+      },
+      {
+        "conceptUuid": "${concept.inService.uuid}",
+        "iconComponent": "Group"
+      },
+      {
+        "conceptUuid": "${concept.waitingForTransfer.uuid}",
+        "iconComponent": "Group"
+      }
+    ],
+    "concepts": {
+      "serviceConceptSetUuid": "239c7e26-139f-4833-80e8-f0de2f4c8104",
+      "priorityConceptSetUuid": "6a28c6ca-f52e-4a8e-8da7-ee7fe4953b3d",
+      "statusConceptSetUuid": "98759313-3812-4c88-88c6-7686dc7c6443",
+      "defaultPriorityConceptUuid": "${concept.normal.uuid}",
+      "emergencyPriorityConceptUuid": "${concept.emergency.uuid}",
+      "defaultStatusConceptUuid": "${concept.waiting.uuid}",
+      "defaultTransitionStatus": "${concept.inService.uuid}"
+    },
+    "visitQueueNumberAttributeUuid": "",
+    "defaultFacilityUrl": "",
+   "queueTables": {
+      "columnDefinitions": [
+        {
+          "id": "emr-id",
+          "columnType": "patient-identifier",
+          "config": {
+            "identifierTypeUuid": "${patientIdentifierType.kghEmrId.uuid}"
+          },
+          "header": "EMR ID"
+        },
+        {
+          "id": "in-service-time",
+          "columnType": "wait-time",
+          "header": "Time in service"
+        },
+        {
+          "id": "check-in-date",
+          "columnType": "visit-start-time",
+          "header": "Check-in date"
+        },
+        {
+          "id": "triage-waiting-queue-actions",
+          "columnType": "extension",
+          "header": "Actions"
+        }
+      ],
+      "tableDefinitions": [
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "check-in-date", "wait-time", "triage-waiting-queue-actions"],
+          "appliedTo": [
+            {
+              "queue": "${queue.triage.uuid}",
+              "status": "${concept.waiting.uuid}"
+            }
+          ]
+        },
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "in-service-time", "triage-waiting-queue-actions"],
+          "appliedTo": [
+            {
+              "queue": "${queue.triage.uuid}",
+              "status": "${concept.inService.uuid}"
+            }
+          ]
+        },
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "priority", "wait-time", "actions"]
+        }
+      ]
+    }
+  },
+  "@openmrs/esm-ward-app": {
+    "patientCardElements": {
+      "obs": [
+        {
+          "id": "gravida",
+          "conceptUuid": "${concept.gravida.uuid}",
+          "onlyWithinCurrentVisit": true,
+          "orderBy": "descending",
+          "limit": 1
+        },
+        {
+          "id": "admission-reason",
+          "conceptUuid": "${concept.admissionReason.uuid}",
+          "onlyWithinCurrentVisit": true,
+          "orderBy": "descending",
+          "label": "REASON",
+          "limit": 1
+        }
+      ],
+      "patientIdentifier": [
+        {
+          "id": "patient-identifier",
+          "showIdentifierLabel": false
+        }
+      ],
+      "patientAddress": [
+        {
+          "id": "patient-address",
+          "fields": [
+            "countyDistrict"
+          ]
+        }
+      ],
+      "coloredObsTags": [
+        {
+          "id": "pregnancy-complications",
+          "conceptUuid": "${concept.complicationsAtDelivery.uuid}",
+          "summaryLabel": "Pregnancy Complication(s)",
+          "tags": [
+            {
+              "color": "red",
+              "appliedToConceptSets": ["${concept.complicationsAtDelivery.uuid}"]
+            }
+          ]
+        }
+      ],
+      "admissionRequestNote": [
+        {
+          "id": "admission-request-note",
+          "conceptUuid": "${concept.clinicalImpressionComments.uuid}"
+        }
+      ],
+      "pendingItems": [
+        {
+          "id": "pending-items",
+          "orders": {
+            "orderTypes": [
+              {
+                "label": "Labs", 
+                "uuid": "${orderType.testOrder.uuid}"
+              }
+            ]
+          },
+          "showPendingItems": true
+        }
+      ]
+    },
+    "wards": [
+      {
+        "id": "maternal-ward"
+      }
+    ],
+    "hideWorkspaceVitalsLinks": true,
+    "extensionSlots": {
+      "ward-patient": {
+	"configure": {
+	  "ward-patient-discharge": {
+	    "allowedSessionLocationUuids": ["989a9b23-d1f9-11f0-9d46-169316be6a48"]
+	  }
+	},
+        "remove": [
+          "ward-patient-order-basket",
+          "ward-patient-clinical-forms"
+        ],
+        "order": [
+          "ward-patient",
+          "o2-visit-summary-window",
+          "o2-vital-signs-window",
+          "ward-patient-notes",
+          "ward-patient-transfer-swap",
+          "ward-patient-discharge"
+        ]
+      }
+    },
+    "additionalInpatientNotesConceptUuids": [
+      "${concept.freeTextComment.uuid}"
+    ]
+  },
+  "@openmrs/esm-patient-tests-app": {
+    "orders": {
+      "labOrderableConcepts": "880468f0-eec0-4d70-861a-fe12d4ba5099"
+    }
+  }
+}
+

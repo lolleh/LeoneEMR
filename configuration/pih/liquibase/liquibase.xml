@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="20211026-pihcore-create-views" author="mgoodrich" runAlways="true" runOnChange="true">
+        <sqlFile endDelimiter=";" path="sql/create_views.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20200713-pihcore-create-stored-procedures" author="PIH" runAlways="true" runOnChange="true">
+        <sqlFile endDelimiter="#" path="sql/create_stored_procedures.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20200713-pihcore-create-functions" author="mgoodrich" runAlways="true" runOnChange="true">
+        <sqlFile endDelimiter="#" path="sql/create_functions.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20200731-pihcore-global-metadata" author="mgoodrich" runAlways="true" runOnChange="true">
+        <sqlFile endDelimiter="#" path="sql/global_metadata.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20200903-update-neonatal-sepsis-concept-name" author="ball">
+        <comment>
+            UHM-3052 Void Neonatal septicemia vs sepsis names (fr, ht).
+        </comment>
+
+        <sql>
+            -- Void Neonatal septicemia names from Neonatal sepsis
+            -- Void French name
+            update concept_name
+               set voided = 1, voided_by = 1, date_voided = now(), void_reason = 'Neonatal sepsis not septicemia'
+             where uuid = 'f588d040-d5db-102d-ad2a-000c29c2a5d7';
+            -- Void Kreyol name
+            update concept_name
+               set voided = 1, voided_by = 1, date_voided = now(), void_reason = 'Neonatal sepsis not septicemia'
+             where uuid = 'ccf40f4e-91d9-4b3c-81f0-306a293536f8';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20210405-restore-value-drug" author="ball">
+        <validCheckSum>3:60fc99e90700bdd6fff363fd5f9a1d02</validCheckSum>
+        <validCheckSum>8:bad63b2e0fbf0d146d0e063203d8937b</validCheckSum>
+        <comment>
+            UHM-5226 Restore obs.value_drug for meds
+        </comment>
+        <sql>
+            -- Create temp table
+            drop table if exists temp_value_drug;
+            create table temp_value_drug (
+                id INT not null auto_increment primary key,
+                obs_id int(11) default NULL,
+                obs_group_id int(11) default NULL,
+                value_coded int(11) default NULL,
+                value_drug int(11) default NULL,
+                encounter_name varchar(50) default NULL
+            );
+
+            -- Add obs_id to temporary table
+            --   when the value_drug is null
+            insert into temp_value_drug (obs_id,obs_group_id,encounter_name)
+            select o.obs_id, o.obs_group_id, et.name
+              from obs o, encounter e, encounter_type et
+             where o.concept_id = (select concept_id from concept
+                    where uuid = '3cd9491e-26fe-102b-80cb-0017a47871b2')
+               and o.encounter_id = e.encounter_id
+               and e.encounter_type IN
+                    (select encounter_type_id from encounter_type
+                      where uuid IN ('8ff50dea-18a1-4609-b4c9-3f8f2d611b84', -- dispensing
+                                     '5b812660-0262-11e6-a837-0800200c9a66', -- outPedsIntake
+                                     '229e5160-031b-11e6-a837-0800200c9a66', -- outPedsFU
+                                     '27d3a180-031b-11e6-a837-0800200c9a66', -- outAdIntake
+                                     '27d3a181-031b-11e6-a837-0800200c9a66', -- outAdFU
+                                     'ae06d311-1866-455b-8a64-126a9bd74171', -- ncdIntake zl
+                                     '5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c', -- ncdFU zl
+                                     '00e5e810-90ec-11e8-9eb6-529269fb1459', -- ancIntake sl
+                                     '00e5e946-90ec-11e8-9eb6-529269fb1459', -- ancFollowup sl
+                                     '00e5ebb2-90ec-11e8-9eb6-529269fb1459', -- delivery sl
+                                     '7d5853d4-67b7-4742-8492-fcf860690ed5', -- outIntake sl
+                                     'd8a038b5-90d2-43dc-b94b-8338b76674f3', -- outFU sl
+                                     'aa61d509-6e76-4036-a65d-7813c0c3b752' -- consult ces
+                                    ))
+               and o.value_drug is null
+               and o.value_coded is not null
+               and e.encounter_type = et.encounter_type_id
+               and o.voided = 0
+               and e.voided = 0;
+
+            -- Add value_drug to the temporary table
+            update temp_value_drug, obs
+               set temp_value_drug.value_drug = obs.value_coded
+             where temp_value_drug.obs_id = obs.obs_id;
+
+            -- Add value_coded to the temporary table
+            update temp_value_drug, drug
+               set temp_value_drug.value_coded = drug.concept_id
+             where temp_value_drug.value_drug = drug.drug_id;
+
+            -- Ignore for Liberia NCD encounters when value_coded is NULL
+            delete from temp_value_drug
+             where 'Liberia' IN (select name from address_hierarchy_entry where parent_id is NULL)
+               and encounter_name like 'NCD%Consult';
+
+            -- Insert new obs
+            insert into obs
+                (person_id, concept_id,
+                 value_coded, value_drug,
+                 encounter_id, obs_datetime, location_id,
+                 obs_group_id, comments, creator,
+                 date_created, uuid)
+            select o1.person_id, o1.concept_id,
+                   tvd.value_coded, tvd.value_drug,
+                   o1.encounter_id, o1.obs_datetime, o1.location_id,
+                   o1.obs_group_id, 'fixed value_drug', o1.creator,
+                   now(), uuid()
+              from temp_value_drug tvd, obs o1
+             where tvd.obs_id = o1.obs_id
+               and tvd.value_coded is NOT NULL;
+
+            -- Void old obs
+            update obs, temp_value_drug
+               set voided = 1,
+                   voided_by = 1, date_voided = now(),
+                   void_reason = 'value_drug is null'
+             where obs.obs_id = temp_value_drug.obs_id
+               and temp_value_drug.value_coded is NOT NULL;
+
+            -- Void obs_group when value_coded is NULL
+            update obs, temp_value_drug
+               set voided = 1,
+                   voided_by = 1, date_voided = now(),
+                   void_reason = 'value_drug is null'
+            where obs.obs_group_id = temp_value_drug.obs_group_id
+              and temp_value_drug.value_coded is NULL;
+
+            update obs, temp_value_drug
+               set voided = 1,
+                   voided_by = 1, date_voided = now(),
+                   void_reason = 'value_drug is null'
+             where obs.obs_id = temp_value_drug.obs_group_id
+               and temp_value_drug.value_coded is NULL;
+
+            drop table if exists temp_value_drug;
+        </sql>
+    </changeSet>
+<changeSet id="20230201-update-programs-for-dead-patients-aali" author="aali">
+    <validCheckSum>8:a1c6b5015fda7ac530636b7bb25f11d3</validCheckSum>
+    <validCheckSum>8:eac342776a3d851102ad0fff67dfc21e</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+               select CASE WHEN count(*) > 0 THEN 1 ELSE 0 END AS cnt
+               from patient_program pp
+               inner join program p2 on p2.program_id = pp.program_id
+               where voided = 0
+               and date_completed  is null
+               and EXISTS ( select 1 from person p where p.person_id = pp.patient_id and p.dead = 1); 
+            </sqlCheck>
+        </preConditions>
+        <comment>If the count is greater than zero, then we need to close programs for these dead patients</comment>
+        <sql>
+         UPDATE patient_program pp2, (
+            SELECT patient_id , max(encounter_datetime) AS encounter_date
+            FROM encounter e WHERE patient_id IN (
+               select pp.patient_id
+               from patient_program pp
+               inner join program p2 on p2.program_id = pp.program_id
+               where voided = 0
+               and date_completed  is null
+               and EXISTS
+                ( select 1 from person p where p.person_id = pp.patient_id
+                and p.dead = 1)
+            )
+            GROUP BY patient_id ) AS plist
+            SET pp2.date_completed = plist.encounter_date,
+            pp2.date_changed=now(),
+            pp2.changed_by  = (select user_id from users where system_id = 'admin')
+            WHERE pp2.patient_id=plist.patient_id;
+        </sql>
+    </changeSet>
+    <changeSet id="20210602-delete-unused-ces-programs" author="jmbabazi">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+            select count(*) from patient_program where program_id in
+            (select program_id from program where uuid in ("9fe0c32c-981f-4283-b4f4-168285a52c7d",
+                "40657f91-5991-44fe-a16f-220dbeb9dcbd", "1eb13158-f39c-444a-b77c-78f1d78123be"));
+            </sqlCheck>
+        </preConditions>
+        <comment>If the count is 0, then remove these programs (Hypertension program, Diabetes program, Epilepsy program)</comment>
+        <sql>
+            -- delete program_workflow_state related to these programs
+            delete from program_workflow_state where program_workflow_id in
+            (select program_workflow_id from program_workflow where program_id in (select program_id from program where uuid in
+            ("9fe0c32c-981f-4283-b4f4-168285a52c7d","40657f91-5991-44fe-a16f-220dbeb9dcbd", "1eb13158-f39c-444a-b77c-78f1d78123be")));
+
+            -- delete program_workflow related to these programs
+            delete from program_workflow
+            where program_id in (select program_id from program where uuid in
+            ("9fe0c32c-981f-4283-b4f4-168285a52c7d", "40657f91-5991-44fe-a16f-220dbeb9dcbd","1eb13158-f39c-444a-b77c-78f1d78123be"));
+
+            -- delete these programs
+            delete from program where uuid in ("9fe0c32c-981f-4283-b4f4-168285a52c7d", "40657f91-5991-44fe-a16f-220dbeb9dcbd",
+            "1eb13158-f39c-444a-b77c-78f1d78123be");
+        </sql>
+    </changeSet>
+
+    <changeSet id="20210608-migrate-anc-v1-to-obgyn-encounters" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Haiti';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            If the count is 1, this is a Haiti server
+        </comment>
+        <sql>
+            -- Add prenatal obs for ANC V1 encounters; type of outpatient visit = prenatal visit
+            insert into obs
+                (person_id,
+                 concept_id,
+                 value_coded,
+                 encounter_id, obs_datetime, location_id,
+                 comments, creator, date_created, uuid)
+            select e.patient_id,
+                   (select concept_id from concept where uuid = 'e2964359-790a-419d-be53-602e828dcdb9'),
+                   (select concept_id from concept where uuid = 'cabf0c04-7d4e-4db4-921c-d5ba90f00fc9'),
+                   e.encounter_id, now(), e.location_id,
+                   'create anc prenatal obs for obgyn', e.creator, now(), uuid()
+              from encounter e
+             where e.encounter_type IN
+                    (select et.encounter_type_id from encounter_type et
+                      where et.uuid IN ('00e5e810-90ec-11e8-9eb6-529269fb1459','00e5e946-90ec-11e8-9eb6-529269fb1459'));
+
+            -- Add visit initial obs for ANC V1 intake encounters
+            insert into obs
+                (person_id, concept_id, value_coded,
+                encounter_id, obs_datetime, location_id,
+                comments, creator, date_created, uuid)
+            select e.patient_id,
+                (select concept_id from concept where uuid = '164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'),
+                (select concept_id from concept where uuid = '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'),
+                e.encounter_id, now(), e.location_id,
+                'create anc ddb obs for obgyn', e.creator, now(), uuid()
+              from encounter e
+             where e.encounter_type IN
+                (select et.encounter_type_id from encounter_type et
+                  where et.uuid = '00e5e810-90ec-11e8-9eb6-529269fb1459') ;
+
+            -- Add visit followup obs for ANC V1 followup encounters
+            insert into obs
+                (person_id, concept_id, value_coded,
+                encounter_id, obs_datetime, location_id,
+                comments, creator, date_created, uuid)
+            select e.patient_id,
+                (select concept_id from concept where uuid = '164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'),
+                (select concept_id from concept where uuid = '53b1484a-c50c-4e44-880d-c8c6d6f63762'),
+                e.encounter_id, now(), e.location_id,
+                'create anc rdv obs for obgyn', e.creator, now(), uuid()
+              from encounter e
+             where e.encounter_type IN
+                (select et.encounter_type_id from encounter_type et
+                  where et.uuid = '00e5e946-90ec-11e8-9eb6-529269fb1459') ;
+
+            -- Change to OB/GYN encounter type and form_id on ANC V1 encounter
+            update encounter
+               set encounter_type =
+                    (select encounter_type_id from encounter_type where uuid = 'd83e98fd-dc7b-420f-aa3f-36f648b4483d'),
+                   form_id =
+                    (select form_id from form where uuid = '97ba85df-83b6-49ed-b34f-30b33436e599')
+             where encounter_type IN
+                    (select et.encounter_type_id
+                       from encounter_type et
+                      where et.uuid IN ('00e5e810-90ec-11e8-9eb6-529269fb1459','00e5e946-90ec-11e8-9eb6-529269fb1459'));
+        </sql>
+    </changeSet>
+
+    <changeSet id="20210701-migrate-mentalhealth-drug-to-other" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Sierra Leone';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            If the count is 1, this is a Sierra Leone server
+        </comment>
+        <sql>
+            update obs
+               set concept_id =
+                    (select concept_id from concept
+                      where uuid like '163043AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+                         -- mental status exam findings
+             where concept_id =
+                    (select concept_id from concept
+                      where uuid like '162556AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+                         -- history of drug
+               and value_coded =
+                    (select concept_id from concept
+                      where uuid like '3cee7fb4-26fe-102b-80cb-0017a47871b2')
+                         -- other
+               and voided = 0
+               and encounter_id IN
+                    (select encounter_id from encounter
+                      where encounter_type IN
+                            (select encounter_type_id from encounter_type
+                              where name like 'Mental Health Consult'));
+        </sql>
+    </changeSet>
+    
+    <changeSet id="20210830-migrate-pitting-levels" author="ball">
+        <comment>
+            To correct a bug with the pitting levels on the physical exam musculoskeletal section
+        </comment>
+        <sql>
+             update obs
+                set concept_id = concept_from_mapping('CIEL','130166') -- pitting edema question
+              where concept_id = concept_from_mapping('PIH','MUSCULOSKELETAL EXAM FINDINGS')
+                and value_coded in (
+                        concept_from_mapping('CIEL','165598'),  -- pitting +1
+                        concept_from_mapping('CIEL','165599'),  -- pitting +2
+                        concept_from_mapping('CIEL','165600'))  -- pitting +3
+            ;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20210916-clear-location-tag-maps-zl-only" author="mgoodrich">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Haiti';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            UHM-5770: Refactor location tag configuration into Iniz locationtagmaps
+            (One-time clear out of maps so they can be re-initiazed, on ZL servers only)
+        </comment>
+        <sql>
+            delete from location_tag_map;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20211021-retired-old-hiv-workflow-and-states" author="mgoodrich">
+        <comment>
+            UHM-5887: inccorrect HIV Program workflows on Haitihivtest
+        </comment>
+        <sql>
+            update program_workflow set retired=1, date_changed=NOW() where uuid='f5022f7d-cdb2-491c-9f06-4f87c9877d17';
+            update program_workflow_state set retired=1, date_changed=NOW() where uuid='490a8b6f-4538-4c85-ace9-1535fc634ba7';
+            update program_workflow_state set retired=1, date_changed=NOW() where uuid='60030941-c0a3-4b84-92e8-2c201fb8102b';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20211209-update-baptist_uuid" author="ball">
+        <comment>
+            Fix the Baptist concept uuid from 37 to 36 characters
+        </comment>
+        <sql>
+            update concept
+               set uuid = '162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+             where uuid like '1162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220118-delete-dupe-mapping" author="ball">
+        <validCheckSum>3:67f0215daef2642076b05d93087f24f3</validCheckSum>
+        <comment>
+            Remove duplicate CIEL:1362 mapping on weakly positive concept
+        </comment>
+        <sql>
+            delete from concept_reference_map
+             where concept_id IN
+                    (select c.concept_id from concept c where c.uuid = '3cda1dd0-26fe-102b-80cb-0017a47871b2');
+
+            update concept
+               set retired = 1, retired_by = 1, date_retired = now(), retire_reason = 'Duplicate concept with CIEL:1362'
+             where uuid = '3cda1dd0-26fe-102b-80cb-0017a47871b2';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220125-migrate-test-date" author="bistenes">
+        <comment>
+            Change a concept on the lab results form
+        </comment>
+        <sql>
+            update obs
+            join encounter e on obs.encounter_id = e.encounter_id
+            set concept_id = concept_from_mapping('PIH','Date of test results')
+            where concept_id = concept_from_mapping('PIH','DATE OF LABORATORY TEST')
+                and e.encounter_type = encounter_type('4d77916a-0620-11e5-a6c0-1697f925ec7b');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220127-delete-rxnorm-comb-mapping" author="ball">
+        <comment>
+            Remove RxNORM Comb mappings
+        </comment>
+        <sql>
+            delete from concept_reference_map
+             where concept_reference_term_id IN
+                     (select concept_reference_term_id
+                        from concept_reference_term crt
+                       where crt.concept_source_id IN
+                                 (select concept_source_id
+                                    from concept_reference_source crs
+                                   where name like 'RxNORM Comb'));
+
+            update concept_reference_source
+               set retired = 1, retired_by = 1, date_retired = now(), retire_reason = 'Not using RxNORM Comb'
+             where name like 'RxNORM Comb';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220131-remove-obsolete-mapping" author="ball">
+        <comment>
+            Remove obsolete mappings and reference source
+        </comment>
+        <sql>
+            delete from concept_reference_map
+             where concept_reference_term_id IN
+                    (select crt.concept_reference_term_id from concept_reference_term crt
+                      where crt.concept_source_id IN
+                            (select concept_source_id
+                               from concept_reference_source crs
+                              where name IN ('org.openmrs.module.mdrtb','org.openmrs.module.emr','SNOMED MVP','ICD-10-WHO NP2','ICD-10-WHO NP','RxNORM Comb')));
+
+            delete from concept_reference_term
+             where concept_source_id IN
+                      (select concept_source_id
+                         from concept_reference_source crs
+                        where name IN ('org.openmrs.module.mdrtb','org.openmrs.module.emr','SNOMED MVP','ICD-10-WHO NP2','ICD-10-WHO NP','RxNORM Comb'));
+
+            delete from concept_reference_source
+             where name IN
+                    ('org.openmrs.module.mdrtb','org.openmrs.module.emr','SNOMED MVP','ICD-10-WHO NP2','ICD-10-WHO NP','RxNORM Comb');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220215-delete-old-noncodeddiagnosis-reports" author="PIH">
+        <comment>
+            Delete noncodeddiagnosis reports out of the serialized_object table
+        </comment>
+        <sql>
+            delete from serialized_object where name = 'noncodeddiagnoses';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220216-remove-mirebalaisreports-mapping" author="ball">
+        <comment>
+            Remove mirebalaisreports mappings and reference source
+        </comment>
+        <sql>
+            delete from concept_reference_map
+                where concept_reference_term_id IN
+                        (select crt.concept_reference_term_id from concept_reference_term crt
+                          where crt.concept_source_id IN
+                                    (select concept_source_id
+                                       from concept_reference_source crs
+                                      where name IN ('org.openmrs.module.mirebalaisreports')));
+
+            delete from concept_reference_term
+             where concept_source_id IN
+                    (select concept_source_id
+                       from concept_reference_source crs
+                      where name IN ('org.openmrs.module.mirebalaisreports'));
+
+            delete from concept_reference_source
+             where name IN ('org.openmrs.module.mirebalaisreports');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220222-void-diagnosis-obs-whose-parents-are-voided" author="mseaton">
+        <comment>
+            Void child obs not voided due to UHM-6161: Diagnosis not voided correctly
+        </comment>
+        <sql>
+            update      obs o
+            inner join  obs og on o.obs_group_id = og.obs_id and og.voided = 1
+            inner join  concept c on og.concept_id = c.concept_id and c.uuid = '159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+            set         o.voided = 1,
+                        o.voided_by = 1,
+                        o.date_voided = now(),
+                        o.void_reason='20220222-void-obs-whose-parents-are-voided'
+            where       o.voided = 0;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220310-remove-obsolete-mapping" author="ball">
+    <comment>
+        Remove additional obsolete mappings and reference source
+    </comment>
+    <sql>
+        delete from concept_reference_map
+         where concept_reference_term_id IN
+                (select crt.concept_reference_term_id from concept_reference_term crt
+                  where crt.concept_source_id IN
+                        (select concept_source_id
+                           from concept_reference_source crs
+                          where name IN ('org.openmrs.module.hirifxray','MVP Amazon Server 174','Rwanda HMIS Report 2012 01 20','Mexico MoH SIS','Mexico MoH SUIVE')));
+
+        delete from concept_reference_term
+         where concept_source_id IN
+                (select concept_source_id
+                   from concept_reference_source crs
+                  where name IN ('org.openmrs.module.hirifxray','MVP Amazon Server 174','Rwanda HMIS Report 2012 01 20','Mexico MoH SIS','Mexico MoH SUIVE'));
+
+        delete from concept_reference_source
+         where name IN ('org.openmrs.module.hirifxray','MVP Amazon Server 174','Rwanda HMIS Report 2012 01 20','Mexico MoH SIS','Mexico MoH SUIVE');
+    </sql>
+    </changeSet>
+
+    <changeSet id="20220414-migrate-pathology" author="mogoodrich">
+        <comment>
+            Migrate Pathology data for new Pathology workflow: https://pihemr.atlassian.net/browse/UHM-6381
+        </comment>
+        <sql>
+            -- set variables we will use
+            set @pathology_order_type = (select order_type_id from order_type where uuid='65c912c2-88cf-46c2-83ae-2b03b1f97d3a');
+            set @test_order_encounter_type = (select encounter_type_id from encounter_type where uuid='b3a0e3ad-b80c-4f3f-9626-ace1ced7e2dd');
+            set @pathology_specimen_collection_encounter_type = (select encounter_type_id from encounter_type where uuid='10db3139-07c0-4766-b4e5-a41b01363145');
+            set @order_number_obs_concept_id = (select concept_id from concept where uuid='393dec41-2fb5-428f-acfa-36ea85da6666');
+            set @procedure_performed_concept_id= (select concept_id from concept where uuid='d2a8e2d1-88f9-45f9-9511-4ac5df877340');
+            set @procedure_ordered_concept_id = (select concept_id from concept where uuid='d6d585b6-4887-4aac-8361-424c17b030f2');
+            set @creator = (select user_id from users where username='admin');
+
+            -- find all existing orders where there is an existing obs with the order number, and switch
+            -- the encounter linked to the the order to the encounter with the order number obs
+            -- (ie, change the order so instead of pointing to the Test Order encounter, it now points to the specimen collection encounter)
+            update orders ord, encounter e, obs o set ord.encounter_id = o.encounter_id where order_type_id=@pathology_order_type
+                      and e.encounter_id = ord.encounter_id and e.encounter_type = @test_order_encounter_type
+                      and o.concept_id=@order_number_obs_concept_id and o.value_text = ord.order_number;
+
+            -- find all remaining pathology orders still linked to test orders (these should be the ones without specimen collection encounters)
+            create temporary table encounters_to_convert (patient_id INT, encounter_id INT, encounter_datetime DATETIME, location_id INT, order_number text);
+
+            insert into encounters_to_convert (select e.patient_id, e.encounter_id, e.encounter_datetime, e.location_id, ord.order_number
+                    from orders ord, encounter e where order_type_id=@pathology_order_type
+                    and ord.encounter_id = e.encounter_id and e.encounter_type=@test_order_encounter_type);
+
+            -- add a order number obs to these encounters
+            insert into obs (person_id, concept_id, encounter_id, obs_datetime, location_id, value_text, creator, date_created, uuid)
+            select patient_id, @order_number_obs_concept_id, encounter_id, encounter_datetime, location_id, order_number, @creator, NOW(), UUID() from encounters_to_convert;
+
+            -- change the pathology procedure ordered obs to pathology procedure performed
+            update obs o, encounters_to_convert e set o.concept_id = @procedure_performed_concept_id  where o.encounter_id=e.encounter_id and o.concept_id=@procedure_ordered_concept_id;
+
+            -- change the encounter type
+            update encounter e, encounters_to_convert etc set e.encounter_type = @pathology_specimen_collection_encounter_type where e.encounter_id = etc.encounter_id;
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220428-delete-bad-baptist-concept" author="ball">
+        <comment>
+            UHM-6445 Delete the Baptist concept with 37 character uuid
+        </comment>
+        <sql>
+            update obs
+               set value_coded = (select concept_id from concept where uuid = '162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' and concept_id is not NULL)
+             where value_coded = (select concept_id from concept where uuid = '1162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+               and value_coded is not NULL ;
+
+            delete from concept_name
+             where concept_id = (select concept_id from concept where uuid = '1162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+               and concept_id is NOT NULL;
+
+            delete from concept
+             where uuid = '1162932AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220815-remove-old-labworkflowowa-gp" author="mgoodrich">
+        <comment>
+            UHM-6643: Lab OWA Assessments and Tweaks
+            Removes the labworkflowowa.labResultsToDisplayConceptSet as it is no longer used
+        </comment>
+        <sql>
+            delete from global_property where property='labworkflowowa.labResultsToDisplayConceptSet';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20220915-add-authentication-event-log" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="authentication_event_log"/></not>
+        </preConditions>
+        <comment>
+            UHM-6501 - Track user logins in OpenMRS
+        </comment>
+        <createTable tableName="authentication_event_log">
+            <column name="authentication_session_id" type="char(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_datetime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip_address" type="varchar(40)"/>
+            <column name="http_session_id" type="varchar(32)"/>
+            <column name="event_type" type="varchar(50)"/>
+            <column name="username" type="varchar(50)"/>
+            <column name="user_id" type="int"/>
+            <column name="message" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20221024-change-authentication-event-log-1" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="authentication_event_log" columnName="authentication_session_id"/>
+        </preConditions>
+        <comment>Rename authentication_event_log.authentication_session_id to login_id</comment>
+        <renameColumn
+                tableName="authentication_event_log"
+                oldColumnName="authentication_session_id"
+                newColumnName="login_id"
+                columnDataType="char(36)"/>
+    </changeSet>
+
+    <changeSet id="20221024-change-authentication-event-log-2" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="authentication_event_log" columnName="message"/>
+        </preConditions>
+        <comment>Drop authentication_event_log.message</comment>
+        <dropColumn tableName="authentication_event_log" columnName="message"/>
+    </changeSet>
+
+    <changeSet id="20221024-change-authentication-event-log-3" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <not><columnExists tableName="authentication_event_log" columnName="scheme_id"/></not>
+        </preConditions>
+        <comment>Add authentication_event_log.scheme_id</comment>
+        <addColumn tableName="authentication_event_log">
+            <column name="scheme_id" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20221024-change-authentication-event-log-4" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="authentication_event_log"/>
+        </preConditions>
+        <comment>Remove old authentication events following bug fixes</comment>
+        <delete tableName="authentication_event_log"/>
+    </changeSet>
+    
+    <changeSet id="20230131-enroll-missed-patients-in-J9" author="dmdesimone">
+	    <preConditions onFail="MARK_RAN">
+			<not><sqlCheck expectedResult="0">
+				select count(*) from obs o
+				inner join patient_program pp on pp.patient_id  = o.person_id 
+					and pp.program_id = (select program_id from program where uuid = '41a2715e-8a14-11e8-9a94-a6cf71072f73') and pp.date_completed is null
+				where o.concept_id = concept_from_mapping('PIH',11665)
+				and o.obs_datetime >= pp.date_enrolled 
+				and not EXISTS 	
+					(select 1
+					from patient_state ps 
+					where ps.patient_program_id = pp.patient_program_id 
+					and (ps.end_date is null or ps.end_date > o.obs_datetime));
+			</sqlCheck></not>
+	    </preConditions>
+	    <comment> UHM-6757 automatically enroll patients in J9 who were missed </comment>
+		<sql>
+			 -- variables
+			select program_id into @mchProgramId from program where uuid = '41a2715e-8a14-11e8-9a94-a6cf71072f73';
+			select pws.program_workflow_state_id into @prenatalStateId from program_workflow_state pws where concept_id = concept_from_mapping('PIH','11699');
+			set @momsGroupConceptId = concept_from_mapping('PIH',11665);
+			select user_id into @adminUser from users where system_id = 'admin';
+			
+			-- select all patients with mother's group indicated without being in any treatment status
+			-- include the earliest instance of the mothers group obs (which will be used as the start date)
+			-- note that if they have a mothers group indicated they will be enrolled in MCH program
+			-- only include patients still in the mch program
+			drop temporary table if exists temp_mothers_groups_without_J9;
+			create temporary table temp_mothers_groups_without_J9
+			select o.person_id , pp.patient_program_id , min(o.obs_datetime) "moms_group_obs_datetime" 
+			from obs o
+			inner join patient_program pp on pp.patient_id  = o.person_id 
+				and pp.program_id = @mchProgramId and pp.date_completed is null
+			where o.concept_id = @momsGroupConceptId
+			and o.obs_datetime >= pp.date_enrolled 
+			and not EXISTS 	
+				(select 1
+				from patient_state ps 
+				where ps.patient_program_id = pp.patient_program_id 
+				and (ps.end_date is null or ps.end_date > o.obs_datetime))	-- any state that overlaps with the mother's group obs
+			group by o.person_id , pp.patient_program_id;
+			
+			
+			-- add those patients to J9 workflow by adding patient_state rows for them with state = prenatal group
+			insert into patient_state (patient_program_id , state, start_date, creator, date_created,voided, uuid) 
+			select patient_program_id, @prenatalStateId, moms_group_obs_datetime, @adminUser, now(),0, uuid()
+			from temp_mothers_groups_without_J9;
+	    </sql>
+    </changeSet>
+
+     <changeSet id="20230309-fix-missing-medication-categories" author="dmdesimone">
+	    <preConditions onFail="MARK_RAN">
+			<not><sqlCheck expectedResult="0">
+					select count(*)  
+					from encounter e
+					inner join obs o on o.encounter_id = e.encounter_id and o.voided = 0 and o.concept_id = concept_from_mapping('PIH','9070') -- dispensing construct
+					where e.encounter_type =
+						(select encounter_type_id from encounter_type where uuid = 'cc1720c9-3e4c-4fa8-a7ec-40eeaad1958c')
+					and e.voided = 0
+					and not EXISTS
+						(select 1 from obs o2
+						where o2.obs_group_id = o.obs_id
+						and o2.voided = 0
+						and o2.concept_id = concept_from_mapping('PIH','1535'))
+					;
+			</sqlCheck></not>
+	    </preConditions>
+	    <comment> UHM-7028 fix data with medication categories missing </comment>
+		<sql>
+			DROP TEMPORARY TABLE IF EXISTS temp_missing_categories;
+			create temporary table temp_missing_categories
+			select 
+				e.encounter_id,
+				o.obs_datetime, 
+				o.obs_id "Dispensing_construct_obs_group_id", 
+				concept_name(om.value_coded,'en') "drug", 
+				o.person_id, 
+				o.location_id , 
+				o.creator , 
+				o.date_created  
+			from encounter e
+			inner join obs o on o.encounter_id = e.encounter_id and o.voided = 0 and o.concept_id = concept_from_mapping('PIH','9070') -- dispensing construct
+			inner join obs om on om.obs_group_id = o.obs_id and om.voided = 0 and om.concept_id = concept_from_mapping('PIH','1282') --  medication name
+			where e.encounter_type =
+				(select encounter_type_id from encounter_type where uuid = 'cc1720c9-3e4c-4fa8-a7ec-40eeaad1958c') -- hiv dispensing encounter
+			and e.voided = 0
+			and not EXISTS
+				(select 1 from obs o2
+				where o2.obs_group_id = o.obs_id
+				and o2.voided = 0
+				and o2.concept_id = concept_from_mapping('PIH','1535')) -- medication category
+			order by e.encounter_datetime desc
+			;
+			
+			insert into obs 
+				(person_id,
+				concept_id,
+				encounter_id,
+				obs_datetime,
+				location_id,
+				obs_group_id,
+				comments, 
+				creator,
+				date_created,
+				voided,
+				uuid,
+				status,
+				value_coded)
+			select 
+				tmc.person_id,
+				concept_from_mapping('PIH','1535'), -- medication category
+				tmc.encounter_id,
+				tmc.obs_datetime,
+				tmc.location_id,
+				tmc.Dispensing_construct_obs_group_id,
+				'added with script for uhm-7028',
+				tmc.creator,
+				tmc.date_created,
+				0,
+				uuid(),
+				'FINAL',
+				CASE tmc.drug 
+					when '3TC + AZT' then concept_from_mapping('PIH','3013') -- ARV #1
+					when 'ABC + 3TC' then concept_from_mapping('PIH','3013') -- ARV #1
+					when 'ATV/r'  then concept_from_mapping('PIH','2848') -- ARV #2
+					when 'Cotrimoxazole' then concept_from_mapping('PIH','3120') -- Prophylaxis drug
+					when 'DTG' then concept_from_mapping('PIH','2848') -- ARV #2
+					when 'Isoniazid' then concept_from_mapping('PIH','656') -- Isoniazid
+					when 'TDF + 3TC + DTG' then concept_from_mapping('PIH','3013') -- ARV #1
+				END
+			from temp_missing_categories tmc;
+	    </sql>
+    </changeSet>
+
+    <changeSet id="20230420-remove-old-close-stale-visits-task" author="mgoodrich">
+        <comment>UHM-7160: Close Stale Visits error on startup</comment>
+        <sql>
+            delete from scheduler_task_config_property where task_config_id in (select task_config_id from scheduler_task_config where name='EMR module - Close Stale Visits');
+            delete from scheduler_task_config where name='EMR module - Close Stale Visits';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20230907-rename-default-owa-directory" author="mgoodrich">
+        <comment>UHM-7368: Remaining Tomcat9 Tasks (rename owa directory if necessary)</comment>
+        <sql>
+            update global_property set property_value = '/home/tomcat/.OpenMRS/owa' where property = 'owa.appFolderPath' and property_value='/home/tomcat7/.OpenMRS/owa';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20231115-delete-openconeptlab-gp-after-tomcat-update" author="mgoodrich">
+        <comment>UHM-7571: Fix OCL load at startup variable</comment>
+        <sql>
+            delete from global_property where property = 'openconceptlab.oclLoadAtStartupPath';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240124-update-queue-priority-normal-concept" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+                SELECT count(*) FROM queue_entry q, concept c where q.priority = c.concept_id and c.uuid='161236AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; -- Normal priority (status)
+            </sqlCheck></not>
+        </preConditions>
+        <comment> UHM-7649 fix queue normal priorities </comment>
+        <sql>
+            update queue_entry
+            set priority = (select concept_id from concept where uuid='3cd750a0-26fe-102b-80cb-0017a47871b2') -- Normal
+            where  priority = (select concept_id from concept where uuid='161236AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') ; -- Normal priority (status)
+        </sql>
+    </changeSet>
+    <changeSet id="20240124-update-queue-priority-emergency-concept" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+                SELECT count(*) FROM queue_entry q, concept c where q.priority = c.concept_id and c.uuid='1882AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; -- Emergency (status)
+            </sqlCheck></not>
+        </preConditions>
+        <comment> UHM-7649 fix queue emergency priorities </comment>
+        <sql>
+            update queue_entry
+            set priority = (select concept_id from concept where uuid='9e4b6acc-ab97-4ecd-a48c-b3d67e5ef778') -- Emergency
+            where  priority = (select concept_id from concept where uuid='1882AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') ; -- Emergency (status)
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240228-migrate-to-datetime-death" author="ball">
+        <comment>
+            Migrate date of death to datetime concept.  No change of time (00:00:00).
+        </comment>
+        <sql>
+            update obs
+            set concept_id = (select concept_id from concept where uuid='8d36db2c-e39c-4029-92f3-c85959f6f2e1')  -- Datetime of death (datetime)
+            where concept_id = (select concept_id from concept where uuid='3cde64e4-26fe-102b-80cb-0017a47871b2')  -- Date of death (date)
+              and voided = 0;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240305-retire-++-+++-duplicate-concepts" author="ball">
+        <comment>
+            Retire 2 concepts that are unused and their 4 mappings (including PIH:1408 and PIH:1409).
+        </comment>
+        <sql>
+            -- Retire these old concepts
+            update concept
+            set retired = 1, date_retired = now(),
+                retired_by = (select user_id from users where username='admin'),
+                retire_reason = 'Unused STRONGLY and MODERATELY POSITIVE concepts'
+            where uuid IN ('3cda1ad8-26fe-102b-80cb-0017a47871b2','3cda1c54-26fe-102b-80cb-0017a47871b2');
+
+            -- Remove these old mappings
+            delete from concept_reference_map
+            where concept_id IN
+                  (select concept_id from concept
+                    where uuid IN ('3cda1ad8-26fe-102b-80cb-0017a47871b2','3cda1c54-26fe-102b-80cb-0017a47871b2'));
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240307-retire-warts-and-all-duplicate-concepts" author="ball">
+        <comment>
+            Retire replaced wart concept and associated PIH:3788 mapping
+        </comment>
+        <sql>
+            -- Retire this old concept
+            update concept
+            set retired = 1, date_retired = now(),
+                retired_by = (select user_id from users where username='admin'),
+                retire_reason = 'Unused wart concept'
+            where uuid IN ('55a4cf2d-8e9b-4ef2-bda4-c6ab084bb611');
+
+            -- Remove these old mappings
+            delete from concept_reference_map
+            where concept_id IN
+                  (select concept_id from concept
+                   where uuid IN ('55a4cf2d-8e9b-4ef2-bda4-c6ab084bb611'));
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240321-change-authentication-event-log-5" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <not><indexExists indexName="authentication_event_log_ui"/></not>
+        </preConditions>
+        <comment>Add index to authentication_event_log on user_id</comment>
+        <createIndex indexName="authentication_event_log_ui" tableName="authentication_event_log">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="20240321-change-authentication-event-log-6" author="mseaton">
+        <preConditions onFail="MARK_RAN">
+            <not><indexExists indexName="authentication_event_log_ui_et"/></not>
+        </preConditions>
+        <comment>Add composite index to authentication_event_log on user_id and event_type</comment>
+        <createIndex indexName="authentication_event_log_ui_et" tableName="authentication_event_log">
+            <column name="user_id"/>
+            <column name="event_type"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="20240604-rename-default-owa-directory-for-mirebalais-servers" author="mgoodrich">
+        <comment>UHM-8009: Lab Orders error (rename funky owa directory on servers with 'Mirebalais' web app anme</comment>
+        <sql>
+            update global_property set property_value = '/home/tomcat/.OpenMRS/owa' where property = 'owa.appFolderPath' and property_value='/home/tomcat7/.OpenMRS//mirebalais/owa';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240717-void-programs-associated-with-voided-patients" author="mgoodrich">
+        <comment>LIB-335: Rows with blank EMR ID (and everything else except two dates)</comment>
+        <sql>
+            update patient_program pp, patient p set pp.voided=1, pp.date_voided=NOW(), pp.void_reason='correcting programs not voided when patients merged (see LIB-335)'
+            where pp.patient_id = p.patient_id and pp.voided = 0 and p.voided = 1;
+
+            update patient_state ps, patient_program pp set ps.voided=1, ps.date_voided=NOW(), ps.void_reason='correcting programs not voided when patients merged (see LIB-335)'
+            where ps.patient_program_id = pp.patient_program_id and ps.voided = 0 and pp.voided = 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240816-delete-duplicate-concept-set-member" author="ball">
+        <comment>
+            UHM-8133: Remove duplicate concept set member (Avoidant personality disorder)
+        </comment>
+        <sql>
+            delete from concept_set where uuid='4898e44c-0062-4cfe-9e7f-c3adb53391e8';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240909-delete-duplicate-concept-set-members" author="ball">
+        <comment>
+            HAI-8152: Remove duplicate concept set members (Mild/Moderate alcohol use disorder)
+        </comment>
+        <sql>
+            delete from concept_set
+             where uuid IN ('ad778a3c-d7ef-4726-b7e8-ac72806c8868','f125a022-f9d9-4ff9-80df-8821bad5e59b');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240920-migrate-outpatient-peds-form-id" author="ball">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*)
+                  from form f
+                 where uuid = '58f731af-8f8e-4863-b721-70bca76699c4';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            HAI-8185 Update to Outpatient Initial (Peds) form_id when the encounter_type is Outpatient Initial (Peds)
+        </comment>
+        <sql>
+            update encounter
+            set form_id =
+                    (select form_id from form where uuid = '58f731af-8f8e-4863-b721-70bca76699c4')
+            where encounter_type IN
+                  (select et.encounter_type_id
+                   from encounter_type et
+                   where et.uuid IN ('5b812660-0262-11e6-a837-0800200c9a66'));
+        </sql>
+    </changeSet>
+ <changeSet id="20241029-migrate-dispensed-to-information" author="dmdesimone">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+                select count(*) from obs o where o.concept_id = concept_from_mapping('PIH','3671') and o.value_coded = concept_from_mapping('PIH','9361'); -- obs to migrate
+            </sqlCheck></not>
+        </preConditions>
+        <comment> UHM-8215 </comment>
+        <sql>
+			-- load all dac checkbox obs
+			drop temporary table if exists temp_dac_obs;
+			create temporary table temp_dac_obs
+			select 
+				obs_id,
+				encounter_id
+			from obs o 
+			where o.concept_id = concept_from_mapping('PIH','3671')
+			and o.value_coded = concept_from_mapping('PIH','9361')
+			and o.voided = 0
+			; 
+			
+			-- void existing dac checkbox obs
+			update obs o
+			inner join temp_dac_obs t on t.obs_id = o.obs_id
+			set voided = 1,
+			    voided_by = 1, 
+			    date_voided = now(),
+			    void_reason = 'migrated to PIH:12071/PIH:9361 obs';
+			
+			-- void any other "person at visit" obs
+			update obs o
+			inner join temp_dac_obs t on t.encounter_id = o.encounter_id
+			set voided = 1,
+			    voided_by = 1, 
+			    date_voided = now(),
+			    void_reason = 'migrated to PIH:12071/PIH:9361 obs'
+			where o.concept_id =  concept_from_mapping('PIH','12071')
+				and o.voided = 0;
+			
+			
+			-- insert new person at visit->Community Health obs
+			insert into obs 
+				(person_id,
+				concept_id,
+				value_coded,
+				encounter_id,
+				obs_datetime,
+				location_id,
+				obs_group_id,
+				creator,
+				date_created,
+				voided,
+				uuid,
+				status,
+				previous_version
+			)
+			select 
+				o.person_id,
+				concept_from_mapping('PIH','12071'), 
+				concept_from_mapping('PIH','9361'), 
+				o.encounter_id,
+				o.obs_datetime,
+				o.location_id,
+				o.obs_group_id,
+				o.creator,
+				o.date_created,
+				0,
+				uuid(),
+				o.status,
+				t.obs_id
+			from obs o 
+			inner join temp_dac_obs t on t.obs_id = o.obs_id;
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20241211-delete-duplicate-mapping-pih-20208" author="ball">
+        <comment>
+            UHM-8301: Delete PIH:20208 mapping on wrong concept
+        </comment>
+        <sql>
+            delete from concept_reference_map
+            where concept_id =
+                  (select c.concept_id from concept c
+                   where c.uuid = '32048a63-4613-4fb2-b084-a6a16adad06e')
+              and concept_map_type_id =
+                  (select cmt.concept_map_type_id from concept_map_type cmt
+                   where cmt.name like 'SAME-AS')
+              AND concept_reference_term_id =
+                  (select crt.concept_reference_term_id from concept_reference_term crt
+                   where crt.code = '20208'
+                     and crt.concept_source_id = (select crs.concept_source_id from concept_reference_source crs where crs.name like 'PIH') );
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20250218-migrate-suicide-interventions" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Haiti';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            For the mental health encounter and suicide prevention interventions, migrate to new question.
+            If the count is 1, this is a Haiti server
+        </comment>
+        <sql>
+            -- load all suicide checkbox obs with the old question
+            drop temporary table if exists temp_suicide_obs;
+			create temporary table temp_suicide_obs
+            select
+                obs_id
+            from obs o
+            where o.concept_id = concept_from_mapping('CIEL','163311')
+              and o.value_coded IN (concept_from_mapping('CIEL','165532'),concept_from_mapping('CIEL','163321'),concept_from_mapping('CIEL','165533'))
+              and o.encounter_id IN
+                  (select encounter_id from encounter
+                   where encounter_type IN
+                         (select encounter_type_id from encounter_type
+                          where name like 'Mental Health Consult'))
+              and o.voided = 0
+            ;
+
+            -- void existing suicide from mental health intervention checkbox obs
+            update obs o
+                inner join temp_suicide_obs t on t.obs_id = o.obs_id
+                set voided = 1,
+                    voided_by = 1,
+                    date_voided = now(),
+                    void_reason = 'migrated to CIEL:165531 obs';
+
+            -- insert new obs with suicide screening intervention question
+            insert into obs
+            (person_id,
+             concept_id,
+             value_coded,
+             encounter_id,
+             obs_datetime,
+             location_id,
+             obs_group_id,
+             creator,
+             date_created,
+             voided,
+             uuid,
+             status,
+             previous_version
+            )
+            select
+                o.person_id,
+                concept_from_mapping('CIEL','165531'),
+                o.value_coded,
+                o.encounter_id,
+                o.obs_datetime,
+                o.location_id,
+                o.obs_group_id,
+                o.creator,
+                o.date_created,
+                0,
+                uuid(),
+                o.status,
+                t.obs_id
+            from obs o
+                     inner join temp_suicide_obs t on t.obs_id = o.obs_id;
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20250327-void-duplicate-trauma-obs" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Haiti';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            UHM-8473 For the mental health encounter, void one duplicate trauma data.
+            If the count is 1, this is a Haiti server
+        </comment>
+        <sql>
+            -- Create temporary table with the duplicate (second) trauma obs
+            drop temporary table if exists temp_dupe_trauma_obs;
+
+            create temporary table temp_dupe_trauma_obs
+            select o.encounter_id, o.obs_id from obs o
+             where o.voided = 0
+               and concept_id = concept_from_mapping('PIH','12362')
+               and o.encounter_id IN
+                  (select encounter_id from encounter
+                   where encounter_type IN
+                         (select encounter_type_id from encounter_type
+                          where name like 'Mental Health Consult'))
+               and exists
+                (select 1 from obs o2
+                 where o2.voided = 0
+                   and o2.concept_id = concept_from_mapping('PIH','12362')
+                   and o2.obs_id != o.obs_id
+                   and o.obs_id > o2.obs_id
+                   and o2.encounter_id = o.encounter_id);
+
+            update obs o
+                inner join temp_dupe_trauma_obs t on t.obs_id = o.obs_id
+                set voided = 1, voided_by = 1,
+                    date_voided = now(),
+                    void_reason = 'duplicate trauma question';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20251031-update-two-uuids" author="ball">
+        <comment>
+            Fix the Losartan and Hypromellose concept uuids to match older databases
+        </comment>
+        <sql>
+            -- Hypromellose
+            update concept
+               set uuid = '77850AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+             where uuid like '96182e61-8cfe-4609-a630-4288869f5576';
+
+            -- Losartan
+            update concept
+               set uuid = '98042566-aedc-442d-96b3-d055d3dd7d81'
+             where uuid like '925223f5-f706-4fbc-98f3-18d3c7e872fa';
+
+            -- Update the concept name uuid for Losartan (en, fsn, preferred)
+            update concept_name
+               set uuid = '6432BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+             where uuid like '1a095b60-39c3-49e1-a085-b49cb7ebcc31';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260109-set-is-set-fasting-concept" author="ball">
+        <comment>
+            Fix the Fasting blood glucose (mmol/L) concept by removing the set
+        </comment>
+        <sql>
+            update concept
+            set is_set = 0,  date_changed = now(), changed_by = 1
+            where uuid like '6e291dc0-9dd6-4ccf-bce4-5339c52667a9';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260113-set-is-set-fasting-concept-remove-members" author="mgoodrich">
+        <comment>
+            Fix the Fasting blood glucose (mmol/L) concept by setting to not set and removing the erroneous member
+            https://pihemr.atlassian.net/browse/UHM-9036
+        </comment>
+        <sql>
+            update concept
+            set is_set = 0,  date_changed = now(), changed_by = 1
+            where uuid like '6e291dc0-9dd6-4ccf-bce4-5339c52667a9';
+            delete from concept_set where concept_set=(select concept_id from concept where uuid='6e291dc0-9dd6-4ccf-bce4-5339c52667a9');
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260128-update-3-drug-uuids" author="ball">
+        <comment>
+            Update the Levetiracetam, Finasteride, and Colchicine concept uuids
+        </comment>
+        <sql>
+            -- Levetiracetam
+            update concept
+            set uuid = '78770AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+            where uuid like '3a0ed774-e703-4ca7-a612-65e14362b318';
+
+            -- Finasteride
+            update concept
+            set uuid = '76376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+            where uuid like 'badd994f-0c5a-416b-bb9b-430127dbf82c';
+
+            -- Colchicine
+            update concept
+            set uuid = '73702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+            where uuid like '79c0d9a8-3cac-4378-93b2-5d6b48fdf8d8';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260209-fix-order-concept-id-carbidopa-n-levodopa" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from address_hierarchy_entry where parent_id is NULL and name like 'Haiti';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            If the count is 1, this is a Haiti server.  For ZL, fix drug orders for
+            Carbidopa 25mg + Levodopa 250mg tablet which had the wrong concept_id.
+            https://pihemr.atlassian.net/browse/UHM-9103
+        </comment>
+        <sql>
+            update orders
+               set concept_id = (select concept_id from concept where uuid = '228e97de-d363-47cf-8570-d3f6e0f3a78d')
+             where orders.concept_id = (select concept_id from concept where uuid = '1872e445-df77-486a-b935-13d1ce4af8a1')
+               and orders.order_id IN
+                     (select order_id from drug_order
+                       where drug_inventory_id = (select drug_id from drug where name = 'Carbidopa 25mg + Levodopa 250mg tablet'))
+               and orders.voided = 0;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260213-delete-bad-history-of-covid-name" author="ball">
+        <comment>
+             UHM-9123 Delete the duplicate History of COVID-19 concept nane
+        </comment>
+        <sql>
+            delete from concept_name
+             where uuid = '1433XXBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260220-delete-duplicate-rx-norm-mappings" author="PIH">
+        <comment>
+            UHM-9134 - Delete duplicate rx-norm mappings
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/delete_duplicate_rxnorm_mappings.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20260220-delete-phantom-concepts" author="PIH">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <or>
+                    <sqlCheck expectedResult="1">select count(*) from concept where uuid = '8e5f17db-6c2d-44f7-bde3-55e68c411114';</sqlCheck>
+                    <sqlCheck expectedResult="1">select count(*) from concept where uuid = 'c9200dce-e9bb-472e-ac34-eed0367a708d';</sqlCheck>
+                </or>
+                <sqlCheck expectedResult="0">
+                    select count(*) from obs where concept_id in (select concept_id from concept where uuid in ('8e5f17db-6c2d-44f7-bde3-55e68c411114', 'c9200dce-e9bb-472e-ac34-eed0367a708d'))
+                </sqlCheck>
+                <sqlCheck expectedResult="0">
+                    select count(*) from obs where value_coded in (select concept_id from concept where uuid in ('8e5f17db-6c2d-44f7-bde3-55e68c411114', 'c9200dce-e9bb-472e-ac34-eed0367a708d'))
+                </sqlCheck>
+            </and>
+        </preConditions>
+        <comment>
+            UHM-9134 - Delete phantom concepts
+        </comment>
+        <sql>
+            delete from concept where uuid in ('8e5f17db-6c2d-44f7-bde3-55e68c411114', 'c9200dce-e9bb-472e-ac34-eed0367a708d');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260526-delete-2-narrow-rx-norm-mappings" author="ball">
+        <comment>
+            UHM-9314 - Delete NARROWER-THAN RxNORM mappings replaced by SAME-AS mappings
+        </comment>
+        <sql>
+            -- Delete RxNORM NARROWER-THAN mapping on Dorzolamide / timolol
+            delete from concept_reference_map
+             where concept_map_type_id IN (select concept_map_type_id from concept_map_type where name like 'NARROWER-THAN')
+               and concept_id IN (select concept_id from concept where uuid like '104546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+               and concept_reference_term_id IN
+                    (select concept_reference_term_id from concept_reference_term
+                      where code like '662263'
+                       and concept_source_id = (select concept_source_id from concept_reference_source where name like 'RxNORM'));
+
+
+            -- Deleted RxNORM NARROWER-THAN mapping on Dimethicone / Magaldrate
+            delete from concept_reference_map
+             where concept_map_type_id IN (select concept_map_type_id from concept_map_type where name like 'NARROWER-THAN')
+               and concept_id IN (select concept_id from concept where uuid like '6e203f4e-03ad-4c9e-b160-234ee092cc02')
+               and concept_reference_term_id IN
+                    (select concept_reference_term_id from concept_reference_term
+                      where code IN ('29151','324072')
+                        and concept_source_id = (select concept_source_id from concept_reference_source where name like 'RxNORM'));
+        </sql>
+    </changeSet>
+
+    <changeSet id="20260526-delete-broader-rx-norm-mappings" author="mgoodrich">
+        <comment>
+            UHM-9314 - Delete BROADER-THAN RxNORM mappings replaced by SAME-AS mappings
+        </comment>
+        <sql>
+
+            -- Deleted RxNORM BROADER-THAN mapping on Dimethicone / Magaldrate
+            delete from concept_reference_map
+            where concept_map_type_id IN (select concept_map_type_id from concept_map_type where name like 'BROADER-THAN')
+              and concept_id IN (select concept_id from concept where uuid like '6e203f4e-03ad-4c9e-b160-234ee092cc02')
+              and concept_reference_term_id IN
+                  (select concept_reference_term_id from concept_reference_term
+                   where code IN ('29151','324072')
+                     and concept_source_id = (select concept_source_id from concept_reference_source where name like 'RxNORM'));
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

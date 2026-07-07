@@ -1,0 +1,171 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http//license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+  -->
+
+
+<htmlform id="drug-rehab" class="simple-form-ui" formUuid="94372e53-2143-43a6-97ef-70c615c6446e"
+          htmlformUuid="efcbd96d-ab0a-410e-90a5-903896ee5d39"
+          formName="Drug Rehab"
+          formEncounterType="dd1ebccb-700d-4e8b-bb61-f54e9763117c" formVersion="1.0">
+
+    <style type="text/css">
+        #radio_button_container{
+        display:flex;
+        gap:50px;
+        justify-content:space-between;
+        }
+
+        .simple-form-ui input {
+        min-width: 80%
+        }
+
+        form fieldset {
+        min-width: 90%
+        }
+
+        #encounterDate input {
+        min-width: 15%
+        }
+
+        textarea {
+        overflow-y: hidden; /* fixes scrollbar flash - kudos to @brettjonesdev */
+        padding-top: 1.1em; /* fixes text jump on Enter keypress */
+        }
+
+        @media print {
+        .print-form-datestamps { display: block !important }
+        button.cancel, button.submit { display: none }
+        label { font-weight: bold }
+        label[for] { font-weight: normal } /* refers to the radio set label */
+        }
+
+        .section-container {
+        background: #F2F2F2;
+        box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+        padding: 10px 5px 10px 15px;
+        line-height: 1.5em; /*add this for vertical spacing between elements*/
+        }
+
+        .section-container input[type="checkbox"] {
+        margin: 0px 5px; /*changed values to vertical, horizontal*/
+        top:5px; /*added to offset the checkbox position to line up*/
+        }
+
+        .section-container label { /*new definition to override labels inside section-containers*/
+        margin: 0px;
+        }
+
+        .section {
+        width: 100%;
+        }
+
+    </style>
+
+    <div class="print-form-datestamps" style="display:none">
+        <p><uimessage code="pihcore.form.created_on"/>:
+            <lookup complexExpression="$form.dateCreated"/>
+        </p>
+        <p><uimessage code="pihcore.form.last_updated_on"/>:
+            <lookup complexExpression="$form.dateChanged"/>
+        </p>
+        <p><uimessage code="pihcore.form.printed_on"/>:
+            <lookup complexExpression="$formGeneratedDatetime"/>
+        </p>
+    </div>
+
+    <ifMode mode="VIEW" include="false">
+        <h2>
+            <label>
+                <uimessage code="pihcore.drugRehab"/>
+            </label>
+        </h2>
+    </ifMode>
+
+    <subform path="configuration/pih/subforms/encounter-provider-location-date.xml"/>
+
+    <section id="mh_scores" sectionTag="fieldset" headerTag="legend" headerStyle="title" headerCode="pihcore.drugRehab">
+
+
+        <div class="section-container" id="radio_button_container">
+            <div class="col">
+                <p>
+                    <label>
+                        <b>  <uimessage code="pihcore.mentalhealth.Psychosocial"/></b>
+                    </label>
+                    <obs conceptId="PIH:13175" style="radio" answerConceptIds="PIH:YES,PIH:NO" answerSeparator=""/>
+                </p>
+
+            </div>
+            <div class="col">
+                <p>
+                    <label>
+                        <b> <uimessage code="pihcore.mentalhealth.drugrehab"/> </b>
+                    </label>
+                    <obs conceptId="PIH:20308" style="radio" answerConceptIds="PIH:YES,PIH:NO" answerSeparator=""/>
+                </p>
+
+            </div>
+        </div>
+        <div class="section-container" id="radio_button_container">
+            <div class="col">
+                <p>
+                    <label>
+                        <b>  <uimessage code="pihcore.mentalhealth.supportGroup"/> </b>
+                    </label>
+                    <obs conceptId="PIH:20309" style="radio" answerConceptIds="PIH:YES,PIH:NO" answerSeparator=""/>
+                </p>
+
+            </div>
+
+            <div class="col">
+                <p>
+                    <label>
+                        <b> <uimessage code="pihcore.mentalhealth.planVisit"/></b>
+                    </label>
+                    <obs conceptId="PIH:13181" style="radio" answerConceptIds="PIH:YES,PIH:NO" answerSeparator=""/>
+                </p>
+
+            </div>
+        </div>
+        <div class="section-container" id="radio_button_container">
+            <div class="col">
+                <p>
+                    <label>
+                        <b> <uimessage code="pihcore.mentalhealth.support"/></b>
+                    </label>
+                    <obs conceptId="PIH:2156" style="radio" answerConceptIds="PIH:2863,PIH:990,PIH:1398,CIEL:5622" answerSeparator=""/>
+                </p>
+
+            </div>
+            <div class="col">
+                <p>
+                    <label>
+                        <b> <uimessage code="pihcore.other"/></b>
+                    </label>
+                    <obs conceptId="PIH:2923" style="text" />
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <ifMode mode="VIEW" include="false">
+        <div id="buttons">
+            <submit submitClass="confirm right" submitCode="mirebalais.save"/>
+            <button type="button" class="cancel">
+                <uimessage code="emr.cancel"/>
+            </button>
+        </div>
+    </ifMode>
+
+</htmlform>

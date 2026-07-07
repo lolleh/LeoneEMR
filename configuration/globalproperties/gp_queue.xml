@@ -1,0 +1,20 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>queue.serviceConceptSetName</property>
+            <value>239c7e26-139f-4833-80e8-f0de2f4c8104</value> <!-- KGH Clinical Services Set -->
+        </globalProperty>
+        <globalProperty>
+            <property>queue.priorityConceptSetName</property>
+            <value>6a28c6ca-f52e-4a8e-8da7-ee7fe4953b3d</value> <!-- PIH Queue Priority Set -->
+        </globalProperty>
+        <globalProperty>
+            <property>queue.statusConceptSetName</property>
+            <value>98759313-3812-4c88-88c6-7686dc7c6443</value> <!-- PIH Queue Status Set -->
+        </globalProperty>
+        <globalProperty>
+            <property>queue.sortWeightGenerator</property>
+            <value>basicPrioritySortWeightGenerator</value>
+        </globalProperty>
+    </globalProperties>
+</config>

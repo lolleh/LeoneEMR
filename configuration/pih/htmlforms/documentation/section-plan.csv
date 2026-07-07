@@ -1,0 +1,7 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Overall condition / outcome,Coded,satisfactory | deteriorated | unsatisfactory,radio,No,no,CIEL:160116,CIEL:160113|CIEL:160115|CIEL:159407,,
+Disposition (ADT),Other,Disposition widget,disposition widget,Yes,no,,,,
+Medication orders,Other,Drug order subform,subform,No,no,,,,
+Surgical/Referral plan,Coded,Refer for surgery | Evaluate,radio,No,no,PIH:REFERRAL_FOR_SURGERY,PIH:YES|PIH:NO,,
+Followup / return visit date,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,
+Instructions to patient/caregiver,Text,N/A,textarea,No,no,CIEL:163106,,,

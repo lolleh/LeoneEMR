@@ -1,0 +1,3 @@
+UUID,Void/Retire,Name,Description
+${location.UNKNOWN_LOCATION.uuid},,Unknown Location,Unknown Location
+${location.PATIENT_HOME.uuid},,Patient Home,The patient is visited at home

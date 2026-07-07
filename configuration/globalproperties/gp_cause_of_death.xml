@@ -1,0 +1,9 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>concept.causeOfDeath</property>
+            <!-- Concept: 	Causes of Death set, PIH:20681 -->
+            <value>530aceb4-b4f8-4e07-ad3d-54ffb2f2ccde</value>
+        </globalProperty>
+    </globalProperties>
+</config>

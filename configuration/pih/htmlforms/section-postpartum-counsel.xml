@@ -1,0 +1,91 @@
+<htmlform id="mch-postpartum-training" formVersion="1.0"
+          formUuid="d2ac7d33-cb7b-440e-93b9-45a75859109f"
+          formName="Postpartum training">
+
+    <ifMode mode="VIEW" include="true">
+        <!-- a template to display the "view" version of an html form provided by the htmlfromentryui getAsHtml method
+      specifically designed to reformat our "one-question-per-screen" forms to should line-by-line obs -->
+
+        <style>
+
+            .simple-form-ui input {
+                min-width: 80%
+            }
+
+            form fieldset {
+                min-width: 90%
+            }
+
+            .section-container {
+                background: #F2F2F2;
+                box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+                padding: 10px 5px 10px 15px;
+                line-height: 1.5em; /*add this for vertical spacing between elements*/
+            }
+
+            .section-container input[type="checkbox"] {
+                margin: 0px 5px; /*changed values to vertical, horizontal*/
+                top: 5px; /*added to offset the checkbox position to line up*/
+            }
+
+            .section-container label { /*new definition to override labels inside section-containers*/
+                margin: 0px;
+            }
+
+            .section {
+                width: 100%;
+            }
+
+        </style>
+
+    </ifMode>
+
+
+    <section id="training" >
+        <div class="section-container">
+            <!-- Postpartum and followup -->
+            <includeIf velocityTest="$encounter.encounterType.uuid != '0CF4717A-479F-4349-AE6F-8602E2AA41D3'">
+                <p class="radio">
+                    <repeat>
+                        <template>
+                            <obs conceptId="CIEL:164481" style="checkbox"
+                                 answerConceptId="{map}"
+                                 answerCode="{text}"
+                            />
+                            <br/>
+                        </template>
+                        <render map="CIEL:161050" text="pihcore.mch.dangerSigns" />
+                        <render map="CIEL:1910" text="pihcore.mch.breastfeeding" />
+                        <render map="CIEL:1380" text="pihcore.goodNutrition" />
+                        <render map="CIEL:1906" text="pihcore.generalHygiene" />
+                        <render map="CIEL:1382" text="pihcore.familyPlanning.title" />
+                        <render map="CIEL:5622" text="pihcore.other" />
+                    </repeat>
+                </p>
+            </includeIf>
+
+            <!-- Pediatric -->
+            <includeIf velocityTest="$encounter.encounterType.uuid == '0CF4717A-479F-4349-AE6F-8602E2AA41D3'">
+                <p class="radio">
+                    <repeat>
+                        <template>
+                            <obs conceptId="CIEL:164481" style="checkbox"
+                                 answerConceptId="{map}"
+                                 answerCode="{text}"
+                            />
+                            <br/>
+                        </template>
+                        <render map="CIEL:159860" text="pihcore.mch.dangerSigns" />
+                        <render map="CIEL:1910" text="pihcore.mch.breastfeeding" />
+                        <render map="CIEL:1380" text="pihcore.goodNutrition" />
+                        <render map="CIEL:1906" text="pihcore.generalHygiene" />
+                        <render map="CIEL:1382" text="pihcore.familyPlanning.title" />
+                        <render map="CIEL:5622" text="pihcore.other" />
+                    </repeat>
+                </p>
+            </includeIf>
+        </div>
+    </section>
+
+</htmlform>
+

@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Name,Description,Required,Format,Format description,Validator,Location behavior,Uniqueness behavior
+${patientIdentifierType.wellbodyEmrId.uuid},,Wellbody EMR ID,A unique identifier issued to all patients in the Wellbody EMR.,FALSE,,,,NOT_USED,
+${patientIdentifierType.kghEmrId.uuid},,KGH EMR ID,A unique identifier issued to all patients in the KGH EMR.,FALSE,,,,NOT_USED,
+${patientIdentifierType.ncdId.uuid},,NCD ID,Identifier used for NCD patients,FALSE,,,,NOT_USED,
+${patientIdentifierType.nationalId.uuid},,National ID Number,National ID Number,FALSE,"^[a-zA-Z0-9]{0,10}$","alphanumeric up to 10 characters long",,NOT_USED,

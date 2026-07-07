@@ -1,0 +1,6 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Chief complaint (free text),Text,N/A,textarea,No,no,CIEL:160531,,,
+Presenting history,Text,N/A,textarea,No,no,PIH:PRESENTING HISTORY,,,
+Past medical history items,Coded,Multiple checkbox options,checkbox,No,no,PIH:PAST MEDICAL HISTORY,CIEL:...,,
+Family history items,Coded,Multiple checkbox options + free text,checkbox & text,No,no,PIH:FAMILY HISTORY,CIEL:...,,
+Referral details (if intake),Date/Radio/Number,multiple,date & radio & number,No,Only for intake,CIEL:163181|PIH:Type of referring service,PIH:SELF-REFER,,

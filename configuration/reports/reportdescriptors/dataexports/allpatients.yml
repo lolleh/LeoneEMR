@@ -1,0 +1,27 @@
+key: "allpatients"
+uuid: "48617a3c-d5df-469c-b67e-026e7421d7dd"
+name: "All Patients Export"
+description: "All Patients Export"
+datasets:
+  - key: "allpatients"
+    type: "sql"
+    config: "sql/allpatients.sql"
+designs:
+  - type: "csv"
+    properties:
+      "filenameBase": "allpatientsdataexport.{{ formatDate request.evaluateStartDatetime \"yyyyMMdd\" }}.{{ formatDate request.evaluateStartDatetime \"HHmm\" }}"
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+    processors:
+      - name: "saveToDisk"
+        type: "disk"
+        runOnSuccess: "true"
+        runOnError: "false"
+        processorMode: "AUTOMATIC"
+        configuration:
+          saveLocation: "{{application_data_directory}}/reports"
+          compressOutput: "true"
+config:
+  category: "dataExport"
+  order: 101

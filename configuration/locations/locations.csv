@@ -1,0 +1,35 @@
+UUID,Void/Retire,Name,Description,Parent,Attribute|Associated Pharmacy Location
+0561303b-9868-4a1d-933d-fe52ce1b8c9f,,Wellbody,Wellbody,,
+b6733150-7426-11e5-a837-0800200c9a66,,Wellbody Clinic,Wellbody Clinic,Wellbody,
+dac348b7-2ece-47ad-b80a-140fc6788706,,Wellbody MCH,Wellbody MCH,Wellbody,
+93b8750b-b986-4023-a533-6116477f7936,TRUE,Wellbody GAIN,Wellbody GAIN (nursing),Wellbody,
+7a17bfc6-4032-4784-98cd-59d819c03b43,,Wellbody NCD,Wellbody Non-communicate disease clinic,Wellbody,
+7b959d2f-11f3-4611-b2e4-7002006c5aa6,,Wellbody Mental Health,Wellbody Mental Health clinic,Wellbody,
+1fadef30-c980-49bc-91ab-041f5cfd3b7c,,Wellbody Laboratory,Wellbody Laboratory,Wellbody,
+6a7fc2e7-282c-4d25-b19c-777731928457,,Wellbody Pharmacy,Wellbody Pharmacy,Wellbody,
+${location.kgh.uuid},,KGH,KGH,,
+2bcb9215-8cd6-11eb-b7be-0242ac110002,,KGH Triage,KGH Triage,KGH,
+5981f962-6eec-453d-89ce-2f9ac48d096f,,MCH OPD,KGH Maternal Child Health (MCH) Outpatient Clinic,KGH,${location.maternityPharmacy.uuid}
+7b959d2f-11f3-4611-b2e4-700200625d61,,KGH NCD,KGH Non-communicate disease clinic,KGH,${location.ncdPharmacy.uuid}
+7b959d2f-11f3-4611-b2e4-700200629a66,,KGH Mental Health,KGH Mental Health clinic,KGH,${location.opdPharmacy.uuid}
+0d3704ab-17f7-4272-aa1b-9118ae51acce,,KGH Laboratory,KGH Laboratory,KGH,
+${location.ncdPharmacy.uuid},,NCD Pharmacy,KGH NCD Pharmacy,KGH,
+${location.opdPharmacy.uuid},,OPD Pharmacy,KGH OPD Pharmacy,KGH,
+067c83ad-6850-11ee-ab8d-0242ac120002,,MCOE,Maternal Center of Excellence,KGH,
+f85feffc-fe54-4648-aa14-01ed6d30b943,,MCOE Triage,MCOE Triage,MCOE,${location.mcoeInpatientPharmacy.uuid}
+11377a5b-6850-11ee-ab8d-0242ac120002,,Labour and Delivery,Labour and Delivery,MCOE,${location.mcoeInpatientPharmacy.uuid}
+4d7e927d-6850-11ee-ab8d-0242ac120002,,MCCU,MCCU,MCOE,${location.mcoeInpatientPharmacy.uuid}
+0ce2f6fb-6850-11ee-ab8d-0242ac120002,,NICU,Newborn Intensive Care Unit,MCOE,${location.mcoeInpatientPharmacy.uuid}
+11f5c9f9-40b8-46ad-9e7e-59473ce43246,,Antenatal Ward,Antenatal Ward,MCOE,${location.mcoeInpatientPharmacy.uuid}
+17596678-6850-11ee-ab8d-0242ac120002,,MCOE PACU,MCOE PACU,MCOE,${location.mcoeInpatientPharmacy.uuid}
+142de844-6850-11ee-ab8d-0242ac120002,,MCOE Pre-Op,MCOE Pre-Op,MCOE,${location.mcoeInpatientPharmacy.uuid}
+28660b7f-3450-4b86-b840-9670ec68235f,,Quiet Ward,Quiet Ward,MCOE,${location.mcoeInpatientPharmacy.uuid}
+ff0d5e73-3fe0-437f-90ba-7d605ac03dc0,,Postnatal Ward,Postnatal Ward,MCOE,${location.mcoeInpatientPharmacy.uuid}
+${location.mcoeInpatientPharmacy.uuid},,MCOE Inpatient Pharmacy,MCOE Inpatient Pharmacy,MCOE,
+${location.maternityPharmacy.uuid},,Maternity Pharmacy,Maternity Pharmacy,MCOE,
+${location.pediatricPharmacy.uuid},,Pediatric Pharmacy,Pediatric Pharmacy,MCOE,
+81080213-d1f9-11f0-9d46-169316be6a48,,Kangaroo Care,Kangaroo Care,MCOE,${location.mcoeInpatientPharmacy.uuid}
+989a9b23-d1f9-11f0-9d46-169316be6a48,,Mothers Dorm,Mother's Dorm,MCOE,
+a39ec469-d1f9-11f0-9d46-169316be6a48,,MCOE Post-Op,MCOE Post-Op,MCOE,${location.mcoeInpatientPharmacy.uuid}
+adde966c-d1f9-11f0-9d46-169316be6a48,,Staff Ward,Staff Ward,MCOE,${location.mcoeInpatientPharmacy.uuid}
+07aa9943-d1fa-11f0-9d46-169316be6a48,,MCOE Inpatient Registration,MCOE Inpatient Registration,MCOE,

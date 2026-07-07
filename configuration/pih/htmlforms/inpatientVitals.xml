@@ -1,0 +1,290 @@
+<htmlform id="inpatient-vitals-form"
+          formUuid="ce487212-2263-4a5d-a1c1-3879a3e9a141"
+          formName="Vital Signs Inpatient"
+          formEncounterType="6b1c3929-f23c-423f-8cad-64b17cf10b99"
+          formVersion="1.0">
+
+    <translations defaultLocale="en">
+        <code name="o2Sat">
+            <variant locale="en" value="O&lt;sub&gt;2&lt;/sub&gt; Sat"/>
+            <variant locale="fr" value="SpO&lt;sub&gt;2&lt;/sub&gt;"/>
+            <variant locale="es" value="SatO&lt;sub&gt;2&lt;/sub&gt;"/>
+        </code>
+    </translations>
+
+    <style type="text/css">
+
+        .field-error {
+            color: #ff6666;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        #inpatient-vitals-form, .exam input[type="checkbox"] {
+            margin: 0px 5px; /* changed values to vertical, horizontal */
+            top: 5px; /* added to offset the checkbox position to line up */
+        }
+
+        .exam label { /*new definition to override labels inside section-containers*/
+            margin: 0px;
+        }
+
+        .row-symptom {
+            margin-top: 20px;
+        }
+
+        .six-columns, .five-columns, .four-columns, .three-plus-one, .two-columns {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .six-columns > div {
+            display: table-cell;
+            width: 16.6%;
+        }
+
+        .five-columns > div {
+            display: table-cell;
+            width: 20%;
+        }
+
+        .two-columns > div {
+            display: table-cell;
+            width: 50%;
+        }
+
+        .three-columns {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .three-columns > div {
+            display: table-cell;
+            width: 33%;
+        }
+
+        /* Add media query for responsive behavior */
+        @media (max-width: 768px) {
+            .three-columns {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .three-columns > div {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .three-columns > div:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .three-plus-one > div {
+            display: table-cell;
+        }
+
+        .three-plus-one > div {
+            width: 29%;
+            margin-top: 20px;
+        }
+
+        .three-plus-one > div:first-child {
+            width: 13%;
+        }
+
+        .three-plus-one {
+            margin-bottom: 20px;
+        }
+
+        .four-columns > div {
+            display: table-cell;
+            width: 25%;
+        }
+
+        .boundary {
+            margin-bottom: 6px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-col {
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        #disposition > span {
+            display: inline-flex;
+        }
+
+        #disposition span {
+            padding-left: 15px;
+        }
+
+        .in-the-same-line {
+            display: inline-flex;
+        }
+
+        .side-by-side label {
+            display: inline-block;
+        }
+
+        .side-by-side span {
+            display: inline-block;
+        }
+
+        form input[type="radio"], .form input[type="radio"] {
+            float: none;
+            display: inline-block;
+        }
+
+        p.radio > * {
+            display: inline;
+            float: none !important;
+            min-width: initial;
+        }
+
+        .side-by-side input[type="checkbox"] {
+            float: none;
+            display: inline-block;
+        }
+
+        .headerLabel {
+            font-size: 1.2em;
+            color: #3E3E3E;
+        }
+
+
+
+        .list-inline label, .list-inline input[type="radio"], .list-inline span,
+        .list-inline-wide label, .list-inline-wide input[type="radio"], .list-inline-wide span,
+        .list-inline-extra-wide label, .list-inline-extra-wide input[type="radio"], .list-inline-extra-wide span {
+            display: inline-block;
+            float: none;
+        }
+
+        .list-inline label:first-child {
+            width: 220px;
+        }
+
+        .list-inline-wide label:first-child {
+            width: 320px;
+        }
+
+        .list-inline-extra-wide label:first-child {
+            width: 420px;
+        }
+
+        <ifMode mode="VIEW" include="false">
+            .date-one-line {
+                display: flex;
+                color: black;
+            }
+
+            .date-one-line label {
+                align-self: center;
+                margin-right: 1em;
+            }
+
+            .date-one-line span {
+                display: flex;
+            }
+
+            #o2andFluidsDiv > div > span.small > input[type="text"] {
+                min-width: 120px;
+                max-width: 60px;
+                margin-left: 5px;
+            }
+
+            #o2andFluidsDiv > div > span.small > span.units {
+                margin-left: 8px;
+            }
+
+            .hasDatepicker {
+                min-width: 120px;
+                margin-top: 0px;
+            }
+
+            .hfe-hours, .hfe-minutes, .hfe-seconds {
+                width: 70px;
+                min-width: 70px;
+                margin: 0px 10px 0px 10px;
+            }
+        </ifMode>
+    </style>
+
+    <ifMode mode="VIEW" include="false">
+        <div class="three-columns">
+            <div>
+                <subform path="configuration/pih/subforms/encounter-provider-location-date.xml">
+                    <span subform-parameter="encounter-provider-widget">
+                        <encounterProviderAndRole default="currentUser"
+                                                  encounterRole="4f10ad1a-ec49-48df-98c7-1391c6ac7f05"
+                                                  providerRoles="${providerGroup.group1}"
+                                                  required="true"/>
+                    </span>
+                    <span subform-parameter="encounter-location-widget">
+                        <encounterLocation required="true" default="SessionAttribute:emrContext.sessionLocationId" tags="Vitals Inpatient Location"/>
+                    </span>
+                    <span subform-parameter="encounter-date-widget" class="date-one-line black">
+                        <encounterDate id="encounterDate" default="now" showTime="true"/>
+                    </span>
+                </subform>
+            </div>
+        </div>
+        <br/>
+        <h2><uimessage code="pihcore.vitalSigns"/></h2>
+
+        <hr style="height:1px;border-width:0;color:lightgray;background-color:lightgray"/>
+    </ifMode>
+
+    <span id="most-recent-encounter-title" style="display:none"><!--The Most Recent Encounter app in Core Apps replaces this with the "most recent" label--></span>
+
+    <subform path="configuration/pih/subforms/vital-signs-widget.xml"/>
+
+    <ifMode mode="VIEW" include="false">
+        <br/>
+        <h2><uimessage code="OXYGEN AND FLUIDS"/></h2>
+
+        <div id="o2andFluidsDiv" class="three-columns">
+            <div>
+                <label><uimessage code="mirebalais.vitals.oxygen.flow.rate" /></label>
+                <span class="small"><obs conceptId="CIEL:165986" showUnits=" L/m"></obs></span>
+            </div>
+            <div>
+                <label><uimessage code="total.fluid.input" /></label>
+                <span class="small"><obs conceptId="CIEL:163036" showUnits=" mL"></obs></span>
+            </div>
+            <div>
+                <label><uimessage code="total.fluid.output" /></label>
+                <span class="small">
+                    <obs conceptId="CIEL:162659" showUnits=" mL"></obs>
+                </span>
+            </div>
+        </div>
+    </ifMode>
+
+    <ifMode mode="VIEW" include="true">
+        <label><uimessage code="mirebalais.vitals.oxygen.flow.rate" /></label>
+        <span class="small"><obs conceptId="CIEL:165986" showUnits=" L/m"></obs></span>
+
+        <label><uimessage code="total.fluid.input" /></label>
+        <span class="small"><obs conceptId="CIEL:163036" showUnits=" mL"></obs></span>
+
+        <label><uimessage code="total.fluid.output" /></label>
+        <span class="small">
+            <obs conceptId="CIEL:162659" showUnits=" mL"></obs>
+        </span>
+    </ifMode>
+
+    <ifMode mode="VIEW" include="false">
+        <div class="boundary"></div>
+
+        <div id="buttons">
+            <button class="submitButton confirm right" onclick="submitHtmlForm()"><uimessage code="mirebalais.save"/><i class="icon-spinner icon-spin icon-2x" style="display: none; margin-left: 10px;"></i></button>
+            <button type="button" class="cancel"><uimessage code="emr.cancel"/></button>
+        </div>
+    </ifMode>
+</htmlform>

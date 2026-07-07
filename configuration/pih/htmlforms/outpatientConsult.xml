@@ -1,0 +1,130 @@
+<htmlform formUuid="a3fc5c38-eb32-11e2-981f-96c0fcb18276"
+          formName="Clinical Consult"
+          formEncounterType="92fd09b4-5335-4f7e-9f63-b2a663fd09a6" formVersion="1.0">
+
+    <postSubmissionAction class="org.openmrs.module.pihcore.htmlformentry.action.ApplyDispositionAction"/>
+    <includeIf velocityTest="$config.isComponentEnabled('deathCertificate')">
+        <postSubmissionAction class="org.openmrs.module.pihcore.htmlformentry.RedirectToDeathNoteIfMissing"/>
+    </includeIf>
+
+    <style type="text/css">
+
+        .narrow {
+            width: 200px;
+        }
+
+        <ifMode mode="VIEW" include="false">
+            #data-collection {
+                display: inline-block;
+                width: 58%;
+                vertical-align: top;
+            }
+
+            #encounter-diagnoses-target {
+                display: inline-block;
+                width: 40%;
+                vertical-align: top;
+            }
+
+            #encounter-diagnoses-app {
+                margin-bottom: 20px;
+            }
+        </ifMode>
+
+        <ifMode mode="EDIT">
+            #disposition small {
+                font-size: 100%;
+                display: block;
+            }
+
+            #disposition span {
+                padding-left: 15px;
+            }
+        </ifMode>
+    </style>
+
+    <script type="text/javascript">
+
+        var validateForm = function () {
+
+            var needsDisposition = true;
+
+            var hasDisposition = jq('#disposition select:first').val() != '';
+
+            var isValid =   jq('#where select').val() != '' &amp;&amp;
+                            jq('#who select').val() != '' &amp;&amp;
+                            jq('#when input').val() != '' &amp;&amp;      // does this actually work?
+                            jq('.diagnosis').length;
+
+            if (hasDisposition || needsDisposition) {
+                // make sure disposition and all related field have been filled out
+                isValid = isValid &amp;&amp; !jq('#disposition select:visible').is(function() { return jq(this).val() == ''; })  &amp;&amp;
+                                !jq('#disposition input:visible').is(function() { return jq(this).val() == ''; })
+            }
+
+            if (isValid) {
+                htmlForm.enableSubmitButton();
+            }
+            else {
+                htmlForm.disableSubmitButton();
+            }
+
+        }
+
+        jq(function() {
+
+            // yes, a rather large amount of events trigger a validation...
+            jq(document).change(validateForm);
+            jq(document).click(validateForm);
+            validateForm();
+
+        });
+
+    </script>
+
+    <ifMode mode="VIEW" include="false">
+        <h2><uimessage code="emr.clinic.consult.title"/></h2>
+    </ifMode>
+
+    <subform path="configuration/pih/subforms/encounter-provider-location-date.xml"/>
+
+    <div id="data-collection">
+
+        <encounterDiagnosesByObs required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
+
+        <p>
+            <label>
+                <uimessage code="pihcore.consult.procedure"/>
+            </label>
+
+            <obs conceptId="PIH:Outpatient procedure" answerConceptSetIds="PIH:WH procedures,PIH:General procedures,PIH:HUM pathology procedure"
+                 style="autocomplete"/>
+        </p>
+
+        <div id="disposition">
+            <encounterDisposition/>
+        </div>
+
+        <p class="narrow">
+            <label><lookup expression="fn.getConcept('PIH:RETURN VISIT DATE').name"/></label>
+            <obs conceptId="PIH:RETURN VISIT DATE" allowFutureDates="true" allowPastDates="false" id="apptDate"/>
+        </p>
+
+        <p>
+            <label><uimessage code="emr.consult.freeTextComments"/></label>
+            <obs conceptId="PIH:CLINICAL IMPRESSION COMMENTS" style="textarea" rows="5"/>
+        </p>
+
+    </div>
+
+    <div id="encounter-diagnoses-target">
+    </div>
+
+    <ifMode mode="VIEW" include="false">
+        <div id="buttons">
+            <button class="submitButton confirm right disabled" onclick="submitHtmlForm()"><uimessage code="mirebalais.save"/><i class="icon-spinner icon-spin icon-2x" style="display: none; margin-left: 10px;"></i></button>
+            <button type="button" class="cancel"><uimessage code="emr.cancel"/></button>
+        </div>
+    </ifMode>
+
+</htmlform>

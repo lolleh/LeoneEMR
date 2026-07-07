@@ -1,0 +1,35 @@
+<!--
+    This overrides the drug section of the default drug order widget to limit to specific Mental Health drugs
+-->
+<subform path="configuration/pih/subforms/drug-order-widget.xml">
+    <orderProperty name="drug" label="pihcore.visitNote.plan.medication" style="autocomplete" subform-parameter="drug-order-drug-selector">
+        <option value="6a2a96d1-c01f-48d3-b3b9-2741bce4e064" />
+        <option value="526d37fd-d378-441d-8af4-423a46447cbc" />
+        <option value="671d7b24-6266-4af5-a998-4997f2cd6d48" />
+        <option value="23f2d94b-3072-4e86-b737-d5ccded81bc0" />
+        <option value="a8541367-1eb0-4144-9cc7-41a909902d5d" />
+        <option value="fd58488b-b6ee-4a73-bf77-ab1eb44ec0b7" />
+        <option value="37762747-7a31-4788-a408-b7a3cb350806" />
+        <option value="e371d811-d32c-4f6e-8493-2fa667b7b44c" />
+        <option value="09b9f018-6aa5-4bcf-9292-d74e07707591" />
+        <option value="355b9a8a-6e4e-4db8-a2cd-64f61456ef53" />
+        <option value="bb5094d6-efdd-458e-ab4e-f9916cd904ab" />
+        <option value="7f7178bd-a1f8-44dd-85a9-02e49065e56b" />
+        <option value="9c9f85ed-945a-4701-9c4e-1548023e68de" />
+        <option value="6192369d-c0fe-4d11-86b9-7765940ae73d" />
+        <option value="81694757-3336-4195-ac6b-ea574b9b8597" />
+        <option value="b476d417-800f-4e2e-89ec-09de8fd07607" />
+        <option value="c6a90f40-fce4-11e9-8f0b-362b9e155667" />
+        <option value="9a499fca-699e-4809-8175-732ef43d5c14" />
+        <option value="4eb3c71f-b716-4f01-beb7-394cebd6c191" />
+        <option value="34dd5905-c28d-4cf8-8ebe-0b83e5093e17" />
+        <option value="d8297181-0a3f-48fc-89c5-cc283e5a8d42" />
+        <option value="5edb194a-70bf-4fbf-b2ca-4dce586af7f3" />
+        <option value="39d7a7ee-b0ff-48e0-a7ca-685688147c8f" />
+        <option value="923e3e90-8b5c-4ae6-b17f-b6d547803437" />
+        <option value="8893bad4-a63d-4da6-9d10-96f709b20173" />
+        <option value="cd09b1b3-ceed-436c-bb57-3e5ca1684c86" />
+        <option value="95dbfe7e-68ac-485c-af73-9057cbe591b2" />
+        <option value="66ca3d3e-f594-403b-823c-8b6104738b6f" />
+    </orderProperty>
+</subform>

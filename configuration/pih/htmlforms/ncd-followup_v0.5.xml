@@ -1,0 +1,11 @@
+
+<htmlform formUuid="109b588f-25a2-44e6-989d-d1d58f901a94"
+          formEncounterType="5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c"
+          formName="NCD Followup (REDCap)" formVersion="0.5">
+
+    <subform path="configuration/pih/subforms/encounter-with-sections.xml">
+        <h2 subform-parameter="encounter-type-name"><uimessage code="ui.i18n.EncounterType.name.5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c"/></h2>
+    </subform>
+
+</htmlform>
+

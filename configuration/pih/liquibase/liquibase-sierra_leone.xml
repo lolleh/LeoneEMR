@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20231010-clean-address-hierarchy-city_village" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="0">
+                    select count(*) from person_address where city_village = '-';
+                </sqlCheck>
+            </not>
+        </preConditions>
+        <comment>
+            HUM-7477, clean address hierarchy levels which were stored as hyphens
+        </comment>
+        <sql>
+            update person_address set city_village =null where city_village = '-';
+        </sql>
+    </changeSet>
+    <changeSet id="20231010-clean-address-hierarchy-address1" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="0">
+                    select count(*) from person_address where address1 = '-';
+                </sqlCheck>
+            </not>
+        </preConditions>
+        <comment>
+            HUM-7477, clean address hierarchy levels which were stored as hyphens
+        </comment>
+        <sql>
+            update person_address set address1 =null where address1 = '-';
+        </sql>
+    </changeSet>
+    <changeSet id="20231010-clean-address-hierarchy-state_province" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="0">
+                    select count(*) from person_address where state_province = '-';
+                </sqlCheck>
+            </not>
+        </preConditions>
+        <comment>
+            HUM-7477, clean address hierarchy levels which were stored as hyphens
+        </comment>
+        <sql>
+            update person_address set state_province =null where state_province = '-';
+        </sql>
+    </changeSet>
+    <changeSet id="20231010-clean-address-hierarchy-county_district" author="cioan">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sqlCheck expectedResult="0">
+                    select count(*) from person_address where county_district = '-';
+                </sqlCheck>
+            </not>
+        </preConditions>
+        <comment>
+            HUM-7477, clean address hierarchy levels which were stored as hyphens
+        </comment>
+        <sql>
+            update person_address set county_district =null where county_district = '-';
+        </sql>
+    </changeSet>
+
+    <changeSet id="20230411-fix-encounters-not-slotted-in-visits" author="ddesimone">
+         <preConditions onFail="MARK_RAN">
+             <not>
+	     	<sqlCheck expectedResult="0">
+			select count(*)
+			from encounter e
+			inner join encounter_type et on et.encounter_type_id = e.encounter_type 
+			where e.visit_id is null
+			and e.voided = 0
+			and encounter_type not in
+			(select encounter_type_id from encounter_type where uuid in
+			('10db3139-07c0-4766-b4e5-a41b01363145','1545d7ff-60f1-485e-9c95-5740b8e6634b','873f968a-73a8-4f9c-ac78-9f4778b751b6',
+			'4d77916a-0620-11e5-a6c0-1697f925ec7b','5b1b4a4e-0084-4137-87db-dba76c784439','74cef0a6-2801-11e6-b67b-9e71128cae77','d5ca53a7-d3b5-44ac-9aa2-1491d2a4b4e9',
+			'873f968a-73a8-4f9c-ac78-9f4778b751b6','39C09928-0CAB-4DBA-8E48-39C631FA4286','b3a0e3ad-b80c-4f3f-9626-ace1ced7e2dd'))
+			and exists 
+				(select 1 from visit v where e.patient_id = v.patient_id  
+				and ((date(v.date_stopped) = date(e.encounter_datetime))
+					or (v.date_started &lt;= e.encounter_datetime and v.date_stopped &gt;=e.encounter_datetime)));
+            	</sqlCheck>
+	     </not>
+         </preConditions>
+         <comment>
+            SL-306 fix Wellbody encounters not slotted into visits
+         </comment>
+         <sqlFile endDelimiter=";" path="sql/fix_encounters_without_visits.sql" relativeToChangelogFile="true" stripComments="true"/>
+    </changeSet>
+    <changeSet id="20231006-fix-data-from-wrong-htmlform-tags" author="ddesimone">
+         <preConditions onFail="MARK_RAN">
+           <sqlCheck expectedResult="0">
+              select count(*) from obs where void_reason = 'SL-409 fix data from wrong htmlform tags';
+           </sqlCheck>
+        </preConditions>
+         <comment>
+            SL-409 Wrong htmlform tags (answers)
+         </comment>
+         <sqlFile endDelimiter=";" path="sql/fix_data_from_wrong_htmlform_tags.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20240913-migrate-program-locations" author="mgoodrich">
+        <comment>
+            SL-761 Fix Program Enrollment Locations for KGH and Wellbody
+        </comment>
+        <sql>
+            update program p, patient_program pp, location l, location pl
+                set pp.location_id = pl.location_id, pp.date_changed = now(), pp.changed_by = 1
+                where pp.location_id = l.location_id and pl.location_id = l.parent_location
+                and (pl.uuid = '0561303b-9868-4a1d-933d-fe52ce1b8c9f' or pl.uuid = '074b2ab0-716a-11eb-8aa6-0242ac110002' or pl.uuid = '067c83ad-6850-11ee-ab8d-0242ac120002');
+            update program p, patient_program pp, location l, location pl
+                set pp.location_id = pl.location_id, pp.date_changed = now(), pp.changed_by = 1
+                where pp.location_id = l.location_id and pl.location_id = l.parent_location
+                and (pl.uuid = '0561303b-9868-4a1d-933d-fe52ce1b8c9f' or pl.uuid = '074b2ab0-716a-11eb-8aa6-0242ac110002' or pl.uuid = '067c83ad-6850-11ee-ab8d-0242ac120002');
+        </sql>
+    </changeSet>
+
+    <changeSet id="20241028-void-mch-patient-program-and-state" author="ball">
+        <comment>
+            SL-762 Void MCH program enrollment for KGH and Wellbody
+        </comment>
+        <sql>
+            update program p, patient_program pp
+            set pp.voided = 1, pp.date_voided = now(), pp.voided_by = 1, pp.void_reason ='Voided MCH program'
+            where p.uuid = '41a2715e-8a14-11e8-9a94-a6cf71072f73'
+              and pp.program_id = p.program_id
+              and pp.voided = 0;
+
+            update patient_program pp, patient_state ps
+            set ps.voided = 1, ps.date_voided = now(), ps.voided_by = 1, ps.void_reason ='Voided MCH program'
+            where pp.program_id IN (select p.program_id from program p where p.uuid ='41a2715e-8a14-11e8-9a94-a6cf71072f73')
+              and pp.patient_program_id = ps.patient_program_id
+              and ps.voided = 0;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20241126-migrate-duplicate-hiv-ct" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+                select count(*)
+                  from obs o
+                 where o.concept_id = concept_from_mapping('CIEL','164401')
+                   and o.voided = 0
+                   and o.encounter_id IN
+                        (select e.encounter_id from encounter e
+                          where e.encounter_type IN
+                                  (select et.encounter_type_id from encounter_type et
+                                    where et.name like 'ANC%'));
+            </sqlCheck></not>
+        </preConditions>
+        <comment>SL-815</comment>
+        <sql>
+            -- drop temp table
+            drop temporary table if exists temp_dupe_hiv_obs;
+
+            -- Create temporary table with obs to void and (possibly) migrate
+			create temporary table temp_dupe_hiv_obs
+            select
+                obs_id as obs_id_164401,
+                encounter_id,
+                value_coded as value_coded_164401,
+                'CIEL:164401' as comment
+            from obs o
+            where o.concept_id = concept_from_mapping('CIEL','164401')
+              and o.voided = 0
+              and o.encounter_id IN
+                  (select e.encounter_id from encounter e
+                   where e.encounter_type IN
+                         (select et.encounter_type_id from encounter_type et
+                          where et.name like 'ANC%'))
+            ;
+
+            -- Check if there are 2 HIV counseling obs for the same encounter
+            -- If there is, ignore the PIH:11381 obs
+            update temp_dupe_hiv_obs
+            set comment = 'ignore'
+            where encounter_id IN
+                  (select o.encounter_id from obs o
+                   where o.concept_id = concept_from_mapping('PIH','11381')
+                     and o.voided = 0);
+
+            -- void duplicate hiv counseling obs
+            update obs o
+                inner join temp_dupe_hiv_obs t on t.obs_id_164401 = o.obs_id
+                set voided = 1,
+                    voided_by = 1,
+                    date_voided = now(),
+                    void_reason = 'duplicate or migrated to PIH:11381';
+
+            -- Delete from temp table if both hiv questions have data
+            delete from temp_dupe_hiv_obs
+             where comment like 'ignore';
+
+            -- insert/migrate CIEL:164401 -> PIH:11381 if it doesn't exist
+            insert into obs
+                (person_id,
+                 concept_id,
+                 value_coded,
+                 encounter_id,
+                 obs_datetime,
+                 location_id,
+                 obs_group_id,
+                 creator,
+                 date_created,
+                 voided,
+                 uuid,
+                 status,
+                 previous_version
+                )
+            select
+                o.person_id,
+                concept_from_mapping('PIH','11381'),
+                t.value_coded_164401,
+                t.encounter_id,
+                o.obs_datetime,
+                o.location_id,
+                o.obs_group_id,
+                o.creator,
+                o.date_created,
+                0,
+                uuid(),
+                o.status,
+                t.obs_id_164401
+            from obs o
+                     inner join temp_dupe_hiv_obs t on t.obs_id_164401 = o.obs_id;
+
+        </sql>
+    </changeSet>
+    <changeSet id="20250203-migrate-ed-triage-glucose-obs-to-correct-concept" author="mgoodrich">
+        <validCheckSum>9:51613054870b57bc7d989019473a504b</validCheckSum>
+        <validCheckSum>8:a59e73b3de288ab47842cb3175b3c05a</validCheckSum>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from obs where void_reason = 'SL-844: Migrate Glucose data on Triage Form from Old Concept to New Concept';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            SL-844: Migrate Glucose data on Triage Form from Old Concept to New Concept
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_ed_triage_glucose_obs_to_correct_concept.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20250515-migrate-vitals-fbg-to-ciel-169672" author="cioan">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where uuid = '6e291dc0-9dd6-4ccf-bce4-5339c52667a9';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            SL-913: Migrate Glucose(FBG) data on Vitals form to use CIEL:169672 (mmol/L) concept
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_vitals_fbg_obs.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20250515-migrate-vitals-rbg-to-ciel-1458" author="cioan">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where uuid = '0e9d36ab-ccfe-4716-9060-ad5f330a28af';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            SL-913: Migrate Random blood glucose (RBG) data on Vitals form to use CIEL:1458 (mmol/L) concept
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_vitals_rbg_obs.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20250910-void-obs-removed-from-Intake" author="ddesimone">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+					select count(*) from obs o
+					inner join encounter e on e.encounter_id = o.encounter_id
+						and e.encounter_type = encounter_type('NCD Initial Consult')
+					where o.concept_id in (
+						concept_from_mapping('CIEL','1898'),
+						concept_from_mapping('CIEL','167021'),
+						concept_from_mapping('CIEL','167022'),
+						concept_from_mapping('CIEL','167914'),
+						concept_from_mapping('CIEL','164075'),
+						concept_from_mapping('CIEL','167819'),
+						concept_from_mapping('CIEL','167918'),
+						concept_from_mapping('CIEL','167956'),
+						concept_from_mapping('CIEL','167919'),
+						concept_from_mapping('CIEL','167957'),
+						concept_from_mapping('CIEL','168115'),
+						concept_from_mapping('CIEL','159610'),
+						concept_from_mapping('CIEL','1788'),
+						concept_from_mapping('PIH','14741'),
+						concept_from_mapping('PIH','6756'),
+						concept_from_mapping('PIH','14708'),
+						concept_from_mapping('PIH','20002'),
+						concept_from_mapping('PIH','11506'),
+						concept_from_mapping('PIH','11507'),
+						concept_from_mapping('PIH','11508'),
+						concept_from_mapping('PIH','11509'),
+						concept_from_mapping('PIH','20001'),
+						concept_from_mapping('PIH','14469'),
+						concept_from_mapping('PIH','14531'),
+						concept_from_mapping('PIH','14723'),
+						concept_from_mapping('PIH','14811'),
+						concept_from_mapping('PIH','14739'),
+						concept_from_mapping('PIH','14462'),
+						concept_from_mapping('PIH','20003'),
+						concept_from_mapping('PIH','14716'),
+						concept_from_mapping('PIH','14718'),
+						concept_from_mapping('PIH','14719'),
+						concept_from_mapping('PIH','14720'),
+						concept_from_mapping('PIH','14827'),
+						concept_from_mapping('PIH','15164'),
+						concept_from_mapping('PIH','14812'),
+						concept_from_mapping('PIH','20008'),
+						concept_from_mapping('PIH','14817'),
+						concept_from_mapping('PIH','14859'),
+						concept_from_mapping('PIH','14768'),
+						concept_from_mapping('PIH','14867'),
+						concept_from_mapping('PIH','7868'),
+						concept_from_mapping('PIH','13748'),
+						concept_from_mapping('PIH','14857'),
+						concept_from_mapping('PIH','14826'),
+						concept_from_mapping('PIH','11506'))
+					and o.voided = 0;
+            </sqlCheck></not>
+        </preConditions>
+        <comment>
+            SL-1034 Void obs for questions removed from NCD Intake
+        </comment>
+        <sql>
+			update obs o
+			inner join encounter e on e.encounter_id = o.encounter_id
+				and e.encounter_type = encounter_type('NCD Initial Consult')
+			set o.voided = 1,
+			    o.voided_by = 1, 
+			    o.date_voided = now(),
+			    o.void_reason = 'removed from NCD Intake (SL-1034)'	
+			where o.concept_id in (
+					concept_from_mapping('CIEL','1898'),
+					concept_from_mapping('CIEL','167021'),
+					concept_from_mapping('CIEL','167022'),
+					concept_from_mapping('CIEL','167914'),
+					concept_from_mapping('CIEL','164075'),
+					concept_from_mapping('CIEL','167819'),
+					concept_from_mapping('CIEL','167918'),
+					concept_from_mapping('CIEL','167956'),
+					concept_from_mapping('CIEL','167919'),
+					concept_from_mapping('CIEL','167957'),
+					concept_from_mapping('CIEL','168115'),
+					concept_from_mapping('CIEL','159610'),
+					concept_from_mapping('CIEL','1788'),
+					concept_from_mapping('PIH','14741'),
+					concept_from_mapping('PIH','6756'),
+					concept_from_mapping('PIH','14708'),
+					concept_from_mapping('PIH','20002'),
+					concept_from_mapping('PIH','11506'),
+					concept_from_mapping('PIH','11507'),
+					concept_from_mapping('PIH','11508'),
+					concept_from_mapping('PIH','11509'),
+					concept_from_mapping('PIH','20001'),
+					concept_from_mapping('PIH','14469'),
+					concept_from_mapping('PIH','14531'),
+					concept_from_mapping('PIH','14723'),
+					concept_from_mapping('PIH','14811'),
+					concept_from_mapping('PIH','14739'),
+					concept_from_mapping('PIH','14462'),
+					concept_from_mapping('PIH','20003'),
+					concept_from_mapping('PIH','14716'),
+					concept_from_mapping('PIH','14718'),
+					concept_from_mapping('PIH','14719'),
+					concept_from_mapping('PIH','14720'),
+					concept_from_mapping('PIH','14827'),
+					concept_from_mapping('PIH','15164'),
+					concept_from_mapping('PIH','14812'),
+					concept_from_mapping('PIH','20008'),
+					concept_from_mapping('PIH','14817'),
+					concept_from_mapping('PIH','14859'),
+					concept_from_mapping('PIH','14768'),
+					concept_from_mapping('PIH','14867'),
+					concept_from_mapping('PIH','7868'),
+					concept_from_mapping('PIH','13748'),
+					concept_from_mapping('PIH','14857'),
+					concept_from_mapping('PIH','14826'),
+					concept_from_mapping('PIH','11506'));
+        </sql>
+    </changeSet>
+    <changeSet id="20260107-SL-1149-migrate-litre-concepts-to-ml" author="mseaton">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where uuid = '3cb248bf-56aa-4e11-951a-7cc644530763';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            SL-1149: Migrate any data in Urine Output, Blood Loss, and IVF Volume to new concepts
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_litre_to_ml_obs.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20260223-SL-1201-migrate-litre-concepts-to-ml" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <not><sqlCheck expectedResult="0">
+                select count(*) from obs o
+                inner join encounter e
+                   on e.encounter_id = o.encounter_id
+                  and e.encounter_type = encounter_type('Surgery Note')
+                where o.concept_id in (
+                    concept_from_mapping('PIH','Urine output'),
+                    concept_from_mapping('PIH','Estimated blood loss'),
+                    concept_from_mapping('PIH','IVF volume'))
+                and o.voided = 0;
+            </sqlCheck></not>
+        </preConditions>
+        <comment>
+            SL-1201: Migrate surgery form obs for Urine Output, Blood Loss, and IVF Volume to new concepts
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_surgery_litre_to_ml_obs.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20260227-UHM-8795-Clean-up-duplicate-dispensing-obs" author="mgoodrich">
+        <comment>
+            UHM-8795: Clean up duplicate dispensing obs
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/void_duplicate_dispenses.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>  
+      
+    <changeSet id="20260227-migrate-tbili-to-tcb" author="ball">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept where uuid = 'f1ae479c-6a12-49c0-bdcd-92a1d640abba'
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            SL-1223: Migrate Total Bilirubin data to TcB concept on Newborn forms
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate_bilirubin_obs.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20260527-set-inborn-visit-attribute" author="PIH">
+        <comment>
+            SL-1333, Populate past Inborn visit attributes.
+            Set the "Born during visit" visit_attribute (uuid 86f716fc-5e26-4eb1-9484-46370cff28f0) to 'true'
+            on visits identified by traversing an infant obs whose comments contain a person uuid, joined to
+            a sibling birth-time obs whose value_datetime matches the visit's date_started.
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/set-inborn-visit-attribute.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+
+    <changeSet id="20260527-migrate-hiv-rapid-test" author="PIH">
+        <comment>
+            SL-1332, Migrate HIV rapid test obs.
+            For each non-voided obs of concept CIEL:169624 (HIV/syphilis rapid test) whose value_coded is
+            concept CIEL:138571 (HIV), create a new obsgroup (concept
+            PIH:11522, HIV test construct) and a child obs (concept CIEL:163722, HIV rapid test,
+            value_coded CIEL:703, Positive) carrying the same person/encounter/datetime/
+            location/creator, then void the source obs.
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate-hiv-rapid-test.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20260527-migrate-syphilis-rapid-test" author="PIH">
+        <comment>
+            SL-1332, Migrate Syphilis rapid test obs.
+            For each non-voided obs of concept CIEL:169624 (HIV/syphilis rapid test) whose value_coded is
+            concept CIEL:136014 (Syphilis), create a new obsgroup (concept
+            PIH:11523, Syphilis test construct) and a child obs (concept CIEL:165303, Syphilis rapid test,
+            value_coded CIEL:1228, Positive) carrying the same person/encounter/datetime/
+            location/creator, then void the source obs.
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate-syphilis-rapid-tests.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+    <changeSet id="20260527-migrate-dual-hiv-syphilis-rdt-positives" author="PIH">
+        <comment>
+            SL-1332, Migrate Syphilis rapid test obs.
+            For each non-voided obs of concept CIEL:169624 (HIV/syphilis rapid test) whose value_coded is
+            concept CIEL:169623 (Both (HIV/Syphilis)), create a two new obsgroups, (concept
+            PIH:11522, HIV test construct) and a child obs (concept CIEL:163722, HIV rapid test,
+            value_coded CIEL:703, Positive) and
+            (concept PIH:11523, Syphilis test construct) and a child obs (concept CIEL:165303, Syphilis rapid test,
+            value_coded CIEL:1228, Positive) carrying the same person/encounter/datetime/
+            location/creator, then void the source obs.
+        </comment>
+        <sqlFile endDelimiter=";" path="sql/migrate-dual-hiv-syphilis-positive-tests.sql" relativeToChangelogFile="true" stripComments="true" />
+    </changeSet>
+</databaseChangeLog>

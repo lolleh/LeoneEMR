@@ -1,0 +1,41 @@
+# These status data definitions are what define the Delivery widget on the Pregnancy Program Dashboard
+
+- id: "deliveryDate"
+  labelCode: "Delivery Date"
+  statusDataQuery: "deliveryDate.sql"
+  valueExpression: "#if($wereThereDeliveries == 0)none#{else}$!deliveryDate#if($numberBabies == 1) $!deliveryTime#end#end"
+  formatExpression: ""
+
+- id: "deliveryType"
+  labelCode: "Delivery Type"
+  statusDataQuery: "deliveryType.sql"
+  valueExpression: "$!deliveryType"
+  formatExpression: ""
+
+- id: "numberBabies"
+  labelCode: ""
+  statusDataQuery: "numberBabies.sql"
+  conditionExpression: "#if($numberBabies gt 1)true#{else}false#end"
+  valueExpression: "#if($numberBabies == 1) $!numberBabies baby#{else}$!numberBabies babies#end"
+  formatExpression: ""
+  
+- id: "baby1Identifier"
+  labelCode: ""
+  statusDataQuery: "baby1Identifier.sql"
+  conditionExpression: "#if($baby1exists == 1)true#{else}false#end"
+  valueExpression: "<a href='/{{contextPath}}/pihcore/router/programDashboard.page?patientId=$baby1Uuid'>$baby1Identifier</a> $!admissionLocation"
+  formatExpression: ""
+
+- id: "baby2Identifier"
+  labelCode: ""
+  statusDataQuery: "baby2Identifier.sql"
+  conditionExpression: "#if($baby2exists == 1)true#{else}false#end"
+  valueExpression: "<a href='/{{contextPath}}/pihcore/router/programDashboard.page?patientId=$baby2Uuid'>$baby2Identifier</a> $!admissionLocation"
+  formatExpression: ""
+
+- id: "baby3Identifier"
+  labelCode: ""
+  statusDataQuery: "baby3Identifier.sql"
+  conditionExpression: "#if($baby3exists == 1)true#{else}false#end"
+  valueExpression: "<a href='/{{contextPath}}/pihcore/router/programDashboard.page?patientId=$baby3Uuid'>$baby3Identifier</a> $!admissionLocation"
+  formatExpression: ""

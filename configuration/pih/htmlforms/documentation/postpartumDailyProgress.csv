@@ -1,0 +1,12 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Encounter Provider,Provider,List of available providers,provider select,Yes,no,,,,
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Vitals,Other,See vitals-widget,subform,No,no,,,,
+Postpartum bleeding (amount/changes),Text/N/A,textarea,No,no,PIH:POSTPARTUM_BLEEDING,,,,
+Uterine tenderness/involution,Coded,Normal | Tender | Boggy,radio,No,no,PIH:UTERINE_STATUS,CIEL:...,,
+Perineal wound status,Coded,Normal | Infection | Dehiscence,radio,No,no,PIH:WOUND_STATUS,CIEL:...,,
+Breastfeeding status,Coded,Exclusive | Mixed | Not,radio,No,no,PIH:BREASTFEEDING_STATUS,,,
+IV fluids/antibiotics given,Other,Medication orders/drug order subform,subform,No,no,,,,
+Maternal mood/psychosocial,Text,N/A,textarea,No,no,PIH:PSYCHOSOCIAL_NOTES,,,
+Disposition/plan,Other,Disposition widget/notes,disposition & textarea,Yes,no,,,,
+Notes/summary,Text,N/A,textarea,No,no,CIEL:161011,,,

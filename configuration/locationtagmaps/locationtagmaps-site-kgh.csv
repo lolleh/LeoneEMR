@@ -1,0 +1,27 @@
+Location,Admission Location,Antenatal Location,Antenatal Progress Location,Appointment Location,Archives Location,Check-In Location,Check-In Maternal Location,Consult Note Location,Delivery Location,Dispensing Location,ED Triage Location,Infant Program Dashboard Location,Labs Component Location,Lab Results Location,Login Location,Maternal and Child Location,Maternal Admission Location,Maternal Discharge Location,MCH Triage Location,Medical Record Location,Mental Health Location,NCD Consult Location,Newborn Admission Note Location,Newborn Assessment Location,Newborn Daily Progress Location,Newborn Discharge Location,NICU Location,PACU Location,Postnatal Location,Pregnancy Program Dashboard Location,Program Location,Queue Location,Registration Location,Surgery Note Location,Transfer Location,Visit Location,Vitals Location,Vitals Glucose Location,Vitals Inpatient Location
+KGH,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,,,,TRUE,,,,,TRUE,,,
+KGH Triage,,,,,TRUE,TRUE,,TRUE,,TRUE,TRUE,,TRUE,,TRUE,,,,,,,,,,,,,,,,,,TRUE,,,,,,
+MCH OPD,,,,TRUE,TRUE,TRUE,,,,TRUE,,TRUE,TRUE,,TRUE,TRUE,,,,,,,,,,,,,,TRUE,,,,,,,,TRUE,
+KGH NCD,,,,,TRUE,TRUE,,,,TRUE,,,TRUE,TRUE,TRUE,,,,,,,TRUE,,,,,,,,,,,,,,,,TRUE,
+KGH Mental Health,,,,,TRUE,TRUE,,,,TRUE,,,TRUE,,TRUE,,,,,,TRUE,,,,,,,,,,,,,,,,TRUE,,
+KGH Laboratory,,,,,TRUE,TRUE,,,,,,,TRUE,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+NCD Pharmacy,,,,,TRUE,,,,,TRUE,,,,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+OPD Pharmacy,,,,,TRUE,,,,,TRUE,,,,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+MCOE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+MCOE Triage,TRUE,TRUE,TRUE,TRUE,,,TRUE,,TRUE,,,,,,TRUE,,TRUE,TRUE,TRUE,,,,,,,,,,TRUE,,,TRUE,TRUE,,TRUE,,TRUE,,TRUE
+Labour and Delivery,TRUE,TRUE,,,,TRUE,,,TRUE,,,TRUE,,,TRUE,,TRUE,TRUE,,,,,TRUE,TRUE,,TRUE,,,,TRUE,,,,TRUE,TRUE,,TRUE,,TRUE
+MCCU,TRUE,,,,,TRUE,,,,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,,,,TRUE,TRUE,,,,,TRUE,,TRUE,,TRUE
+NICU,TRUE,,,TRUE,,TRUE,,,,TRUE,,TRUE,,,TRUE,,,,TRUE,,,,TRUE,,TRUE,TRUE,TRUE,,,TRUE,,,TRUE,,TRUE,,TRUE,,TRUE
+Antenatal Ward,TRUE,TRUE,TRUE,,,TRUE,,,TRUE,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,,,,,TRUE,,,,,TRUE,,TRUE,,TRUE
+MCOE PACU,TRUE,,,TRUE,,TRUE,,,,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,TRUE,TRUE,TRUE,,TRUE,TRUE,TRUE,,,,TRUE,TRUE,,TRUE,,TRUE
+MCOE Pre-Op,TRUE,,,,,TRUE,,,TRUE,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,TRUE,,,TRUE,TRUE,,,,TRUE,TRUE,,TRUE,,TRUE
+Quiet Ward,TRUE,,,,,TRUE,,,,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,,,,TRUE,TRUE,,,,,TRUE,,TRUE,,TRUE
+Postnatal Ward,TRUE,,,TRUE,,TRUE,,,,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,TRUE,TRUE,TRUE,TRUE,,,TRUE,TRUE,,,,,TRUE,,TRUE,,TRUE
+MCOE Inpatient Pharmacy,,,,,TRUE,,,,,TRUE,,,,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+Maternity Pharmacy,,,,,TRUE,,,,,TRUE,,,,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+Pediatric Pharmacy,,,,,TRUE,,,,,TRUE,,,,,TRUE,,,,,,,,,,,,,,,,,,,,,,,,
+Kangaroo Care,TRUE,,,,,,,,,,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,TRUE,,,TRUE,TRUE,,,,,TRUE,,,,
+Mothers Dorm,TRUE,,,,,,,,,,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,,,,TRUE,TRUE,,,,,TRUE,,,,
+MCOE Post-Op,TRUE,,,,,TRUE,,,,TRUE,,TRUE,,,TRUE,,TRUE,TRUE,,,,,,,,TRUE,,,TRUE,TRUE,,,,,TRUE,,TRUE,,TRUE
+Staff Ward,TRUE,TRUE,,,,TRUE,,,TRUE,,,TRUE,,,TRUE,,TRUE,TRUE,,,,,TRUE,TRUE,,TRUE,,,,TRUE,,,,TRUE,TRUE,,TRUE,,TRUE
+MCOE Inpatient Registration,,,,TRUE,TRUE,,TRUE,,,,,,,,TRUE,,,,,,,,,,,,,,,,,,TRUE,,,,,,

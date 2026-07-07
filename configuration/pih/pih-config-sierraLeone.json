@@ -1,0 +1,60 @@
+{
+  "browserWarning": "Please use the <b>Google Chrome</b> browser",
+
+  "country": "SIERRA_LEONE",
+  "site": "WELLBODY",
+
+  "scheduleBackupReports": "true",
+  "dashboardUrl": "/pihcore/router/programDashboard.page?patientId={{patientId}}",
+  "visitsPageUrl": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+  "visitsPageWithSpecificUrl": "/pihcore/visit/visit.page?patient={{patient.uuid}}&visit={{visit.uuid}}#/overview",
+
+  "dispositionConfig": "file:configuration/pih/pih-dispositions-sierraLeone.json",
+  "addressConfig": {
+    "manualFields": ["address2"],
+    "shortcutField": "stateProvince"
+  },
+
+  "registrationConfig": {
+    "allowUnknownPatients": false,
+    "allowManualEntryOfPrimaryIdentifier": false,
+    "afterCreatedUrl": "pihcore/patientRegistration/afterRegistration.page?patientId={{patientId}}&encounterId={{encounterId}}",
+    "similarPatientsSearch": {
+      "addressFields": {
+        "cityVillage": "1",
+        "address1": "1"
+      },
+      "personAttributeTypes" : {
+        "First Name of Mother": "3",
+        "Telephone Number": "20"
+      }
+    },
+    "demographics": {
+      "mothersName": {
+        "required": false
+      }
+    },
+    "relationships" : [
+      {
+        "id": "mother",
+        "label": "registration.patient.mother.label",
+        "relationshipType": "9a4b3b84-8a9f-11e8-9a94-a6cf71072f73",
+        "relationshipDirection": "A",
+        "gender": "F",
+        "multipleValues": false,
+        "required": false
+      },
+      {
+        "id": "child",
+        "label": "registration.patient.children.label",
+        "relationshipType": "9a4b3b84-8a9f-11e8-9a94-a6cf71072f73",
+        "relationshipDirection": "B",
+        "multipleValues": true,
+        "required": false
+      }
+    ],
+    "showCountryInAddressHierarchy" : true
+  },
+
+  "idCardLocale": "en"
+}

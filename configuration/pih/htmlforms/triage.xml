@@ -1,0 +1,701 @@
+<htmlform id="mch-triage-form"
+          formUuid="ae39663d-c248-4cee-b48e-5eb226f74e47"
+          formName="MCOE Triage"
+          formEncounterType="41911448-71a1-43d7-bba8-dc86339850da"
+          formVersion="1.0">
+
+    <macros>
+        <macro key="mcoeTriageLocation" value="f85feffc-fe54-4648-aa14-01ed6d30b943"/>
+    </macros>
+
+    <translations defaultLocale="en">
+        <code name="o2Sat">
+            <variant locale="en" value="O&lt;sub&gt;2&lt;/sub&gt; Sat"/>
+            <variant locale="fr" value="SpO&lt;sub&gt;2&lt;/sub&gt;"/>
+            <variant locale="es" value="SatO&lt;sub&gt;2&lt;/sub&gt;"/>
+        </code>
+    </translations>
+
+    <style type="text/css">
+        #who-when-where {
+            margin-bottom: 6px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #who-when-where p {
+            display: inline-block;
+            padding-right: 20px;
+        }
+
+        #where > input[type=text] {
+            display: inline-block;
+        }
+
+        input.legalValue {
+            background-color: white;
+        }
+
+        .field-error {
+            color: #ff6666;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        fieldset#lab-results {
+            display: block;
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .section-container {
+            background-color: white;
+        }
+
+        legend.title {
+            font-size: 1.1em;
+            font-family: OpenSans, Arial, sans-serif;
+        }
+
+        #mch-triage-form, .exam input[type="checkbox"] {
+            margin: 0px 5px; /* changed values to vertical, horizontal */
+            top: 5px; /* added to offset the checkbox position to line up */
+        }
+
+        .exam label { /*new definition to override labels inside section-containers*/
+            margin: 0px;
+        }
+
+        .row-symptom {
+            margin-top: 20px;
+        }
+
+        .six-columns, .five-columns-tb, .four-columns, .three-plus-one, .three-columns, .two-columns {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+
+        .five-columns-tb > div {
+            display: table-cell;
+            width: 20%;
+        }
+
+        .two-columns > div {
+            display: table-cell;
+            width: 50%;
+        }
+
+        .three-columns > div {
+            display: table-cell;
+            width: 33%;
+        }
+
+        .three-plus-one > div {
+            display: table-cell;
+        }
+
+        .three-plus-one > div {
+            width: 29%;
+            margin-top: 20px;
+        }
+
+        .three-plus-one > div:first-child {
+            width: 13%;
+        }
+
+        .three-plus-one {
+            margin-bottom: 20px;
+        }
+
+        .four-columns > div {
+            display: table-cell;
+            width: 25%;
+        }
+
+        .boundary {
+            margin-bottom: 6px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-col {
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        #disposition > span {
+            display: inline-flex;
+        }
+
+        #disposition span {
+            padding-left: 15px;
+        }
+
+        .side-by-side label {
+            display: inline-block;
+        }
+
+        .side-by-side span {
+            display: inline-block;
+        }
+
+        form input[type="radio"], .form input[type="radio"] {
+            float: none;
+            display: inline-block;
+        }
+
+        p.radio > * {
+            display: inline;
+            float: none !important;
+            min-width: initial;
+        }
+
+        .side-by-side input[type="checkbox"] {
+            float: none;
+            display: inline-block;
+        }
+
+        .vitals span, .complaint span {
+            float: none;
+            display: inline-block;
+        }
+
+        .vitals input[type="text"] {
+            max-width: 60px;
+        }
+
+        .vitals-values input[type="text"] {
+            color: black;
+        }
+
+        #chief_complaint {
+            min-width: 80%;
+        }
+
+        .headerLabel {
+            font-size: 1.2em;
+            color: #3E3E3E;
+        }
+
+        table th {
+            text-align: center;
+        }
+        table td {
+            vertical-align: top;
+        }
+
+        #sticky {
+            width: 1400px;
+            padding: 0.5ex;
+            height: 50px;
+            transition: box-shadow 400ms;
+        }
+
+        #sticky.stick {
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        #status-div {
+            color: #fff;
+            text-align: center;
+        }
+
+        #isolationMsg {
+            color: red;
+            font-weight: bold;
+            display:none;
+        }
+
+        .list-inline label, .list-inline input[type="radio"], .list-inline span,
+        .list-inline-wide label, .list-inline-wide input[type="radio"], .list-inline-wide span,
+        .list-inline-extra-wide label, .list-inline-extra-wide input[type="radio"], .list-inline-extra-wide span {
+            display: inline-block;
+            float: none;
+        }
+
+<!--        .list-inline label:first-child {-->
+<!--            width: 220px;-->
+<!--        }-->
+
+        .list-inline-wide label:first-child {
+            width: 320px;
+        }
+
+        .list-inline-extra-wide label:first-child {
+            width: 420px;
+        }
+
+        #admissionLocation select {
+            margin-left: 20px;
+        }
+
+        .indented {
+            padding-left: 20pt;
+            padding-right: 20pt;
+        }
+
+        #lab-results div.section-container {
+            background-color: white;
+        }
+    </style>
+
+    <ifMode mode="VIEW" include="false">
+        <script type="text/javascript">
+            const tbSymptomPresent = '<lookup expression="fn.getConcept('PIH:11563').id"/>';
+
+            
+            function evaluateSymptoms() {
+                    let priority = priorities.GREEN;
+                    jq('.redObs').each(function(index, element) {
+                        let firstCheckbox = jq(this).children(":checkbox:first").prop('checked');
+                        if (firstCheckbox == true) {
+                            priority = priorities.RED;
+                        }
+                    });
+                    if (priority.value &gt; priorities.GREEN.value) {
+                        return priority;
+                    }
+
+                    jq('.yellowObs').each(function(index, element) {
+                        let firstCheckbox = jq(this).children(":checkbox:first").prop('checked');
+                        if (firstCheckbox == true) {
+                            priority = priorities.YELLOW;
+                            return priority;
+                        }
+                    });
+                    jq('.orangeObs').each(function(index, element) {
+                        let firstCheckbox = jq(this).children(":checkbox:first").prop('checked');
+                        if (firstCheckbox == true) {
+                            priority = priorities.ORANGE;
+                            return priority;
+                        }
+                    });
+
+                    return priority;
+            }
+
+            function calculateTriagePriority() {
+                    let globalPriority = null;
+                    let vitalsPriority =  evaluateVitals();
+                    let symptomsPriority = evaluateSymptoms();
+                    if ( vitalsPriority.value &gt; symptomsPriority.value ) {
+                        globalPriority = vitalsPriority;
+                    } else {
+                        globalPriority = symptomsPriority;
+                    }
+                    jq('#sticky').removeClass(classNames).addClass(globalPriority.triageClassName ? globalPriority.triageClassName : globalPriority.className);
+                    jq('#statusMessage').text(globalPriority.message);
+                    return globalPriority;
+            }
+
+            var validateForm = function () {
+
+                let needsDisposition = true;
+                let hasDisposition = jq('#disposition select:first').val() != '';
+                let isValid = false;
+
+                if (hasDisposition || needsDisposition) {
+                    // make sure disposition and all related field have been filled out
+                    isValid = !jq('#disposition select:visible').is(function() {
+                        return jq(this).val() == '';
+                      })  &amp;&amp;
+                    !jq('#disposition input:visible').is(function() {
+                        return jq(this).val() == '';
+                    })
+                }
+
+                if (isValid) {
+                  htmlForm.enableSubmitButton();
+                }
+                else {
+                  htmlForm.disableSubmitButton();
+                }
+
+            }
+            jq(document).ready(function() {
+
+                function sticky_relocate() {
+                    var window_top = jq(window).scrollTop();
+                    var div_top = jq('#sticky-anchor').offset().top;
+                    if (window_top &gt; (div_top + 30 ) ) {
+                        jq('#sticky').addClass('stick');
+                        jq('#sticky-anchor').height(jq('#sticky').outerHeight());
+                    } else if (window_top &lt; (div_top - 70 )) {
+                        jq('#sticky').removeClass('stick');
+                        jq('#sticky-anchor').height(0);
+                    }
+                }
+
+                function evaluateTBScreening() {
+                    let isSymptomPresent = true;
+                    jq(".tbScreen").find("input[type='radio'][value='" + tbSymptomPresent + "']").each( function(index) {
+                        isSymptomPresent = isSymptomPresent &amp;&amp; this.checked;
+                    });
+                    return isSymptomPresent;
+                }
+
+                function evaluateIsolationStatus() {
+                    let status = evaluateTBScreening();
+                    if ( status ) {
+                        jq("#isolationMsg").show();
+                    } else {
+                        jq("#isolationMsg").hide();
+                    }
+                    return status;
+                }
+
+                jq(".isolation").find("input[type='checkbox']").change( function(event) {
+                    evaluateIsolationStatus();
+                });
+
+                jq(".tbScreen").find("input[type='radio']").change( function(event) {
+                    evaluateIsolationStatus();
+                });
+
+                jq('.obs-field').change(function(event) {
+                    calculateTriagePriority();
+                });
+
+                jq(window).scroll(sticky_relocate);
+                sticky_relocate();
+
+                calculateTriagePriority();
+                evaluateIsolationStatus();
+
+                // validate the selection of the disposition and location
+                jq(document).change(validateForm);
+                jq(document).click(validateForm);
+                validateForm();
+            });
+        </script>
+    </ifMode>
+
+    <ifMode mode="VIEW" include="false">
+        <div id="sticky-anchor"></div>
+        <div class="panel triage-label-dark-green" role="progressbar" aria-valuenow="100"
+             aria-valuemin="0" aria-valuemax="100" id="sticky">
+            <div>
+                <h3>
+                    <div id="status-div" class="row">
+                        <div class="col-sm-2"><uimessage code="Status"/></div>
+                        <div class="col-sm-7 center-content">
+                            <span id="statusMessage"></span>
+                        </div>
+                        <div class="col-sm-3 right">
+                            <span></span>
+                        </div>
+                    </div>
+                </h3>
+            </div>
+        </div>
+
+        <h2><uimessage code="National Obstretic Triage and Treatment Form"/></h2>
+        <subform path="configuration/pih/subforms/encounter-provider-location-date.xml">
+            <span subform-parameter="encounter-provider-widget">
+                <encounterProviderAndRole default="currentUser"
+                                          encounterRole="4f10ad1a-ec49-48df-98c7-1391c6ac7f05"
+                                          providerRoles="${providerGroup.group6}"
+                                          required="true"/>
+            </span>
+            <span subform-parameter="encounter-location-widget">
+                <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"
+                                   tags="MCH Triage Location"/>
+            </span>
+        </subform>
+    </ifMode>
+
+    <div id="refer-from" >
+        <h4><uimessage code="Referral"/></h4>
+
+        <div class="two-columns">
+            <div>
+                <p>
+                    <obs conceptId="PIH:20858" id="referral-received" style="checkbox"
+                         answerConceptId="CIEL:1065" answerCode="Referral form received">
+                        <controls>
+                            <when value="CIEL:1065" thenDisplay="#refForm" />
+                        </controls>
+                    </obs>
+                </p>
+            </div>
+            <div id="refForm">
+                <label>
+                    <uimessage code="Upload referral"/>
+                </label>
+                <obs conceptId="PIH:13756" />
+            </div>
+        </div>
+
+        <div>
+            <p class="side-by-side">
+                <label>
+                    <uimessage code="Referral from:"/>
+                </label>
+                <br/>
+                <obs id="role-refer" conceptId="PIH:10647"  style="radio" required="true"
+                     answerConceptIds="PIH:12368,CIEL:1555,CIEL:1575,CIEL:978,CIEL:5622">
+                    <controls>
+                        <when value="PIH:12368" thenDisplay="#refer-date" />
+                        <when value="CIEL:1555" thenDisplay="#refer-date" />
+                        <when value="CIEL:1575" thenDisplay="#refer-date" />
+                        <when value="CIEL:5622" thenDisplay="#other-referee"/>
+                    </controls>
+                </obs>
+            </p>
+            <div id="other-referee">
+                <label>
+                    <uimessage code="Specify other referral role/place:"/>
+                </label>
+                <obs conceptId="PIH:6421" id="other-referee-obs" style="text"/>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div>
+                <label>
+                    <uimessage code="Referral address:"/>
+                </label>
+                <obs conceptId="PIH:10155" id="referral-address" style="text"/>
+            </div>
+
+            <div>
+                <label>
+                    <uimessage code="Referral phone number:"/>
+                </label>
+                <obs conceptId="PIH:6194" id="referral-phone-number" style="text"/>
+            </div>
+        </div>
+        <br/>
+
+        <p id="refer-date" class="date-one-line">
+            <label>
+                <uimessage code="Date/time of referral"/>
+            </label>
+            <span>
+                <obs conceptId="CIEL:163181" showTime="true" allowFutureDates="false" allowFutureTimes="true"/>
+            </span>
+        </p>
+    </div>
+
+    <div>
+        <div>
+            <p class="side-by-side">
+                <obs id="transport" conceptId="PIH:975" style="radio" required="true"
+                     labelText="Method of transport"
+                     answerConceptIds="PIH:15074,PIH:MOTORBIKE,PIH:WALKING,PIH:CAR,PIH:OTHER"
+                     answerCodes="ambulance,motorbike,walking,car,other">
+                    <controls>
+                        <when value="PIH:OTHER" thenDisplay="#other-transport"/>
+                    </controls>
+                </obs>
+
+                <div id="other-transport">
+                    <p>
+                        <label>
+                            <uimessage code="Specify other transport method:"/>
+                        </label>
+                        <obs conceptId="PIH:1301" style="text"/>
+                    </p>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <hr style="height:1px;border-width:0;color:lightgray;background-color:lightgray"/>
+
+    <div class="two-columns">
+        <div>
+            <p class="side-by-side">
+                <label>
+                    <uimessage code="Gestational age (weeks)"/>:&amp;nbsp;&amp;nbsp;
+                </label>
+                <obs conceptId="CIEL:165425" id="gestationalAge"/>
+            </p>
+        </div>
+        <div>
+            <p class="side-by-side">
+                <label>
+                    <uimessage code="pihcore.mch.grava"/>:&amp;nbsp;&amp;nbsp;
+                </label>
+                <obs conceptId="CIEL:5624" id="gravida"/>
+                <label>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                    <uimessage code="pihcore.mch.para"/>:&amp;nbsp;&amp;nbsp;
+                </label>
+                <obs conceptId="CIEL:1053" id="para"/>
+            </p>
+        </div>
+    </div>
+
+    <div class="complaint">
+        <p class="side-by-side">
+            <label>
+                <uimessage code="Main complaint"/>:&amp;nbsp;&amp;nbsp;
+            </label>
+            <obs conceptId="CIEL:160531" id="chief_complaint"/>
+        </p>
+    </div>
+
+    <subform path="configuration/pih/subforms/vital-signs-widget.xml"/>
+
+    <br/>
+
+    <table>
+        <tr>
+            <th>
+                Normal<br/>(green)
+            </th>
+            <th>
+                Prompt<br/>(yellow)
+            </th>
+            <th>
+                Urgent<br/>(orange)
+            </th>
+            <th>
+                STAT<br/>(red: immediately)
+            </th>
+        </tr>
+
+        <tr class="exam">
+            <td>
+                <span class="obs-field greenObs">
+                    <obs conceptId="PIH:10674" answerConceptId="CIEL:162193"
+                         style="checkbox" answerCode="Labour signs (37+ weeks)"/>
+                </span>
+                <span class="obs-field greenObs">
+                    <obs conceptId="PIH:10674" answerConceptId="CIEL:151907"
+                         style="checkbox" answerCode="Pregnancy discomfort"/>
+                </span>
+            </td>
+            <td>
+                <label>
+                    <b>34+ weeks</b>
+                </label>
+                <repeat>
+                    <template>
+                        <obs class="obs-field yellowObs" conceptId="PIH:10674" style="checkbox"
+                             answerConceptId="{ansMap}" answerCode="{ansText}"/>
+                    </template>
+                    <render ansMap="PIH:21087" ansText="Active labour"/>
+                    <render ansMap="PIH:21089" ansText="Regular contractions and HSV lesion" />
+                    <render ansMap="PIH:21090" ansText="Planned, elective, repeat caesarean with contractions" />
+                    <render ansMap="PIH:21091" ansText="Multiple gestation and early contractions" />
+                </repeat>
+                <br/>
+
+                <label>
+                    <b>34 - 36.6 weeks</b>
+                </label>
+                <repeat>
+                    <template>
+                        <obs class="obs-field yellowObs" conceptId="PIH:10674" style="checkbox"
+                             answerConceptId="{ansMap}" answerCode="{ansText}"/>
+                    </template>
+                    <render ansMap="PIH:21088" ansText="Early labour signs" />
+                </repeat>
+            </td>
+            <td>
+                <repeat>
+                    <template>
+                        <obs class="obs-field orangeObs" conceptId="PIH:10674" style="checkbox"
+                             answerConceptId="{ansMap}" answerCode="{ansText}"/>
+                    </template>
+                    <render ansMap="CIEL:117529" ansText="High-risk pregnancy"/>
+                    <render ansMap="CIEL:142373" ansText="Difficulty breathing"/>
+                    <render ansMap="CIEL:121677" ansText="Altered mental status"/>
+                    <render ansMap="CIEL:125562" ansText="Suicidal ideation"/>
+                    <render ansMap="CIEL:167117" ansText="Homicidal ideation"/>
+                    <render ansMap="PIH:21085" ansText="Uterine contractions (before 34 weeks)"/>
+                    <render ansMap="PIH:21086" ansText="Leaking or spotting (before 34 weeks)"/>
+                    <render ansMap="CIEL:147232" ansText="Vaginal bleeding"/>
+                    <render ansMap="CIEL:124193" ansText="Recent trauma"/>
+                    <render ansMap="CIEL:138571" ansText="HIV+"/>
+                    <render ansMap="CIEL:170363" ansText="Elective c-section" />
+                    <render ansMap="CIEL:146922" ansText="Breech presentation"/>
+                    <render ansMap="CIEL:115491" ansText="Multiple gestation"/>
+                    <render ansMap="CIEL:114127" ansText="Placenta previa"/>
+                    <render ansMap="CIEL:113377" ansText="Decreased fetal movements"/>
+                </repeat>
+            </td>
+            <td>
+                <repeat>
+                    <template>
+                        <obs class="obs-field redObs" conceptId="PIH:10674" style="checkbox"
+                             answerConceptId="{acId}" answerCode="{labelTag}"/>
+                    </template>
+                    <render acId="CIEL:119664" labelTag="Cardiac compromise" />
+                    <render acId="CIEL:127639" labelTag="Respiratory distress" />
+                    <render acId="CIEL:113054" labelTag="Convulsing" />
+                    <render acId="CIEL:147241" labelTag="Haemorrhage" />
+                    <render acId="CIEL:159508" labelTag="Unresponsive" />
+                    <render acId="CIEL:130108" labelTag="Placental abruption" />
+                    <render acId="CIEL:127259" labelTag="Uterine rupture" />
+                    <render acId="CIEL:165217" labelTag="Imminent vaginal delivery" />
+                    <!-- ToDo:
+                    <render acId="CIEL:1700382" labelTag="Fetal parts visible on perineum" />
+                    -->
+                </repeat>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+
+    <p class="list-inline">
+        <label>
+            <uimessage code="Other complaints:" />
+        </label>
+        <obs conceptId="CIEL:1119"
+             id="complaints"
+             style="radio"
+             answerConceptIds="CIEL:133632,CIEL:133473,PIH:OTHER"
+             answerCodes="back/musculo-skeletal pain,nausea/vomiting,other">
+            <controls>
+                <when value="PIH:OTHER" thenDisplay="#other-complain"/>
+            </controls>
+        </obs>
+        <obs conceptId="PIH:14679" id="other-complain" style="text"/>
+    </p>
+
+    <label>
+        <uimessage code="pihcore.tbscreen.title"/>
+    </label>
+    <div class="tbScreen" style="padding-bottom: 15px;">
+        <repeat with="['Cough > 2 weeks','11567'], ['Fever','5945'], ['Night sweat','6029'],['Weight loss','6477']">
+            <div style="white-space: nowrap;" class="indented">
+                <p class="list-inline indented" style="margin-bottom: 5px;">
+                    <!-- TB symptom -->
+                    <label><uimessage code="{0}"/>:&amp;nbsp;&amp;nbsp;</label>
+                    <obs conceptIds="PIH:11563,PIH:11564"
+                         style="radio"
+                         answerConceptId="PIH:{1}"
+                         conceptLabels="yes,no"
+                         labelText=""/>
+                </p>
+            </div>
+        </repeat>
+    </div>
+    <div id="isolationMsg">
+        Patient needs isolation and urgent review by infectious disease team.
+    </div>
+    <div>
+        <subform path="configuration/pih/subforms/lab-results-section.xml"/>
+    </div>
+    <div class="boundary"></div>
+        <div class="section-container">
+            <div class="two-columns">
+                <div id="disposition">
+                    <encounterDisposition required="true" id="encounter-disposition" />
+                </div>
+            </div>
+        </div>
+    <br/>
+
+    <ifMode mode="VIEW" include="false">
+        <div id="buttons">
+            <button class="submitButton confirm right" onclick="submitHtmlForm()"><uimessage code="mirebalais.save"/><i class="icon-spinner icon-spin icon-2x" style="display: none; margin-left: 10px;"></i></button>
+            <button type="button" class="cancel"><uimessage code="emr.cancel"/></button>
+        </div>
+    </ifMode>
+</htmlform>

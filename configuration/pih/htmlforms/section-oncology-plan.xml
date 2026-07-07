@@ -1,0 +1,484 @@
+<htmlform id="oncology-plan"
+          formUuid="cd0fd93e-234a-4cb0-bcb3-a0fecd3af1bd"
+          formName="Oncology Plan" formVersion="3.0">
+
+    <postSubmissionAction class="org.openmrs.module.pihcore.htmlformentry.action.ApplyDispositionAction"/>
+
+    <style type="text/css">
+        <ifMode mode="VIEW" include="false">
+
+            form fieldset {
+                display: block;
+            }
+
+            .side-by-side label {
+                display: inline-block;
+            }
+
+            label {
+                padding: 0px 3px 0px 0px
+            }
+
+            form input[type="radio"], .form input[type="radio"] {
+                float: none;
+                display: inline-block;
+            }
+
+            #test-orders input[type=checkbox] {
+                float: none;
+                vertical-align: middle;
+            }
+
+            #test-orders p {
+                margin-bottom: 5px
+            }
+
+            #test-orders span, #test-orders label {
+                display: inline !important;
+                vertical-align: middle;
+            }
+
+            .five-columns, .four-columns, .three-columns, .two-columns {
+                display: table;
+                height: 100%;
+                width: 100%;
+            }
+
+            .two-columns > div {
+                display: table-cell;
+                width: 50%;
+            }
+
+            .three-columns > div {
+                display: table-cell;
+                width: 33%;
+            }
+
+            .two-column-old {
+                column-count: 2;
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+            }
+
+            .three-columns-old {
+                column-count: 3;
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+            }
+
+            p.radio > * {
+                display: inline;
+                float: none !important;
+                min-width: initial;
+            }
+
+            .section-container-color {
+                background: #F2F2F2;
+                box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+                padding: 10px 5px 10px 15px;
+                line-height: 1.5em; /*add this for vertical spacing between elements*/
+            }
+
+            .section {
+                width: 100%;
+            }
+
+            label {
+                padding: 0px 3px 0px 0px
+            }
+
+            #data-collection {
+                display: inline-block;
+                width: 58%;
+                vertical-align: top;
+            }
+
+            #encounter-diagnoses-target {
+                display: inline-block;
+                width: 40%;
+                vertical-align: top;
+            }
+
+            #encounter-diagnoses-app {
+                margin-bottom: 20px;
+            }
+        </ifMode>
+    </style>
+
+    <ifMode mode="VIEW" include="false">
+        <script type="text/javascript">
+
+            htmlForm.getBeforeValidation().push(function() {
+
+                var valid = true;
+
+                // validate that if a disposition has been selected, all the fields associated with that disposition have also been filled out
+                jq('#disposition .field-error').first().html('').hide(); // hide any previous error
+                if (jq('#disposition select:first').val() != '' &amp;&amp;
+                    (jq('#disposition select:visible').is(function() { return jq(this).val() == ''; })
+                    || jq('#disposition input:visible').is(function() { return jq(this).val() == ''; }))) {
+                        jq('#disposition .field-error').first().append('<uimessage
+                code="pihcore.errors.fieldsAssociatedWithDisposition"/>').show();
+                        valid = false;
+                }
+
+                return valid;
+
+            });
+
+        </script>
+    </ifMode>
+
+    <ifMode mode="VIEW" include="false">
+        <h1>
+            <uimessage code="pihcore.visitNote.plan"/>
+        </h1>
+    </ifMode>
+
+    <section id="radiology-pathology.orders" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="pihcore.radiology-pathology">
+        <div class="section-container-color">
+            <div class="three-columns">
+                <div>
+                    <includeIf velocityTest="!$config.isComponentEnabled('radiology')">
+                        <p>
+                            <obs conceptId="PIH:Radiology image ordered"
+                                 answerConceptId="PIH:Chest 1 view (XRay)"
+                                 style="checkbox"/>
+                        </p>
+                        <p>
+                            <label>
+                                <uimessage code="zl.ifOtherSpecify"/>
+                            </label>
+                        </p>
+                        <p>
+                            <obs conceptId="PIH:Radiology image ordered"
+                                 answerClasses="Radiology/Imaging Procedure"
+                                 style="autocomplete"/>
+                        </p>
+
+                    </includeIf>
+                    <includeIf velocityTest="$config.isComponentEnabled('radiology')">
+                        <p>
+                            <uimessage code="pihcore.radiologyApp.message"/>
+                        </p>
+                    </includeIf>
+                </div>
+
+                <div>
+                    <includeIf velocityTest="$config.isComponentEnabled('pathologyTracking')">
+                        <p>
+                            <uimessage code="pihcore.pathologyApp.message"/>
+                        </p>
+                    </includeIf>
+                </div>
+
+                <div>
+                    <label>
+                        <uimessage code="pihcore.otherTests"/>
+                    </label>
+                    <obs conceptId="CIEL:165398" rows="2" dateLabel="Date"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="misc" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="">
+        <div class="section-container-color">
+            <div class="three-columns">
+                <div>
+                    <label>
+                        <uimessage code="pihcore.oncologyConsult.ecog_performance_status"/> (0-5)
+                    </label>
+                    <obsgroup groupingConceptId="CIEL:163726">
+                        <obs conceptId="CIEL:160379" />
+                        <label>
+                            <uimessage code="zl.date"/>
+                        </label>
+                        <obs conceptId="CIEL:163724" allowTime="false"/>
+                        <p>
+                            <obs conceptId="CIEL:163725" style="checkbox"
+                                 answerConceptId="CIEL:1118" answerCode="pihcore.notEvaluated"/>
+                        </p>
+                    </obsgroup>
+                </div>
+
+                <div>
+                    <label>
+                        <uimessage code="pihcore.mentalhealth.zldsi.long"/>
+                    </label>
+
+                    <obsgroup groupingConceptId="CIEL:163726">
+                        <obs conceptId="CIEL:163225"  />
+                        <label>
+                            <uimessage code="zl.date"/>
+                        </label>
+                        <obs conceptId="CIEL:163724" allowTime="false"/>
+                        <p>
+                            <obs conceptId="CIEL:163725" style="checkbox"
+                                 answerConceptId="CIEL:1118" answerCode="pihcore.notEvaluated"/>
+                        </p>
+                    </obsgroup>
+                </div>
+
+                <div>
+                    <p class="side-by-side">
+                        <label>
+                            <uimessage code="pihcore.psychoSocialReferral"/>?
+                        </label>
+                        <br/>
+                        <obs conceptId="PIH:PSYCHOSOCIAL COUNSELING" style="radio" answerConceptIds="CIEL:1065,CIEL:1066"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diagnosis" sectionTag="fieldset" headerTag="legend" headerStyle="title" headerCode="pihcore.diagnosis.label">
+        <div class="section-container-color">
+            <div id="data-collection">
+                <encounterDiagnosesByObs selectedDiagnosesTarget="#encounter-diagnoses-target"/>
+
+                <p class="list-inline check-inline">
+                    <obs conceptId="PIH:20580" style="checkbox" toggle="nonCodedDiagnosis"
+                         answerConceptId="CIEL:1065" answerCode="mirebalaisreports.noncodeddiagnoses.name" />
+                    <div id="nonCodedDiagnosis">
+                        <obs conceptId="PIH:7416" style="textarea" cols="28" rows="1"
+                             labelCode="pihcore.ifNoncodedSpecify"/>
+                    </div>
+                </p>
+
+                <p>
+                    <label><uimessage code="emr.consult.freeTextComments"/></label>
+                    <obs conceptId="PIH:CLINICAL IMPRESSION COMMENTS" style="textarea" rows="5"/>
+                </p>
+
+                <label>
+                    <uimessage code="pihcore.programEnroll" />
+                </label>
+                <enrollInProgram programId="Oncology" locationTag="Program Location" showCheckbox="true"/>
+                <uimessage code="ui.i18n.Program.name.5bdbf9f6-690c-11e8-adc0-fa7ae01bbebc"/>
+            </div>
+
+            <div id="encounter-diagnoses-target">
+            </div>
+        </div>
+
+    </section>
+
+    <section id="clinical-management-plan" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="pihcore.consult.clinicalManagementPlan">
+        <div class="section-container-color">
+            <p>
+                <obs conceptId="CIEL:162749" style="textarea" rows="5" id="clinical-management-plan"/>
+            </p>
+        </div>
+    </section>
+
+    <section id="drug-orders" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="pihcore.visitNote.orders.medications.full">
+        <div class="section-container-color">
+            <subform path="configuration/pih/subforms/drug-order-widget-obgyn.xml"/>
+
+            <label><b><uimessage code="pihcore.remarks"/></b></label>
+            <p>
+                <obs conceptId="PIH:10637" cols="50" rows="5" />
+            </p>
+        </div>
+    </section>
+
+    <style type="text/css">
+
+        #test-orders {
+            padding-top padding-bottom: 0px;
+            line-height: 0.1;
+        }
+
+        #test-orders .orderwidget-orderable-section {
+            border-bottom: none;
+        }
+
+        #test-orders .orderwidget-existing-order-section {
+            display:none;
+        }
+
+        #test-orders .orderwidget-section-header {
+            padding-bottom: 25px;
+        }
+    </style>
+    <br/>
+
+    <section id="test-orders" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="pihcore.lab.lab_tests.title">
+
+        <div class="section-container-color">
+            <order orderType="52a447d3-a64a-11e3-9aeb-50e549534c5e" format="select"
+                   selectLabel="pihcore.labOrder.addAnotherLab">
+                <orderTemplate>
+                    <orderProperty name="action" label="pihcore.action">
+                        <option value="NEW" label="pihcore.new"/>
+                    </orderProperty>
+
+                    <div style="padding:0px;font-weight:bold;">
+                        <orderProperty name="concept" label="" style="dropdown">
+                            <option value="3ce44134-26fe-102b-80cb-0017a47871b2" label="B-hCG (pregnancy)" />
+                            <option value="3ccc94a8-26fe-102b-80cb-0017a47871b2" label="Urine hCG (pregnancy)" />
+
+                            <option value="3cd6c946-26fe-102b-80cb-0017a47871b2" label="HIV rapid test (RDT)" />
+                            <option value="1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="HIV VL (qual)" />
+                            <option value="3cd4a882-26fe-102b-80cb-0017a47871b2" label="pihcore.hivintake.hivViralLoadQuant" />
+
+                            <option value="165303AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Syphilis RT" />
+                            <option value="3cdb36f2-26fe-102b-80cb-0017a47871b2" label="Syphilis (RPR)" />
+                            <option value="299AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="VDRL" />
+
+                            <option value="1322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Hepatitis B (qual)" />
+                            <option value="3ce406c4-26fe-102b-80cb-0017a47871b2" label="Hepatitis B (HBsAg surface)" />
+                            <option value="161472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Hepatitis B (HBsAg spot)" />
+                            <option value="161471AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Hepatitis C (HBsAg spot)" />
+                            <option value="1325AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Hepatitis C (qual)" />
+
+                            <option value="3cd275d0-26fe-102b-80cb-0017a47871b2" label="AST/SGOT" />
+                            <option value="3cd27760-26fe-102b-80cb-0017a47871b2" label="ALT/SGPT" />
+                            <option value="3cd42f4c-26fe-102b-80cb-0017a47871b2" label="ALP" />
+                            <option value="3cd278fa-26fe-102b-80cb-0017a47871b2" label="Total bilirubin" />
+                            <option value="b01f4fd2-7632-4c94-9481-9ed0d1da1f9a" label="Direct bilirubin" />
+
+                            <option value="161433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Bleeding time (TS)" />
+                            <option value="161435AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Coagulation time (TC)" />
+                            <option value="16e928e5-bdfb-4ec8-a9c2-9d64c78a0ce5" label="INR" />
+
+                            <option value="4f2c0162-0a34-4d12-8361-c7c5a3489cf0" label="Total cholesterol" />
+                            <option value="ccead4fe-b998-412d-b6bb-9e92bb02d33d" label="Triglycerides" />
+                            <option value="600135ed-08d9-4791-8faa-94b13f1e095a" label="HDL" />
+                            <option value="ec10a67f-913f-4a62-a0ed-43fb335ff5af" label="LDL" />
+
+                            <option value="3cd76b58-26fe-102b-80cb-0017a47871b2" label="Na" />
+                            <option value="3cd76e82-26fe-102b-80cb-0017a47871b2" label="Cl" />
+                            <option value="3cd76ce8-26fe-102b-80cb-0017a47871b2" label="K" />
+                            <option value="3cd77012-26fe-102b-80cb-0017a47871b2" label="CO2" />
+                            <option value="3cd4e194-26fe-102b-80cb-0017a47871b2" label="Glucose" />
+
+                            <option value="3cd4374e-26fe-102b-80cb-0017a47871b2" label="Creatinine" />
+                            <option value="7033707c-f555-4b9f-8291-e1466c54c36e" label="BUN (mg/dL)" />
+                            <option value="4521d6e3-524c-4e76-9efb-3fb06eb1f932" label="Urea measured (mg/dL)" />
+                            <option value="159825AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" label="Uric acid" />
+
+                        </orderProperty>
+
+                        <div style="display:none;">
+                            <orderProperty name="urgency" value="ROUTINE"/>
+                            <orderProperty name="previousOrder"/>
+                            <orderProperty name="careSetting" value="OUTPATIENT"/>
+                        </div>
+                    </div>
+                </orderTemplate>
+            </order>
+        </div>
+    </section>
+
+    <section id="assistance" sectionTag="fieldset" headerTag="legend"
+             headerStyle="title" headerCode="pihcore.socioEconomic.assistance">
+        <div class="section-container-color">
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label>
+                            <uimessage code="pihcore.received"/>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <uimessage code="pihcore.recommended"/>
+                        </label>
+                    </td>
+                </tr>
+
+                <repeat>
+                    <template>
+                        <tr>
+                            <td>
+                                <label>
+                                    <uimessage code="{aidLabel}"/>
+                                </label>
+                            </td>
+                            <td>
+                                <obs conceptId="PIH:2156" answerConceptId="{aid}"
+                                     answerLabel="" style="checkbox"/>
+                            </td>
+                            <td>
+                                <obs conceptId="PIH:2157" answerConceptId="{aid}"
+                                     answerLabel="" style="checkbox"/>
+                            </td>
+                        </tr>
+                    </template>
+                    <render aid="PIH:ASSISTANCE WITH TRANSPORT" aidLabel="pihcore.aid.transport"/>
+                    <render aid="PIH:1847" aidLabel="pihcore.aid.foodPackage"/>
+                    <render aid="PIH:FINANCIAL AID" aidLabel="pihcore.aid.money" />
+                </repeat>
+
+                <tr>
+                    <td>
+                        <obs conceptId="PIH:SOCIO-ECONOMIC ASSISTANCE NON-CODED"
+                             labelCode="zl.ifOtherSpecify"/>
+                    </td>
+                    <td>
+                        <obs conceptId="PIH:2156" answerConceptId="CIEL:5622"
+                             answerLabel="" style="checkbox"/>
+                    </td>
+                    <td>
+                        <obs conceptId="PIH:2157" answerConceptId="CIEL:5622"
+                             answerLabel="" style="checkbox"/>
+                    </td>
+                </tr>
+
+            </table>
+
+            <p>
+                <label>
+                    <uimessage code="pihcore.remarks"/>:
+                </label>
+                <obs conceptId="PIH:SOCIO-ECONOMIC ASSISTANCE COMMENT" style="text"/>
+            </p>
+        </div>
+    </section>
+
+    <section id="disposition-section" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+             headerCode="coreapps.consult.disposition">
+
+        <div class="section-container-color">
+
+            <div id="disposition">
+                <encounterDisposition/>
+            </div>
+
+            <label>
+                <uimessage code="pihcore.comment"/>
+            </label>
+            <obs conceptId="PIH:DISPOSITION COMMENTS" style="text"/>
+
+            <!-- Do not require return visit date for non-NCD encounters -->
+            <includeIf velocityTest="!($encounter.encounterType.uuid == 'ae06d311-1866-455b-8a64-126a9bd74171' || $encounter.encounterType.uuid == '5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c')" >
+                <p class="narrow">
+                    <label>
+                        <lookup expression="fn.getConcept('PIH:RETURN VISIT DATE').name"/>
+                    </label>
+                    <obs conceptId="PIH:RETURN VISIT DATE" allowFutureDates="true" allowPastDates="false" id="apptDate" />
+                </p>
+            </includeIf>
+        </div>
+
+    </section>
+
+    <ifMode mode="VIEW" include="false">
+        <div id="buttons">
+            <submit submitClass="confirm right" submitCode="emr.save"/>
+            <button type="button" class="cancel">
+                <uimessage code="emr.cancel"/>
+            </button>
+        </div>
+    </ifMode>
+
+</htmlform>

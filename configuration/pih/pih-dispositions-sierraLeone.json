@@ -1,0 +1,119 @@
+[
+  {
+    "uuid": "edObservation",
+    "name": "disposition.mirebalais.edObservation",
+    "conceptCode": "PIH:ED Observation",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2"],
+    "keepsVisitOpen": "false",
+    "actions": [],
+    "additionalObs": []
+  },
+  {
+    "uuid": "discharge",
+    "type": "DISCHARGE",
+    "name": "disposition.emrapi.discharge",
+    "conceptCode": "PIH:DISCHARGED",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2",
+      "ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "active",
+    "name": "pihcore.active",
+    "conceptCode": "CIEL:161636",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2",
+      "ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "outpatientFollowup",
+    "name": "pihcore.disposition.outpatientFollowup",
+    "conceptCode": "PIH:20680",
+    "encounterTypes": ["ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "transferWithinHospital",
+    "type": "TRANSFER",
+    "name": "disposition.emrapi.transferInHospital",
+    "conceptCode": "PIH:Transfer within hospital",
+    "additionalObs": [
+      {
+        "label": "pihcore.internalTransferLocation",
+        "conceptCode": "PIH: 14973",
+        "params": {
+          "id": "transferInternalLocation"
+        }
+      }
+    ]
+  },
+  {
+    "uuid": "transferOutOfHospital",
+    "name": "disposition.emrapi.transferOutOfHospital",
+    "conceptCode": "PIH:Transfer out of hospital",
+    "additionalObs": [
+      {
+        "label": "disposition.emrapi.transferOutOfHospital.sites",
+        "conceptCode": "PIH: 14424",
+        "params": {
+          "id": "transferExternalLocation"
+        }
+      }
+    ]
+  },
+  {
+    "uuid": "medsPrescribed",
+    "name": "disposition.emrapi.medsPrescribed",
+    "conceptCode": "PIH:Medications prescribed at end of visit",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2",
+      "ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "waitingForLabs",
+    "name": "disposition.emrapi.waitingForLabs",
+    "conceptCode": "PIH:WAITING FOR TEST RESULTS",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2",
+      "ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "inactiveStatus",
+    "name": "disposition.emrapi.inactive",
+    "conceptCode": "CIEL:164928",
+    "excludedEncounterTypes": ["a8584ab8-cc2a-11e5-9956-625662870761","9d701a81-bb83-40ea-9efc-af50f05575f2",
+      "ae06d311-1866-455b-8a64-126a9bd74171","5cbfd6a2-92d9-4ad0-b526-9d29bfe1d10c",
+      "43423212-6f70-4df8-a9f7-2aef88df1ee2","6a3afa6f-8f78-44a9-80c9-3f4f3b6ad8f2"
+    ],
+    "additionalObs": []
+  },
+  {
+    "uuid": "markPatientDead",
+    "name": "disposition.emrapi.death",
+    "conceptCode": "PIH:DEATH",
+    "actions": [
+      "markPatientDeadDispositionAction"
+    ],
+    "additionalObs": [
+      {
+        "label": "disposition.emrapi.death.deathDate",
+        "conceptCode": "org.openmrs.module.emrapi: Date of Death",
+        "params": {
+          "id": "dateOfDeath",
+          "allowFutureDates": "false",
+          "allowFutureTimes": "true"
+        }
+      }
+    ]
+  }
+]

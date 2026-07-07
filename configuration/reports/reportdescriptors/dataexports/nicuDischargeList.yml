@@ -1,0 +1,28 @@
+key: "nicudischargelist"
+uuid: "7c575650-bf72-46f2-9eb9-dc8f6f414faf"
+name: "NICU Discharge List"
+description: "Patients discharged from the NICU ward on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"  
+datasets:
+  - key: "nicu_discharge_list"
+    type: "sql"
+    config: "sql/nicu_discharge_list.sql" 
+designs:
+  - type: "csv"
+    properties:
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"
+config:
+  category: "dataExport"
+  order: 50
+  components:
+    - "dataExports"
+    - "allDataExports"  

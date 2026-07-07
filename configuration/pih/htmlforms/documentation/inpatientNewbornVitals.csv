@@ -1,0 +1,16 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Encounter Provider,Provider,List of available providers,provider select,Yes,no,,,,
+Encounter Location,Location,List of available locations,location select,Yes,no,,,,
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Vital signs (infant subform),Other,See vital-signs-infant-widget,subform,No,no,,,,
+Oxygen flow rate (L/m),Numeric,N/A,number,No,no,CIEL:165986,,,
+Total fluid input (mL),Numeric,N/A,number,No,no,CIEL:163036,,,
+Total fluid output (mL),Numeric,N/A,number,No,no,CIEL:162659,,,
+Seizures,Coded,yes | no,radio,No,no,CIEL:113054,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Floppy,Coded,yes | no,radio,No,no,CIEL:140054,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Lethargy,Coded,yes | no,radio,No,no,CIEL:116334,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Irritable,Coded,yes | no,radio,No,no,CIEL:6023,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Unarousable,Coded,yes | no,radio,No,no,PIH:6784,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Poor tone,Coded,yes | no,radio,No,no,PIH:21127,PIH:SYMPTOM PRESENT|PIH:SYMPTOM ABSENT,Exam items,PIH:14858
+Feeding status,Coded,not feeding | reluctantly | feeding well,radio,No,no,PIH:21125,PIH:1107|PIH:21126|PIH:1115,,
+Hematocrit,Numeric,N/A,number,No,no,CIEL:1015,,,

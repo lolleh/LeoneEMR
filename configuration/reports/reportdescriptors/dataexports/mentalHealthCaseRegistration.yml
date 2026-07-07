@@ -1,0 +1,22 @@
+key: "mentalHealthCaseRegistration"
+uuid: "6c8cb41f-eda9-4107-a5c0-f19c3f05e808"
+name: "mirebalaisreports.mentalHealthCaseRegistration.name"
+description: "mirebalaisreports.mentalHealthCaseRegistration.description"
+datasets:
+  - key: "mentalHealthCaseRegistration"
+    type: "sql"
+    config: "sql/mentalHealthCaseRegistration.sql"
+designs:
+  - type: "csv"
+    properties:
+      "filenameBase": "mentalHealthCaseRegistration.{{ formatDate request.evaluateStartDatetime \"yyyyMMdd\" }}.{{ formatDate request.evaluateStartDatetime \"HHmm\" }}"
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+config:
+  category: "dataExport"
+  order: 72
+  components:
+    - "mentalHealth"
+    - "allDataExports"
+  privilege: "Task: clinical.reports"

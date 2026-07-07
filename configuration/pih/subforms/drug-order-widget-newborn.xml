@@ -1,0 +1,12 @@
+<!--
+    This overrides the drug section of the default drug order widget to limit to specific routes appropriate for newborns
+-->
+<subform path="configuration/pih/subforms/drug-order-widget.xml">
+    <orderProperty name="route" value="CIEL:160240" label=" " subform-parameter="drug-order-route-selector">
+        <option value="CIEL:160240" /> <!-- Oral -->
+        <option value="CIEL:160242" /> <!-- iv -->
+        <option value="CIEL:162390" /> <!-- Both eyes  -->
+        <option value="CIEL:162797" /> <!-- Topical -->
+        <option value="CIEL:162393" /> <!-- Rectally -->
+    </orderProperty>
+</subform>

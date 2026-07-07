@@ -1,0 +1,88 @@
+Uuid,Void/Retire,Name,Description
+${encounterType.PATIENT_REGISTRATION.uuid},,${encounterType.PATIENT_REGISTRATION.name},Patient registration -- normally a new patient
+${encounterType.CHECK_IN.uuid},,${encounterType.CHECK_IN.name},"Check-in, formerly known as Primary care reception"
+${encounterType.PAYMENT.uuid},,Payment,Encounter used to capture patient payments
+${encounterType.VITALS.uuid},,${encounterType.VITALS.name},"Encounter where vital signs were captured, and triage may have been done, possibly for triage purposes, but a complete exam was not done."
+${encounterType.PRIMARY_CARE_VISIT.uuid},,Primary Care Consult,"Primary care visit (In Kreyol, it&apos;s &apos;vizit swen primè&apos;)"
+${encounterType.CONSULTATION_INITIAL.uuid},,Initial Consultation,"Encounter where a full or abbreviated examination is done, leading to a presumptive or confirmed diagnosis"
+${encounterType.CONSULTATION.uuid},,Consultation,"Encounter where a full or abbreviated examination is done, leading to a presumptive or confirmed diagnosis"
+${encounterType.ONCOLOGY_INITIAL.uuid},,Oncology Initial Consult,Intake consultation for Oncology
+${encounterType.ONCOLOGY_CONSULT.uuid},,Oncology Consultation,Consultation for Oncology
+${encounterType.ONCOLOGY_TREATMENT_PLAN.uuid},,Oncology Treatment Plan,Treatment plan for oncology patient
+${encounterType.CHEMOTHERAPY_SESSION.uuid},,Chemotheraphy treatment session,Chemotheraphy treatment session for HUM and other places.
+${encounterType.NCD_INITIAL_CONSULT.uuid},,NCD Initial Consult,Non-communicable disease initial consult
+${encounterType.NCD_FOLLOWUP_CONSULT.uuid},,NCD Followup Consult,Non-communicable disease followup consult
+${encounterType.MEDICATION_DISPENSED.uuid},,${encounterType.MEDICATION_DISPENSED.name},When someone gets medicine from the pharmacy
+${encounterType.POST_OPERATIVE_NOTE.uuid},,Surgery Note,The surgeons&apos; notes after performing surgery
+${encounterType.TRANSFER.uuid},,Transfer,Indicates that a patient is being transferred into a different department within the hospital. (Transfers out of the hospital should not use this encounter type.)
+${encounterType.ADMISSION.uuid},,Admission,"Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged."
+${encounterType.CANCEL_ADMISSION.uuid},,Cancel Admission,An encounter that notes that a request to admit a patient (via giving them a dispositon of &quot;admit&quot; on another form) is being overridden
+${encounterType.EXIT_FROM_CARE.uuid},,Exit from Inpatient Care,"Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon"
+${encounterType.LAB_RESULTS.uuid},,Laboratory Results,Laboratory Results
+${encounterType.DEATH_CERTIFICATE.uuid},,Death Certificate,"The official record of a patient's death. A patient may be dead without having one of these encounters, but no living patient should have an encounter with this type"
+${encounterType.MENTAL_HEALTH_ASSESSMENT.uuid},,Mental Health Consult,Mental health visit and assessment
+${encounterType.PRIMARY_CARE_PEDS_INITIAL_CONSULT.uuid},,Primary Care Pediatric Initial Consult,Primary Care Pediatric Initial Consult
+${encounterType.PRIMARY_CARE_PEDS_FOLLOWUP_CONSULT.uuid},,Primary Care Pediatric Followup Consult,Primary Care Pediatric Followup Consult
+${encounterType.PRIMARY_CARE_ADULT_INITIAL_CONSULT.uuid},,Primary Care Adult Initial Consult,Primary Care Adult Initial Consult
+${encounterType.PRIMARY_CARE_ADULT_FOLLOWUP_CONSULT.uuid},,Primary Care Adult Followup Consult,Primary Care Adult Followup Consult
+${encounterType.EMERGENCY_TRIAGE.uuid},,Emergency Triage,Emergency Department patient triage
+${encounterType.TEST_ORDER.uuid},,Test Order,"Test Order - the order of test (labs, biopsy, etc)"
+${encounterType.DRUG_ORDER.uuid},,Drug Order,Drug order
+${encounterType.PATHOLOGY_SPECIMEN_COLLECTION.uuid},,Pathology Specimen Collection,"Pathology Specimen Collection - the collection of a pathology specimen for a test (blood draw, biopsy, etc)"
+${encounterType.LAB_SPECIMEN_COLLECTION.uuid},,Lab Specimen Collection,"Lab Specimen Collection - the collection of a lab specimen for a test (blood draw, biopsy, etc)"
+${encounterType.HIV_INTAKE.uuid},,HIV Intake,HIV Intake
+${encounterType.HIV_FOLLOWUP.uuid},,HIV Followup,HIV Followup
+${encounterType.VCT.uuid},,Voluntary counselling and testing,Voluntary counselling and testing (VCT) for HIV
+${encounterType.HIV_DISPENSING.uuid},,HIV drug dispensing,Dispensing for HIV medications
+${encounterType.HIV_PSYCHOSOCIAL.uuid},,HIV Psychosocial evaluation,Psychosocial evaluation for HIV patients
+${encounterType.PREP_INTAKE.uuid},,PrEP Intake,Pre-Exposure Prophylaxis (PrEP) initial
+${encounterType.PREP_FOLLOWUP.uuid},,PrEP Followup,Pre-Exposure Prophylaxis (PrEP) followup
+${encounterType.DRUG_ORDER_DOCUMENTATION.uuid},,Drug Order Documentation,"Documentation of drug orders for a patient, often dated retrospectively"
+${encounterType.SOCIO_ECONOMICS.uuid},,Socio-economics,Education and housing information on the patient
+${encounterType.ANC_INTAKE.uuid},,ANC Intake,Initial prenatal (aka ANC) visit for pregnant mother
+${encounterType.ANC_FOLLOWUP.uuid},,ANC Followup,Followup prenatal (aka ANC) visits for pregnant mother
+${encounterType.MCH_DELIVERY.uuid},,MCH Delivery,Mother's visit for delivery of baby
+${encounterType.OB_GYN.uuid},,OB/GYN,Obstetrics and gynecology encounter for woman
+${encounterType.VACCINATION.uuid},,Vaccination,Vaccination form only (not within another encounter)
+${encounterType.ECHOCARDIOGRAM.uuid},,Echocardiogram,Echocardiogram consultation
+${encounterType.PRENATAL_HOME_ASSESSMENT.uuid},,Prenatal Home Assessment,Prenatal home assessment
+${encounterType.PEDIATRIC_HOME_ASSESSMENT.uuid},,Pediatric Home Assessment,Pediatric home assessment
+${encounterType.MATERNAL_POST_PARTUM_HOME_ASSESSMENT.uuid},,Maternal Post-partum Home Assessment,Maternal post-partum home assessment
+${encounterType.MATERNAL_FOLLOWUP_HOME_ASSESSMENT.uuid},,Maternal Follow-up Home Assessment,Maternal follow-up home assessment
+${encounterType.FAMILY_PLANNING_INTAKE.uuid},,Family Planning Initial,Family planning initial
+${encounterType.FAMILY_PLANNING_FOLLOWUP.uuid},,Family Planning Followup,Family planning followup
+${encounterType.CERVICAL_CANCER_SCREENING.uuid},,Cervical Cancer Screening,Cervical cancer screening
+${encounterType.NICU_FOLLOWUP.uuid},,NICU Followup,NICU (and SCBU) followup
+${encounterType.GYNO_INTAKE.uuid},,Gynecology Initial,Gynecology initial
+${encounterType.GYNO_FOLLOWUP.uuid},,Gynecology Followup,Gynecology followup
+${encounterType.AYFS_INTAKE.uuid},,AYFS Initial,Adult and Youth-friendly Services (AYFS) initial
+${encounterType.AYFS_FOLLOWUP.uuid},,AYFS Followup,Adult and Youth-friendly Services (AYFS) followup
+${encounterType.COVID19_INTAKE.uuid},,COVID-19 Admission,COVID-19 admission note at health facility
+${encounterType.COVID19_FOLLOWUP.uuid},,COVID-19 Progress,COVID-19 follow-up/daily progress at health facility
+${encounterType.COVID19_DISCHARGE.uuid},,COVID-19 Discharge,COVID-19 Discharge note at health facility
+${encounterType.OVC_INTAKE.uuid},,OVC Intake,USAID Orphans and Vulnerable Children (OVC) program intake
+${encounterType.OVC_FOLLOWUP.uuid},,OVC Follow-up,USAID Orphans and Vulnerable Children (OVC) program follow-up
+${encounterType.TB_INTAKE.uuid},,Tuberculosis Intake,Tuberculosis (TB) intake form
+${encounterType.COMMENT.uuid},,Comment,Free-text clinical impression comments
+${encounterType.HIV_INFANT_DOCUMENTATION.uuid},,HIV Infant Documentation,HIV Infant Documentation encounter type
+${encounterType.PMTCT_INTAKE.uuid},,PMTCT Intake,Pregnant mother to child transmission (PMTCT) Intake
+${encounterType.PMTCT_FOLLOWUP.uuid},,PMTCT Followup,Pregnant mother to child transmission (PMTCT) Followup
+${encounterType.EID_FOLLOWUP.uuid},,HIV-exposed Infant Followup,Early infant HIV diagnosis (EID) Followup
+${encounterType.RADIOLOGY_ORDER.uuid},,Radiology Order,Radiology Order  - the ordering of a radiology exam
+${encounterType.RADIOLOGY_REPORT.uuid},,Radiology Report,Radiology Report - represents a report on a radiology study performed by a radiologist
+${encounterType.RADIOLOGY_STUDY.uuid},,Radiology Study,Radiology Study - represents performance of a radiology study on a patient by a radiology technician
+${encounterType.ATTACHMENT_UPLOAD.uuid},TRUE,Attachment Upload,Encounters used to record uploads of attachments.
+${encounterType.DRUG_REHAB.uuid},,Drug Rehab,A drug rehabilitation encounter with an initial or ongoing evaluation
+${encounterType.PHYSICAL_REHAB_EVAL.uuid},,Physical Rehab Evaluation,A physical rehabilitation encounter with an initial or ongoing evaluation
+${encounterType.NURSE_CONSULT.uuid},,Nurse Consult,A consult with a nurse
+${encounterType.PRESCRIPTION.uuid},,Prescription,Drugs prescription
+${encounterType.LABOR_DELIVERY_SUMMARY.uuid},,Labor and Delivery Summary,Labor and Delivery Summary
+${encounterType.MATERNAL_ADMISSION.uuid},TRUE,Maternal Admission,The admission form for maternal health
+${encounterType.MATERNAL_DISCHARGE.uuid},,Maternal Discharge,Maternal Discharge
+${encounterType.NEWBORN_INITIAL.uuid},,Newborn Initial,Newborn Initial (admission)
+${encounterType.NEWBORN_ASSESSMENT.uuid},,Newborn Assessment,Newborn assessment
+${encounterType.NEWBORN_DAILY_PROGRESS.uuid},,Newborn Daily Progress,Newborn daily progress
+${encounterType.NEWBORN_DISCHARGE.uuid},,Newborn Discharge,Newborn Discharge
+${encounterType.INPATIENT_NOTE.uuid},,Inpatient Note,A short free-text note written by a clinician about an inpatient during their stay
+${encounterType.TRANSFER_REQUEST.uuid},,Transfer Request,A stand-alone encounter type for a transfer request not part of a larger note
+${encounterType.BED_ASSIGNMENT.uuid},,Bed Assignment,Assigning a new bed to a patient without admitting or transferring them

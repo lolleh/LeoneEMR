@@ -1,0 +1,6 @@
+<section id="lab-results" sectionTag="fieldset" headerTag="legend" headerStyle="title"
+         headerCode="Lab results">
+    <div class="section-container">
+        <subform path="configuration/pih/subforms/rapid-tests-widget.xml"/>
+    </div>
+</section>

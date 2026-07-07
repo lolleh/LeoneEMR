@@ -1,0 +1,462 @@
+<htmlform formUuid="ba22eda5-148d-456e-8adc-f36247d1f7c3" formName="Dispensing" formEncounterType="8ff50dea-18a1-4609-b4c9-3f8f2d611b84" formVersion="1.0" class="dispensing-form">
+
+    <style type="text/css">
+
+    </style>
+
+    <script type="text/javascript">
+
+        htmlForm.getBeforeValidation().push(function() {
+            var numErrors = 0;
+            var numDispensed = 0;
+            var scrolled = false;
+
+            var requiredAndEmpty = function(jqEl) {
+                // medication-instructions is optional
+                // duration and duration-units are optional if frequency = STAT
+                // everything else is required
+                var empty = !jqEl.val() &amp;&amp; jqEl.siblings('input[type="hidden"]').length == 0 || jqEl.siblings('input[type="hidden"]').attr("value") == "" || jqEl.siblings('input[type="hidden"]').attr("value") == "Drug:null";
+                var optional = false;
+                if (jqEl.closest('.medication-instructions').length) {
+                    optional = true;
+                } else if (jqEl.closest('.duration').length || jqEl.closest('.duration-unit').length) {
+                    var freq = jqEl.closest('.medication').find('.frequency select')[0];
+                    if (freq.selectedOptions &amp;&amp; freq.selectedOptions[0].label == 'STAT') {
+                        optional = true;
+                    }
+                }
+                return empty &amp;&amp; !optional;
+            }
+
+            jq('fieldset.medication').each(function() {
+                var numEmptyFields = 0;
+                var numFilledFields = 0;
+                jq(this).find('input:not(:last), select').each(function() {
+                    jq(this).removeClass('emptyValue');
+
+                    if (jq(this).val()) {
+                        numFilledFields += 1;
+                    } else {
+                        numEmptyFields += 1;
+                    }
+                });
+
+                var anyErrors = false;
+                if (numFilledFields > 0) {
+                    jq(this).find('input, select').each(function () {
+                        if (requiredAndEmpty(jq(this))) {
+                            if (!jq(this).hasClass('illegalValue')) {
+                                jq(this).addClass('emptyValue');
+                            }
+                            anyErrors = true;
+                            if (!scrolled) {
+                                jq(window).scrollTop(jq(this).offset().top);
+                                scrolled = true;
+                            }
+                        }
+                    });
+                }
+                if (anyErrors) {
+                    ++numErrors;
+                    jq(this).find('.field-error').first().html("<uimessage code="dispensing.error.missingRequiredFields"/>").show();
+
+                    jq('.medication input.emptyValue, .medication select.emptyValue').on('blur', function() {
+
+                        if (jq(this).val()) {
+                            if(jq(this).hasClass('illegalValue')) {
+                                jq(this).removeClass('emptyValue');
+                            } else {
+                                if(jq(this).siblings('input[type="hidden"]').length = 0) {
+                                    jq(this).removeClass('emptyValue').addClass('notEmpty');
+                                } else {
+                                    if(jq(this).siblings('input[type="hidden"]').attr("value") != "") {
+                                        jq(this).removeClass('emptyValue').addClass('notEmpty');
+                                    }
+                                }
+                            }
+                        } else {
+                            jq(this).removeClass('notEmpty').addClass('emptyValue');
+                        }
+                    });
+
+                } else {
+                    jq(this).find('.field-error').first().html("").hide();
+                    if (numFilledFields > 0) {
+                        numDispensed += 1;
+                    }
+                }
+            });
+
+            if (numErrors == 0 &amp;&amp; numDispensed == 0) {
+                jq('fieldset.medication').first().find('.field-error').first().html("All fields are required!").show();
+                jq(window).scrollTop(300);
+            }
+            return numErrors == 0 &amp;&amp; numDispensed > 0;
+        });
+
+        jq(document).on('click', ".dispenseBtn", function() {
+
+            let dispenseBtn = jq(this);
+            let parentTr = jq(this).closest('tr');
+            let doseQuantAttr = jq(parentTr).attr("data-dose-q");
+            let doseUnitAttr = jq(parentTr).attr("data-dose-unit");
+            let frequencyAttr = jq(parentTr).attr("data-frequency");
+            let durationAttr = jq(parentTr).attr("data-duration");
+            let durationUnitAttr = jq(parentTr).attr("data-duration-unit");
+            let drugIdAttr = jq(parentTr).attr("data-drug-id");
+            let  medName = jq(this).closest('tr').find("td.medicationName").text();
+
+            // find the first Medication in the dispense form
+            let medFieldsetCollection = jq(document).find('fieldset.medication');
+            if ( medFieldsetCollection.length &gt; 0 ) {
+                for (let index = 0; index &lt; medFieldsetCollection.length; ++index) {
+                    let medNameSpan = jq(medFieldsetCollection[index]).find('span.medication-name');
+                    if ( medNameSpan.length &gt; 0 ) {
+                        let medNameInput = jq(medNameSpan[0]).find('input.ui-autocomplete-input');
+                        if ( medNameInput.val().length &lt; 1 ) {
+                            // we found the first non empty medication name input
+                            medNameInput.val(medName);
+                            let drugIdInput = jq(medNameSpan[0]).find('input[type="hidden"]');
+
+                            drugIdInput.val('Drug:' + drugIdAttr);
+                            let doseInputSpan = jq(medFieldsetCollection[index]).find('span.doseInput');
+                            if ( doseInputSpan.length &gt; 0 ) {
+                                jq(doseInputSpan[0]).find('input[type="text"]').val(doseQuantAttr);
+                            }
+                            let doseUnitSpan = jq(medFieldsetCollection[index]).find('span.select-arrow');
+                            if ( doseUnitSpan.length &gt; 0 ) {
+                                let selectUnit= jq(doseUnitSpan[0]).find('select');
+                                jq(selectUnit).find('option').each( function() {
+                                    if ( jq(this).text() == doseUnitAttr || jq(this).text().startsWith(doseUnitAttr)) {
+                                        jq(this).attr('selected', 'selected');
+                                    }
+                                });
+                            }
+                            let frequencySpan = jq(medFieldsetCollection[index]).find('span.frequency');
+                            if ( frequencySpan.length &gt; 0 ) {
+                                let selectUnit= jq(frequencySpan[0]).find('select');
+                                jq(selectUnit).find('option').each( function() {
+                                    if (  frequencyAttr.startsWith( jq(this).text()) ) {
+                                        jq(this).attr('selected', 'selected');
+                                    }
+                                });
+                            }
+                            let durationSpan = jq(medFieldsetCollection[index]).find('span.duration');
+                            if ( durationSpan.length &gt; 0 ) {
+                                jq(durationSpan[0]).find('input[type="text"]').val(durationAttr);
+                            }
+                            let durationUnitSpan = jq(medFieldsetCollection[index]).find('span.duration-unit');
+                            if ( durationUnitSpan.length &gt; 0 ) {
+                                let selectUnit= jq(durationUnitSpan[0]).find('select');
+                                jq(selectUnit).find('option').each( function() {
+                                    if ( jq(this).text() == durationUnitAttr ) {
+                                        jq(this).attr('selected', 'selected');
+                                    }
+                                });
+                            }
+
+                            jq(dispenseBtn).attr('disabled', true);
+                            jq(parentTr).css('background', '#dee2e6');
+                            jq(parentTr).css('font-style', 'italic');
+
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+</script>
+<script type="text/javascript">
+        jq(document).ready(function() {
+
+            const contextPath = window.location.href.split('/')[3];
+            const apiBaseUrl =  "/" + contextPath + "/ws/rest/v1";
+
+            const prescriptionConstructUuid = '9ab17798-1486-4d56-9218-e3578646a772';
+            const medicationNameUuid= '3cd9491e-26fe-102b-80cb-0017a47871b2';
+            const mhMedUuid= 'f541afbd-db59-4c48-88da-ce17b8184963';
+            const quantityUuid= '160856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+            const dosingUnitUuid= '986de2e7-9c9a-473a-8afc-d4b41aa08706';
+            const frequencyUuid= 'a15c95ff-236f-488f-a879-f19fc982bbe6';
+            const durationUuid= '159368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+            const timeUnitsUuid= 'f1904502-319d-4681-9030-e642111e7ce2';
+
+            const dateFormat = {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            };
+            const patientUuid = '<lookup expression="patient.uuid"/>';
+
+            var currentEncounterDate = new Date();
+            var encounterDate = '<lookup expression="encounter.getEncounterDatetime().getTime()"/>';
+            if (typeof encounterDate !== "undefined" &amp;&amp; encounterDate !== null &amp;&amp; (encounterDate.length > 0)) {
+                currentEncounterDate = new Date(+encounterDate);
+            } else {
+                // look for the encounterDate datepicker widget
+                var encounterDateValue = jq("#encounterDate .hasDatepicker");
+                if (encounterDateValue) {
+                  var getDate = encounterDateValue.datepicker('getDate');
+                  if (getDate) {
+                    currentEncounterDate = new Date(getDate);
+                  }
+                }
+            }
+
+            // move encounter date up 1 day, so we could catch all recent prescriptions, including those on the same day as the current encounter( usually, they have a midnight datetime)
+            currentEncounterDate.setDate(currentEncounterDate.getDate() + 1 );
+
+            var twoDaysBefore = new Date(currentEncounterDate);
+            twoDaysBefore.setDate(currentEncounterDate.getDate() - 3 );
+
+            jq.getJSON(apiBaseUrl + "/obs", {
+                concept: prescriptionConstructUuid,
+                patient: patientUuid,
+                v: 'custom:(uuid,id,display,obsDatetime,concept:(uuid,id,name:(display)),groupMembers:(uuid,id,display,concept:(uuid,id,display),valueDrug:(id,uuid,name),value),encounter:(uuid,id,encounterProviders:(uuid,provider:(uuid,display,person:(uuid,display)),encounterRole:(uuid,name,display))))'
+              },
+              function( data ) {
+                  let emptyTable = true;
+                  if (data.results.length &gt; 0) {
+                      for (let index = 0; index &lt; data.results.length; ++index) {
+                        let medObs = data.results[index];
+
+                        let medDate = new Date(medObs.obsDatetime);
+                        if (medDate.getTime() &gt; currentEncounterDate.getTime()) {
+                            // if the prescription date is more recent than the current encounter date then skip it
+                            continue;
+                        }
+                        if (medDate.getTime() &lt; twoDaysBefore.getTime()) {
+                            // the REST API returns obs in descending order by date, and we only want to display
+                            // prescriptions from the last seven days, therefore when we reach the first prescription that
+                            // is older than 7 days from the current encounter date, we stop processing the list of obs and exit this loop
+                            break;
+                        }
+                        let medName = '';
+                        let medQuantity = 0;
+                        let medDose = '';
+                        let medFreq = '';
+                        let medDuration = 0;
+                        let medDurationUnits = '';
+
+                        let encounterProvider = '';
+                        for (let p = 0; p &lt; medObs.encounter.encounterProviders.length; ++p) {
+                            if ( encounterProvider.length &gt; 0 ) {
+                                encounterProvider = encounterProvider + '; ';
+                            }
+                            encounterProvider =  encounterProvider +  medObs.encounter.encounterProviders[p].provider.person.display;
+                        }
+
+                        for (let j = 0; j &lt; medObs.groupMembers.length; ++j) {
+                            let member = medObs.groupMembers[j];
+                            if (member.concept.uuid === medicationNameUuid || member.concept.uuid === mhMedUuid) {
+                                medName = member.value.display;
+                                drugId = ( member.valueDrug != null ) ? member.valueDrug.id : null;
+                            } else if (member.concept.uuid === quantityUuid) {
+                                medQuantity = member.value;
+                            } else if (member.concept.uuid === dosingUnitUuid) {
+                                medDose = member.value.display;
+                            } else if (member.concept.uuid === frequencyUuid) {
+                                medFreq = member.value.display;
+                            } else if (member.concept.uuid === durationUuid) {
+                                medDuration = member.value;
+                            } else if (member.concept.uuid === timeUnitsUuid) {
+                                medDurationUnits = member.value.display;
+                            }
+                        }
+                        emptyTable = false;
+                        jq("#prescriptionTable tbody").append('<tr data-dose-q="' + medQuantity + '" data-dose-unit="' + medDose + '" data-frequency="' + medFreq + '" data-duration="' + medDuration + '" data-duration-unit="' + medDurationUnits + '" data-drug-id="' + drugId +'"><td>' + medDate.toLocaleString("en-US", dateFormat) + '</td>'
+                            + '<td>' + encounterProvider + '</td>'
+                            + '<td class="medicationName">' + medName + '</td>'
+                            + '<td>' + medQuantity + ' ' + medDose + '</td>'
+                            + '<td>' + medFreq + '</td>'
+                            + '<td>' + (medDuration &gt; 0 ? medDuration : '') + ' ' + medDurationUnits + '</td>'
+                            + '<td>' + '<button class="dispenseBtn">Dispense</button>' + '</td></tr>');
+                      }
+                  }
+                  if ( emptyTable === true ) {
+                    jq("#prescriptionTable tbody").append('<tr><td>' + '<uimessage code="uicommons.dataTable.emptyTable"/>' + '</td>'
+                        + '<td></td>'
+                        + '<td></td>'
+                        + '<td></td>'
+                        + '<td></td>'
+                        + '<td></td><td></td></tr>');
+                  }
+            });
+        });
+
+</script>
+    <ifMode mode="VIEW" include="false">
+        <h2>
+            <uimessage code="Last medication prescribed for this patient"/>
+        </h2>
+        <table id="prescriptionTable">
+            <thead>
+                <tr>
+                    <th><uimessage code="coreapps.patientDashBoard.date"/> </th>
+                    <th><uimessage code="Prescriber"/> </th>
+                    <th><uimessage code="dispensing.medication.name"/> </th>
+                    <th><uimessage code="dispensing.medication.dose"/> </th>
+                    <th><uimessage code="dispensing.medication.frequency"/> </th>
+                    <th><uimessage code="dispensing.medication.duration"/> </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <br/><br/>
+    </ifMode>
+
+    <ifMode mode="VIEW" include="false">
+        <h2>
+            <uimessage code="mirebalais.dispensing.dispensing"/>
+        </h2>
+    </ifMode>
+    <table id="who-where-when-view">
+        <tr>
+            <includeIf velocityTest="$user.hasRole('Application Role: sysAdmin')">
+                <td>
+                    <label><uimessage code="mirebalais.dispensing.dispensedBy"/></label>
+                    <span><encounterProviderAndRole default="currentUser"
+                                                    providerRoles="8fd1552e-6cb9-4719-b198-23a2c512a073,7ec19cca-f563-4cee-940f-effec16b3b80"
+                                                    encounterRole="bad21515-fd04-4ff6-bfcd-78456d12f168" required="true"/></span>
+                </td>
+                <td>
+                    <label><uimessage code="emr.location"/></label>
+                    <span> <encounterLocation default="SessionAttribute:emrContext.sessionLocationId" tags="Dispensing Location"/></span>
+                </td>
+                <td>
+                    <label><uimessage code="emr.patientDashBoard.date"/></label>
+                    <span><encounterDate id="encounterDate" default="today" /></span>
+                </td>
+            </includeIf>
+
+            <includeIf velocityTest="($user.hasRole('Application Role: pharmacist') || $user.hasRole('Application Role: pharmacyAide') || $user.hasRole('Application Role: pharmacyManager'))  and !$user.hasRole('Application Role: sysAdmin')">
+                <div style="display:none">
+                    <encounterProviderAndRole default="currentUser"
+                                              providerRoles="8fd1552e-6cb9-4719-b198-23a2c512a073,7ec19cca-f563-4cee-940f-effec16b3b80"
+                                              encounterRole="bad21515-fd04-4ff6-bfcd-78456d12f168" required="true"/>
+                    <!-- TODO: will need to make this not-hidden if we ever support multiple Visit Locations on a single server -->
+                    <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"/>
+                </div>
+
+                <ifMode mode="ENTER">
+                    <td>
+                        <label><uimessage code="mirebalais.dispensing.dispensedBy"/></label>
+                        <span><lookup expression="user.person.personName" /></span>
+                    </td>
+                    <td>
+                        <label><uimessage code="emr.location"/></label>
+                        <span><lookup complexExpression="$ui.format($sessionContext.sessionLocation)"/></span>
+                    </td>
+                </ifMode>
+
+                <ifMode mode="VIEW" include="false">
+                    <td>
+                        <label><uimessage code="emr.patientDashBoard.date"/></label>
+                        <span><encounterDate id="encounterDate" default="today" /></span>
+                    </td>
+                </ifMode>
+
+            </includeIf>
+        </tr>
+    </table>
+    <div id="typePrescription">
+        <div>
+            <span class="input-container">
+                <label>
+                    <uimessage code="dispensing.medication.typeOfPrescription"/>
+                </label>
+                <obs id="Timing of hospital prescription" required="true" class="select-arrow" conceptId="PIH:9292" defaultValue="PIH:Discharge"/>
+            </span>
+            <span class="input-container">
+                <label>
+                    <uimessage code="dispensing.medication.locationOfPrescription"/>
+                </label>
+
+                <obs id="Discharge location" required="true" style="location" class="select-arrow" conceptId="PIH:9293" defaultValue="SessionAttribute:emrContext.sessionLocationId"/>
+            </span>
+            <span class="input-container provider">
+                <label>
+                    <uimessage code="mirebalais.dispensing.prescriber"/>
+                </label>
+
+                <span class="select-arrow">
+                    <encounterProviderAndRole encounterRole="c458d78e-8374-4767-ad58-9f8fe276e01c"
+                                              providerRoles="3182ee51-b895-4804-a342-5f261e995222,556ceee6-d899-43d4-a98b-7973ebc85b75"/>
+                </span>
+            </span>
+        </div>
+   </div>
+
+    <repeat with="['1'],['2'],['3'],['4'],['5'],['6'],['7'],['8']">
+        <obsgroup groupingConceptId="PIH:9070" showIfEmpty="false">
+            <h3>
+                <uimessage code="mirebalais.dispensing.medication"/>
+                {0}
+            </h3>
+            <fieldset class="medication">
+                <p class="field-error" style="display:none"></p>
+                <p>
+                    <label>
+                        <uimessage code="mirebalais.dispensing.medicationName"/>
+                    </label>
+                    <obs id="name{0}" class="medication-name" conceptId="PIH:1282" answerDrugs="true"/>
+                </p>
+                <p class="inline">
+                    <label>
+                        <uimessage code="dispensing.medication.dose"/>
+                    </label>
+                    <obs id="dose{0}" class="doseInput" conceptId="CIEL:160856"/>
+                    <obs id="doseUnit{0}" class="doseInput select-arrow" conceptId="PIH:9074"
+                         answers="mg,g,mL,Application,Capsule,Tablet,Drop,mcg,Patch,Pump,Sachet,UI"
+                         answerCodes="dispensing.units.mg,dispensing.units.g,dispensing.units.mL,dispensing.units.application,dispensing.units.capsule,dispensing.units.tablet,dispensing.units.drop,dispensing.units.mcg,dispensing.units.patch,dispensing.units.pump,dispensing.units.sachet,dispensing.units.IU"/>
+                </p>
+                <p class="inline">
+                    <label>
+                        <uimessage code="mirebalais.dispensing.medicationFrequency"/>
+                    </label>
+
+
+                    <obs id="frequencyCoded{0}" class="frequency select-arrow" conceptId="PIH:9363"
+                         answerConceptIds=
+                                 "PIH:OD,PIH:BID,PIH:TID,PIH:QID,PIH:5D,PIH:6D,PIH:7D,PIH:8D,PIH:9D,PIH:OM,PIH:ON,PIH:PRN,PIH:STAT,PIH:Q2H,PIH:Q3H,PIH:Q4H,PIH:Q6H,PIH:Q12H,PIH:5622"
+                         answerCodes="OD,BID,TID,QID,5D,6D,7D,8D,9D,OM,ON,SOS,STAT,Q2H,Q3H,Q4H,Q6H,Q12H,dispensing.general.other" />
+               </p>
+
+                <p class="inline">
+                    <label>
+                        <uimessage code="mirebalais.dispensing.medicationDuration"  />
+                    </label>
+                    <obs id="duration{0}" class="duration doseInput" conceptId="CIEL:159368"/>
+                        <obs id="durationUnit{0}" class="duration-unit select-arrow" conceptId="PIH:6412" answerConceptIds="PIH:Days,PIH:1073,PIH:Months,PIH:Hours"/>
+                </p>
+                <p class="inline">
+                    <label>
+                        <uimessage code="mirebalais.dispensing.medicationAmount"/>
+                    </label>
+                    <obs id="amount{0}" class="amountInput" conceptId="PIH:9071"/>
+                </p>
+                <p>
+                    <label>
+                        <uimessage code="mirebalais.dispensing.medicationInstructions"/>
+                    </label>
+                    <obs id="instructions{0}" class="medication-instructions" conceptId="PIH:9072"/>
+                </p>
+            </fieldset>
+        </obsgroup>
+    </repeat>
+
+    <ifMode mode="VIEW" include="false">
+        <br/><br/>
+        <div id="buttons">
+            <button class="submitButton confirm right" onclick="submitHtmlForm()"><uimessage code="mirebalais.save"/><i class="icon-spinner icon-spin icon-2x" style="display: none; margin-left: 10px;"></i></button>
+            <button type="button" class="cancel">
+                <uimessage code="emr.cancel"/>
+            </button>
+        </div>
+    </ifMode>
+
+</htmlform>

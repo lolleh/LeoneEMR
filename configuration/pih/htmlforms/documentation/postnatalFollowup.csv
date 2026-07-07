@@ -1,0 +1,13 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Encounter Provider,Provider,List of available providers,provider select,Yes,no,,,,
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Breastfeeding status,Coded,Exclusive | Mixed | Not breastfeeding,radio,No,no,PIH:BREASTFEEDING_STATUS,CIEL:...,,
+Uterine involution (fundal height),Numeric,N/A,number,No,no,CIEL:...,,,
+Lochia amount/color,Coded,Normal | Heavy | Abnormal,radio,No,no,PIH:LOCHIA_STATUS,CIEL:...,,
+Wound status (if cesarean),Text,N/A,textarea,No,Shown if c-section,CIEL:...,,,
+Postpartum depression screen,Coded,Positive | Negative,radio,No,no,PIH:PPD_SCREEN,PIH:POS|PIH:NEG,,
+Contraception counselling given,Coded,Yes | No,radio,No,no,PIH:FAMILY_PLANNING_COUNSELING,PIH:YES|PIH:NO,,
+Method chosen,Coded,"Options (IUD,implant,pills,sterilization)",radio,No,Shown if accepted,PIH:FP_METHOD,CIEL:...,,
+Return visit date,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,
+Disposition,Other,Disposition widget,disposition widget,No,no,,,,
+Remarks,Text,N/A,textarea,No,no,CIEL:161011,,,

@@ -1,0 +1,5 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Type of hypertension,Coded,Essential | Secondary,radio,No,Only for intake,PIH:11940,CIEL:140987|CIEL:113087,,
+HTN stage (categorization),Coded,Pre-HTN | 1 (Mild) | 2 (Moderate),radio,No,no,CIEL:165583,CIEL:165206|CIEL:165203|CIEL:165204,,
+Associated systolic/diastolic ranges,Info,Rendered labels,info,No,no,,,,
+Target BP and plan,Text/N/A,textarea,No,no,CIEL:...,,,,

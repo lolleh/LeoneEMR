@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sl.openmrs</groupId>
+        <artifactId>leone-emr</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>leone-emr-content</artifactId>
+    <name>LeoneEMR OpenMRS Content Package</name>
+    <description>Content package for LeoneEMR OpenMRS distro</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <finalBuildDir>${project.build.directory}/package</finalBuildDir>
+        <configDir>${finalBuildDir}/configuration</configDir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openmrs.maven.plugins</groupId>
+                <artifactId>openmrs-packager-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-properties</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate-resource-filters</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>../constants.yml</sourceFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-content-package</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>create-content-package</goal>
+                        </goals>
+                        <configuration>
+                            <sourceConfigurationDir>../configuration</sourceConfigurationDir>
+                            <targetDir>${finalBuildDir}</targetDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>${project.basedir}/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

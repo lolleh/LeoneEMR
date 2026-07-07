@@ -1,0 +1,187 @@
+<div id="prior-vital-signs-widget">
+    <subform path="configuration/pih/subforms/vital-signs-widget.css"/>
+    <subform path="configuration/pih/subforms/prior-vital-signs-widget.js"/>
+
+    <!-- Previous vitals from the same visit -->
+    <div id="lastVitals" class="hidden section-container">
+        <table style="color:grey">
+            <tr>
+                <td>
+                    <label>
+                        <uimessage code="mirebalais.mostRecentVitals.label"/>
+                        <span class="date-span ng-binding">
+                            <i class="icon-calendar"></i>
+                            <span id="lastVitalsEncounterDate"></span>
+                        </span>
+                        <span class="time-span ng-binding">
+                            <i class="icon-time"></i>
+                            <span id="lastVitalsEncounterTime"></span>
+                        </span>
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="five-columns">
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.bloodPressure.title"/>&amp;nbsp;
+                            </label>
+                            <span class="small">
+                                <span id="last_bp_systolic" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">/</span>
+                                <span id="last_bp_diastolic" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">mm/Hg</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.respiratoryRate.title"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_respiratory_rate" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">/min</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.weight.title"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_weight" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">kg</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.height.title"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_height" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">cm</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.bmi.title"/>
+                            </label>
+                            <!-- TodDo:  Add calculated BMI -->
+                            <span class="small">
+                                <span id="last_bmi" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="five-columns">
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.bloodPressure.title"/>&amp;nbsp;#2
+                            </label>
+                            <span class="small">
+                                <span id="last_bp_systolic_second" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">/</span>
+                                <span id="last_bp_diastolic_second" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">mm/Hg</span>
+                            </span>
+                        </div>
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.heartRate.title"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_heart_rate" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">/min</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="o2Sat"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_o2_sat" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">%</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label>
+                                <uimessage code="mirebalais.vitals.temperature.title"/>
+                            </label>
+                            <span class="small">
+                                <span id="last_temperature_c" class="obs-field">
+                                    <span class="emptyValue">____</span>
+                                </span>
+                                <span class="append-to-value">°C</span>
+                            </span>
+                        </div>
+                        <div>
+                            <!-- only show MUAC if patient is less than 13 years old (on the encounterDate)-->
+                            <includeIf velocityTest="(13 > $patient.getAge($encounter.getEncounterDatetime()))">
+                                <label>
+                                    <uimessage code="mirebalais.vitals.muac.navigation.title"/>
+                                </label>
+                                <span class="small">
+                                    <span id="last_muac_mm" class="obs-field">
+                                        <span class="emptyValue">____</span>
+                                    </span>
+                                    <span class="append-to-value"><uimessage code="emr.units.millimeters"/></span>
+                                </span>
+                            </includeIf>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label>
+                            <uimessage code="Glucose fingerstick"/>
+                        </label>
+                        <span class="small">
+                            <span id="fbg_span">
+                                <uimessage code="Fasting blood glucose (FBG)"/>:&amp;nbsp;&amp;nbsp;
+                            </span>
+                            <span id="rbg_span" style="display: none;">
+                                <uimessage code="Random blood glucose (RBG)"/>:&amp;nbsp;&amp;nbsp;
+                            </span>
+                            <span id="last_fbg" class="obs-field">
+                                <span class="emptyValue">____</span>
+                            </span>
+                            <span class="append-to-value">mg/dL</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

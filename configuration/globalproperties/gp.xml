@@ -1,0 +1,436 @@
+<config>
+    <globalProperties>
+
+        <!-- OpenMRS Core -->
+        <globalProperty>
+            <property>security.passwordMinimumLength</property>
+            <value>8</value>
+        </globalProperty>
+        <globalProperty>
+            <property>security.passwordRequiresDigit</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>security.passwordRequiresNonDigit</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>security.passwordRequiresUpperAndLowerCase</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>patient.nameValidationRegex</property>
+            <value></value>
+        </globalProperty>
+        <globalProperty>
+            <property>search.caseSensitiveDatabaseStringComparison</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>concept.unknown</property>
+            <value>${concept.unknown.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>concept.height</property>
+            <value>${concept.heightCM.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>concept.weight</property>
+            <value>${concept.weightKG.uuid}</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>coreapps.deceasedDateUsingTime</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>coreapps.deceasedDateUsingTimeMinuteStep</property>
+            <value>1</value>
+        </globalProperty>
+        <globalProperty>
+            <property>coreapps.deceasedDateTimeWidget</property>
+            <value>select-lists</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>order.drugRoutesConceptUuid</property>
+            <!-- Concept: Routes of administration, CIEL:162394 -->
+            <value>162394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+        </globalProperty>
+        <globalProperty>
+            <property>order.drugDosingUnitsConceptUuid</property>
+            <!-- Concept: Dosing unit, CIEL:162384 -->
+            <value>162384AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+        </globalProperty>
+        <globalProperty>
+            <property>order.drugDispensingUnitsConceptUuid</property>
+            <!-- Concept: Dispensing units, CIEL:162402 -->
+            <value>162402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+        </globalProperty>
+        <globalProperty>
+            <property>mail.default_content_type</property>
+            <value>text/html; charset=UTF-8</value>
+        </globalProperty>
+        <globalProperty>
+            <property>conditionList.nonCodedUuid</property>
+            <!-- Concept: Other non-coded -->
+            <value>3cee7fb4-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+
+        <!-- HTML Form Entry -->
+        <globalProperty>
+            <property>htmlformentry.dateFormat</property>
+            <value>${javaDateFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>htmlformentry.timeFormat</property>
+            <value>${javaTimeFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>htmlformentry.showDateFormat</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>htmlformentry.restrictEncounterLocationToCurrentVisitLocation</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>htmlformentry.timeWidgetHideSecondsDefault</property>
+            <value>true</value>
+        </globalProperty>
+
+        <!-- Reporting -->
+        <globalProperty>
+            <property>reporting.testPatientsCohortDefinition</property>
+            <value></value>
+        </globalProperty>
+        <globalProperty>
+            <property>reporting.serializer.whitelist.types</property>
+            <value>org.openmrs.**,org.apache.commons.collections.comparators.ComparableComparator</value>
+        </globalProperty>
+
+        <!-- REST Web Services -->
+        <!-- increases number of results returned by single call (in Lab Workflow OWA we want to fetch batches of 3000) -->
+        <globalProperty>
+            <property>webservices.rest.maxResultsAbsolute</property>
+            <value>3000</value>
+        </globalProperty>
+        <globalProperty>
+            <property>webservices.rest.maxResultsDefault</property>
+            <value>500</value>
+        </globalProperty>
+
+        <!-- UI Framework -->
+        <globalProperty>
+            <property>uiframework.formatter.dateFormat</property>
+            <value>${javaDateFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>uiframework.formatter.dateAndTimeFormat</property>
+            <value>${javaDateTimeFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>uiframework.formatter.JSdateFormat</property>
+            <value>${javaScriptDateFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>uiframework.formatter.JSdateAndTimeFormat</property>
+            <value>${javaScriptDateTimeFormat}</value>
+        </globalProperty>
+
+        <!-- EMR API -->
+        <globalProperty>
+            <property>emrapi.useLegacyDiagnosisService</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>emrapi.EmrApiVisitAssignmentHandler.adjustEncounterTimeOfDayIfNecessary</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>emrapi.EmrApiVisitAssignmentHandler.allowOverlappingVisitsAtAnotherLocation</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <!-- HIV Drug Dispensing (cc1720c9-3e4c-4fa8-a7ec-40eeaad1958c) and Lab Results (4d77916a-0620-11e5-a6c0-1697f925ec7b) should create new Clinic Visit (f01c54cb-2225-471a-9cd5-d348552c337c) if necessary -->
+            <property>emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap</property>
+            <value>cc1720c9-3e4c-4fa8-a7ec-40eeaad1958c:f01c54cb-2225-471a-9cd5-d348552c337c,4d77916a-0620-11e5-a6c0-1697f925ec7b:f01c54cb-2225-471a-9cd5-d348552c337c</value>
+        </globalProperty>
+
+        <!-- EMR -->
+        <globalProperty>
+            <property>emr.paymentAmountConcept</property>
+            <!-- Concept: Amount patient paid -->
+            <value>5d1bc5de-6a35-4195-8631-7322941fe528</value>
+        </globalProperty>
+        <globalProperty>
+            <property>emr.paymentReasonConcept</property>
+            <!-- Concept: Reason for HUM Visit -->
+            <value>36ba7721-fae0-4da4-aef2-7e476cc04bdf</value>
+        </globalProperty>
+        <globalProperty>
+            <property>emr.paymentReceiptNumberConcept</property>
+            <!-- Concept: Receipt number -->
+            <value>20438dc7-c5b4-4d9c-8480-e888f4795123</value>
+        </globalProperty>
+        <globalProperty>
+            <property>emr.paymentConstructConcept</property>
+            <!-- Concept: Payment construct -->
+            <value>7a6330f1-9503-465c-8d63-82e1ad914b47</value>
+        </globalProperty>
+
+        <!-- Core Apps -->
+        <!-- (force user to hit enter when searching, no "autocomplete" -->
+        <globalProperty>
+            <property>coreapps.searchDelayShort</property>
+            <value>99999999</value>
+        </globalProperty>
+        <globalProperty>
+            <property>coreapps.searchDelayLong</property>
+            <value>99999999</value>
+        </globalProperty>
+        <globalProperty>
+            <property>coreapps.addPastVisitsAllowOverlappingVisitAtAnotherLocation</property>
+            <value>false</value>
+        </globalProperty>
+
+        <!-- Registration Core -->
+        <globalProperty>
+            <property>registrationcore.patientNameSearch</property>
+            <value>registrationcore.ExistingPatientNameSearch</value>
+        </globalProperty>
+        <globalProperty>
+            <property>registrationcore.fastSimilarPatientSearchAlgorithm</property>
+            <value>pihcore.PihPatientSearchAlgorithm</value>
+        </globalProperty>
+        <globalProperty>
+            <property>registrationcore.preciseSimilarPatientSearchAlgorithm</property>
+            <value>registrationcore.BasicExactPatientSearchAlgorithm</value>
+        </globalProperty>
+
+        <!-- Name Phonetics -->
+        <globalProperty>
+            <property>namephonetics.givenNameStringEncoder</property>
+            <value>Double Metaphone Alternate</value>
+        </globalProperty>
+        <globalProperty>
+            <property>namephonetics.middleNameStringEncoder</property>
+            <value>Double Metaphone Alternate</value>
+        </globalProperty>
+        <globalProperty>
+            <property>namephonetics.familyNameStringEncoder</property>
+            <value>Double Metaphone Alternate</value>
+        </globalProperty>
+        <globalProperty>
+            <property>namephonetics.familyName2StringEncoder</property>
+            <value>Double Metaphone Alternate</value>
+        </globalProperty>
+
+        <!-- Allergies -->
+        <globalProperty>
+            <property>allergy.concept.unknown</property>
+            <value>${concept.unknown.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.otherNonCoded</property>
+            <value>${concept.otherNonCoded.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.severity.mild</property>
+            <!-- Concept: Mild, CIEL:1498 -->
+            <value>3cdef9ae-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.severity.moderate</property>
+            <!-- Concept: Moderate, CIEL:1499 -->
+            <value>3cdef832-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.severity.severe</property>
+            <!-- Concept: Severe, CIEL:1500 -->
+            <value>3cdefc92-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.allergen.food</property>
+            <!-- Concept: PIH Core food allergens -->
+            <value>4c887216-04c1-11e5-8418-1697f925ec7b</value>
+        </globalProperty>
+        <!-- Concept: PIH Core drug allergies moved to gp_allergy_concept_drug -->
+        <globalProperty>
+            <property>allergy.concept.allergen.environment</property>
+            <!-- Concept: PIH Core environmental allergens -->
+            <value>4c887806-04c1-11e5-8418-1697f925ec7b</value>
+        </globalProperty>
+        <globalProperty>
+            <property>allergy.concept.reactions</property>
+            <!-- Concept: PIH Core allergic reactions -->
+            <value>4c8865b4-04c1-11e5-8418-1697f925ec7b</value>
+        </globalProperty>
+
+        <!-- Attachments -->
+        <globalProperty>
+            <property>attachments.allowNoCaption</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>attachments.allowWebcam</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>attachments.maxStorageFileSize</property>
+            <value>5.0</value>
+        </globalProperty>
+        <globalProperty>
+            <property>attachments.maxUploadFileSize</property>
+            <value>5.0</value>
+        </globalProperty>
+        <!-- allow uploading documents outside of a visit -->
+        <globalProperty>
+            <property>attachments.associateWithVisit</property>
+            <value>false</value>
+        </globalProperty>
+        <globalProperty>
+            <property>attachments.encounterTypeUuid</property>
+            <value></value>
+        </globalProperty>
+
+        <!-- includes the two default concepts set up by the Attachments module (ATT IMAGE and ATT DEFAULT) and then adds "PDF FILE" (used by Pathology) -->
+        <globalProperty>
+            <property>attachments.conceptComplexUuidList</property>
+            <value>["7cac8397-53cd-4f00-a6fe-028e8d743f8e","42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00","4cad2286-f66e-44c3-ba17-9665b569c13d"]</value>
+        </globalProperty>
+
+        <!-- Growth Chart -->
+        <globalProperty>
+            <property>growthchart.headCircumferenceConceptUuid</property>
+            <!-- Concept: Head circumference (cm), CIEL:5314 -->
+            <value>3ceb96b4-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+
+        <!-- Order Entry OWA -->
+        <!-- TODO: do we still need order.encounterType and order.encounterRole? -->
+        <!-- orderentryowa.labOrderablesConceptSet set in country-specific GP packages -->
+        <globalProperty>
+            <property>orderentryowa.encounterType</property>
+            <value>Test Order</value>
+        </globalProperty>
+        <globalProperty>
+            <property>orderentryowa.encounterRole</property>
+            <value>Ordering Provider</value>
+        </globalProperty>
+        <globalProperty>
+            <property>orderentryowa.dateAndTimeFormat</property>
+            <value>${javaScriptDateTimeFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>orderentryowa.labOrderAutoExpireTimeInDays</property>
+            <value>30</value>
+        </globalProperty>
+
+        <!-- Lab Workflow OWA -->
+        <!-- labworkflowowa.locationOfLaboratory set in country-specific GP packages -->
+        <globalProperty>
+            <property>labworkflowowa.labResultsEntryEncounterType</property>
+            <value>${encounterType.LAB_SPECIMEN_COLLECTION.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.labResultsEncounterRole</property>
+            <value>${encounterRole.labTechnician.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.labResultsDateConcept</property>
+            <!-- Concept: Date of test results -->
+            <value>68d6bd27-37ff-4d7a-87a0-f5e0f9c8dcc0</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.testOrderNumberConcept</property>
+            <!-- Concept: Test order number -->
+            <value>393dec41-2fb5-428f-acfa-36ea85da6666</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.didNotPerformQuestion</property>
+            <!-- Concept: Test status -->
+            <value>7e0cf626-dbe8-42aa-9b25-483b51350bf8</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.didNotPerformAnswer</property>
+            <!-- Concept: Not done, CIEL:1118 -->
+            <value>3cd75550-26fe-102b-80cb-0017a47871b2</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.didNotPerformReason</property>
+            <!-- Concept: Reason lab procedure not performed, CIEL:165182 -->
+            <value>5dc35a2a-228c-41d0-ae19-5b1e23618eda</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.dateAndTimeFormat</property>
+            <value>${javaScriptDateTimeFormat}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.estimatedCollectionDateQuestion</property>
+            <!-- Concept: Estimated collection date -->
+            <value>87f506e3-4433-40ec-b16c-b3c65e402989</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.estimatedCollectionDateAnswer</property>
+            <value>${concept.yes.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.testOrderType</property>
+            <value>${orderType.testOrder.uuid}</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.orderLabTestLink</property>
+            <value>coreapps/findpatient/findPatient.page?app=pih.app.labs.ordering</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.enableLabelPrinting</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.labelPrintingEndpoint</property>
+            <value>pihcore/lablabelprinter</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labworkflowowa.ordersBatchSize</property>
+            <value>3000</value>
+        </globalProperty>
+        <globalProperty>
+            <property>registrationapp.paperRecordIdentifierDefinition</property>
+            <value></value>
+        </globalProperty>
+
+        <!-- SPA -->
+        <globalProperty>
+            <property>spa.frontend.directory</property>
+            <value>configuration/frontend</value>
+        </globalProperty>
+
+        <!-- FHIR -->
+        <globalProperty>
+            <property>fhir2.administeringEncounterRoleUuid</property>
+            <value>${encounterRole.consultingClinician.uuid}</value>
+        </globalProperty>
+
+        <!-- PIHAPPS -->
+        <globalProperty>
+            <property>pihapps.labs.conceptDisplayFormat</property>
+            <value>shortest</value>
+        </globalProperty>
+        <globalProperty>
+            <property>pihapps.labs.fulfillerEncounterLinkingConcepts</property>
+            <value>393dec41-2fb5-428f-acfa-36ea85da6666</value>
+        </globalProperty>
+        <globalProperty>
+            <property>pihapps.labs.collectResultComments</property>
+            <value>false</value>
+        </globalProperty>
+
+        <!-- Bed Management -->
+        <globalProperty>
+            <property>bedmanagement.owa.enableManagingLocations</property>
+            <value>false</value>
+        </globalProperty>
+
+    </globalProperties>
+</config>

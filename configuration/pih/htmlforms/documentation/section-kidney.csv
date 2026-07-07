@@ -1,0 +1,5 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+CKD likely related to (checkbox list),Coded,HTN | DM | NSAID | ATN | GN | Unknown,checkbox,No,Only for intake,PIH:14765,CIEL:117399|CIEL:119481|CIEL:155008|CIEL:149486|CIEL:117780|CIEL:1067,Visit Diagnoses,PIH:Visit Diagnoses
+Biopsy performed,Coded,Yes | No,radio,No,Shown if intake,PIH:14815,CIEL:1065|CIEL:1066,,
+Biopsy details,Text,N/A,textarea,No,Shown if biopsy yes,PIH:3597,,,
+Nephrotic syndrome causes,Coded,Multiple checkbox,checkbox,No,no,PIH:14766,CIEL:...,,

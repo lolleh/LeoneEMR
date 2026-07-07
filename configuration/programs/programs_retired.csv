@@ -1,0 +1,15 @@
+Uuid,Name,Description,Void/Retire,Program concept,Outcomes concept
+${program.anc.uuid},ANC,Antenatal Care Program,true,CIEL:165475,PIH:MCH outcome
+${program.asthma.uuid},Asthma,Asthma Program,true,PIH:Asthma Program,PIH:Generic outcome
+${program.covid19.uuid},COVID-19,COVID-19 Program,true,CIEL:166009,PIH:Generic outcome
+${program.diabetes.uuid},Diabetes,Diabetes Program,true,PIH:Diabetes Program,PIH:Generic outcome
+${program.epilepsy.uuid},Epilepsy,Epilepsy Program,true,PIH:Epilepsy program,PIH:Generic outcome
+${program.hypertension.uuid},Hypertension,Hypertension Program,true,PIH:Hypertension program,PIH:Generic outcome
+${program.hiv.uuid},HIV,HIV Program,true,PIH:HIV PROGRAM,PIH:HIV outcome
+${program.malnutrition.uuid},Malnutrition,Malnutrition Program,true,PIH:MALNUTRITION PROGRAM,PIH:Generic outcome
+${program.mch.uuid},MCH,Maternal and Child Health Program,true,CIEL:159937,PIH:MCH outcome
+${program.ovc.uuid},OVC,USAID orphans and vulnerable children program,true,PIH:OVC PROGRAM,PIH:OVC OUTCOMES
+${program.oncology.uuid},Oncology,ONCOLOGY Program,true,PIH:Oncology program,PIH:Oncology outcome
+${program.tb.uuid},TB,Tuberculosis Program,true,CIEL:160541,PIH:Generic outcome
+${program.zika.uuid},Zika,Zika Program,true,PIH:Zika program,PIH:Study outcome
+${program.eid.uuid},EID,HIV Exposed Infant Program,true,PIH:EID program,PIH:EID outcome

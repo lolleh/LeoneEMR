@@ -1,0 +1,25 @@
+key: "sloutpatientdataexport"
+uuid: "b2212f22-21e3-43bd-8e88-7f1e83d43920"
+name: "Outpatient Data"
+description: "Outpatient Data"
+parameters:
+  - key: "startDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.startDate"
+  - key: "endDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.endDate"
+datasets:
+  - key: "sloutpatientdataexport"
+    type: "sql"
+    config: "sql/outpatientReport.sql"
+designs:
+  - type: "csv"
+    properties:
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+config:
+  category: "dataExport"
+  order: 10
+
