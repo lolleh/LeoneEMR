@@ -1,5 +1,15 @@
 [
   {
+    "id": "home.app.dhmtDashboard",
+    "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+    "type": "link",
+    "label": "DHMT KPI Dashboard",
+    "url": "owa/dhmt-dashboard/index.html",
+    "icon": "fas fa-fw fa-chart-line",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "order": 20
+  },
+  {
     "id": "home.app.morningMaternalHandoff",
     "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
     "type": "link",

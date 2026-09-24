@@ -40,6 +40,9 @@ mvn "${OFFLINE[@]}" -q -pl distro package
 echo "==> Brand printed ID card / labels (MOH + HEAP logos)"
 bash "$ROOT_DIR/scripts/brand-zpl.sh"
 
+echo "==> Package DHMT KPI dashboard OWA"
+bash "$ROOT_DIR/scripts/build-dashboard-owa.sh"
+
 WEB_DIR="$ROOT_DIR/distro/target/distro/web"
 echo "==> Output: $WEB_DIR"
 echo "    openmrs_core/openmrs.war : $([ -f "$WEB_DIR/openmrs_core/openmrs.war" ] && stat -c%s "$WEB_DIR/openmrs_core/openmrs.war" || echo MISSING) bytes"

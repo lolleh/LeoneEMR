@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facility Monthly Detail Reporting</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img class="logo" src="assets/moh-logo.png" alt="Ministry of Health logo" width="95" height="95">
+        <div>
+          <h1>Facility Monthly Detail Reporting</h1>
+          <p class="subtitle">KPI Dashboard · MOH Sierra Leone · MTNDP 2024-2030</p>
+        </div>
+      </div>
+      <div class="controls">
+        <label class="district-label">District
+          <select id="districtSelect">
+            <option value="all" selected>All Districts</option>
+            <option value="falaba">Falaba</option>
+            <option value="karena">Karena</option>
+          </select>
+        </label>
+        <label class="period-label">Period
+          <select id="periodSelect">
+            <option value="y2026" selected>Jan - Dec 2026</option>
+            <option value="h1">H1 2026</option>
+            <option value="h2">H2 2026</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-sec="scorecardSec">KPI Scorecard</button>
+      <button class="tab-btn" data-sec="detailSec">Detail Reporting</button>
+    </nav>
+
+    <section id="scorecardSec">
+      <div class="panel">
+      <div class="panel-top">
+        <div class="program-tabs" id="programTabs"></div>
+        <div class="table-actions">
+          <span class="kpi-count" id="kpiCount"></span>
+          <button id="exportBtn" class="btn-export">Export to CSV</button>
+        </div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+
+      <div class="table-wrap">
+        <table id="scorecard" class="scorecard">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Indicator</th>
+              <th class="num">Baseline</th>
+              <th class="num">Target</th>
+              <th class="num">To Date</th>
+              <th class="month-head" colspan="12">Performance (Monthly)</th>
+              <th>Trends</th>
+              <th>Source</th>
+              <th>Comments</th>
+            </tr>
+            <tr>
+              <th></th><th></th><th></th><th></th><th></th>
+              <th class="month-sub">Jan</th>
+              <th class="month-sub">Feb</th>
+              <th class="month-sub">Mar</th>
+              <th class="month-sub">Apr</th>
+              <th class="month-sub">May</th>
+              <th class="month-sub">Jun</th>
+              <th class="month-sub">Jul</th>
+              <th class="month-sub">Aug</th>
+              <th class="month-sub">Sep</th>
+              <th class="month-sub">Oct</th>
+              <th class="month-sub">Nov</th>
+              <th class="month-sub">Dec</th>
+              <th></th><th></th><th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- rows injected by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="detailSec" hidden>
+      <div class="panel">
+        <div class="panel-top">
+          <div>
+            <h2 class="panel-title">Monthly Detail Reporting Form</h2>
+            <p class="subnote">CY 2025/2026 · Indicators as per the facility monthly form</p>
+          </div>
+          <div class="table-actions">
+            <label class="inline-label">District
+              <select id="districtDetailSelect">
+                <option value="all" selected>All Districts</option>
+                <option value="falaba">Falaba</option>
+                <option value="karena">Karena</option>
+              </select>
+            </label>
+            <label class="inline-label">Facility
+              <select id="facilitySelect"></select>
+            </label>
+            <span class="kpi-count" id="detailCount"></span>
+            <button id="exportDetailBtn" class="btn-export">Export to CSV</button>
+          </div>
+        </div>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="table-wrap form-wrap">
+          <table id="detailMatrix" class="scorecard form-table">
+            <thead>
+              <!-- injected by app.js from FORM_HEADERS -->
+            </thead>
+            <tbody>
+              <!-- injected by app.js from FORM_MONTHS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>DHMT KPI Dashboard — Mockup. Data shown is illustrative sample data.</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
