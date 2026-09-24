@@ -84,6 +84,25 @@ img.logo {
 
 .controls select option { color: #23303b; background: #fff; }
 
+.btn-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  align-self: flex-end;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.btn-home:hover { background: rgba(255, 255, 255, 0.28); }
+
 .container {
   max-width: 1280px;
   margin: 24px auto;
