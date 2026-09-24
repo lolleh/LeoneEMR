@@ -1,0 +1,149 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+  -->
+
+<htmlform id="check-in-form"
+          formUuid="9a5a5d5b-4e99-43a0-8b66-8c9b97963354"
+          formName="Maternal Check-In"
+          formEncounterType="251c03fa-a9dc-4157-855f-b016f4fae9ab"
+          formVersion="1.0">
+
+    <postSubmissionAction class="org.openmrs.module.pihcore.htmlformentry.action.AddPatientToQueueAction"/>
+
+    <macros>
+        <macro key="mcoeTriageLocation" value="f85feffc-fe54-4648-aa14-01ed6d30b943"/>
+    </macros>
+
+    <style>
+        form input[type="radio"], .form input[type="radio"] {
+            float: none;
+            display: inline-block;
+        }
+
+        #check-in-form fieldset p {
+            vertical-align: top;
+            float: none;
+        }
+
+        #check-in-form fieldset .left {
+            vertical-align: top;
+            float: none;
+        }
+
+        #referToMCOETriage input {
+            margin-top: 15px;
+        }
+
+        #referToMCOETriage label {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .reason-for-referral > p > span {
+            text-wrap: nowrap;
+        }
+        .reason-for-referral > p > span > input[type="checkbox"] {
+            margin-top: 15px;
+        }
+        .reason-for-referral > p > span > label {
+            margin-left: 30px;
+        }
+
+        .appointment-checkbox label {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+        <section id="checkin" sectionTag="section" headerStyle="title" headerCode="mirebalais.maternalCheckin.label">
+            <fieldset field-separator=", ">
+                <legend><uimessage code="pihcore.details"/></legend>
+                <h3><uimessage code="pihcore.details"/></h3>
+                <subform path="configuration/pih/subforms/encounter-provider-location-date.xml">
+                    <label subform-parameter="encounter-provider-label">
+                        <uimessage code="mirebalais.retrospectiveCheckin.provider.label"/>
+                    </label>
+                    <span subform-parameter="encounter-provider-widget">
+                        <encounterProviderAndRole default="currentUser"
+                                                  encounterRole="cbfe0b9d-9923-404c-941b-f048adc8cdc0"
+                                                  required="true"/>
+                    </span>
+                    <label subform-parameter="encounter-location-label">
+                        <uimessage code="mirebalais.retrospectiveCheckin.location.label"/>
+                    </label>
+                    <span subform-parameter="encounter-location-widget">
+                        <encounterLocation required="true" default="$mcoeTriageLocation" tags="Check-In Maternal Location"/>
+                    </span>
+                    <label subform-parameter="encounter-date-label">
+                        <uimessage code="mirebalais.retrospectiveCheckin.checkinDate.label"/>
+                    </label>
+                </subform>
+            </fieldset>
+
+            <ifMode mode="VIEW">
+                <span id="most-recent-encounter-title" style="display:none"><!--The Most Recent Encounter app in Core Apps replaces this with the "most recent" label--></span>
+            </ifMode>
+
+            <ifMode mode="ENTER" include="true">
+                <includeIf velocityTest="(!$visit || $visit.open)">
+                    <!-- only display if there is no visit (the patient is just checking in) or there is an active visit (visit.open) AND we are entering this form for the first time (mode=ENTER) -->
+                    <!-- basically we *don't* want to ask this question retrospectively or when editing-->
+                    <fieldset class="queue">
+                        <legend>
+                            <uimessage code="MCOE Triage"/>
+                        </legend>
+                        <h3>
+                            <uimessage code="MCOE Triage"/>
+                        </h3>
+
+                        <p class="left">
+                            <obs conceptId="CIEL:1272" style="checkbox" id="referToMCOETriage"
+                                 answerConceptId="PIH:14976" answerCode="Refer to MCOE triage" />
+                        </p>
+                    </fieldset>
+                </includeIf>
+            </ifMode>
+            <ifMode mode="VIEW" include="true">
+                    <fieldset class="queue">
+                        <legend>
+                            <uimessage code="MCOE Triage"/>
+                        </legend>
+                        <h3>
+                            <uimessage code="MCOE Triage"/>
+                        </h3>
+
+                        <p class="left">
+                            <obs conceptId="CIEL:1272" style="checkbox" id="referToMCOETriage"
+                                 answerConceptId="PIH:14976" answerCode="Refer to MCOE triage" />
+                        </p>
+                    </fieldset>
+            </ifMode>
+
+            <fieldset>
+                <legend>
+                    <uimessage code="pih.app.appointments.title"/>
+                </legend>
+                <h3>
+                    <uimessage code="pih.app.appointments.title"/>
+                </h3>
+                <p>
+                    <uimessage code="form.checkin.appointments.text"/>
+                </p>
+                <appointments class="appointment-checkbox"/>
+            </fieldset>
+        </section>
+
+    <submit/>
+
+</htmlform>

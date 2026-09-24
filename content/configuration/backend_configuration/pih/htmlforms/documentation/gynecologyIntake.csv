@@ -1,0 +1,70 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Subform: prior-vital-signs-widget.xml,Other,Subform — configuration/pih/subforms/prior-vital-signs-widget.xml,subform,No,no,,,,
+Subform: vital-signs-wt-ht-bp-widget.xml,Other,Subform — configuration/pih/subforms/vital-signs-wt-ht-bp-widget.xml,subform,No,no,,,,
+Start Date,Coded,Ethinyl estradoil / Levonorgestrel | Combined oral contraceptive pills | Levonorgestrel | Norethindrone | Condoms | Medroxyprogesterone acetate (Depo-provera) | Sayana press | Copper T IUD | Mirena hormone-eluting intrauterine device (IUD) | Jadelle (implantable contraceptive) | Etonogestrel | Implant | Natural family planning | Lactational amenorrhea | Tubal ligation | Vasectomy,checkbox,No,no,CIEL:374,CIEL:104625|CIEL:159783|CIEL:78796|CIEL:80784|CIEL:190|CIEL:907|PIH:21450|PIH:21478|CIEL:165464|CIEL:1873|CIEL:76022|CIEL:162422|CIEL:5277|CIEL:136163|CIEL:1472|CIEL:1489,Start Date,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Grava,Coded,N/A,radio,No,no,CIEL:5624,,,
+Para,Coded,N/A,radio,No,no,CIEL:1053,,,
+Abortus,Coded,N/A,radio,No,no,CIEL:1823,,,
+Living,Coded,N/A,radio,No,no,CIEL:1825,,,
+Menstruation,Coded,Regular | Irregular,radio,No,no,CIEL:160600,CIEL:1065|CIEL:1066,,
+Menstruation,Coded,Dysmenorrhea,checkbox,No,no,PIH:DIAGNOSIS,CIEL:127,Menstruation,PIH:Visit Diagnoses
+Duration Menst Cycle,Coded,N/A,radio,No,no,CIEL:160597,,,
+Duration Menses,Coded,N/A,radio,No,no,CIEL:163732,,,
+Age Menarche,Coded,N/A,radio,No,no,CIEL:160598,,,
+Age1st Sexual Inter,Coded,N/A,radio,No,no,CIEL:163587,,,
+Num Sex Partners,Coded,N/A,radio,No,no,CIEL:5570,,,
+Gynecology Initial,Text,N/A,textarea,No,no,CIEL:160221,,,
+Gynecology exam title,Coded,Normal | Gen Candid | Condyloma | Cerv Dyspl | Bad Smell,checkbox,No,no,PIH:13229,CIEL:1115|CIEL:146512|CIEL:120147|CIEL:118784|CIEL:165162,Gynecology exam title,
+Gynecology exam title,Coded,Cervicitis,checkbox,No,no,PIH:13229,CIEL:116995,Gynecology exam title,
+Gynecology exam title,Coded,Bartholini | Gen Ulcer,checkbox,No,no,PIH:13229,CIEL:147967|CIEL:864,Gynecology exam title,
+Gynecology exam title,Coded,Other,checkbox,No,no,PIH:13229,CIEL:5622,,
+Via long,Coded,Normal | Pre-cancerous dysplasia | Neoplasm/cancer,radio,No,no,CIEL:162816,CIEL:1115|CIEL:164808|CIEL:116031,,
+Via long,Coded,N/A,radio,No,no,CIEL:1937,,Via long,CIEL:1938
+Via long,Coded,Cryotherapy of lesion of cervix,checkbox,No,no,CIEL:1651,CIEL:162812,Via long,CIEL:1938
+Via long,Coded,Pap Test Performed,checkbox,No,no,CIEL:163952,CIEL:1267,,
+Sti Suspected,Coded,Yes | No,radio,No,Yes → show #sti-list,CIEL:161558,CIEL:1065|CIEL:1066,,
+Sti Suspected,Coded,Chlamydia | Gonorrhea | Genital herpes | Hep B | HPV | Trichomoniasis | Bacterial vaginosis (BV),checkbox,No,no,PIH:14365,CIEL:120733|CIEL:117767|CIEL:117829|CIEL:111759|CIEL:1213|CIEL:117146|CIEL:148002,Sti Suspected,
+Comment,Coded,N/A,radio,No,no,PIH:13231,,,
+Tannerstage,Coded,Stage I | Stage II | Stage III | Stage IV | Stage V,radio,No,no,PIH:5310,CIEL:160771|CIEL:160774|CIEL:160778|CIEL:160782|PIH:11931,,
+Subform: prior-procedure-widget.xml,Other,Subform — configuration/pih/subforms/prior-procedure-widget.xml,subform,No,no,,,,
+Zl if Other Specify,Coded,N/A,radio,No,no,CIEL:165264,,,
+Other procedure planned,Text,N/A,text,No,no,PIH:10772,,,
+Diagnoses (encounterDiagnosesByObs),Other,Pick diagnoses,diagnoses widget,No,no,,,,
+Subform: rapid-tests-widget.xml,Other,Subform — configuration/pih/subforms/rapid-tests-widget.xml,subform,No,no,,,,
+Subform: drug-order-widget.xml,Other,Subform — configuration/pih/subforms/drug-order-widget.xml,subform,No,no,,,,
+Next appointment date,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,
+Followup clinic:,Coded,Obstetrics/Gynecology | Family planning services | Mental health | Other,radio,No,no,CIEL:1272,PIH:7831|PIH:FAMILY PLANNING SERVICES|PIH:MENTAL HEALTH SERVICES|CIEL:5622,,
+Disposition,Other,Disposition widget,disposition widget,Yes,no,,,,

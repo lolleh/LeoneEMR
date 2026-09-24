@@ -1,0 +1,40 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Restrictive lung diseases,Coded,Interstitial lung disease | Restrictive lung disease post-infection | Occupational lung disease | Restrictive lung disease,checkbox,No,no,PIH:DIAGNOSIS,CIEL:116711|PIH:14601|CIEL:132486|CIEL:127611,Restrictive lung diseases,PIH:Visit Diagnoses
+Obstructive lung diseases,Coded,COPD | Asthma | Bronchiectasis,checkbox,No,no,PIH:DIAGNOSIS,CIEL:1295|CIEL:121375|CIEL:121011,Obstructive lung diseases,PIH:Visit Diagnoses
+Obstructive lung diseases,Coded,Cor pulmonale,checkbox,No,no,PIH:DIAGNOSIS,CIEL:143381,Obstructive lung diseases,PIH:Visit Diagnoses
+On medication with,Coded,SABA (Short-acting beta-agonist) | SAMA (Short-acting muscarinic antagonist) | LABA (Long-acting beta-agonist) | LAMA (Long acting muscarinic antagonist) | Oral steroid | Steroid inhaler | Oral salbutamol,radio,No,no,PIH:14603,PIH:14604|PIH:14605|PIH:14606|PIH:14607|PIH:14608|PIH:14609|PIH:15163,,
+Copd Class,Coded,Grade A | Grade B | Grade C | Grade D,radio,No,no,PIH:COPD group classification,CIEL:165441|CIEL:165442|CIEL:165443|CIEL:165444,,
+Smoking cessation,Coded,Yes | No | Unknown,radio,No,no,CIEL:158939,CIEL:1065|CIEL:1066|CIEL:1067,,PIH:14620
+COPD evaluation,Coded,Dyspnea | Chest tightness | Wheeze | Cough | Productive cough,radio,No,no,,CIEL:122496|CIEL:124665|CIEL:5209|CIEL:143264|CIEL:5957,COPD evaluation,PIH:14620
+Increased inhaler use,Coded,Yes | No | Unknown,radio,No,no,PIH:14622,CIEL:1065|CIEL:1066|CIEL:1067,,PIH:14620
+Wheeze during exam,Coded,Yes | No | Unknown,radio,No,no,PIH:14623,CIEL:1065|CIEL:1066|CIEL:1067,,PIH:14620
+Activity limitation,Coded,Yes | No | Unknown,radio,No,no,PIH:11925,CIEL:1065|CIEL:1066|CIEL:1067,,PIH:14620
+Night waking due to dyspnea,Coded,Yes | No | Unknown,radio,No,no,PIH:14626,CIEL:1065|CIEL:1066|CIEL:1067,,PIH:14620
+COPD exacerbation,Coded,Yes | No | Unknown,radio,No,Yes → show #details-exar-copd,CIEL:166093,CIEL:1065|CIEL:1066|CIEL:1067,COPD evaluation,PIH:14620
+Number of COPD exacerbations since last visit,Coded,N/A,radio,No,no,CIEL:167821,,COPD evaluation,PIH:14620
+"If exacerbation, hospitalization needed?",Coded,Yes | No | Unknown,radio,No,no,PIH:14626,CIEL:1065|CIEL:1066|CIEL:1067,COPD evaluation,PIH:14620
+Exacerbations (more than or equal to 1),Coded,Yes | No,radio,No,no,PIH:14618,PIH:YES|PIH:NO,,PIH:14587
+Datetime symptoms more than twice a week,Coded,Yes | No,radio,No,no,PIH:11803,PIH:YES|PIH:NO,,PIH:14587
+Inhaler for symptoms more than twice a week,Coded,Yes | No,radio,No,no,PIH:11991,PIH:YES|PIH:NO,,PIH:14587
+Activity limitations due to asthma,Coded,Yes | No,radio,No,no,PIH:11925,PIH:YES|PIH:NO,,PIH:14587
+Night waking due to asthma,Coded,Yes | No,radio,No,no,PIH:11731,PIH:YES|PIH:NO,,PIH:14587
+Triggers cause exacerbation of asthma,Coded,Yes | No,radio,No,no,PIH:14619,PIH:YES|PIH:NO,,PIH:14587
+Asthma severity,Coded,Mild | Moderate | Severe,radio,No,no,PIH:7405,CIEL:1498|CIEL:1499|CIEL:1500,,
+Inhaler Ed,Coded,Yes | No | Unknown,radio,No,no,PIH:7399,PIH:YES|PIH:NO|CIEL:1067,,
+Good inhaler technique,Coded,Yes | No | Unknown,radio,No,no,PIH:7397,PIH:YES|PIH:NO|CIEL:1067,,
+Understands treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-fui-understands-details,CIEL:167914,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Ability to titrate treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-fui-titrate-details,PIH:14741,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Overall treatment adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Missed doses in past week,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-fui-missed-details,CIEL:167819,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Aware and understands the disease,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Patient condition improved,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-dc-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Lung decompensation,Coded,Yes | No | Unknown,radio,No,Yes → show #lung-dc-fui-lungDecomp-details,PIH:20008,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14812
+Send for admission,Coded,Yes | No | Unknown,radio,No,no,CIEL:1788,PIH:YES|PIH:NO|PIH:UNKNOWN,Chronic lung disease followup indicators,PIH:14812
+# of missed doses in past week,Coded,N/A,radio,No,no,CIEL:167918,,Chronic lung disease followup indicators,PIH:14812
+Date,Coded,N/A,radio,No,no,CIEL:163724,,Spirometry,PIH:14610
+{spironame},Coded,N/A,radio,No,no,PIH:14611,,,PIH:14610
+{spironame},Coded,N/A,radio,No,no,PIH:14612,,,PIH:14610
+{spironame},Coded,Normal | Increased | Decreased,radio,No,no,PIH:14613,CIEL:1115|CIEL:164471|CIEL:164470,,PIH:14610
+{spironame},Coded,Positive | Negative,radio,No,no,PIH:14614,CIEL:703|CIEL:664,,PIH:14610
+Spirometry progress,Coded,Improved | Worse | Unchanged,radio,No,no,PIH:14617,CIEL:162677|CIEL:162678|CIEL:162679,,
+Remarks,Coded,N/A,radio,No,no,PIH:11972,,,

@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>labworkflowowa.labResultsEncounterTypes</property>
+            <value>39C09928-0CAB-4DBA-8E48-39C631FA4286,4d77916a-0620-11e5-a6c0-1697f925ec7b,8d50b938-dcf9-4b8e-9938-e625bd2f0a81,ca65f5d3-6312-4143-ae4e-0237427f339e,c31d306a-40c4-11e7-a919-92ebcb67fe33,c31d3312-40c4-11e7-a919-92ebcb67fe33,00e5e810-90ec-11e8-9eb6-529269fb1459,00e5e946-90ec-11e8-9eb6-529269fb1459,093b6ffc-e55a-461a-85cc-c6acf7714a23,7e42e652-89e7-4559-80fd-41f42826c98c,153d3182-c76f-4047-b7f2-d83cf967b206,fb4318dd-cca9-4d20-bb31-0d4eba947d74</value>
+        </globalProperty>
+    </globalProperties>
+</config>

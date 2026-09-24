@@ -1,0 +1,25 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Diagnosis,Coded,Acute Hepatitis B | Chronic Hepatitis B | Chronic Hepatitis C,checkbox,No,no,PIH:DIAGNOSIS,CIEL:121812|CIEL:120557|CIEL:145347,Diagnosis,PIH:Visit Diagnoses
+Hepatocarcinoma secondary,Coded,Hepatocarcinoma due to Hepatitis B | Hepatocarcinoma due to Hepatitis C | Hepatocarcinoma due to unknown cause,checkbox,No,no,PIH:DIAGNOSIS,CIEL:168297|CIEL:168298|PIH:14911,Hepatocarcinoma secondary,PIH:Visit Diagnoses
+Liver cirrhosis secondary,Coded,Cirrhosis due to Hepatitis B | Cirrhosis due to Hepatitis C | Alcoholic cirrhosis | Fibrosis secondary to Schistosoma | Non-alcoholic steatohepatitis | Cardiac cirrhosis | Unknown,checkbox,No,no,PIH:DIAGNOSIS,CIEL:168300|CIEL:168301|CIEL:149157|PIH:15156|PIH:14910|CIEL:146184|CIEL:143118,Liver cirrhosis secondary,PIH:Visit Diagnoses
+Clinical indicators,Coded,Asymptomatic liver disease,radio,No,no,,CIEL:168289,Clinical indicators,PIH:14875
+Clinical indicators,Coded,Oedema | Gastrointestinal hemorrhage | Confusion | Pruritus,radio,No,no,,CIEL:460|CIEL:139582|CIEL:120345|CIEL:879,Clinical indicators,PIH:14875
+Clinical indicators,Coded,History of alcohol use,radio,No,no,,CIEL:159449,Clinical indicators,PIH:14875
+Understands treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-under-details,CIEL:167914,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+Ability to titrate treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-tite-details,PIH:14741,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+Overall treatment adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+Missed doses in past week,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-miss-details,CIEL:167819,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+Aware and understands the disease,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+# of missed doses in past week,Coded,N/A,radio,No,no,CIEL:167918,,Clinical indicators,PIH:14827
+Patient condition improved,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+On prophylaxis for esophageal varices,Coded,Yes | No | Unknown,radio,No,Yes → show #liver-eso-var-details,PIH:15164,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14827
+Liver disease control,Coded,Controlled | Uncontrolled | Complications,radio,Yes,Not controlled → show #liver-fui-uncontrolled,PIH:11506,PIH:11507|PIH:11508|PIH:11509,Clinical indicators,PIH:14827
+Send for admission,Coded,Yes | No | Unknown,radio,No,no,CIEL:1788,PIH:YES|PIH:NO|PIH:UNKNOWN,Clinical indicators,PIH:14827
+Indication for Hepatitis B treatment,Coded,Yes | No,radio,Yes,Yes → show #new-hepb-reason,PIH:14889,PIH:YES|PIH:NO,Clinical indicators,PIH:14827
+Clinical indicators,Coded,APRI score over 1.5 or ultrasound indicates cirrhosis | Chronic hepatitis C with HIV infection | Hepatitis B DNA (Viral Load) above 2000 and ALT 1.5x above upper limit,checkbox,No,no,PIH:14914,PIH:20018|CIEL:168583|PIH:20019,Clinical indicators,PIH:14827
+Clinical indicators,Coded,Hepatitis B DNA (Viral Load) above 2000 or HbeAg positive during pregnancy | Viral load not available during pregnancy,checkbox,No,no,PIH:14914,PIH:20020|PIH:20016,Clinical indicators,PIH:14827
+Awareness and treatment,Coded,Yes | No | not applicable,radio,Yes,Yes → show #hepB-details,PIH:14889,CIEL:1065|CIEL:1066|CIEL:1175,Awareness and treatment,PIH:14890
+Awareness and treatment,Coded,Tenofovir | Entecavir,checkbox,No,no,PIH:14888,CIEL:84795|CIEL:75694,Awareness and treatment,PIH:14890
+Secondary effects,Coded,Yes | No | not applicable,radio,No,no,CIEL:162871,CIEL:1065|CIEL:1066|CIEL:1175,Awareness and treatment,PIH:14890
+Missed doses in the last week,Coded,Yes | No | not applicable,radio,No,no,CIEL:167819,CIEL:1065|CIEL:1066|CIEL:1175,Awareness and treatment,PIH:14890
+Response to treatment (after 1 year),Coded,complete (undetectable VL) | partial (decrease but persistent) | no response | lab not done,radio,No,no,PIH:14892,CIEL:1775|CIEL:162677|PIH:2416|CIEL:1118,Awareness and treatment,PIH:14890

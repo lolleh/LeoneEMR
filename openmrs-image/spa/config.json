@@ -1,0 +1,455 @@
+{
+  "@openmrs/esm-appointments-app": {
+    "checkInButton": {
+      "customUrl": "${openmrsBase}/htmlformentryui/htmlform/enterHtmlFormWithSimpleUi.page?patientId=${patientUuid}&definitionUiResource=file:pih/htmlforms/checkin.xml&createVisit=true&returnUrl=${openmrsSpaBase}%2Fhome%2Fappointments"
+    },
+    "patientIdentifierType": "KGHEMRID"
+  },
+  "@openmrs/esm-dispensing-app": {
+    "customTabs": [
+      {
+        "title": "Discharge prescriptions",
+        "customPrescriptionsTableEndpoint": "${fhirBaseUrl}/Encounter?_query=encountersWithMedicationRequests&_getpagesoffset=${pageOffset}&_count=${pageSize}&date=ge${date}&status=ACTIVE&type=2110a810-db62-4914-ba95-604b96010164,153d3182-c76f-4047-b7f2-d83cf967b206&location=${location}&patientSearchTerm=${patientSearchTerm}",
+        "associatedLocations": [
+          "550e8400-e29b-41d4-a716-446655440000"
+        ]
+      }
+    ]
+  },
+
+  "@openmrs/esm-login-app": {
+    "chooseLocation": {
+      "enabled": true,
+      "useLoginLocationTag": true,
+      "numberToShow": 5
+    },
+    "logo": {
+      "src": "logo.png",
+      "alt": "Ministry of Health"
+    }
+  },
+  "@openmrs/esm-patient-registration-app": {
+    "sections": [
+      "demographics",
+      "contact",
+      "social",
+      "identifiers"
+    ],
+    "sectionDefinitions": [
+      {
+        "id": "demographics",
+        "name": "Demographics",
+        "fields": [
+          "name",
+          "gender",
+          "dob",
+          "mothers_name"
+        ]
+      },
+      {
+        "id": "contact",
+        "name": "Contact Info",
+        "fields": [
+          "address",
+          "phone"
+        ]
+      },
+      {
+        "id": "social",
+        "name": "Social",
+        "fields": [
+          "birthplace",
+          "civilStatus",
+          "occupation"
+        ]
+      },
+      {
+        "id": "identifiers",
+        "name": "Identifiers",
+        "fields": [
+          "id"
+        ]
+      }
+    ],
+    "fieldDefinitions": [
+      {
+        "id": "mothers_name",
+        "type": "person attribute",
+        "uuid": "8d871d18-c2cc-11de-8d13-0010c6dffd0f",
+        "label": "Mother's First Name"
+      },
+      {
+        "id": "phone",
+        "type": "person attribute",
+        "uuid": "14d4f066-15f5-102d-96e4-000c29c2a5d7",
+        "label": "Phone Number"
+      },
+      {
+        "id": "birthplace",
+        "type": "obs",
+        "uuid": "0b192340-3eb5-4597-8cea-d33c182fc79c",
+        "label": "Place of Birth"
+      },
+      {
+        "id": "civilStatus",
+        "type": "obs",
+        "uuid": "3cd6df26-26fe-102b-80cb-0017a47871b2",
+        "label": "Civil Status",
+        "customConceptAnswers": [
+          {
+            "uuid": "df488243-d1d5-4b50-ae04-40b4ffdcf934",
+            "label": "Single"
+          },
+          {
+            "uuid": "3cee0aca-26fe-102b-80cb-0017a47871b2",
+            "label": "Married"
+          },
+          {
+            "uuid": "3cd6e96c-26fe-102b-80cb-0017a47871b2",
+            "label": "Living with Partner"
+          },
+          {
+            "uuid": "3cd6e246-26fe-102b-80cb-0017a47871b2",
+            "label": "Separated"
+          },
+          {
+            "uuid": "3cd6e55c-26fe-102b-80cb-0017a47871b2",
+            "label": "Divorced"
+          },
+          {
+            "uuid": "3cd6e6f6-26fe-102b-80cb-0017a47871b2",
+            "label": "Widowed"
+          }
+        ]
+      },
+      {
+        "id": "occupation",
+        "type": "obs",
+        "uuid": "3cd97286-26fe-102b-80cb-0017a47871b2",
+        "label": "Occupation",
+        "customConceptAnswers": [
+          {
+            "uuid": "162944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Civil servant"
+          },
+          {
+            "uuid": "3cd9740c-26fe-102b-80cb-0017a47871b2",
+            "label": "Commerce"
+          },
+          {
+            "uuid": "cb9da4fc-cd1e-4d30-9000-1cefa26cd323",
+            "label": "Commercial bike rider"
+          },
+          {
+            "uuid": "f03e4898-ab3c-4fa5-8d7f-6cbfeee79c42",
+            "label": "Cowherd"
+          },
+          {
+            "uuid": "f15d07f0-be62-44d4-89ef-0e17e0aa480e",
+            "label": "Driver"
+          },
+          {
+            "uuid": "3cdcbe78-26fe-102b-80cb-0017a47871b2",
+            "label": "Factory worker"
+          },
+          {
+            "uuid": "3cd9757e-26fe-102b-80cb-0017a47871b2",
+            "label": "Farmer"
+          },
+          {
+            "uuid": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Fisherman"
+          },
+          {
+            "uuid": "3cdcbff4-26fe-102b-80cb-0017a47871b2",
+            "label": "Fruit or vegetable vendor"
+          },
+          {
+            "uuid": "3cdbc91e-26fe-102b-80cb-0017a47871b2",
+            "label": "Health care worker"
+          },
+          {
+            "uuid": "3cda14e8-26fe-102b-80cb-0017a47871b2",
+            "label": "Housework"
+          },
+          {
+            "uuid": "3ce40fca-26fe-102b-80cb-0017a47871b2",
+            "label": "Housework/Fieldwork"
+          },
+          {
+            "uuid": "3cd995ae-26fe-102b-80cb-0017a47871b2",
+            "label": "Manual Laborer"
+          },
+          {
+            "uuid": "162945AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "label": "Market Vendor"
+          },
+          {
+            "uuid": "a82a7a36-a7a4-4462-aa1c-b00d4e7ddb78",
+            "label": "Military"
+          },
+          {
+            "uuid": "3cdcbd06-26fe-102b-80cb-0017a47871b2",
+            "label": "Miner"
+          },
+          {
+            "uuid": "a1e44baf-c82f-4d4f-ac09-232da84c8a28",
+            "label": "Police"
+          },
+          {
+            "uuid": "907716b4-1852-404a-9ee1-beff998f9461",
+            "label": "Professional"
+          },
+          {
+            "uuid": "3ce4113c-26fe-102b-80cb-0017a47871b2",
+            "label": "Retired"
+          },
+          {
+            "uuid": "3cdcc468-26fe-102b-80cb-0017a47871b2",
+            "label": "Shop owner"
+          },
+          {
+            "uuid": "3cd976f0-26fe-102b-80cb-0017a47871b2",
+            "label": "Student"
+          },
+          {
+            "uuid": "d192f132-999a-4666-8725-028f9fcb8df4",
+            "label": "Teacher"
+          },
+          {
+            "uuid": "3cd979de-26fe-102b-80cb-0017a47871b2",
+            "label": "Unemployed"
+          },
+          {
+            "uuid": "3cee7fb4-26fe-102b-80cb-0017a47871b2",
+            "label": "Other"
+          }
+        ]
+      }
+    ],
+    "fieldConfigurations": {
+      "name": {
+        "displayMiddleName": true,
+        "unidentifiedPatient": false
+      },
+      "address": {
+        "useAddressHierarchy": {
+          "enabled": true,
+          "useQuickSearch": true,
+          "searchAddressByLevel": true
+        }
+      }
+    },
+    "defaultPatientIdentifierTypes": [
+      "1a2acce0-7426-11e5-a837-0800200c9a66",
+      "c09a1d24-7162-11eb-8aa6-0242ac110002"
+    ],
+    "registrationObs": {
+      "encounterTypeUuid": "873f968a-73a8-4f9c-ac78-9f4778b751b6",
+      "encounterProviderRoleUuid": "cbfe0b9d-9923-404c-941b-f048adc8cdc0"
+    }
+  },
+  "@openmrs/esm-patient-search-app": {
+    "defaultIdentifierTypes": [
+      "1a2acce0-7426-11e5-a837-0800200c9a66",
+      "c09a1d24-7162-11eb-8aa6-0242ac110002",
+      "badec513-cfbb-11ed-8b1c-0242ac120002"
+    ]
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "logo": {
+      "src": "logo.png",
+      "alt": "Ministry of Health",
+      "name": "Ministry of Health",
+      "link": "${openmrsBase}/index.htm"
+    }
+  },
+  "@openmrs/esm-service-queues-app": {
+    "priorityConfigs": [
+      {
+        "conceptUuid": "9e4b6acc-ab97-4ecd-a48c-b3d67e5ef778",
+        "tagClassName": "tag",
+        "tagType": "red"
+      }
+    ],
+    "statusConfigs": [
+      {
+        "conceptUuid": "167407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "iconComponent": "InProgress"
+      },
+      {
+        "conceptUuid": "167408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "iconComponent": "Group"
+      },
+      {
+        "conceptUuid": "d639afb2-8f85-4774-a623-e6e051cda9c6",
+        "iconComponent": "Group"
+      }
+    ],
+    "concepts": {
+      "serviceConceptSetUuid": "239c7e26-139f-4833-80e8-f0de2f4c8104",
+      "priorityConceptSetUuid": "6a28c6ca-f52e-4a8e-8da7-ee7fe4953b3d",
+      "statusConceptSetUuid": "98759313-3812-4c88-88c6-7686dc7c6443",
+      "defaultPriorityConceptUuid": "3cd750a0-26fe-102b-80cb-0017a47871b2",
+      "emergencyPriorityConceptUuid": "9e4b6acc-ab97-4ecd-a48c-b3d67e5ef778",
+      "defaultStatusConceptUuid": "167407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "defaultTransitionStatus": "167408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "visitQueueNumberAttributeUuid": "",
+    "defaultFacilityUrl": "",
+   "queueTables": {
+      "columnDefinitions": [
+        {
+          "id": "emr-id",
+          "columnType": "patient-identifier",
+          "config": {
+            "identifierTypeUuid": "c09a1d24-7162-11eb-8aa6-0242ac110002"
+          },
+          "header": "EMR ID"
+        },
+        {
+          "id": "in-service-time",
+          "columnType": "wait-time",
+          "header": "Time in service"
+        },
+        {
+          "id": "check-in-date",
+          "columnType": "visit-start-time",
+          "header": "Check-in date"
+        },
+        {
+          "id": "triage-waiting-queue-actions",
+          "columnType": "extension",
+          "header": "Actions"
+        }
+      ],
+      "tableDefinitions": [
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "check-in-date", "wait-time", "triage-waiting-queue-actions"],
+          "appliedTo": [
+            {
+              "queue": "3113f164-68f0-11ee-ab8d-0242ac120002",
+              "status": "167407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
+          ]
+        },
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "in-service-time", "triage-waiting-queue-actions"],
+          "appliedTo": [
+            {
+              "queue": "3113f164-68f0-11ee-ab8d-0242ac120002",
+              "status": "167408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
+          ]
+        },
+        {
+          "columns": ["patient-name", "emr-id", "patient-age", "priority", "wait-time", "actions"]
+        }
+      ]
+    }
+  },
+  "@openmrs/esm-ward-app": {
+    "patientCardElements": {
+      "obs": [
+        {
+          "id": "gravida",
+          "conceptUuid": "3cee82de-26fe-102b-80cb-0017a47871b2",
+          "onlyWithinCurrentVisit": true,
+          "orderBy": "descending",
+          "limit": 1
+        },
+        {
+          "id": "admission-reason",
+          "conceptUuid": "86a2cf11-1ea5-4b8a-9e4b-08f4cdbe1346",
+          "onlyWithinCurrentVisit": true,
+          "orderBy": "descending",
+          "label": "REASON",
+          "limit": 1
+        }
+      ],
+      "patientIdentifier": [
+        {
+          "id": "patient-identifier",
+          "showIdentifierLabel": false
+        }
+      ],
+      "patientAddress": [
+        {
+          "id": "patient-address",
+          "fields": [
+            "countyDistrict"
+          ]
+        }
+      ],
+      "coloredObsTags": [
+        {
+          "id": "pregnancy-complications",
+          "conceptUuid": "447f14be-4f34-4cba-9f80-8e091e23c6e3",
+          "summaryLabel": "Pregnancy Complication(s)",
+          "tags": [
+            {
+              "color": "red",
+              "appliedToConceptSets": ["447f14be-4f34-4cba-9f80-8e091e23c6e3"]
+            }
+          ]
+        }
+      ],
+      "admissionRequestNote": [
+        {
+          "id": "admission-request-note",
+          "conceptUuid": "3cd9d956-26fe-102b-80cb-0017a47871b2"
+        }
+      ],
+      "pendingItems": [
+        {
+          "id": "pending-items",
+          "orders": {
+            "orderTypes": [
+              {
+                "label": "Labs", 
+                "uuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e"
+              }
+            ]
+          },
+          "showPendingItems": true
+        }
+      ]
+    },
+    "wards": [
+      {
+        "id": "maternal-ward"
+      }
+    ],
+    "hideWorkspaceVitalsLinks": true,
+    "extensionSlots": {
+      "ward-patient": {
+	"configure": {
+	  "ward-patient-discharge": {
+	    "allowedSessionLocationUuids": ["989a9b23-d1f9-11f0-9d46-169316be6a48"]
+	  }
+	},
+        "remove": [
+          "ward-patient-order-basket",
+          "ward-patient-clinical-forms"
+        ],
+        "order": [
+          "ward-patient",
+          "o2-visit-summary-window",
+          "o2-vital-signs-window",
+          "ward-patient-notes",
+          "ward-patient-transfer-swap",
+          "ward-patient-discharge"
+        ]
+      }
+    },
+    "additionalInpatientNotesConceptUuids": [
+      "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    ]
+  },
+  "@openmrs/esm-patient-tests-app": {
+    "orders": {
+      "labOrderableConcepts": "880468f0-eec0-4d70-861a-fe12d4ba5099"
+    }
+  }
+}
+

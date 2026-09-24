@@ -1,0 +1,140 @@
+/* ============================================================
+   Ministry of Health — custom OpenMRS (O3) login theme
+   Matches the DHIS2 login design: green brand panel + white card.
+   CSS-only: uses pseudo-elements so React's DOM is untouched.
+   Selectors target data-testid / CSS-module name substrings
+   (stable across build hashes).
+   ============================================================ */
+
+/* Brand panel layout: split screen */
+body [data-testid="login-container"] {
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  min-height: 100vh !important;
+  background: #f4f7f5 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+/* Left green brand panel */
+body [data-testid="login-container"]::before {
+  content: "";
+  flex: 0 0 45%;
+  min-width: 0;
+  box-sizing: border-box;
+  background-color: #0a5d28;
+  background-image:
+    url("/openmrs/spa/moh-login-logo.png"),
+    linear-gradient(160deg, #0f8a3d 0%, #0a5d28 45%, #063d18 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 56px 56px, center;
+  background-size: 190px auto, cover;
+}
+
+/* Headline over the brand panel */
+body [data-testid="login-container"]::after {
+  content: "Republic of Sierra Leone \2014  Ministry of Health\A\AOne platform for the nation\2019s health data";
+  white-space: pre-line;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  box-sizing: border-box;
+  padding: 300px 56px 56px;
+  color: #eaf6ee;
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+/* Hide O3 announcements (would break the split layout) */
+body [data-testid="login-container"] [class*="login__announcements"] {
+  display: none !important;
+}
+
+/* Login card */
+body [data-testid="login-container"] > [class*="login__loginCard"] {
+  align-self: center !important;
+  margin: auto !important;
+  width: 24rem !important;
+  max-width: calc(100% - 64px);
+  border: 1px solid #e3eae6 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 60px -18px rgba(6, 61, 24, 0.35) !important;
+  background: #ffffff !important;
+  padding: 2.75rem 2.5rem !important;
+}
+
+/* Replace the in-card logo with a "Sign in" heading (DHIS2 style) */
+body [data-testid="login-container"] [class*="login__center"] {
+  display: none !important;
+}
+body [data-testid="login-container"] > [class*="login__loginCard"]::before {
+  content: "Sign in";
+  display: block;
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #17252b;
+  margin: 0 0 1.5rem;
+}
+
+/* Green action colour */
+body [data-testid="login-container"] {
+  --cds-button-primary: #0f8a3d;
+  --cds-button-primary-hover: #0a5d28;
+  --cds-button-primary-active: #063d18;
+}
+
+/* Inputs */
+body [data-testid="login-container"] .cds--text-input {
+  background: #ffffff !important;
+  border: 1px solid #cfd8d2 !important;
+  border-radius: 10px !important;
+  height: 3rem !important;
+}
+body [data-testid="login-container"] .cds--text-input:focus {
+  outline: 2px solid #0f8a3d !important;
+  outline-offset: -2px;
+}
+
+/* Submit button */
+body [data-testid="login-container"] button[class*="login__continueButton"],
+body [data-testid="login-container"] .cds--btn--primary {
+  width: 100% !important;
+  min-height: 3rem !important;
+  border-radius: 10px !important;
+  background-color: #0f8a3d !important;
+  border-color: #0f8a3d !important;
+}
+body [data-testid="login-container"] button[class*="login__continueButton"]:hover,
+body [data-testid="login-container"] .cds--btn--primary:hover {
+  background-color: #0a5d28 !important;
+  border-color: #0a5d28 !important;
+}
+
+/* Hide the O3 "powered by" footer (absolute, full-width) */
+body [data-testid="login-container"] [class*="footer__footer"] {
+  display: none !important;
+}
+
+/* Responsive: drop the brand panel on small screens */
+@media (max-width: 900px) {
+  body [data-testid="login-container"] {
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  body [data-testid="login-container"]::before,
+  body [data-testid="login-container"]::after {
+    display: none !important;
+  }
+  body [data-testid="login-container"] > [class*="login__loginCard"] {
+    margin: auto !important;
+  }
+}

@@ -1,8 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Occupation,Text/N/A,text,No,no,personAttribute:Occupation,,,,
-Education level,Coded,None | Primary | Secondary | Tertiary,radio,No,no,personAttribute:Education Level,CIEL:...,,
-Marital status,Coded,Single | Married | Widowed | Divorced,radio,No,no,personAttribute:Marital Status,CIEL:...,,
-Household head,Text,N/A,text,No,no,personAttribute:Household head,,,
-Next of kin name,Text,N/A,text,No,no,personAttribute:Next of kin,,,
-Next of kin phone,Text,N/A,text,No,no,personAttribute:Next of kin phone,,,
-Social support flags (TB/HIV etc),Coded,checkbox list,checkbox,No,no,PIH:Social support,CIEL:...,,

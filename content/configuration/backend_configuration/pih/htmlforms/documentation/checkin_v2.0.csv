@@ -1,0 +1,5 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Encounter Location,Location,List of available locations,location select,Yes,no,,,,
+Retrospective Checkin visit Type label,Coded,Outpatient consultation | Emergency visit | Antenatal visit | Labor and delivery visit | Family planning services | Immunization visit | Malnutrition program | ART visit | TB visit | Mental health | NCD clinic,dropdown,No,no,PIH:REASON FOR VISIT,PIH:OUTPATIENT CONSULTATION|PIH:EMERGENCY VISIT|PIH:ANC VISIT|PIH:Labor and delivery visit|PIH:FAMILY PLANNING SERVICES|PIH:Immunization visit|PIH:MALNUTRITION PROGRAM|PIH:ART VISIT|PIH:TB VISIT|PIH:MENTAL HEALTH SERVICES|CIEL:168363,,
+Retrospective Checkin visit Type label,Coded,N/A,dropdown,No,no,PIH:REASON FOR VISIT,,,

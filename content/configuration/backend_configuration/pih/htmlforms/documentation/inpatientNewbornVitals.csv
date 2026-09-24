@@ -1,0 +1,9 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Subform: vital-signs-infant-widget.xml,Other,Subform — configuration/pih/subforms/vital-signs-infant-widget.xml,subform,No,no,,,,
+Vitals oxygen flow rate,Coded,N/A,radio,No,no,CIEL:165986,,,
+Total fluid input,Coded,N/A,radio,No,no,CIEL:163036,,,
+Total fluid output,Coded,N/A,radio,No,no,CIEL:162659,,,
+,Coded,Seizure | Floppy infant syndrome | Lethargy | Irritability | Unresponsive | Muscle tone on exam,radio,No,no,,CIEL:113054|CIEL:140054|CIEL:116334|CIEL:6023|PIH:6784|PIH:21127,,PIH:14858
+Infant feeding observed,Coded,Not Feeding | Reluctantly | Feeding Well,radio,No,no,PIH:21125,PIH:1107|PIH:21126|PIH:1115,,
+Hematocrit,Coded,N/A,radio,No,no,CIEL:1015,,,

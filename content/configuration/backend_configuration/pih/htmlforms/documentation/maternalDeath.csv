@@ -1,0 +1,12 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Preventable death,Coded,Yes | No,radio,No,no,PIH:21659,CIEL:1065|CIEL:1066,,
+Issues affecting quality,Coded,Inaccurate notes | Timing | Staff absence | Adherence to protocol and/or guidelines | Other,checkbox,No,no,PIH:21660,PIH:21661|PIH:21662|PIH:21663|PIH:21664|PIH:5622,Issues affecting quality,
+"if other, specify issues affecting quality care:",Coded,N/A,radio,No,no,PIH:21665,,,
+History (including prior facility admissions),Text,N/A,textarea,No,no,PIH:10142,,,
+Possible contributing factors to death (3 Delays):,Coded,Deciding to seek care | Reaching care | Receiving adequate care,checkbox,No,no,PIH:21667,PIH:21668|PIH:21669|PIH:21670,Possible contributing factors to death (3 Delays):,
+What could have been done to prevent this death?,Text,N/A,textarea,No,no,PIH:21666,,,
+Primary,Coded,N/A,autocomplete,No,no,PIH:Underlying cause of death,,Primary,PIH:21678
+Primary,Coded,N/A,radio,No,no,CIEL:159946,,Primary,PIH:21678
+Secondary,Coded,N/A,autocomplete,No,no,PIH:Underlying cause of death,,Secondary,PIH:21678
+Secondary,Coded,N/A,radio,No,no,CIEL:159946,,Secondary,PIH:21678

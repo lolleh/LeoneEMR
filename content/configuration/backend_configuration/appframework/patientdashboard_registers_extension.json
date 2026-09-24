@@ -1,0 +1,46 @@
+[
+  {
+    "id": "patientdashboard.aboveFiveTreatmentRegister",
+    "extensionPointId": "patientDashboard.overallActions",
+    "type": "link",
+    "label": "Above Five General Treatment Register",
+    "url": "htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId={{patient.uuid}}&personId={{patient.uuid}}&htmlFormId=185&returnUrl=coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "icon": "icon-edit",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "require": "patient.person.age != null && patient.person.age >= 5",
+    "order": 201
+  },
+  {
+    "id": "patientdashboard.underFiveRegister",
+    "extensionPointId": "patientDashboard.overallActions",
+    "type": "link",
+    "label": "Under Five (General) Register",
+    "url": "htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId={{patient.uuid}}&personId={{patient.uuid}}&htmlFormId=184&returnUrl=coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "icon": "icon-edit",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "require": "patient.person.age != null && patient.person.age < 5",
+    "order": 202
+  },
+  {
+    "id": "patientdashboard.aboveFiveTreatmentRegisterVisit",
+    "extensionPointId": "patientDashboard.visitActions",
+    "type": "link",
+    "label": "Above Five General Treatment Register",
+    "url": "htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId={{patient.uuid}}&personId={{patient.uuid}}&htmlFormId=185&returnUrl=coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "icon": "icon-edit",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "require": "patient.person.age != null && patient.person.age >= 5",
+    "order": 301
+  },
+  {
+    "id": "patientdashboard.underFiveRegisterVisit",
+    "extensionPointId": "patientDashboard.visitActions",
+    "type": "link",
+    "label": "Under Five (General) Register",
+    "url": "htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId={{patient.uuid}}&personId={{patient.uuid}}&htmlFormId=184&returnUrl=coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "icon": "icon-edit",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "require": "patient.person.age != null && patient.person.age < 5",
+    "order": 302
+  }
+]

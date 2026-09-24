@@ -1,16 +1,28 @@
-<assembly>
-    <id>assemble-content</id>
-    <formats>
-        <format>zip</format>
-    </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
-    <fileSets>
-        <fileSet>
-            <directory>${project.build.directory}/package/</directory>
-            <includes>
-                <include>**/*</include>
-            </includes>
-            <outputDirectory>/</outputDirectory>
-        </fileSet>
-    </fileSets>
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+  <id>content</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <!-- The OpenMRS SDK expects a content package to be a zip whose root contains
+       content.properties plus configuration/backend_configuration/**.
+       The full materialized configuration lives in build/ (gitignored) and is
+       produced by scripts/seed-distro-maven-repo.sh from the pinned stock image
+       + the tracked configuration/backend_configuration delta + exclusions.txt. -->
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.directory}</directory>
+      <includes>
+        <include>content.properties</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/build/configuration</directory>
+      <outputDirectory>/configuration</outputDirectory>
+    </fileSet>
+  </fileSets>
 </assembly>

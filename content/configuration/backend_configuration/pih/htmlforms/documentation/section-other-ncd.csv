@@ -1,0 +1,3 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Diagnosis,Coded,Parkinson's disease | Thyroid disease,checkbox,No,no,PIH:DIAGNOSIS,CIEL:130795|CIEL:118976,Diagnosis,PIH:Visit Diagnoses
+Comments about other NCDs,Coded,N/A,text area,No,no,PIH:21625,,,

@@ -1,4 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Hospitalization since last visit,Coded,Yes | No | Unknown,radio,Yes,Included for followup,CIEL:976,CIEL:1065|CIEL:1066|CIEL:1067,,
-Number of hospitalizations,Numeric,N/A,number,No,Shown if hospitalized,"""CIEL:5704|CIEL:1773""",,,
-Hospitalization details (dates / reasons),Text/Date,N/A,textarea/date,No,no,CIEL:...,,,

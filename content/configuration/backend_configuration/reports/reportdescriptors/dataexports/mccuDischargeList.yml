@@ -1,0 +1,21 @@
+key: "mccudischargelist"
+uuid: "abd1021d-bd3d-4a51-b7af-95a3e9d21975"
+name: "MCCU Discharge List"
+description: "Patients discharged from the MCCU on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "4d7e927d-6850-11ee-ab8d-0242ac120002"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

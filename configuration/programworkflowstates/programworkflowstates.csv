@@ -1,6 +1,0 @@
-Uuid,Void/Retire,Workflow,State concept,Initial,Terminal
-${programWorkflow.pregnancyProgramTypeOfTreatment.state.antenatal.uuid},,${programWorkflow.pregnancyProgramTypeOfTreatment.uuid},PIH:20487,true,
-${programWorkflow.pregnancyProgramTypeOfTreatment.state.postpartum.uuid},,${programWorkflow.pregnancyProgramTypeOfTreatment.uuid},PIH:13137,true,
-${programWorkflow.pregnancyProgramTypeOfTreatment.state.miscarried.uuid},,${programWorkflow.pregnancyProgramTypeOfTreatment.uuid},PIH:1852,true,true
-fdcd3bec-7beb-45e8-8c01-0cb14a9a2b75,,${programWorkflow.infantProgramEidTreatmentStatus.uuid},PIH:On prophylaxis,true,
-04de4ef3-c06d-46d1-9f2c-8f3ae37ad618,,${programWorkflow.infantProgramEidTreatmentStatus.uuid},PIH:ON ANTIRETROVIRALS,true,

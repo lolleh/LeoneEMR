@@ -1,0 +1,47 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Encounter Location,Location,List of available locations,location select,Yes,no,,,,
+Surgical service,Coded,N/A,radio,No,no,PIH:Surgical service,,,
+Other,Coded,N/A,radio,No,no,PIH:Name of assistant surgeon,,,
+Admission status,Coded,Ambulatory | Hospitalized,radio,No,no,PIH:TYPE OF PATIENT,PIH:AMBULATORY|PIH:INPATIENT HOSPITALIZATION,,
+Emergency,Coded,Yes | No,radio,No,no,PIH:Emergency,PIH:YES|PIH:NO,,
+Pre op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Pre-surgery diagnosis,,,
+Pre op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Pre-surgery diagnosis,,,
+Pre op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Pre-surgery diagnosis,,,
+Procedures,Coded,N/A,autocomplete,No,no,PIH:Surgical procedure,,,
+Procedures,Coded,N/A,autocomplete,No,no,PIH:Surgical procedure,,,
+Procedures,Coded,N/A,autocomplete,No,no,PIH:Surgical procedure,,,
+Procedures,Coded,N/A,autocomplete,No,no,PIH:Surgical procedure,,,
+Procedures,Coded,N/A,autocomplete,No,no,PIH:Surgical procedure,,,
+Planned return or,Coded,Yes | No,radio,No,no,PIH:Planned return to operating room,PIH:YES|PIH:NO,,
+Scheduled,Coded,Yes | No,radio,No,no,PIH:Scheduled surgery,PIH:YES|PIH:NO,,
+Post op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Post-surgery diagnosis,,,
+Post op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Post-surgery diagnosis,,,
+Post op diagnoses,Coded,N/A,autocomplete,No,no,PIH:Post-surgery diagnosis,,,
+Anesthesia,Coded,General anesthesia | Local anesthesia | Local with monitored anesthesia care (MAC) | Monitored anesthesia care (MAC) | Regional epidural anesthesia | Regional nerve block anesthesia | Regional spinal anesthesia | Transverse abdominis plane block | None,radio,No,no,PIH:Type of anesthesia,PIH:7850|PIH:7854|PIH:7855|PIH:7856|PIH:7852|PIH:7853|PIH:7851|PIH:21112|PIH:1107,,
+Complications from anaesthesia,Coded,N/A,radio,No,no,$complicationsFromAnesthesia,,,
+Wound class,Coded,N/A,radio,No,no,PIH:Classifications of surgical wounds,,,
+Ivf,Coded,Dextran | Dextrose 10% in water | Dextrose 5% in Sodium Chloride 0.45% | Dextran | Mannitol 20% | Ringer's lactate | Sodium Chloride 0.9%,checkbox,No,no,PIH:IVF administered,CIEL:74653|CIEL:161922|CIEL:161923|CIEL:74653|CIEL:161924|CIEL:78617|CIEL:80804,Ivf,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+IVF volume (mL),Coded,N/A,radio,No,no,PIH:21113,,,PIH:IVF construct
+Transfusion,Coded,Yes | No,radio,No,Yes → show #type-transfusion,PIH:Transfusion status,PIH:YES|PIH:NO,,
+"if blood transfusion, specify type and volume:",Coded,Whole blood | Packed red blood cells | Plasma | Platelets,radio,No,no,PIH:Transfusion of fluid,PIH:Whole blood|PIH:Packed red blood cells|PIH:Plasma|PIH:Platelets,"if blood transfusion, specify type and volume:",PIH:Transfusion construct
+Volume of transfusion,Coded,N/A,radio,No,no,PIH:Volume of transfusion,,,PIH:Transfusion construct
+Volume of transfusion,Coded,N/A,radio,No,no,PIH:Volume of transfusion,,,PIH:Transfusion construct
+Volume of transfusion,Coded,N/A,radio,No,no,PIH:Volume of transfusion,,,PIH:Transfusion construct
+Volume of transfusion,Coded,N/A,radio,No,no,PIH:Volume of transfusion,,,PIH:Transfusion construct
+Pre op antibiotic,Coded,Yes | No,radio,No,Yes → show #pre-antibiotic-name,PIH:Pre-operative antibiotic administered,PIH:YES|PIH:NO,,
+Antibiotic name,Coded,Amoxicillin + clavulanic acid | Amphotericin B | Ampicillin | Cefazolin | Cefotaxime | Ceftriaxone | Chloramphenicol | Ciprofloxacin | Clindamycin | Fluconazole | Gentamicin | Phenobarbital,checkbox,No,no,PIH:Surgery antibiotics,CIEL:450|CIEL:71184|CIEL:71188|CIEL:72998|CIEL:73018|CIEL:73041|CIEL:73239|CIEL:73449|CIEL:73546|CIEL:76488|CIEL:100|CIEL:81951,Antibiotic name,
+Vtp,Coded,N/A,radio,No,no,PIH:Venous thromboembolism prophylaxis,,,
+Est blood loss,Coded,N/A,radio,No,no,PIH:12555,,,
+Urine out,Coded,N/A,radio,No,no,CIEL:161929,,,
+Findings,Text,N/A,textarea,No,no,PIH:Additional Surgery Comments,,,
+Instructions,Text,N/A,textarea,No,no,CIEL:163106,,,
+Baby observations,Text,N/A,textarea,No,no,PIH:21120,,,
+Drainage removal date,Date,N/A,date,No,no,PIH:20926,,,
+Stitches removal date,Date,N/A,date,No,no,PIH:20927,,,

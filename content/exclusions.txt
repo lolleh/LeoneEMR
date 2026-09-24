@@ -1,0 +1,21 @@
+# Files that exist in the stock partnersinhealth/pihsl-emr configuration but were
+# deliberately removed from the demo's baked-in configuration. The seed script
+# (scripts/seed-distro-maven-repo.sh) strips these from the materialized config,
+# so the rebuilt distribution matches the served Sierra Leone EMR config byte-for-byte.
+#
+# Each path is relative to configuration/backend_configuration.
+reports/reportdescriptors/dataexports/allergies.yml
+reports/reportdescriptors/dataexports/eveningMaternalHandoff.yml
+reports/reportdescriptors/dataexports/hospitalizations.yml
+reports/reportdescriptors/dataexports/mentalHealth.yml
+reports/reportdescriptors/dataexports/mentalHealthCaseRegistration.yml
+reports/reportdescriptors/dataexports/mentalHealthProgram.yml
+reports/reportdescriptors/dataexports/morningMaternalHandoff.yml
+reports/reportdescriptors/dataexports/ncd.yml
+reports/reportdescriptors/dataexports/ncdEncounter.yml
+reports/reportdescriptors/dataexports/ncdPatient.yml
+reports/reportdescriptors/dataexports/ncdProgram.yml
+reports/reportdescriptors/dataexports/nicuDischargeList.yml
+reports/reportdescriptors/dataexports/surgery.yml
+reports/reportdescriptors/dataexports/triage.yml
+reports/reportdescriptors/dataexports/vitals.yml

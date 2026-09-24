@@ -1,0 +1,21 @@
+key: "antenatalwarddischargelist"
+uuid: "b8c920ea-6b00-4d70-927d-63e0f081bdd2"
+name: "Antenatal Ward Discharge List"
+description: "Patients discharged from the Antenatal Ward on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "11f5c9f9-40b8-46ad-9e7e-59473ce43246"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

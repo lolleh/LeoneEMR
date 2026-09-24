@@ -1,0 +1,32 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Diagnosis,Coded,Sickle Cell Disease | Sickle Cell Trait | Sickle Cell BS | Sickle Cell SC | Other Hemoglobinopathy,radio,No,no,PIH:DIAGNOSIS,CIEL:117703|CIEL:126513|CIEL:126512|CIEL:168107|CIEL:117635,,PIH:Visit Diagnoses
+Other Sickle Cell Specify,Coded,N/A,radio,No,no,PIH:14924,,,
+Confirmation Test,Coded,SickleScan RDT | Hemo Type SC | Gazelle | Hg Electro | HPLC | IEF | Unknown But Tested | Other,radio,Yes,no,CIEL:168730,CIEL:160225|CIEL:168733|CIEL:168732|CIEL:165544|CIEL:161519|CIEL:168731|CIEL:1067|CIEL:5622,,
+Clinical Indicators,Coded,Asymptomatic sickle cell,radio,No,Symptom absent → show #sc-not-asymptom,,PIH:20010,Clinical Indicators,PIH:14858
+Clinical Indicators,Coded,Pain | Fever | Jaundice | Anemia | Ascites | Spleen palpable | Liver palpable | Difficulty breathing | Chest Pain,radio,No,no,,CIEL:114403|CIEL:140238|CIEL:136443|CIEL:121629|CIEL:148346|CIEL:112804|CIEL:168290|CIEL:142373|CIEL:120749,Clinical Indicators,PIH:14858
+Complications Since Last Visit,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-comp-text,PIH:14867,PIH:YES|PIH:NO|PIH:UNKNOWN,Clinical Indicators,PIH:14872
+Clinical Indicators,Coded,Anemia | Severe anemia | Intravascular hemolysis | Sickle-cell vaso-occlusive pain crisis | Acute chest syndrome | Avascular necrosis of bone | Cerebrovascular accident | Systemic infection | Malaria,checkbox,No,no,PIH:15157,CIEL:121629|CIEL:162044|CIEL:136586|CIEL:117643|CIEL:149871|CIEL:148074|CIEL:111103|CIEL:112483|CIEL:116128,Clinical Indicators,PIH:14872
+Complications label,Coded,Other,checkbox,No,no,PIH:15157,CIEL:5622,Clinical Indicators,PIH:14872
+Transfusion In12mo,Coded,Yes | No,radio,Yes,Yes → show #transfusion-details,PIH:7868,CIEL:1065|CIEL:1066,Clinical Indicators,PIH:15162
+Transfusion In12mo,Coded,N/A,radio,No,no,PIH:13748,,Clinical Indicators,PIH:15162
+Transfusion In12mo,Coded,N/A,radio,No,no,CIEL:163268,,Clinical Indicators,PIH:15162
+On Treatment,Coded,Yes | No,radio,Yes,Yes → show #sickle-treatment,PIH:21462,CIEL:1065|CIEL:1066,,
+On Treatment,Coded,Folic acid | Penicillin,checkbox,No,no,PIH:14857,CIEL:76613|CIEL:81724,On Treatment,
+Malaria Prophylaxis,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-malaria-details,CIEL:159610,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Understands Treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-under-details,CIEL:167914,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Ability To Titrate,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-tite-details,PIH:14741,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Overall Treatment Adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Missing Doses Per Week,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-miss-details,CIEL:167819,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Aware Understands Disease,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Family Awareness Disease,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-family-details,CIEL:167022,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Num Missing Doses Per Week,Coded,N/A,radio,No,no,CIEL:167918,,On Treatment,PIH:14826
+Patient Condition Improved,Coded,Yes | No | Unknown,radio,No,Yes → show #scd-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14826
+Sickle Cell Disease Control,Coded,Controlled | Uncontrolled | Complications,radio,Yes,Not controlled → show #sc-fui-uncontrolled,PIH:11506,PIH:11507|PIH:11508|PIH:11509,On Treatment,PIH:14826
+Send For Admission,Coded,Yes | No | Unknown,radio,No,no,CIEL:1788,PIH:YES|PIH:NO|PIH:UNKNOWN,On Treatment,PIH:14826
+Indications For Hydroxyurea,Coded,Yes | No,radio,Yes,Yes → show #scd-hydroxy-details,PIH:14869,PIH:YES|PIH:NO,Indications For Hydroxyurea,PIH:14872
+On Hydroxyurea,Coded,Yes | No,radio,No,No → show #reason-no-hydroxy,PIH:14870,PIH:YES|PIH:NO,Indications For Hydroxyurea,PIH:14872
+Indications For Hydroxyurea,Coded,Medication side effect | Drug not available - out of stock | Complete blood count results not available | No sickle-cell test confirmation,checkbox,No,no,PIH:15169,CIEL:164377|CIEL:1754|PIH:15170|PIH:15171,Indications For Hydroxyurea,PIH:14872
+Reason Not Hydroxyurea,Coded,Other,checkbox,No,no,PIH:15169,CIEL:5622,Indications For Hydroxyurea,PIH:14872
+Complications With Hydroxyurea,Coded,Yes | No,radio,No,Yes → show #side-effect-hydroxy-compl-details,PIH:14871,PIH:YES|PIH:NO,Indications For Hydroxyurea,PIH:14872
+Indications For Hydroxyurea,Coded,Pancytopenia | Elevated ALT/AST | Elevated creatinine | Mouth ulceration | Rash | Other,checkbox,No,no,PIH:20012,CIEL:114380|PIH:20013|PIH:20014|CIEL:111721|CIEL:512|CIEL:5622,Indications For Hydroxyurea,PIH:14872
+Complications With Hydroxyurea,Text,N/A,text,No,no,CIEL:164377,,Indications For Hydroxyurea,PIH:14872

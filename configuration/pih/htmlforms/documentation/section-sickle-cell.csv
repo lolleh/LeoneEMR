@@ -1,5 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Sickle cell diagnosis (intake),Coded,Disease | Trait | BS | SC | Other,radio,Yes,Only for intake,PIH:DIAGNOSIS,CIEL:117703|CIEL:126513|CIEL:126512|CIEL:168107|CIEL:117635,Visit Diagnoses,PIH:Visit Diagnoses
-Other specify,Text,N/A,text,No,Shown if other selected,PIH:14924,,,
-Confirmation test method,Coded,SickleScan RDT | HemoTypeSC | Gazelle | HPLC | IEF | IEF,radio,Yes,Required,"""CIEL:168730""","""CIEL:160225|CIEL:168733|CIEL:168732|CIEL:165544|CIEL:161519|CIEL:168731|CIEL:1067|CIEL:5622""",,
-Clinical indicators (followup),Coded,Signs/symptoms list,radio/checkbox,No,Only for followup,PIH:14858,PIH:20010|...,,

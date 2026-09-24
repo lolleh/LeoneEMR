@@ -1,0 +1,21 @@
+key: "quietwarddischargelist"
+uuid: "48319749-1b2d-4391-a1b5-a220b2442c7c"
+name: "Quiet Ward Discharge List"
+description: "Patients discharged from the Quiet Ward on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "28660b7f-3450-4b86-b840-9670ec68235f"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

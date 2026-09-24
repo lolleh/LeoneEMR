@@ -1,0 +1,6 @@
+Uuid,Void/Retire,Name,Description,Required,Format,Format description,Validator,Location behavior,Uniqueness behavior
+1a2acce0-7426-11e5-a837-0800200c9a66,,Voters ID,A unique identifier representing a voter's National Registration Card.,FALSE,,,,NOT_USED,
+c09a1d24-7162-11eb-8aa6-0242ac110002,,Driver's License,A unique identifier representing a driver''s license number.,FALSE,,,,NOT_USED,
+eb201574-8abe-4393-9a8a-8d30a48a08ad,,National ID Number,National ID Number,FALSE,"^[a-zA-Z0-9]{0,10}$","alphanumeric up to 10 characters long",,NOT_USED,
+f141f055-32ea-4261-83fa-2054a9ad70a5,TRUE,Voters ID,A unique identifier representing a voter's National Registration Card.,FALSE,,,,NOT_USED,
+d6041ebe-7b55-4454-bc7e-1d388d9bd82c,TRUE,Driver's License,A unique identifier representing a driver''s license number.,FALSE,,,,NOT_USED,

@@ -1,0 +1,9 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Diagnoses (encounterDiagnosesByObs),Other,Pick diagnoses,diagnoses widget,No,no,,,,
+Subform: drug-order-widget.xml,Other,Subform — configuration/pih/subforms/drug-order-widget.xml,subform,No,no,,,,
+Clinical History:,Text,N/A,textarea,No,no,CIEL:160221,,,
+Summary of investigation:,Text,N/A,textarea,No,no,CIEL:165399,,,
+Summary of management in the hospital:,Text,N/A,textarea,No,no,CIEL:165399,,,
+Disposition,Other,Disposition widget,disposition widget,Yes,no,,,,
+Discharge recommendations:,Text,N/A,textarea,No,no,PIH:DISPOSITION COMMENTS,,,
+Next appointment date,Other,Schedule appointment widget,scheduleAppointment,No,no,,,,

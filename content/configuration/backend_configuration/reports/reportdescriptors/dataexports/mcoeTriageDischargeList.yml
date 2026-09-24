@@ -1,0 +1,21 @@
+key: "mcoetiragedischargelist"
+uuid: "0db0c42f-1381-4e4a-aa35-a3708133aec0"
+name: "MCOE Triage Discharge List"
+description: "Patients discharged from the MCOE Triage on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "f85feffc-fe54-4648-aa14-01ed6d30b943"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

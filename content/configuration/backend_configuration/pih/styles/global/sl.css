@@ -1,0 +1,1292 @@
+header {
+    background: #FB9500;
+}
+
+h1 {
+    color: #0f5149;
+}
+
+h2, h3, h4, h5 {
+    color: #3E3E3E;
+}
+
+.dashboard .info-header {
+    border-bottom: 6px solid #3E3E3E;
+}
+
+.dashboard .info-header i {
+    color: #3E3E3E;
+}
+
+.tag {
+    background: #0f5149;
+}
+
+.dashboard .action-section ul {
+    background: #0f5149;
+}
+
+a {
+    color: #323372;
+}
+
+a.queue-entry-link {
+    color: #0077FF;
+    text-decoration: underline;
+}
+a:hover.queue-entry-link {
+    color: #5B5C8E;
+}
+
+/* Border/shadow on search box */
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #0f5149;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(15 81 73 / 25%);
+}
+
+/* PIH Purple 80% Tint */
+a:hover {
+    color: #5B5C8E;
+}
+
+/* Locations on login page */
+ul.select li.selected {
+    background-color: #F6BE00;
+    color: #3E3E3F;
+    font-weight: bolder;
+    border-color: transparent;
+}
+
+ul.select li:hover {
+    background-color: #F6BE00;
+    color: #3E3E3E;
+    cursor: pointer;
+}
+
+ul.select li {
+    color: #0f5149;
+}
+
+.new-patient-header .identifiers span.add-id a,
+.patient-header .identifiers span.add-id a:link,
+.patient-header .identifiers span.add-id a:visited {
+    color: #3AB4B1;
+}
+
+/* Action buttons:  PIH Purple */
+.button.task, button.task, a.button.task {
+    background: #323372;
+    border: #323372 1px solid;
+}
+
+/* Action buttons:  50% tint of PIH Purple */
+.button.task:hover, button.task:hover, a.button.task:hover {
+    background-color: #9999B9;
+    border: #9999B9 1px solid;
+}
+
+/* Login, submit buttons */
+.button.confirm,
+button.confirm,
+input[type="submit"].confirm,
+input[type="button"].confirm,
+a.button.confirm {
+    background: #0F5149;
+    border-color: #0f5149;
+    color: white;
+}
+
+/* Login, submit buttons (hover with 50% tint */
+.button.confirm:hover,
+button.confirm:hover,
+input[type="submit"].confirm:hover,
+input[type="button"].confirm:hover,
+a.button.confirm:hover {
+    background: #3F746D;
+    border-color: #3F746D;
+}
+
+/* Login, submit buttons (disabled should stay grey on hover) */
+.button.confirm:hover:disabled,
+button.confirm:hover:disabled,
+input[type="submit"].confirm:hover:disabled,
+input[type="button"].confirm:hover:disabled,
+a.button.confirm:hover:disabled {
+    background: #EEE;
+    border: #CCC 1px solid;
+    color: #CCC;
+    cursor: default;
+}
+
+.button, button,
+input[type="submit"], input[type="button"],
+a.button {
+    color: #3E3E3E;
+}
+
+header a,
+header a:visited,
+header a:hover,
+header a:link {
+    background: #FB9500;
+}
+
+.dashboard:hover .visit-link:hover {
+    color: #3F746D;
+}
+
+.navigation {
+    color: #EEEEEE;
+}
+
+header .user-options li.change-location {
+    border: 1px solid #FB9500;
+}
+
+header .user-options li.change-location:hover,
+header .user-options li.change-location .focus {
+    background: #FB9500;
+}
+
+form input:focus, form select:focus,
+form textarea:focus, form ul.select:focus,
+.form input:focus, .form select:focus,
+.form textarea:focus, .form ul.select:focus,
+dialog input:focus, dialog select:focus,
+dialog textarea:focus, dialog ul.select:focus,
+.dialog input:focus, .dialog select:focus,
+.dialog textarea:focus, .dialog ul.select:focus,
+.ui-autocomplete-input form input:focus {
+    outline: 2px solid #0f5149;
+    background: #CFDCDB;
+}
+
+form textarea:focus {
+    outline: 2px solid #0f5149;
+    background: #CFDCDB;
+}
+
+.dialog input:focus {
+    outline: 2px solid #0f5149;
+    background: #CFDCDB;
+}
+
+.simple-form-ui section fieldset input:focus,
+simple-form-ui section fieldset input:focus {
+    outline: 2px solid #0f5149;
+    background: #CFDCDB;
+}
+
+/* Header on popups */
+.dialog .dialog-header,
+.dialog-diagnoses .dialog-header,
+.ngdialog.ngdialog-theme-default .ngdialog-content .dialog-header {
+    background: #FB9500;
+    color: white;
+    padding: 0 20px;
+    padding-top: 5px;
+    border-bottom: #FB9500 1px solid;
+}
+
+.diagnosis.primary,
+#display-encounter-diagnoses-container li .diagnosis.primary {
+    border-left: 8px #3AB4B1 solid;
+}
+
+/* Vitals and left tabs for simple form */
+ul#formBreadcrumb li.doing {
+    border-left: 5px solid #0f5149;
+}
+
+#save-form {
+    color: #0f5149;
+}
+
+.simple-form-ui section fieldset select:focus,
+.simple-form-ui section fieldset input:focus,
+.simple-form-ui form section fieldset select:focus {
+    outline: 2px solid #0f5149;
+}
+
+.simple-form-ui #occupationLabel select {
+    max-height: 400px;
+}
+
+form select:focus,
+form input:focus {
+    background: #CFDCDB;
+}
+
+form fieldset {
+    min-width: 90%
+}
+
+form input[type="radio"], .form input[type="radio"] {
+    float: none;
+    display: inline-block;
+}
+
+/* Vitals replace blue highlight */
+ul#formBreadcrumb li.doing ul li.focused {
+    color: #FFF;
+    background-color: #0f5149;
+}
+
+[class^="contact-hiv-phone-"]{
+    padding-bottom: 20px !important;
+}
+
+
+/* SL-specific config to make sure that the header navbar is tall enough to include the custom SL logo */
+.navbar {
+    min-height: 7.7em;
+    padding: 2px 16px;
+}
+
+/* Compact the top-right user / location / logout strip */
+header .user-options {
+    align-items: center;
+    font-size: 13px;
+}
+header .user-options .nav-item {
+    font-size: 13px;
+    line-height: 1.2;
+    margin: 0;
+}
+header .user-options .nav-item a {
+    font-size: 13px;
+    padding: 4px 6px;
+}
+
+/* App header logo */
+body header .logo img {
+    width: 240px;
+    height: auto;
+}
+
+/* ==========================================================================
+   Ministry of Health - login page theme (matches the DHIS2 login design)
+   Scoped to body:has(#login-form) so it only affects the login screen and
+   never the rest of the application. Loaded last on the login page
+   (authenticationui -> standardLoginPage -> ui.resourceLinks()).
+   ========================================================================== */
+
+body:has(#login-form) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #ece8e1 !important;
+    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* neutralise legacy clearfix pseudo-elements that would become flex items */
+body:has(#login-form):before,
+body:has(#login-form):after {
+    display: none !important;
+}
+
+/* Ministry of Health / HEAP footer */
+body:has(#login-form)::after {
+    content: "Ministry of Health - Health Equity Acceleration Partnership (HEAP)";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 14px 24px;
+    background: #4a4235;
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    display: block !important;
+}
+
+/* Left brand panel (the login header holds the logo) */
+body:has(#login-form) > header {
+    flex: 0 0 45%;
+    max-width: 45%;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 56px;
+    border-radius: 0 !important;
+    background-color: #ece7dd !important;
+    background-image: linear-gradient(160deg, #f6f2e9 0%, #ece7dd 45%, #e2dbcf 100%);
+    position: relative;
+}
+body:has(#login-form) > header::before {
+    content: "Ministry of Health\A Health Information Systems\A\A One platform for the nation\2019s health data";
+    order: 1;
+    display: block !important;
+    clear: none !important;
+    white-space: pre-line;
+    margin-top: 12px;
+    max-width: 27rem;
+    color: #3e362a;
+    font-size: clamp(1.25rem, 0.9rem + 1.4vw, 1.7rem);
+    font-weight: 800;
+    line-height: 1.24;
+    letter-spacing: -0.01em;
+    text-shadow: none;
+}
+body:has(#login-form) > header .logo {
+    order: 0;
+    float: none !important;
+    margin: 0 !important;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+body:has(#login-form) > header .logo::after {
+    content: "Republic of Sierra Leone";
+    display: block;
+    white-space: pre-line;
+    margin-top: 44px;
+    color: #6d6554;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+body:has(#login-form) > header a {
+    background: transparent !important;
+}
+body:has(#login-form) > header .logo a {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: transparent !important;
+}
+body:has(#login-form) > header .logo a::before {
+    content: "";
+    display: block;
+    flex: 0 0 auto;
+    width: 150px;
+    height: 150px;
+    background: url("/openmrs/ms/uiframework/resource/file/configuration/pih/logo/moh-logo.png") no-repeat center / contain;
+}
+body:has(#login-form) > header .logo a::after {
+    content: "";
+    display: block;
+    flex: 0 0 auto;
+    width: 180px;
+    height: 60px;
+    background: url("/openmrs/ms/uiframework/resource/file/configuration/pih/logo/heap-logo.png") no-repeat center / contain;
+}
+body:has(#login-form) > header .logo img.login-header-image,
+body:has(#login-form) > header .logo img {
+    display: none !important;
+}
+body:has(#login-form) > header::after {
+    content: "Securely access integrated national health information and analytics, supporting evidence-based decisions across districts, facilities and programmes of Sierra Leone.";
+    order: 2;
+    display: block !important;
+    clear: none !important;
+    white-space: pre-line;
+    margin-top: 22px;
+    max-width: 30rem;
+    color: #5c5446;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: 0;
+    text-shadow: none;
+}
+
+/* Right column */
+body:has(#login-form) > #body-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+body:has(#login-form) #content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body:has(#login-form) #login-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Login card */
+body:has(#login-form) #login-form {
+    box-sizing: border-box;
+    width: 24rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 2.5rem;
+    background: #f8f4ec;
+    border: 1px solid #d9d2c4;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px -18px rgba(105, 82, 50, 0.28);
+}
+body:has(#login-form) #login-form > h1 {
+    margin: 0 0 1.5rem;
+    font-size: 0;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #3e362a;
+    text-align: left;
+}
+body:has(#login-form) #login-form > h1::after {
+    content: "Medical Record System";
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #3e362a;
+}
+/* hide the "Login" fieldset legend (lock icon + label) */
+body:has(#login-form) #login-form fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+body:has(#login-form) #login-form fieldset > legend {
+    display: none !important;
+}
+
+/* stack the username / password columns */
+body:has(#login-form) #login-form .row {
+    display: block !important;
+    margin: 0 !important;
+}
+body:has(#login-form) #login-form .row > [class*="col"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding: 0 !important;
+    margin: 0 0 1rem !important;
+}
+body:has(#login-form) #login-form label {
+    display: block;
+    margin: 0 0 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #5b5345;
+}
+body:has(#login-form) #login-form input[type="text"],
+body:has(#login-form) #login-form input[type="password"] {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 3rem;
+    padding: 0.5rem 0.75rem;
+    color: #3e362a;
+    background: #faf7f0;
+    border: 1px solid #c8bfae;
+    border-radius: 10px;
+    box-shadow: none;
+}
+body:has(#login-form) #login-form input[type="text"]:focus,
+body:has(#login-form) #login-form input[type="password"]:focus {
+    border-color: #0f8a3d;
+    outline: 2px solid #0f8a3d;
+    outline-offset: -2px;
+}
+
+/* Submit button */
+body:has(#login-form) #login-form #login-button.confirm {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0 1rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #0f8a3d;
+    border: 1px solid #0f8a3d;
+    border-radius: 10px;
+    cursor: pointer;
+}
+body:has(#login-form) #login-form #login-button.confirm:hover,
+body:has(#login-form) #login-form #login-button.confirm:focus {
+    color: #ffffff;
+    background: #0a5d28;
+    border-color: #0a5d28;
+}
+body:has(#login-form) #login-form #login-button.confirm.disabled,
+body:has(#login-form) #login-form #login-button.confirm:disabled {
+    background: #9dbfa9;
+    border-color: #9dbfa9;
+}
+
+/* "Can't log in?" link */
+body:has(#login-form) #login-form #cant-login {
+    color: #0f8a3d;
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+body:has(#login-form) #login-form #cant-login:hover {
+    text-decoration: underline;
+}
+
+/* location selector, only shown when more than one location exists */
+body:has(#login-form) #login-form #sessionLocation {
+    box-sizing: border-box;
+    width: 100% !important;
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    border: 1px solid #c8bfae;
+    border-radius: 10px;
+}
+
+/* Responsive: collapse the brand panel on small screens */
+@media (max-width: 900px) {
+    body:has(#login-form) {
+        flex-direction: column !important;
+    }
+    body:has(#login-form) > header {
+        flex: 0 0 auto;
+        max-width: 100%;
+        padding: 24px;
+    }
+    body:has(#login-form) > header::before,
+    body:has(#login-form) > header::after,
+    body:has(#login-form) > header .logo::after {
+        display: none !important;
+    }
+    body:has(#login-form) > header .logo a {
+        gap: 12px;
+    }
+    body:has(#login-form) > header .logo a::before {
+        width: 104px;
+        height: 104px;
+    }
+    body:has(#login-form) > header .logo a::after {
+        width: 150px;
+        height: 50px;
+    }
+    body:has(#login-form) > #body-wrapper {
+        padding: 24px;
+    }
+}
+
+/* ==========================================================================
+   Ministry of Health - "Choose login location" page (pihapps/loginLocation)
+   Scoped to body:has(#login-location-form) so it only affects that page.
+   ========================================================================== */
+
+body:has(#login-location-form) {
+    background: #ece8e1;
+}
+
+/* App header: light + branded so the dark logo is legible */
+body:has(#login-location-form) header {
+    background: #f3eee5 !important;
+    border-bottom: 1px solid #d9d2c4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+body:has(#login-location-form) header a,
+body:has(#login-location-form) header a:link,
+body:has(#login-location-form) header a:visited,
+body:has(#login-location-form) header a:hover {
+    background: transparent !important;
+    color: #4a4235 !important;
+}
+body:has(#login-location-form) header .navigation {
+    color: #4a4235;
+}
+body:has(#login-location-form) header .user-options .nav-item a:hover {
+    color: #0f8a3d !important;
+}
+body:has(#login-location-form) header .navigation {
+    height: auto !important;
+}
+body:has(#login-location-form) header .logo {
+    float: none;
+    display: flex;
+    align-items: center;
+}
+body:has(#login-location-form) header .logo img {
+    width: 240px;
+    height: auto;
+}
+@media (max-width: 640px) {
+    body:has(#login-location-form) header .logo img {
+        width: 120px;
+    }
+}
+
+/* Layout */
+body:has(#login-location-form) #content.container-fluid {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 24px 72px;
+}
+body:has(#login-location-form) #content::before {
+    content: "Choose your location";
+    display: block;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #3e362a;
+}
+body:has(#login-location-form) #breadcrumbs {
+    max-width: 1080px;
+    margin: 18px auto 0;
+    padding: 0 24px;
+    color: #6d6554;
+    font-size: 0.9rem;
+}
+
+/* Card */
+body:has(#login-location-form) #login-location-form {
+    background: #f8f4ec;
+    border: 1px solid #d9d2c4;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px -24px rgba(105, 82, 50, 0.22);
+    padding: 36px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+body:has(#login-location-form) #login-location-form label {
+    display: block;
+    margin: 0 0 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #3e362a;
+}
+body:has(#login-location-form) #visit-location-section {
+    padding-bottom: 26px;
+    border-bottom: 1px solid #e3ddd2;
+    margin-bottom: 26px;
+}
+
+/* Option grids */
+body:has(#login-location-form) #login-location-form ul.select {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: none;
+}
+body:has(#login-location-form) #login-location-form ul.select li.location-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto !important;
+    min-height: 56px;
+    margin: 0;
+    padding: 12px 16px;
+    background: #faf7f0;
+    color: #4a4235;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    border: 1px solid #c8bfae;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color .12s ease, background-color .12s ease, color .12s ease;
+}
+body:has(#login-location-form) #login-location-form ul.select li.location-list-item:hover {
+    border-color: #0f8a3d;
+    background: #eaf6ee;
+    color: #0a5d28;
+}
+body:has(#login-location-form) #login-location-form .visit-location-select li.location-list-item {
+    min-height: 68px;
+    font-size: 1.05rem;
+}
+body:has(#login-location-form) #login-location-form ul.select li.location-disabled {
+    opacity: 0.5;
+}
+body:has(#login-location-form) #login-location-form ul.select li.selected {
+    background: #0f8a3d;
+    border-color: #0f8a3d;
+    color: #ffffff;
+    opacity: 1;
+}
+body:has(#login-location-form) #login-location-form ul.select li.selected:hover {
+    background: #0a5d28;
+    border-color: #0a5d28;
+    color: #ffffff;
+}
+
+/* Cancel link, shown when switching an existing session */
+body:has(#login-location-form) #cancel-button-section {
+    max-width: 900px;
+    margin: 18px auto 0;
+    text-align: right;
+}
+body:has(#login-location-form) #cancel-button-section .cancel {
+    background: #faf7f0;
+    color: #0a5d28;
+    border: 1px solid #c8bfae;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+body:has(#login-location-form) #cancel-button-section .cancel:hover {
+    border-color: #0f8a3d;
+    background: #eaf6ee;
+}
+
+@media (max-width: 640px) {
+    body:has(#login-location-form) #content.container-fluid {
+        padding: 20px 14px 48px;
+    }
+    body:has(#login-location-form) #login-location-form {
+        padding: 22px;
+        border-radius: 14px;
+    }
+    body:has(#login-location-form) #login-location-form ul.select {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Ministry of Health - Patient registration (registrationapp.registerPatient)
+   Scoped to body:has(#registration).
+   ========================================================================== */
+
+body:has(#registration) {
+    background: #eae6df;
+}
+
+/* App header: light + branded so the dark logo is legible */
+body:has(#registration) header {
+    background: #f3eee5 !important;
+    border-bottom: 1px solid #d9d2c4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+body:has(#registration) header a,
+body:has(#registration) header a:link,
+body:has(#registration) header a:visited,
+body:has(#registration) header a:hover {
+    background: transparent !important;
+    color: #4a4235 !important;
+}
+body:has(#registration) header .navigation {
+    color: #4a4235;
+}
+body:has(#registration) header .user-options .nav-item a:hover {
+    color: #0f8a3d !important;
+}
+
+/* Layout */
+body:has(#registration) #content.container-fluid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+}
+body:has(#registration) #content > h2 {
+    margin: 0 0 28px;
+    padding: 4px 0 4px 18px;
+    border-left: 5px solid #0f8a3d;
+    color: #3e362a;
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* Step navigation (left rail) */
+body:has(#registration) #formBreadcrumb.options {
+    width: 230px;
+    margin: 0;
+    box-sizing: border-box;
+    background: #f8f4ec;
+    border: 1px solid #d9d2c4;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px -20px rgba(105, 82, 50, 0.25);
+    padding: 12px;
+}
+body:has(#registration) #formBreadcrumb.options > li {
+    width: auto;
+    box-sizing: border-box;
+    margin: 0 0 4px;
+    padding: 6px 10px;
+    border-radius: 9px;
+}
+body:has(#registration) #formBreadcrumb.options > li > span {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #3e362a;
+    line-height: 1.3;
+}
+body:has(#registration) #formBreadcrumb.options > li > ul {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+}
+body:has(#registration) #formBreadcrumb.options .question-legend {
+    display: block;
+    padding: 3px 8px;
+    border-radius: 7px;
+    color: #6d6554;
+    font-size: 0.84rem;
+    cursor: pointer;
+}
+body:has(#registration) #formBreadcrumb.options .question-legend:hover {
+    background: #eaf6ee;
+    color: #0a5d28;
+}
+body:has(#registration) #formBreadcrumb.options .question-legend i {
+    display: none;
+}
+body:has(#registration) #formBreadcrumb.options li.focused > ul .question-legend.focused,
+body:has(#registration) #formBreadcrumb.options .question-legend.focused {
+    background: #0f8a3d;
+    color: #ffffff;
+}
+body:has(#registration) #formBreadcrumb.options li.done > span::before {
+    content: "\2713  ";
+    color: #0f8a3d;
+}
+
+/* Section cards */
+body:has(#registration) #registration > section {
+    box-sizing: border-box;
+    width: calc(100% - 262px);
+    margin: 0 0 0 16px;
+    padding: 26px 28px;
+    background: #f8f4ec;
+    border: 1px solid #d9d2c4;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px -32px rgba(105, 82, 50, 0.25);
+    vertical-align: top;
+}
+body:has(#registration) #registration > section fieldset {
+    margin: 0 0 20px;
+    padding: 0;
+    border: none;
+}
+body:has(#registration) #registration > section legend {
+    display: block;
+    width: 100%;
+    margin: 0 0 4px;
+    padding: 0;
+    border: none;
+    color: #0a5d28;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+body:has(#registration) #registration > section h3 {
+    margin: 0 0 14px;
+    color: #3e362a;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+/* Form controls */
+body:has(#registration) #registration label {
+    color: #544c3e;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+body:has(#registration) #registration input[type="text"],
+body:has(#registration) #registration input[type="number"],
+body:has(#registration) #registration input[type="tel"],
+body:has(#registration) #registration input[type="date"],
+body:has(#registration) #registration select,
+body:has(#registration) #registration textarea,
+body:has(#registration) #registration input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]) {
+    box-sizing: border-box;
+    margin: 4px 6px 4px 0;
+    padding: 9px 12px;
+    background: #faf7f0;
+    border: 1px solid #c8bfae;
+    border-radius: 10px;
+    color: #4a4235;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+body:has(#registration) #registration input:focus,
+body:has(#registration) #registration select:focus,
+body:has(#registration) #registration textarea:focus {
+    outline: none;
+    border-color: #0f8a3d;
+    box-shadow: 0 0 0 3px rgba(15, 138, 61, 0.15);
+    background: #faf7f0;
+}
+body:has(#registration) #registration input[type="checkbox"] {
+    accent-color: #0f8a3d;
+    width: 17px;
+    height: 17px;
+}
+
+/* Buttons */
+body:has(#registration) #registration .confirm,
+body:has(#registration) #registration #next-button,
+body:has(#registration) #registration #prev-button,
+body:has(#registration) #registration input[type="submit"] {
+    background: #0f8a3d;
+    border: 1px solid #0f8a3d;
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 10px 22px;
+    cursor: pointer;
+}
+body:has(#registration) #registration .confirm:hover,
+body:has(#registration) #registration #next-button:hover,
+body:has(#registration) #registration #prev-button:hover {
+    background: #0a5d28;
+    border-color: #0a5d28;
+}
+body:has(#registration) #confirmation {
+    border-radius: 12px;
+}
+
+/* ==========================================================================
+   Ministry of Health - application-wide brand baseline
+   Applies MOH branding to the shared OpenMRS chrome and common components
+   while page-specific themes (login, location, registration) override below.
+   ========================================================================== */
+
+body {
+    background: #eae6df;
+}
+
+/* App header */
+header {
+    background: #f3eee5 !important;
+    border-bottom: 1px solid #d9d2c4;
+}
+header a,
+header a:visited,
+header a:hover,
+header a:link {
+    background: transparent !important;
+    color: #4a4235 !important;
+}
+.navigation {
+    color: #4a4235;
+}
+header .user-options {
+    color: #4a4235;
+}
+header .user-options li.change-location {
+    border-color: #c8bfae;
+}
+header .user-options li.change-location:hover,
+header .user-options li.change-location .focus {
+    background: #eaf6ee;
+}
+#session-location ul.select {
+    border-radius: 10px;
+}
+.navbar-toggler-icon {
+    filter: brightness(0.2);
+}
+
+/* Content shell */
+#content.container-fluid,
+#content.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+}
+
+/* Headings and links */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #3e362a;
+}
+a {
+    color: #0a5d28;
+}
+a:hover {
+    color: #0f8a3d;
+}
+a.queue-entry-link {
+    color: #0a5d28;
+    text-decoration: underline;
+}
+a:hover.queue-entry-link {
+    color: #3f8a5f;
+}
+
+/* Home dashboard accents */
+.dashboard .info-header {
+    border-bottom-color: #0f8a3d;
+}
+.dashboard .info-header i {
+    color: #0f8a3d;
+}
+.dashboard .action-section ul {
+    background: #0f8a3d;
+}
+.tag {
+    background: #0f8a3d;
+}
+.dashboard:hover .visit-link:hover {
+    color: #0a5d28;
+}
+
+/* Buttons */
+.button,
+button,
+input[type="submit"],
+input[type="button"],
+a.button {
+    color: #4a4235;
+}
+.button.task,
+button.task,
+a.button.task {
+    background: #0f8a3d;
+    border-color: #0f8a3d;
+    color: #ffffff;
+}
+.button.task:hover,
+button.task:hover,
+a.button.task:hover {
+    background: #0a5d28;
+    border-color: #0a5d28;
+}
+.button.confirm,
+button.confirm,
+input[type="submit"].confirm,
+input[type="button"].confirm,
+a.button.confirm {
+    background: #0f8a3d;
+    border-color: #0f8a3d;
+    color: #ffffff;
+}
+.button.confirm:hover,
+button.confirm:hover,
+input[type="submit"].confirm:hover,
+input[type="button"].confirm:hover,
+a.button.confirm:hover {
+    background: #0a5d28;
+    border-color: #0a5d28;
+}
+
+/* Form control focus */
+.form-control:focus {
+    border-color: #0f8a3d;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(15 138 61 / 25%);
+}
+form input:focus,
+form select:focus,
+form textarea:focus,
+.form input:focus,
+.form select:focus,
+.form textarea:focus,
+dialog input:focus,
+dialog select:focus,
+dialog textarea:focus,
+.dialog input:focus,
+.dialog select:focus,
+.dialog textarea:focus,
+ul.select:focus {
+    outline: none;
+    border-color: #0f8a3d !important;
+    box-shadow: 0 0 0 3px rgba(15, 138, 61, 0.15);
+    background: #faf7f0 !important;
+}
+
+/* Dialog headers */
+.dialog .dialog-header,
+.dialog-diagnoses .dialog-header,
+.ngdialog.ngdialog-theme-default .ngdialog-content .dialog-header {
+    background: #0f8a3d;
+    border-bottom-color: #0f8a3d;
+}
+
+/* Simple-form wizard accents */
+ul#formBreadcrumb li.doing {
+    border-left-color: #0f8a3d;
+}
+#save-form {
+    color: #0f8a3d;
+}
+
+/* Consistent control rounding and light borders */
+#content input[type="text"],
+#content input[type="number"],
+#content input[type="tel"],
+#content input[type="search"],
+#content input[type="date"],
+#content input[type="password"],
+#content select,
+#content textarea,
+.dialog input[type="text"],
+.dialog input[type="number"],
+.dialog select,
+.dialog textarea {
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #c8bfae;
+    padding: 8px 10px;
+    background: #faf7f0;
+    color: #4a4235;
+}
+#content .button,
+#content button,
+#content input[type="submit"],
+#content input[type="button"] {
+    border-radius: 8px;
+}
+#content .button.task,
+#content button.task,
+#content .button.confirm,
+#content button.confirm {
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* === Home dashboard function tiles === */
+.button.app.big {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 45%, #1e3a8a 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    border-radius: 14px !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 14px rgba(30, 58, 138, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.button.app.big i {
+    color: #ffffff !important;
+}
+.button.app.big:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #4f94ff 0%, #2f6beb 45%, #1e40af 100%) !important;
+    box-shadow: 0 10px 20px rgba(30, 58, 138, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+}
+.button.app.big:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+}
+
+
+/* Brand header logo: a bit larger on HTML form entry pages */
+body:has(#htmlform) header .logo img {
+    width: 240px;
+    height: auto;
+}
+body:has(#htmlform) .navbar {
+    min-height: 7.7em;
+}
+
+/* === Labs pages styled to match the (General) Treatment Registers === */
+
+/* White cards with the same border as the register sections */
+body:has(#orders-table) #view-orders-section,
+body:has(#orders-table) #edit-specimen-encounter-section,
+body:has(#orders-table) #edit-reason-not-performed-section,
+body:has(#orders-table) #record-lab-results-section,
+body:has(.lab-order-entry) .lab-order-entry,
+body:has(.lab-order-entry) .draft-wrapper {
+    background: #ffffff;
+    border: 1px solid rgb(217, 210, 196);
+    border-radius: 0;
+    margin-bottom: 14px;
+    padding: 0 14px 14px;
+}
+
+/* Navy section-header bars, matching the register section headers */
+body:has(#orders-table) #view-orders-section > .row:first-child,
+body:has(#orders-table) #edit-specimen-encounter-section > .row,
+body:has(#orders-table) #edit-reason-not-performed-section > .row,
+body:has(#orders-table) #record-lab-results-section > .row,
+body:has(.lab-order-entry) .lab-order-entry > h3 {
+    background: rgb(29, 61, 92);
+    color: #ffffff;
+    margin: 0 -14px 14px;
+    padding: 8px 14px;
+}
+body:has(#orders-table) #view-orders-section h3,
+body:has(#orders-table) #edit-specimen-encounter-section h3,
+body:has(#orders-table) #edit-reason-not-performed-section h3,
+body:has(#orders-table) #record-lab-results-section h3,
+body:has(.lab-order-entry) .lab-order-entry > h3,
+body:has(.lab-order-entry) .h5-draft-header {
+    color: #ffffff;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+/* Header-bar controls (group-by toggle, Add Lab orders) */
+body:has(#orders-table) #view-orders-section > .row:first-child .text-muted {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+body:has(#orders-table) #view-orders-section > .row:first-child #grouping-toggle .btn {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+}
+body:has(#orders-table) #view-orders-section > .row:first-child #grouping-toggle .btn.active {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: rgb(29, 61, 92);
+}
+body:has(#orders-table) #view-orders-section > .row:first-child a.btn-secondary {
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+    color: rgb(29, 61, 92) !important;
+}
+
+/* Lab order entry: draft header + confirm/cancel buttons like the htmlform ones */
+body:has(.lab-order-entry) .h5-draft-header {
+    background: rgb(29, 61, 92);
+    margin: 0 -14px 10px;
+    padding: 8px 14px;
+}
+body:has(.lab-order-entry) .confirm.modified-btn {
+    background: rgb(15, 138, 61);
+    border: 1px solid rgb(15, 138, 61);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 20px;
+}
+body:has(.lab-order-entry) .confirm.modified-btn:disabled {
+    background: #cccccc;
+    border-color: #cccccc;
+    color: #ffffff;
+}
+body:has(.lab-order-entry) .modified-btn.cancel,
+body:has(.lab-order-entry) #cancel-button {
+    background: rgb(255, 61, 61);
+    border: 1px solid rgb(255, 61, 61);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 8px 20px;
+}
+
+/* Register forms: capture encounter time but keep the time controls hidden */
+body:has(#who-when-where) select.hfe-hours,
+body:has(#who-when-where) select.hfe-minutes,
+body:has(#who-when-where) select.hfe-seconds {
+    display: none !important;
+}

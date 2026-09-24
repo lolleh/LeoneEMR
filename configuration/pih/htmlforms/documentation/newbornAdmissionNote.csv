@@ -1,6 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Encounter Provider,Provider,List of available providers,provider select,Yes,no,,,,
-Encounter Location,Location,List of available locations,location select,Yes,no,,,,
-Admission date/time,Date,N/A,date/time,Yes,no,CIEL:1640,,,
-Diagnoses (encounterDiagnosesByObs),Other,Select via Encounter Diagnoses widget,diagnoses widget,Yes,no,,,,
-Prior diagnoses included,Other,Pull from prior encounter with disposition ADMIT,info,No,no,,,,

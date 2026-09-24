@@ -1,0 +1,23 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Visit Note plan,Text,N/A,textarea,No,no,CIEL:163104,,,
+Date of test,Coded,N/A,radio,No,no,PIH:12847,,,PIH:Radiology report construct
+"if other, specify:",Text,N/A,text,No,no,PIH:8596,,,PIH:Radiology report construct
+"if other, specify:",Coded,N/A,radio,No,no,PIH:12847,,"if other, specify:",PIH:Radiology report construct
+"if other, specify:",Text,N/A,text,No,no,PIH:8596,,"if other, specify:",PIH:Radiology report construct
+Abdominal ultrasound findings,Coded,N/A,radio,No,no,PIH:12847,,Abdominal ultrasound findings,PIH:Radiology report construct
+"if other, specify:",Text,N/A,text,No,no,PIH:8596,,Abdominal ultrasound findings,PIH:Radiology report construct
+Electrocardiogram (EKG) findings,Coded,N/A,radio,No,no,PIH:12847,,Electrocardiogram (EKG) findings,PIH:Radiology report construct
+"if other, specify:",Text,N/A,text,No,no,PIH:8596,,Electrocardiogram (EKG) findings,PIH:Radiology report construct
+Echocardiogram findings,Coded,N/A,radio,No,no,PIH:12847,,Echocardiogram findings,PIH:Radiology report construct
+"if other, specify:",Text,N/A,text,No,no,PIH:8596,,Echocardiogram findings,PIH:Radiology report construct
+"if other, specify:",Coded,Patient needs to bring their radiology images/results to next visit,checkbox,No,no,PIH:21460,CIEL:1065,,
+Subform: drug-order-widget.xml,Other,Subform — configuration/pih/subforms/drug-order-widget.xml,subform,No,no,,,,
+Remarks,Coded,N/A,radio,No,no,PIH:10637,,,
+Category instructions,Coded,Diabetes | Hypertension | Heart failure | Chronic respiratory disease program | Chronic kidney disease | Cirrhosis of liver | Palliative treatment | Sickle cell disease | Other,checkbox,No,no,PIH:NCD category,PIH:DIABETES|PIH:HYPERTENSION|PIH:HEART FAILURE|PIH:Chronic respiratory disease program|CIEL:145438|PIH:3714|CIEL:160849|PIH:Sickle-Cell Anemia|CIEL:5622,Category instructions,PIH:15001
+Clinical impressions,Text,N/A,textarea,No,no,CIEL:162749,,,
+Clinical impressions,Coded,Medication prescribed,checkbox,No,no,PIH:10528,CIEL:1065,,
+Clinical impressions,Coded,Waiting for lab results,checkbox,No,no,PIH:11778,PIH:2224,,
+Disposition,Other,Disposition widget,disposition widget,Yes,no,,,,
+Comment,Text,N/A,text,No,no,PIH:DISPOSITION COMMENTS,,,
+Next appointment date,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,
+Next re-filling date,Date,N/A,date,No,no,CIEL:162549,,,

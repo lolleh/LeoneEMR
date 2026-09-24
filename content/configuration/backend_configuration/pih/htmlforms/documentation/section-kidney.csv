@@ -1,0 +1,25 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Chronic renal failure secondary to:,Coded,Hypertension | Diabetes | Unknown | Adverse reaction to non-steroidal anti-inflammatory drug (NSAID) | Acute tubular necrosis | Glomerulonephritis,checkbox,No,no,PIH:14765,CIEL:117399|CIEL:119481|CIEL:1067|CIEL:155008|CIEL:149486|CIEL:117780,Chronic renal failure secondary to:,
+Chronic renal failure secondary to:,Coded,Other,checkbox,No,no,PIH:14765,CIEL:5622,,
+Biopsy performed,Coded,Yes | No,radio,No,Yes → show #biopsy-details,PIH:14815,CIEL:1065|CIEL:1066,,
+Biopsy performed,Coded,N/A,radio,No,no,PIH:3597,,,
+Nephrotic syndrome likely related with:,Coded,Nephrotic syndrome with lesion of minimal change glomerulonephritis | Nephrotic syndrome related to membraneous glomerulonephritis (GN),checkbox,No,no,PIH:14766,CIEL:115745|PIH:14767,Nephrotic syndrome likely related with:,
+Nephrotic syndrome likely related with:,Coded,Other,checkbox,No,no,PIH:14766,CIEL:5622,,
+Chronic renal failure secondary to:,Coded,"Chronic Kidney Disease, Stage I | Chronic Kidney Disease, Stage II (Mild) | Chronic Kidney Disease, Stage III (Moderate) | Chronic Kidney Disease, Stage IV (Severe) | Chronic Kidney Disease, Stage V",radio,No,no,CIEL:165570,CIEL:120575|CIEL:120574|CIEL:120579|CIEL:120578|CIEL:120577,,
+Clinical indicators,Coded,Oedema | Anemia | Hyperlipidemia,radio,No,no,,CIEL:460|CIEL:121629|CIEL:117441,Clinical indicators,PIH:14732
+Hypertension controlled,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-control-details,PIH:14716,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Understands treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-understands-details,CIEL:167914,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Ability to titrate treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-titrate-details,PIH:14741,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Overall treatment adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Missed doses in past week,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-missed-details,CIEL:167819,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Aware and understands the disease,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+# of missed doses in past week,Coded,N/A,radio,No,no,CIEL:167918,,Clinical indicators,PIH:14717
+Stable creatinine level,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-creatinine-details,PIH:14718,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Proteinuria,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-pu-details,CIEL:128340,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Patient condition improved,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+CKD/nephrotic syndrome control,Coded,Controlled | Uncontrolled | Complications,radio,Yes,Not controlled → show #ckd-fui-uncontrolled,PIH:11506,PIH:11507|PIH:11508|PIH:11509,Clinical indicators,PIH:14717
+Send for admission,Coded,Yes | No | Unknown,radio,No,no,CIEL:1788,PIH:YES|PIH:NO|PIH:UNKNOWN,Clinical indicators,PIH:14717
+Glomerulonephritis/nephrotic syndrome relapse,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-glomer-details,PIH:14721,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Dialysis referral,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-dialysis-details,PIH:14719,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+On dialysis,Coded,Yes | No | Unknown,radio,No,Yes → show #ckd-fui-onDial-details,PIH:14720,PIH:YES|PIH:NO|CIEL:1067,,PIH:14717
+Remarks,Coded,N/A,radio,No,no,PIH:14813,,,

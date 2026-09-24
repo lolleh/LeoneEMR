@@ -1,0 +1,6 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Hospitalization in previous 12 months,Coded,Yes | No | Unknown,radio,Yes,Yes → show #hospital-details,CIEL:5703,CIEL:1065|CIEL:1066|CIEL:1067,,
+Hospitalization since last visit,Coded,Yes | No | Unknown,radio,Yes,Yes → show #hospital-details,CIEL:976,CIEL:1065|CIEL:1066|CIEL:1067,,
+Number of hospitalizations in previous 12 months,Coded,N/A,radio,No,no,CIEL:5704,,,
+Number of hospitalizations since last visit,Coded,N/A,radio,No,no,CIEL:1773,,,
+Number of hospitalizations for NCDs,Coded,N/A,radio,No,no,PIH:15160,,,

@@ -1,0 +1,328 @@
+{
+  "@openmrs/esm-api": {
+    "redirectAuthFailure": {
+      "url": "${openmrsBase}/authenticationui/login/login.page"
+    }
+  },
+  "@openmrs/esm-appointments-app": {
+    "allowAllDayAppointments": false,
+    "checkInButton": {
+      "showIfActiveVisit": true
+    },
+    "customPatientChartUrl": "${openmrsBase}/coreapps/clinicianfacing/patient.page?patientId=${patientUuid}&app=pih.app.clinicianDashboard",
+    "includePhoneNumberInExcelSpreadsheet": true
+  },
+  "@openmrs/esm-dispensing-app": {
+    "extensionSlots": {
+      "dispensing-condition-and-diagnoses": {
+        "remove": [
+          "patient-diagnoses",
+          "patient-conditions"
+        ]
+      }
+    },
+    "actionButtons": {
+      "printPrescriptionsButton": {
+        "enabled": false
+      }
+    },
+    "dispenseBehavior": {
+      "allowModifyingPrescription": true,
+      "restrictTotalQuantityDispensed": false
+    },
+    "completeOrderWithThisDispense": true,
+    "dispenserProviderRoles": [
+      "8fd1552e-6cb9-4719-b198-23a2c512a073",
+      "7ec19cca-f563-4cee-940f-effec16b3b80"
+    ],
+    "locationBehavior": {
+      "locationColumn": {
+        "enabled": true
+      },
+      "locationFilter": {
+        "enabled": true,
+        "tag": "Login Location"
+      },
+      "restrictToVisitLocationDescendants": true
+    },
+    "valueSets": {
+      "reasonForPause": {
+        "uuid": "2dd3e5c0-3d3f-4f3d-9860-19b3f9ab26ff"
+      },
+      "reasonForClose": {
+        "uuid": "bd6c1fc2-7cfc-4562-94a0-e4765e5e977e"
+      },
+      "substitutionReason": {
+        "uuid": "f5de534f-e613-4b44-bc30-dbbf5a0e8a0b"
+      },
+      "substitutionType": {
+        "uuid": "1aa1f86e-8aae-4dec-8c3b-a9937bd63d72"
+      }
+    },
+    "leftNavMode": "hidden",
+    "Translation overrides": {
+      "en": {
+        "fillPrescription": "Fill paper prescription"
+      },
+      "fr": {
+        "fillPrescription": "Remplir une ordonnance papier"
+      }
+    }
+  },
+  "@openmrs/esm-fast-data-entry-app": {
+    "formCategories": [
+      {
+        "name": "Check-In",
+        "forms": [
+          {
+            "name": "Check-In",
+            "formUUID": "6058e2e0-7428-11e5-a837-0800200c9a66"
+          }
+        ]
+      }
+    ],
+    "formCategoriesToShow": [
+      "Check-In"
+    ]
+  },
+  "@openmrs/esm-form-builder-app": {
+    "showSchemaSaveWarning": false
+  },
+  "@openmrs/esm-help-menu-app": {
+    "extensionSlots": {
+      "help-menu-slot": {
+        "remove": [
+          "release-notes", "docs", "contact-us", "tutorials"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-home-app": {
+    "extensionSlots": {
+      "homepage-dashboard-slot": {
+        "remove": [
+          "laboratory-dashboard-link",
+          "patient-lists-dashboard-link",
+          "service-queues-dashboard-link"
+        ],
+        "add": [
+          "queue-table-by-status-menu-dashboard-link"
+        ],
+        "order": [
+          "home-widget-db-link",
+          "queue-table-by-status-menu-dashboard-link",
+          "clinical-appointments-dashboard-link",
+          "audit-dashboard-link"
+        ]
+      }
+    },
+    "leftNavMode": "hidden"
+  },
+  "@openmrs/esm-login-app": {
+    "logo": {
+      "src": "${openmrsSpaBase}/pih-logo.png",
+      "alt": "Ministry of Health"
+    },
+    "links": {
+      "loginSuccess": "${openmrsBase}/index.htm"
+    },
+    "provider": {
+      "type": "custom",
+      "loginUrl": "${openmrsBase}/index.htm",
+      "logoutUrl": "${openmrsBase}/appui/header/logout.action"
+    }
+  },
+  "@openmrs/esm-outpatient-app": {
+    "concepts": {
+      "systolicBloodPressureUuid": "3ce934fa-26fe-102b-80cb-0017a47871b2",
+      "diastolicBloodPressureUuid": "3ce93694-26fe-102b-80cb-0017a47871b2",
+      "pulseUuid": "3ce93824-26fe-102b-80cb-0017a47871b2",
+      "temperatureUuid": "3ce939d2-26fe-102b-80cb-0017a47871b2",
+      "oxygenSaturationUuid": "3ce9401c-26fe-102b-80cb-0017a47871b2",
+      "heightUuid": "3ce93cf2-26fe-102b-80cb-0017a47871b2",
+      "weightUuid": "3ce93b62-26fe-102b-80cb-0017a47871b2",
+      "respiratoryRateUuid": "3ceb11f8-26fe-102b-80cb-0017a47871b2",
+      "generalPatientNoteUuid": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "midUpperArmCircumferenceUuid": "4326b04b-3158-417a-bb8d-ad022295b0f4",
+      "historicalObsConceptUuid": [ "3ce93cf2-26fe-102b-80cb-0017a47871b2", "3ce93b62-26fe-102b-80cb-0017a47871b2" ]
+    },
+    "contactAttributeType": ["14d4f066-15f5-102d-96e4-000c29c2a5d7"],
+    "vitals": {
+      "encounterTypeUuid": "4fb47712-34a6-40d2-8ed3-e153abbd25b7"
+    },
+    "showQueueTableTab": true,
+    "showRecommendedVisitTypeTab": false
+  },
+  "@openmrs/esm-patient-allergies-app": {
+    "concepts": {
+      "drugAllergenUuid": "4c886e88-04c1-11e5-8418-1697f925ec7b",
+      "environmentalAllergenUuid": "4c887806-04c1-11e5-8418-1697f925ec7b",
+      "foodAllergenUuid": "4c887216-04c1-11e5-8418-1697f925ec7b",
+      "mildReactionUuid": "3cdef9ae-26fe-102b-80cb-0017a47871b2",
+      "moderateReactionUuid": "3cdef832-26fe-102b-80cb-0017a47871b2",
+      "severeReactionUuid": "3cdefc92-26fe-102b-80cb-0017a47871b2",
+      "allergyReactionUuid": "4c8865b4-04c1-11e5-8418-1697f925ec7b",
+      "otherConceptUuid": "3cee7fb4-26fe-102b-80cb-0017a47871b2"
+    }
+  },
+
+  "@openmrs/esm-patient-banner": {
+    "contactAttributeType": ["14d4f066-15f5-102d-96e4-000c29c2a5d7"],
+    "extensionSlots": {
+      "patient-actions-slot": {
+        "remove": [
+          "add-past-visit-button",
+          "add-patient-to-patient-list-button",
+          "cancel-visit-button",
+          "edit-patient-details-button",
+          "start-visit-button",
+          "stop-visit-button",
+          "mark-alive-button",
+          "mark-patient-deceased-button"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-patient-biometrics-app": {
+    "concepts": {
+      "heightUuid": "3ce93cf2-26fe-102b-80cb-0017a47871b2",
+      "weightUuid": "3ce93b62-26fe-102b-80cb-0017a47871b2",
+      "muacUuid": "4326b04b-3158-417a-bb8d-ad022295b0f4"
+    },
+    "vitals": {
+      "encounterTypeUuid": "4fb47712-34a6-40d2-8ed3-e153abbd25b7"
+    }
+  },
+  "@openmrs/esm-patient-chart-app": {
+      "restrictByVisitLocationTag": true,
+      "showUpcomingAppointments": true,
+      "visitAttributeTypes": []
+  },
+  "@openmrs/esm-patient-forms-app": {
+    "customFormsUrl": "/ws/rest/v1/pihcore/patientforms?patientUuid=${patientUuid}&visitUuid=${visitUuid}"
+  },
+  "@openmrs/esm-patient-medications-app": {
+    "daysDurationUnit": {
+      "uuid": "3cd706b8-26fe-102b-80cb-0017a47871b2"
+    },
+    "clinicianEncounterRole": "c458d78e-8374-4767-ad58-9f8fe276e01c",
+    "requireIndication": false,
+    "prescriberProviderRoles": ["2fa6f8da-aa58-11e8-98d0-529269fb1459"],
+    "Translation overrides": {
+      "en": {
+        "searchFieldPlaceholder": "Search for a drug"
+      },
+      "fr": {
+        "searchFieldPlaceholder": "Chercher un médicament"
+      }
+    },
+    "extensionSlots": {
+      "allergy-list-pills-slot": {
+        "remove": [
+          "allergies-list"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-patient-notes-app": {
+    "visitNoteConfig": {
+      "clinicianEncounterRole": "c458d78e-8374-4767-ad58-9f8fe276e01c",
+      "encounterTypeUuid": "c30d6e06-0f00-460a-8f81-3c39a1853b56",
+      "encounterNoteTextConceptUuid": "3cd9d956-26fe-102b-80cb-0017a47871b2",
+      "visitDiagnosesConceptUuid": "159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "formConceptUuid": ""
+    }
+  },
+  "@openmrs/esm-patient-search-app": {
+    "extensionSlots": {
+      "start-visit-button-slot2": {
+        "remove": [
+          "patient-search-start-visit-button"
+        ]
+      },
+      "patient-search-actions-slot": {
+        "remove": [
+          "add-past-visit-button",
+          "cancel-visit-button",
+          "edit-patient-details-button",
+          "stop-visit-button-patient-search"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-patient-tests-app": {
+    "resultsViewerConcepts": [
+      {
+        "conceptUuid": "517d25f7-2e68-4da4-912b-76090fbfe0fd",
+        "defaultOpen": true
+      }
+    ],
+    "orders": {
+      "labOrderTypeUuid": "52a447d3-a64a-11e3-9aeb-50e549534c5e",
+      "labOrderableConcepts": "517d25f7-2e68-4da4-912b-76090fbfe0fd"
+    }
+  },
+  "@openmrs/esm-patient-vitals-app": {
+    "concepts": {
+      "systolicBloodPressureUuid": "3ce934fa-26fe-102b-80cb-0017a47871b2",
+      "diastolicBloodPressureUuid": "3ce93694-26fe-102b-80cb-0017a47871b2",
+      "pulseUuid": "3ce93824-26fe-102b-80cb-0017a47871b2",
+      "temperatureUuid": "3ce939d2-26fe-102b-80cb-0017a47871b2",
+      "oxygenSaturationUuid": "3ce9401c-26fe-102b-80cb-0017a47871b2",
+      "heightUuid": "3ce93cf2-26fe-102b-80cb-0017a47871b2",
+      "weightUuid": "3ce93b62-26fe-102b-80cb-0017a47871b2",
+      "respiratoryRateUuid": "3ceb11f8-26fe-102b-80cb-0017a47871b2",
+      "generalPatientNoteUuid": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "midUpperArmCircumferenceUuid": "4326b04b-3158-417a-bb8d-ad022295b0f4",
+      "vitalSignsConceptSetUuid": "80c8b161-a871-42db-a1ca-185095a1d798"
+    },
+    "vitals": {
+      "encounterTypeUuid": "4fb47712-34a6-40d2-8ed3-e153abbd25b7"
+    }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "extensionSlots": {
+      "app-menu-slot": {
+        "remove": [
+          "dispensing-link",
+          "forms-app-link",
+          "offline-tools-link",
+          "system-administration-app-menu-link"
+        ]
+      },
+      "top-nav-actions-slot": {
+        "remove": [
+          "add-patient-action",
+          "implementer-tools-button",
+          "patient-search-icon"
+        ]
+      },
+      "user-panel-slot": {
+        "remove": [
+          "offline-tools-opt-in-offline-mode-button"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-service-queues-app": {
+    "customPatientChartUrl": "${openmrsBase}/coreapps/clinicianfacing/patient.page?patientId=${patientUuid}&app=pih.app.clinicianDashboard"
+  },
+  "@openmrs/esm-styleguide": {
+    "Brand color #1": "#FB9500",
+    "Brand color #2": "#FB9500",
+    "Brand color #3": "#D87100"
+  },
+  "@openmrs/esm-patient-orders-app": {
+    "orderEncounterType": "0b242b71-5b60-11eb-8f5a-0242ac110002",
+    "ordererProviderRoles": ["2fa6f8da-aa58-11e8-98d0-529269fb1459"],
+    "orderLocationTagName": "Login Location",
+    "extensionSlots": {
+      "order-basket-slot": {
+        "remove": [
+          "lab-order-panel"
+        ]
+      }
+    },
+    "_comment": "TODO: order encounter type refers to Drug Order Documentation encounter; we likely will need another encounter type, or, better yet, none at all"
+  }
+}

@@ -1,0 +1,14 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Type of hypertension,Coded,Essential | Secondary,radio,No,no,PIH:11940,CIEL:140987|CIEL:113087,,
+Stage label,Coded,Pre-HTN | 1 (Mild) | 2 (Moderate),radio,No,no,CIEL:165583,CIEL:165206|CIEL:165203|CIEL:165204,,
+Hypertension summary,Coded,N/A,radio,No,no,PIH:11971,,,
+Complications related to hypertension,Coded,Cerebrovascular accident | Chronic kidney disease | Heart failure | Other,checkbox,No,no,PIH:14456,CIEL:111103|CIEL:145438|CIEL:139069|CIEL:5622,Complications related to hypertension,
+"if other, specify",Coded,N/A,radio,No,no,PIH:14457,,,
+Aware and understands the disease,Coded,Yes | No | Unknown,radio,No,Yes → show #htn-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14462
+Understands treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #htn-fui-understand-details,CIEL:167914,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14462
+Overall treatment adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #htn-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14462
+Missed doses in past week,Coded,Yes | No | Unknown,radio,No,Yes → show #htn-fui-missed-details,CIEL:167819,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14462
+# of missed doses in past week,Coded,N/A,radio,No,no,CIEL:167918,,Self management and awareness,PIH:14462
+Patient condition improved,Coded,Yes | No | Unknown,radio,Yes,Yes → show #htn-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|PIH:UNKNOWN,,PIH:14462
+Disease control,Coded,Controlled | Uncontrolled | Complications,radio,No,no,PIH:11506,PIH:11507|PIH:11508|PIH:11509,Self management and awareness,PIH:14462
+Dangerous BP indicates hospitalization,Coded,Yes | No | Unknown,radio,No,no,PIH:20003,CIEL:1065|CIEL:1066|CIEL:1067,Self management and awareness,PIH:14462

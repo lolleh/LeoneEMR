@@ -1,0 +1,24 @@
+key: "AboveFivePatientList"
+uuid: "d09debb5-85a6-420f-bec9-7583c9ab6a12"
+name: "Above Five Register - Patient List"
+description: "Above Five Register - Patient List"
+parameters:
+  - key: "startDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.startDate"
+  - key: "endDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.endDate"
+datasets:
+  - key: "aboveFivePatientList"
+    type: "sql"
+    config: "sql/aboveFivePatientList.sql"
+designs:
+  - type: "csv"
+    properties:
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+config:
+  category: "dataExport"
+  order: 81

@@ -1,5 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Encounter Diagnoses widget,Other,Select one or more diagnoses,diagnoses widget,Yes,no,,,,
-Visit Diagnoses grouping,Other,Group for visit diagnoses,obsgroup,No,no,PIH:Visit Diagnoses,,,
-Diagnosis - coded,Coded,Many diagnosis options,checkbox/radio,Yes/no,PIH:DIAGNOSIS,CIEL:...,Visit Diagnoses,PIH:Visit Diagnoses,
-Free-text diagnosis/comments,Text,N/A,textarea,No,no,CIEL:161011,,,

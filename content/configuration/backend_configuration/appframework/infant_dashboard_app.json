@@ -1,0 +1,345 @@
+[
+  {
+    "id": "infant.dashboard.indicator",
+    "icon": "fas fa-fw fa-child",
+    "label": "pihcore.newbornIndicators.ucase",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 1,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/newbornIndicators",
+          "fragmentConfig": {
+            "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "infant.dashboard.visits",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 2,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "clinicianfacing/visitsSection"
+        }
+      }
+    ],
+    "config": {
+      "label": "RECENT VISITS"
+    }
+  },
+  {
+    "id": "infant.dashboard.newbornAssesmentEncounters",
+    "icon": "fas fa-fw fa-user-md",
+    "label": "NEWBORN ASSESSMENT",
+    "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 3,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/encounters"
+        }
+      }
+    ],
+    "config": {
+      "encounterTypes": [
+        {
+          "encounterType": "6444b8d4-407d-444d-aa15-d6dff204ed83",
+          "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}&visit={{visit.uuid}}#/overview"
+        }
+      ],
+      "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+    }
+  },
+  {
+    "id": "infant.dashboard.newbornDailyProgressEncounters",
+    "icon": "fas fa-fw fa-user-md",
+    "label": "NEWBORN DAILY PROGRESS",
+    "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 4,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/encounters"
+        }
+      }
+    ],
+    "config": {
+      "encounterTypes": [
+        {
+          "encounterType": "7e42e652-89e7-4559-80fd-41f42826c98c",
+          "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}&visit={{visit.uuid}}#/overview"
+        }
+      ],
+      "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+    }
+  },
+  {
+    "id": "infant.dashboard.apgar",
+    "icon": "fas fa-fw fa-child",
+    "label": "APGAR SCORES",
+    "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 5,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/discreteValues",
+          "fragmentConfig": {
+            "fields": [
+              {
+                "label" : "pihcore.apgar.tenMinutes",
+                "concept": "6e9bbae6-253d-4b9e-ad22-c552ba51f2eb",
+                "minValue": "7"
+              },
+              {
+                "label" : "pihcore.apgar.fiveMinutes",
+                "concept": "159604AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "minValue": "7"
+              },
+              {
+                "label" : "pihcore.apgar.oneMinute",
+                "concept": "6032b22c-e416-4c26-9962-ab061dc97ad8",
+                "minValue": "7"
+              }
+            ],
+            "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "infant.dashboard.weightGraph",
+    "icon": "fas fa-fw fa-chart-bar",
+    "label": "WEIGHT",
+    "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.firstColumnFragments",
+        "order": 6,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ],
+    "config": {
+      "widget": "obsgraph",
+      "icon": "fas fa-fw fa-chart-bar",
+      "label": "pih.app.hivWeightGraph.title",
+      "conceptId": "3ce93b62-26fe-102b-80cb-0017a47871b2",
+      "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845",
+      "maxResults": "100"
+    }
+  },
+  {
+    "id": "infant.dashboard.patientLocation",
+    "icon": "icon-map-marker",
+    "label": "pihcore.patientLocation.ucase",
+    "url": null,
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 1,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/patientLocation"
+        }
+      }
+    ],
+    "config": {
+      "showAdmissionTypeAtLocation": "0ce2f6fb-6850-11ee-ab8d-0242ac120002"
+    }
+  },
+  {
+    "id": "infant.dashboard.currentEnrollment",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 2,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ],
+    "config": {
+      "widget": "programstatus",
+      "icon": "fas fa-fw fa-stethoscope",
+      "label": "coreapps.currentEnrollmentDashboardWidget.label",
+      "program": "dc1b588a-9b94-45e4-8346-71b7c9a24845",
+      "locationTag": "Program Location",
+      "markPatientDeadOutcome": "3cdd446a-26fe-102b-80cb-0017a47871b2",
+      "dashboard": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+    }
+  },
+  {
+    "id": "infant.dashboard.previousEnrollments",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 3,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "program/programHistory"
+        }
+      }
+    ],
+    "config": {
+      "widget": "programstatus",
+      "icon": "fas fa-fw fa-stethoscope",
+      "label": "coreapps.programHistoryDashboardWidget.label",
+      "program": "dc1b588a-9b94-45e4-8346-71b7c9a24845",
+      "includeActive": false,
+      "locationTag": "Program Location",
+      "markPatientDeadOutcome": "3cdd446a-26fe-102b-80cb-0017a47871b2",
+      "dashboard": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+    }
+  },
+  {
+    "id": "infant.dashboard.allergies",
+    "icon": "fas fa-fw fa-allergies",
+    "label": "allergyui.allergies",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 4,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "allergyui",
+          "fragment": "allergies"
+        }
+      }
+    ],
+    "config": {}
+  },
+  {
+    "id": "infant.dashboard.dispensedMeds",
+    "icon": "fas fa-fw fa-pills",
+    "label": "mirebalais.dispensing.title",
+    "url": "dispensing/patient.page?patientId={{patient.uuid}}",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 5,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/medsDispensed"
+        }
+      }
+    ],
+    "config": {
+      "maxDatesToShow": 5,
+      "detailsUrl": "pihcore/meds/dispensingSummary.page?patientId={{patient.uuid}}"
+    }
+  },
+  {
+    "id": "infant.dashboard.vaccinations",
+    "icon": "fas fa-fw fa-syringe",
+    "label": "mirebalais.vaccinations.title",
+    "url": "/pihcore/patient/vaccinations.page?patientId={{patient.uuid}}",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 6,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/vaccinations",
+          "fragmentConfig": {
+            "vaccinations": [
+              "3cd4e004-26fe-102b-80cb-0017a47871b2",
+              "3cd42c36-26fe-102b-80cb-0017a47871b2",
+              "162586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "pregnancy.dashboard.temperature",
+    "icon": "fas fa-fw fa-temperature-high",
+    "label": "pihcore.temperature.ucase",
+    "url": "/pihcore/visit/visit.page?patient={{patient.uuid}}#/visitList",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 7,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "pihcore",
+          "fragment": "dashboardwidgets/obsByEncounter"
+        }
+      }
+    ],
+    "config": {
+      "headers": [
+        "coreapps.date",
+        "pihcore.temp"
+      ],
+      "concepts": [
+        "3ce939d2-26fe-102b-80cb-0017a47871b2" 
+      ],
+      "showTime": true,
+      "minValue": "35.9",
+      "maxValue": "38",
+      "maxRecords": "5",
+      "visitUrl": "/pihcore/visit/visit.page?patient={{patient.uuid}}&visit={{visit.uuid}}#/overview" ,
+      "duringCurrentEnrollmentInProgram": "dc1b588a-9b94-45e4-8346-71b7c9a24845"
+    }
+  },
+  {
+    "id": "infant.dashboard.attachments",
+    "icon": "fas fa-fw fa-paperclip",
+    "label": "pihcore.patientDocuments.label",
+    "url": "/coreapps/attachments/attachments.page?patient={{patient.uuid}}&patientId={{patient.patientId}}",
+    "extensions": [
+      {
+        "extensionPointId": "dc1b588a-9b94-45e4-8346-71b7c9a24845.secondColumnFragments",
+        "order": 8,
+        "requiredPrivilege": "App: coreapps.patientDashboard",
+        "require": null,
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "attachments/dashboardWidget"
+        }
+      }
+    ],
+    "config": null
+  }
+]

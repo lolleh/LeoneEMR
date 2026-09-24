@@ -1,4 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Palliative diagnoses (non-tumoral),Coded,Refractory heart disease | CLD | CKD,checkbox,No,Only for intake,PIH:14773,PIH:14772|CIEL:155569|CIEL:145438,Visit Diagnoses,PIH:Visit Diagnoses
-Palliative diagnoses (tumoral),Coded,Hepatocarcinoma | Prostate | Breast | Lung | Hematology,checkbox,No,Only for intake,PIH:14773,CIEL:116066|CIEL:134788|CIEL:116026|CIEL:133328|PIH:14771,Visit Diagnoses,PIH:Visit Diagnoses
-Followup indicators (palliative),Other,Rendered followup indicators,info,No,Shown for followup,PIH:...,,,

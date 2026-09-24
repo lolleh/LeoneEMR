@@ -1,0 +1,32 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Non-tumoral diseases,Coded,Refractory heart failure | Chronic lung disease | Chronic kidney disease,checkbox,No,no,PIH:14773,PIH:14772|CIEL:155569|CIEL:145438,Non-tumoral diseases,
+Tumoral diseases,Coded,Malignant neoplasm of liver | Malignant tumor of prostate | Malignant neoplasm of breast | Neoplasm of lung | Hematologic cancer,checkbox,No,no,PIH:14773,CIEL:116066|CIEL:134788|CIEL:116026|CIEL:133328|PIH:14771,Tumoral diseases,
+Tumoral diseases,Coded,Other,checkbox,No,no,PIH:14773,CIEL:5622,,
+Counselling done,Coded,Yes | No,radio,No,no,CIEL:165310,CIEL:1267|CIEL:1118,,
+Understands treatment,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-understand-details,CIEL:167914,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+Ability to titrate opioids,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-titrate-details,PIH:14741,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+Overall treatment adherence,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-adher-details,CIEL:164075,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+Missed doses in past week,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-missed-details,CIEL:167819,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+Aware and understands the disease,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-aware-details,CIEL:167021,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+# of missed doses in past week,Coded,N/A,radio,No,no,CIEL:167918,,Awareness and treatment,PIH:14817
+Patient condition improved,Coded,Yes | No | Unknown,radio,No,Yes → show #pall-fui-improved-details,CIEL:1898,PIH:YES|PIH:NO|CIEL:1067,,PIH:14817
+Disease control,Coded,Pain | Nausea | Constipation | Insomnia | Weakness | Jaundice | Dyspnea,checkbox,No,no,CIEL:1728,CIEL:114403|CIEL:5978|CIEL:996|CIEL:116743|CIEL:5226|CIEL:136443|CIEL:122496,Disease control,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom progression,Coded,No | Better | Worse | Same,radio,No,no,CIEL:162676,CIEL:1107|CIEL:162677|CIEL:162678|CIEL:162679,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Symptom management,Coded,Controlled | Uncontrolled,radio,No,no,PIH:14768,PIH:11507|PIH:11508,,PIH:14859
+Oncology Consult ecog performance status,Coded,N/A,radio,No,no,CIEL:160379,,,
+Hospitalization required,Coded,Yes | No,radio,No,Yes → show #hosp-pall-reason,CIEL:1788,CIEL:1065|CIEL:1066,,
+Reasons for hospitalization,Coded,Diarrhea | Vomiting | Chronic intractable pain,checkbox,No,no,CIEL:1887,CIEL:142412|CIEL:122983|PIH:7103,Reasons for hospitalization,
+Reasons for hospitalization,Coded,Other,checkbox,No,no,CIEL:1887,CIEL:5622,,
+Additional comments:,Coded,N/A,radio,No,no,PIH:14816,,,

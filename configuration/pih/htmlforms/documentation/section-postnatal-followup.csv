@@ -1,6 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Encounter date/summary,Date,N/A,date/time,Yes,no,encounterDate,,,
-FHR/uterine involution (if relevant),Other,Fields shown conditionally,number/textarea,No,Shown for obstetric cases,CIEL:...,,,
-Postnatal bleeding / postpartum checks,Text/N/A,textarea,No,no,PIH:POSTPARTUM_BLEEDING,,,,
-Counseling / contraception notes,Other,FP options/notes,radio & textarea,No,no,PIH:FAMILY_PLANNING_COUNSELING,,,
-Disposition / return visit,Other,Disposition widget / date,disposition & date,No,no,PIH:RETURN VISIT DATE,,,

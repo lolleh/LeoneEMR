@@ -1,5 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Family history items,Coded,Multiple checkbox + relative,checkbox,No,no,PIH:FAMILY HISTORY,CIEL:...,,
-Past medical history items,Coded,Checkbox list + free-text,checkbox & text,No,no,PIH:PAST MEDICAL HISTORY,CIEL:...,,
-Medication history,Text/N/A,textarea,No,no,CIEL:...,,,,
-Test results history / previous labs,Other,Displayed via API fetch,info,No,no,,,,

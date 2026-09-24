@@ -1,0 +1,75 @@
+services:
+  openmrs-db:
+    image: mysql:5.7
+    command: "mysqld --character-set-server=utf8 --collation-server=utf8_general_ci"
+    environment:
+      MYSQL_DATABASE: ${OPENMRS_DB_NAME:-openmrs}
+      MYSQL_ROOT_PASSWORD: ${OPENMRS_DB_ROOT_PASSWORD:-Admin123}
+      MYSQL_USER: ${OPENMRS_DB_USER:-openmrs}
+      MYSQL_PASSWORD: ${OPENMRS_DB_PASSWORD:-Admin123}
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - leoneemr-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      start_period: 30s
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  openmrs:
+    build:
+      context: ./distro
+      dockerfile: Dockerfile
+    image: ${OPENMRS_IMAGE:-leoneemr:latest}
+    pull_policy: build
+    depends_on:
+      openmrs-db:
+        condition: service_healthy
+    environment:
+      OMRS_DB: mysql
+      OMRS_DB_HOSTNAME: openmrs-db
+      OMRS_DB_PORT: '3306'
+      OMRS_DB_NAME: ${OPENMRS_DB_NAME:-openmrs}
+      OMRS_DB_USERNAME: ${OPENMRS_DB_USER:-openmrs}
+      OMRS_DB_PASSWORD: ${OPENMRS_DB_PASSWORD:-Admin123}
+      OMRS_ADMIN_USER_PASSWORD: ${OPENMRS_PASSWORD:-Admin123}
+      OMRS_ADMIN_PASSWORD_LOCKED: 'false'
+      OMRS_AUTO_UPDATE_DATABASE: 'true'
+      OMRS_CREATE_TABLES: 'true'
+      OMRS_MODULE_WEB_ADMIN: 'true'
+      OMRS_SEARCH: lucene
+      # Lean default heap in the image (-XX:NewSize=128m) is too small for the
+      # full PIH SL module set + Initializer config run.
+      OMRS_JAVA_MEMORY_OPTS: "-Xms512m -Xmx4g -XX:NewSize=128m"
+      # PIH SL config profile loaded on startup. Must match a profile the image
+      # actually ships. The stock partnersinhealth/pihsl-emr image provides
+      # sierraLeone (+ -kgh, -kgh-test, -wellbody, -wellbody-gladi, -wellbody-demo)
+      # and the materialized config adds -mongo, -falaba, -sinkunia (see README
+      # "Building the distribution"). Switch with:
+      #   OPENMRS_PIH_CONFIG=sierraLeone,sierraLeone-falaba docker compose up -d openmrs
+      OMRS_EXTRA_pih_config: ${OPENMRS_PIH_CONFIG:-sierraLeone,sierraLeone-kgh,sierraLeone-kgh-test}
+      # Let Initializer load the baked-in PIH SL config on startup.
+      # 'continue_on_error' keeps the server bootable if a domain fails to load.
+      OMRS_EXTRA_initializer_startup_load: continue_on_error
+    ports:
+      - "127.0.0.1:8090:8080" # OpenMRS UI: http://localhost:8090/openmrs (O3 SPA)
+    volumes:
+      # App data (modules, config checksums, Lucene index, complex obs, runtime
+      # properties). Startup wipes the modules/config/frontend subfolders and
+      # re-copies them from the image's distribution dir on every boot.
+      - leoneemr-data:/openmrs/data
+    healthcheck:
+      # Real readiness check: session REST endpoint returns 2xx (or a login
+      # redirect) once the OpenMRS context is up. First boot runs the whole
+      # PIH SL Initializer load, so allow a long start period.
+      test: ["CMD-SHELL", "code=$$(curl -sk -o /dev/null -w '%{http_code}' http://localhost:8080/openmrs/ws/rest/v1/session || echo 000); case $$code in 000|5*) exit 1;; *) exit 0;; esac"]
+      start_period: 1500s
+      interval: 30s
+      timeout: 10s
+      retries: 60
+
+volumes:
+  leoneemr-db-data:
+  leoneemr-data:

@@ -1,4 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Supplements history (table),Other,Vitamin A | Ferrous sulfate | Iodine ...,checkbox & age field,No,no,PIH:SUPPLEMENT RECEIVED|PIH:AGE SUPPLEMENT RECEIVED,,,
-Feeding history (yes/no + age),Other,Yes/No + age inputs,checkbox & text,No,no,PIH:...,,,
-Developmental screening areas,Text/N/A,Free-text/checkbox,textarea/checkbox,No,no,PIH:...,,,

@@ -1,5 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-All vitals (as in vitals.csv),Other,See vitals.csv,subform,Yes,no,,,,
-Point-of-care glucose (RBG),Numeric,N/A,number,No,no,CIEL:887,,,
-Fingerstick site/time,Date/Time or Text,N/A,date/time/text,No,no,PIH:GLUCOSE_TIMESTAMP,,,
-Hypoglycemia action/treatment,Text/N/A,textarea,No,Shown if low,PIH:HYPOGLYCEMIA_ACTION,,,,

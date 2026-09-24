@@ -1,0 +1,15 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Sl registration patient local Contact Person name label,Coded,N/A,radio,Yes,no,PIH:NAMES AND FIRSTNAMES OF CONTACT,,Patient local Contact label,PIH:14704
+Registrationapp patient phone label,Coded,N/A,radio,No,no,PIH:TELEPHONE NUMBER OF CONTACT,,Patient local Contact label,PIH:14704
+Sl registration patient local Address country,Coded,N/A,radio,Yes,no,PIH:Country,,Patient local Contact label,PIH:14704
+Sl registration patient local Address district,Coded,N/A,radio,Yes,no,PIH:14784,,Patient local Contact label,PIH:14704
+Sl registration patient local Address state Province,Coded,N/A,radio,Yes,no,PIH:State Province,,Patient local Contact label,PIH:14704
+Sl registration patient local Address section,Coded,N/A,radio,No,no,PIH:Address1,,Patient local Contact label,PIH:14704
+Sl registration patient local Address village,Coded,N/A,radio,No,no,PIH:City Village,,Patient local Contact label,PIH:14704
+Sl registration patient local Address address,Coded,N/A,radio,No,no,PIH:Address2,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:Address2,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:City Village,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:Address1,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:State Province,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:14784,,Patient local Contact label,PIH:14704
+Sl registration patient local Address label,Coded,N/A,radio,No,no,PIH:Country,,Patient local Contact label,PIH:14704

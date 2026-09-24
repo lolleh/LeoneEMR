@@ -1,3 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Other NCD diagnoses (checkbox list),Coded,PE/DVT | AFib | Mechanical valve | Hyperlipidemia | Obesity,checkbox,No,no,PIH:DIAGNOSIS,CIEL:119624|CIEL:113504|CIEL:148203|PIH:3181|CIEL:117441|CIEL:115115,Visit Diagnoses,PIH:Visit Diagnoses
-Other NCD free-text,Text,N/A,text,No,no,PIH:7416,,,

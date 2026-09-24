@@ -1,5 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Liver diagnosis selection,Coded,Acute Hep B | Chronic Hep B | Chronic Hep C,checkbox,No,Only for intake,PIH:DIAGNOSIS,CIEL:121812|CIEL:120557|CIEL:145347,Visit Diagnoses,PIH:Visit Diagnoses
-Hepatocarcinoma options,Coded,HBV | HCV | Unknown,checkbox,No,no,PIH:DIAGNOSIS,CIEL:168297|CIEL:168298|PIH:14911,Visit Diagnoses,PIH:Visit Diagnoses
-Cirrhosis secondary causes,Coded,See options,checkbox,No,no,PIH:DIAGNOSIS,CIEL:...,,
-Liver-specific notes,Text,N/A,textarea,No,no,CIEL:161011,,,

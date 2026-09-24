@@ -1,5 +1,15 @@
-.idea/
-*.iml
-target/
-.project
-.DS_Store
+# OpenMRS distribution build
+# ---------------------------
+# Full materialized config produced by scripts/seed-distro-maven-repo.sh
+# (stock image config + tracked delta - exclusions.txt). Only the tracked
+# configuration/backend_configuration delta is committed.
+content/build/
+# content module build output (filtered content.properties + content zip)
+content/target/
+# distro module build output (target/distro/web -> OpenMRS SDK distribution dir)
+distro/target/
+# transient helper dir used while assembling zips
+distro/template/
+
+# local config / env
+.env

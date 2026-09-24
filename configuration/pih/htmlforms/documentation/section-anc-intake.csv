@@ -1,9 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-LMP date,Date,N/A,date,No,no,CIEL:1427,,,
-EDD,Date,N/A,date,No,Calculated if LMP present,CIEL:5596 (calc),,,
-Obstetric history (gravida/para/prev c-sections),Numeric/Text,multiple,number/text,No,no,CIEL:5624|CIEL:1053|CIEL:160081,,,
-ANC number/visits,Numeric,N/A,number,No,no,CIEL:1590,,,
-Previous obstetric complications,Coded,list of complications,checkbox,No,no,PIH:OBSTETRIC_HISTORY,CIEL:...,,
-Baseline vitals (BP/weight/height),Other,See vitals-widget,subform,No,no,,,,
-Lab baseline (Hb,HIV,syphilis),Other,Lab tests,lab-order,No,no,CIEL:21|PIH:1040|CIEL:166,
-Counseling / Enrollment,Other,Counsel + enroll,enrollInProgram / textarea,Yes,no,,,,

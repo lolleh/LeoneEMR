@@ -1,0 +1,9 @@
+# Keep the docker build context small. template/ is a transient helper dir created
+# by scripts/seed-distro-maven-repo.sh while assembling artifacts.
+template/
+*.log
+**/target/classes/**
+**/target/maven-*/
+**/target/surefire*
+**/target/*.jar
+**/target/*.zip

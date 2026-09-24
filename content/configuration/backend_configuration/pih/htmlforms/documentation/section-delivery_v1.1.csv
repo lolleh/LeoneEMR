@@ -1,0 +1,18 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Delivery Date,Coded,N/A,radio,No,no,CIEL:5599,,,
+Calculated Estimated Delivery Date,Date,N/A,date,No,no,CIEL:1427,,,
+Birthweight,Coded,N/A,radio,Yes,no,CIEL:5916,,,
+Birthweight,Coded,N/A,radio,No,no,PIH:Estimated blood loss,,,
+Delivery Type,Coded,Vaginal delivery,checkbox,No,no,PIH:11663,CIEL:162595,,
+Delivery Type,Coded,Breech,checkbox,No,no,PIH:Outpatient procedure,PIH:1172,,
+Perineal Tear,Coded,"Perineal laceration, first degree | Perineal laceration, second degree | Perineal laceration, third degree | Perineal laceration, fourth degree",radio,No,no,CIEL:165247,CIEL:165521|CIEL:165522|CIEL:165523|CIEL:165524,,
+Apgar Score1,Coded,Less Than4 | Between4and8 | Greater Than8,radio,No,no,CIEL:159603,PIH:11933|PIH:11934|PIH:11935,,
+Apgar Score,Coded,Less Than4 | Between4and8 | Greater Than8,radio,No,no,CIEL:159604,PIH:11933|PIH:11934|PIH:11935,,
+Apgar Score10,Coded,Less Than4 | Between4and8 | Greater Than8,radio,No,no,CIEL:159605,PIH:11933|PIH:11934|PIH:11935,,
+Mother,Coded,Gbv | Chorioamnionitis | severe pre-eclampsia | Eclampsia | Prolonged labour | Acute pulmonary oedema | Puerperal sepsis | Herpes | Syphilis,checkbox,No,no,PIH:DIAGNOSIS,CIEL:165088|CIEL:145548|CIEL:113006|PIH:Eclampsia|CIEL:113602|CIEL:121856|CIEL:130|CIEL:138706|CIEL:112493,Mother,PIH:Visit Diagnoses
+Mother,Coded,Other STI,checkbox,No,no,PIH:6644,PIH:174,,
+Mother,Coded,Other,checkbox,No,no,PIH:6644,PIH:OTHER,,
+Mother,Coded,Postpartum hemorrhage,checkbox,No,no,PIH:DIAGNOSIS,PIH:POSTPARTUM HEMORRHAGE,Mother,PIH:Visit Diagnoses
+Blood loss (mL),Coded,N/A,radio,No,no,PIH:12555,,,
+Baby,Coded,abnormal placenta | abnormal presentation | cephalopelvic distortion | low birth weight | low birth weight | low birth weight | low birth weight | low birth weight | Premature less than 28 weeks | Premature (28-32) | Premature (32-36) | Respiratory distress | birth asphyxia | Fetal distress | Fetal demise | fetal retardation | Congenital malformation | rupture membrane | aspiration meconium,checkbox,No,no,PIH:12564,CIEL:130109|CIEL:115939|CIEL:145935|CIEL:162217|CIEL:162218|CIEL:162219|CIEL:162237|CIEL:162239|CIEL:111523|PIH:11789|PIH:11790|CIEL:127639|PIH:Birth Asphyxia|PIH:Fetal distress|CIEL:116642|CIEL:118245|CIEL:143849|CIEL:129211|CIEL:115866,Baby,
+Discharge Date,Coded,N/A,radio,No,no,PIH:3800,,,

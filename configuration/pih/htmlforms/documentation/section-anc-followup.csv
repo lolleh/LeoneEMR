@@ -1,7 +1,0 @@
-Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
-Intercurrent symptoms (headache/visual/edema),Coded,checkbox list,checkbox,No,no,PIH:ANC SYMPTOMS,CIEL:...,,
-BP measurement,Numeric,N/A,number,Yes,no,CIEL:5085|CIEL:5086,,,
-Urine protein result,Coded,Pos/Neg/Not done,radio,No,no,CIEL:1216,CIEL:703|CIEL:664,,
-Fetal movement and fetal heart,Other,Text/number,textarea/number,No,no,CIEL:...,,,
-Iron/folate adherence,Text/Coded,N/A,radio/text,No,no,PIH:IRON ADHERENCE,,,
-Action/management changes,Text/Other,Referral / medication,textarea/disposition,No,no,PIH:ANTENATAL MANAGEMENT,,,

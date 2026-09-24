@@ -1,0 +1,9 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Visit Note plan,Text,N/A,textarea,No,no,CIEL:162749,,,
+Counselled for HIV testing:  ,Coded,Yes | No | Unknown,radio,Yes,no,PIH:11381,PIH:YES|PIH:NO|PIH:unknown,,
+Offered and accepted family planning information:  ,Coded,Yes | No | Unknown,radio,Yes,no,CIEL:1382,PIH:YES|PIH:NO|PIH:unknown,,
+Visit Note plan,Coded,Other (Xray),checkbox,No,no,PIH:Radiology image ordered,PIH:Other (XRay),,
+Visit Note plan,Coded,Other (US),checkbox,No,no,PIH:Radiology image ordered,PIH:Other (US),,
+Disposition,Other,Disposition widget,disposition widget,Yes,no,,,,
+Comment,Text,N/A,text,No,no,PIH:DISPOSITION COMMENTS,,,
+Comment,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,

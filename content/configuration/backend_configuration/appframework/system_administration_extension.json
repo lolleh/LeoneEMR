@@ -1,0 +1,42 @@
+[
+  {
+    "id": "pihemr.systemAdministration.expressionTesterLink",
+    "extensionPointId": "systemAdministration.apps",
+    "type": "link",
+    "label": "pih.app.admin.expressionTester.view",
+    "requiredPrivilege": "App: coreapps.systemAdministration",
+    "url": "pihapps/admin/expressionTester.page",
+    "icon": "icon-wrench",
+    "order": 51
+  },
+  {
+    "id": "pih.app.admin.closeStaleInpatientAdmissions",
+    "extensionPointId": "systemAdministration.apps",
+    "type": "link",
+    "label": "pih.app.admin.closeStaleInpatientAdmissions.title",
+    "requiredPrivilege": "App: coreapps.systemAdministration",
+    "url": "pihcore/admin/staleInpatientAdmissions.page",
+    "icon": "fas fa-fw fa-list-ul",
+    "order": 60
+  },
+  {
+    "id": "pih.app.admin.closeStaleAdmissionRequests",
+    "extensionPointId": "systemAdministration.apps",
+    "type": "link",
+    "label": "pih.app.admin.closeStaleAdmissionRequests.title",
+    "requiredPrivilege": "App: coreapps.systemAdministration",
+    "url": "pihcore/admin/staleAdmissionRequests.page",
+    "icon": "fas fa-fw fa-list-ul",
+    "order": 61
+  },
+  {
+    "id": "pihemr.systemAdministration.viewRolesAndPrivilegesLink",
+    "extensionPointId": "systemAdministration.apps",
+    "type": "link",
+    "label": "pihapps.admin.rolesAndPrivileges.title",
+    "requiredPrivilege": "App: coreapps.systemAdministration",
+    "url": "pihapps/admin/rolesAndPrivileges.page",
+    "icon": "fa fa-user-secret",
+    "order": 62
+  }
+]

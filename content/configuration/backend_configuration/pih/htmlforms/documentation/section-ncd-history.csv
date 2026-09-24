@@ -1,0 +1,60 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Type of visit,Coded,Scheduled | Non scheduled | Urgent,radio,Yes,no,PIH:6189,PIH:1246|PIH:12612|PIH:6192,,
+Care household,Coded,Yes | No,radio,Yes,no,PIH:10642,CIEL:1065|CIEL:1066,,
+Vulnerable,Coded,Yes | No | Not evaluated,radio,Yes,no,CIEL:162956,CIEL:1065|CIEL:1066|CIEL:160737,,
+Education level,Coded,Primary school | Secondary school | Tertiary school | No education,radio,Yes,no,CIEL:1712,CIEL:1713|CIEL:1714|PIH:1701|CIEL:1107,,
+Literacy level,Coded,Able to read and write | Cannot read and write,radio,Yes,no,CIEL:166855,CIEL:1065|CIEL:1066,,
+Missed school,Coded,Yes | No,radio,Yes,Yes → show #days-missed-a,PIH:5629,CIEL:1065|CIEL:1066,,
+Days of lost schooling (related diseases),Coded,N/A,radio,No,no,PIH:14446,,,
+Employment status,Coded,Employed | Self employed | Unemployed | Leave of absence,radio,Yes,no,PIH:3395,PIH:14833|CIEL:161382|PIH:UNEMPLOYED|CIEL:166624,,
+Distance to clinic,Coded,N/A,radio,Yes,no,PIH:20862,,Employment status,PIH:12736
+Average travel time,Coded,N/A,radio,No,no,CIEL:159471,,Employment status,PIH:12736
+Time units,Coded,N/A,radio,No,no,CIEL:1732,,Employment status,PIH:12736
+Average cost of transport,Coded,N/A,radio,No,no,CIEL:159470,,Employment status,PIH:TRANSPORTATION CONSTRUCT
+Food insecurity,Coded,Yes | No,radio,Yes,no,CIEL:119533,CIEL:1065|CIEL:1066,,
+Social support,Coded,Yes | No,radio,Yes,Yes → show #specify-support,CIEL:163766,CIEL:1065|CIEL:1066,,
+"if yes, specify support:",Coded,Transport,radio,No,no,PIH:2156,PIH:990,,
+"if yes, specify support:",Coded,Food,radio,No,no,PIH:2156,PIH:1400,,
+"if yes, specify support:",Coded,School,radio,No,no,PIH:2156,PIH:2863,,
+"if yes, specify support:",Coded,Other,radio,No,no,PIH:2156,CIEL:5622,,
+Referred from,Coded,OPD | PHU | CBP | Self-referred | Screening program | Inpatient ward | Other,radio,Yes,Other → show #other-referral-text,PIH:Type of referring service,PIH:2233|PIH:12368|CIEL:160543|CIEL:978|PIH:14445|CIEL:5485|CIEL:5622,,
+"if other, specify referred from location",Text,N/A,text,No,no,PIH:6421,,,
+Category instructions,Coded,Diabetes | Hypertension | Heart failure | Chronic respiratory disease program | Chronic kidney disease | Cirrhosis of liver | Palliative treatment | Sickle cell disease | Other,checkbox,No,no,PIH:NCD category,PIH:DIABETES|PIH:HYPERTENSION|PIH:HEART FAILURE|PIH:Chronic respiratory disease program|CIEL:145438|PIH:3714|CIEL:160849|PIH:Sickle-Cell Anemia|CIEL:5622,Category instructions,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5085,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5086,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5085,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5086,,,
+MUAC,Coded,Red | Yellow | Green,radio,No,no,CIEL:160908,CIEL:127778|CIEL:160910|CIEL:160909,,
+BMI results,Coded,Underweight (BMI under 18.5) | Normal (BMI 18.5 - 24.9) | Overweight (BMI 25.0 - 29.9) | Moderate obese (BMI 30.0 - 34.9) | Severe obese (BMI 35.0 - 39.9),radio,No,no,CIEL:167092,CIEL:123814|CIEL:167090|CIEL:114413|CIEL:115115|CIEL:133952,,
+Obesity,Coded,Obesity,radio,No,no,,CIEL:115115,BMI results,PIH:1292
+Alcohol,Coded,Yes | No | Unknown,radio,No,no,CIEL:159449,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Smoking,Coded,Yes | No | Unknown,radio,No,no,CIEL:163731,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Indoor cooking,Coded,Yes | No | Unknown,radio,No,no,CIEL:159365,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+History of pulmonary TB,Coded,Yes | No | Unknown,radio,No,no,PIH:14582,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Occupational exposure,Coded,Yes | No | Unknown,radio,No,no,CIEL:167822,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Seasonal allergies,Coded,Yes | No | Unknown,radio,No,no,PIH:14584,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Excessive salt,Coded,Yes | No | Unknown,radio,No,no,CIEL:167877,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Maggi / Seasoning,Coded,Yes | No | Unknown,radio,No,no,CIEL:167878,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+On ACE inhibitors,Coded,Yes | No | Unknown,radio,No,no,CIEL:167998,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+On NSAIDs,Coded,Yes | No | Unknown,radio,No,no,PIH:14712,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+On Nephrotoxic drugs,Coded,Yes | No | Unknown,radio,No,no,PIH:14713,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Family history of cardiac disease,Coded,Yes | No | Unknown,radio,No,no,CIEL:140231,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Pregnancy,Coded,Yes | No | Unknown,radio,No,no,CIEL:5272,PIH:YES|PIH:NO|PIH:UNKNOWN,,
+Risk factors for liver cirrhosis,Coded,History of alcohol use | Herbal traditional medications | Obesity | Current drug user,checkbox,No,no,PIH:14873,CIEL:159449|CIEL:5841|CIEL:115115|CIEL:160666,Risk factors for liver cirrhosis,
+Risk factors for liver cirrhosis,Coded,Others,checkbox,No,no,PIH:14873,CIEL:5622,,
+Risk factors for Hepatitis B,Coded,Maternal infection | Sibling infection | Partner infected | Blood transfusion | Traditional ceremony | Unknown | None,checkbox,No,no,PIH:14874,CIEL:168292|CIEL:168293|CIEL:168294|CIEL:1063|PIH:14920|CIEL:1067|CIEL:1107,Risk factors for Hepatitis B,
+Other risk factors,Coded,N/A,radio,No,no,PIH:12999,,,
+HIV,Coded,Positive | Negative | Unknown,radio,No,no,CIEL:1169,CIEL:703|CIEL:664|CIEL:1067,,
+NCD Patient Card,Coded,Yes | No | Unknown,radio,No,Yes → show #comorbitity-details,CIEL:166020,CIEL:1065|CIEL:1066|CIEL:1067,,
+Specify comorbidities,Text,N/A,textarea,No,no,PIH:1731,,,
+Reason evaluated in the NCD clinic,Coded,N/A,radio,No,no,CIEL:164359,,,
+Reason evaluated in the NCD clinic,Text,N/A,textarea,No,no,CIEL:161011,,,

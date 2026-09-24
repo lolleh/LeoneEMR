@@ -1,0 +1,24 @@
+key: "AboveFiveMorbiditySummary"
+uuid: "235c1977-3ad7-48d0-8122-c99184155261"
+name: "Above Five Register - Morbidity Summary"
+description: "Above Five Register - Morbidity Summary"
+parameters:
+  - key: "startDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.startDate"
+  - key: "endDate"
+    type: "java.util.Date"
+    label: "reporting.parameter.endDate"
+datasets:
+  - key: "aboveFiveMorbiditySummary"
+    type: "sql"
+    config: "sql/aboveFiveMorbiditySummary.sql"
+designs:
+  - type: "csv"
+    properties:
+      "characterEncoding": "ISO-8859-1"
+      "blacklistRegex": "[^\\p{InBasicLatin}\\p{L}]"
+      "dateFormat": "dd-MMM-yyyy HH:mm:ss"
+config:
+  category: "dataExport"
+  order: 80

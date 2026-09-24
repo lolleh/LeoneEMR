@@ -1,0 +1,21 @@
+key: "labouranddeliverydischargelist"
+uuid: "5339b755-4503-4cf9-ab23-c0152d3892f8"
+name: "Labour and Delivery Discharge List"
+description: "Patients discharged from the Labour and Delivery ward on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "11377a5b-6850-11ee-ab8d-0242ac120002"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

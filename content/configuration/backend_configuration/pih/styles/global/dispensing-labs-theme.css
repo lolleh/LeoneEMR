@@ -1,0 +1,130 @@
+/*
+ * PIH Labs look-and-feel overlay for the O3 ES dispensing SPA.
+ * Target: match labOrderList.page styling — labs blue-gray title band
+ * (#6f9792 teal-blue, white text, 6px gold bottom border), zebra data
+ * rows, gold/teal table header, purple links, teal focus ring.
+ *
+ * Loaded AFTER sl.css via the same SPA stylesheets mechanism
+ * (config.json "stylesheets" -> single-spa config "stylesheets"), served
+ * from /openmrs/ms/uiframework/resource/file/pih/styles/global/dispensing-labs-theme.css
+ *
+ * Selector strategy (IMPORTANT — verified against the real rendered DOM):
+ *   The O3 SPA renders Carbon (cds--) classes plus hashed CSS-module
+ *   classes that share a STABLE prefix:
+ *       -esm-dispensing__pharmacy-header__header___<hash>
+ *       -esm-dispensing__pharmacy-header__pageName___<hash>
+ *       -esm-dispensing__prescriptions__patientSearch___<hash>
+ *   The trailing ___<hash> changes per build, but the
+ *   `-esm-dispensing__...` prefix is stable, so we match on that prefix
+ *   using attribute-substring selectors. Everything is scoped under the
+ *   dispensing SPA container ([id*="esm-dispensing-app"]) so nothing
+ *   leaks into other O3 routes.
+ * ==========================================================================*/
+
+/* -------- labs palette (redeclared here for this tree) -------- */
+[id*="esm-dispensing-app"] {
+  --brand-teal: #0f5149;
+  --brand-teal-hover: #0b3d37;
+  --brand-blue-gray: #6f9792;
+  --brand-blue-gray-hover: #5f8a84;
+  --brand-gold: #f6be00;
+  --brand-gold-hover: #e0ac00;
+  --brand-purple: #323372;
+  --brand-purple-hover: #5b5c8e;
+  --action-green: #34c00b;
+  --action-green-hover: #2da60a;
+  --danger: #f1394d;
+  --text-ink: #3e3e3f;
+  --row-zebra: #f7f7f7;
+  --border-soft: #e3e3e3;
+}
+
+/* -------- header band: labs blue-gray with gold underline -------- */
+[id*="esm-dispensing-app"] [class*="-esm-dispensing__pharmacy-header__header"] {
+  background: var(--brand-blue-gray);
+  color: #fff;
+  border-bottom: 6px solid var(--brand-gold);
+  padding: 1rem 1.25rem;
+}
+
+[id*="esm-dispensing-app"] [class*="-esm-dispensing__pharmacy-header"] * {
+  color: #fff;
+}
+
+[id*="esm-dispensing-app"] [class*="-esm-dispensing__pharmacy-header__pageName"] {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+[id*="esm-dispensing-app"] [class*="-esm-dispensing__pharmacy-header__pageLabels"] {
+  font-size: 0.85rem;
+  opacity: 0.92;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* -------- table chrome: gold/teal header + zebra rows (labs striped table) -------- */
+[id*="esm-dispensing-app"] .cds--data-table thead th,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] .cds--data-table thead th {
+  background: var(--brand-teal);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 3px solid var(--brand-gold);
+}
+
+[id*="esm-dispensing-app"] .cds--data-table tbody td,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] .cds--data-table tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-ink);
+}
+
+[id*="esm-dispensing-app"] .cds--data-table tbody tr:nth-child(odd),
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] .cds--data-table tbody tr:nth-child(odd) {
+  background: var(--row-zebra);
+}
+
+[id*="esm-dispensing-app"] .cds--data-table tbody tr:hover,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] .cds--data-table tbody tr:hover {
+  background: color-mix(in srgb, var(--brand-blue-gray) 12%, #fff);
+}
+
+/* -------- links: labs purple, gold hover underline -------- */
+[id*="esm-dispensing-app"] a,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] a {
+  color: var(--brand-purple);
+  text-decoration: underline;
+}
+
+[id*="esm-dispensing-app"] a:hover,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] a:hover {
+  color: var(--brand-purple-hover);
+  text-decoration: underline overline solid var(--brand-gold);
+}
+
+/* -------- fields: teal focus ring (labs inputs) -------- */
+[id*="esm-dispensing-app"] input:focus,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] input:focus,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] .cds--search__input:focus,
+[id*="esm-dispensing-app"] .cds--search__input:focus {
+  outline: 0;
+  border-color: var(--brand-teal);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--brand-teal) 25%, #fff);
+}
+
+/* -------- severity / attention rows: labs gold / red -------- */
+[id*="esm-dispensing-app"] tr.warning,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] tr.warning {
+  background: color-mix(in srgb, var(--brand-gold) 25%, #fff);
+}
+
+[id*="esm-dispensing-app"] tr.danger,
+[id*="esm-dispensing-app"] tr.urgent,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] tr.danger,
+[id*="esm-dispensing-app"] [class*="-esm-dispensing"] tr.urgent {
+  background: color-mix(in srgb, var(--danger) 12%, #fff);
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sl.openmrs</groupId>
+        <artifactId>leone-emr</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>leone-emr-distro</artifactId>
+    <packaging>jar</packaging>
+
+    <name>LeoneEMR OpenMRS Distribution</name>
+    <description>Reproducible PIH Sierra Leone OpenMRS distribution (OpenMRS 2.8.9 + full PIH SL module set + branded O3 SPA + SL config)</description>
+
+    <properties>
+        <contentGroup>org.sl.openmrs</contentGroup>
+        <contentArtifact>leone-emr-content</contentArtifact>
+        <contentVersion>${project.version}</contentVersion>
+        <contentType>zip</contentType>
+        <frontendGroup>org.pih.openmrs</frontendGroup>
+        <frontendArtifact>openmrs-frontend-pihemr</frontendArtifact>
+        <frontendVersion>1.43.0-SNAPSHOT</frontendVersion>
+        <frontendType>zip</frontendType>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${contentGroup}</groupId>
+            <artifactId>${contentArtifact}</artifactId>
+            <version>${project.version}</version>
+            <type>${contentType}</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${frontendGroup}</groupId>
+            <artifactId>${frontendArtifact}</artifactId>
+            <version>${frontendVersion}</version>
+            <type>${frontendType}</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Add the openmrs-distro.properties file into the artifact jar and apply variable replacements -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <propertiesEncoding>UTF-8</propertiesEncoding>
+                    <resources>
+                        <resource>
+                            <directory>${basedir}</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>openmrs-distro.properties</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                </configuration>
+            </plugin>
+
+            <!-- Use the SDK to retrieve all artifacts defined in openmrs-distro.properties.
+                 The war/omod/spa/owa/content artifacts are resolved fully offline from
+                 ~/.m2 after scripts/seed-distro-maven-repo.sh has installed them. -->
+            <plugin>
+                <groupId>org.openmrs.maven.plugins</groupId>
+                <artifactId>openmrs-sdk-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-distro</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>build-distro</goal>
+                        </goals>
+                        <configuration>
+                            <distro>${project.build.directory}/classes/openmrs-distro.properties</distro>
+                            <dir>${project.build.directory}/distro</dir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>openmrs-repo</id>
+            <name>OpenMRS Nexus Repository</name>
+            <url>https://openmrs.jfrog.io/artifactory/public</url>
+        </repository>
+        <repository>
+            <name>Central Portal Snapshots</name>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>mks-repo</id>
+            <name>Mekom Solutions Maven repository</name>
+            <url>https://nexus.mekomsolutions.net/repository/maven-public</url>
+        </repository>
+    </repositories>
+</project>

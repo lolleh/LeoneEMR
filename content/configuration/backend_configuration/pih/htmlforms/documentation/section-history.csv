@@ -1,0 +1,59 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+History title,Text,N/A,textarea,No,no,CIEL:160531,,,
+History title,Text,N/A,textarea,No,no,PIH:PRESENTING HISTORY,,,
+Refer date,Coded,N/A,radio,No,no,CIEL:163181,,,
+Refer date,Coded,Self Refer,checkbox,No,no,PIH:Type of referring service,PIH:SELF-REFER,,
+Refer refer By,Coded,Infectious disease service | Maternal health clinic | Primary care clinic | Psychologist | General surgery department | General medicine department | Pediatrics,checkbox,No,no,PIH:Type of referring service,CIEL:165018|PIH:ANTENATAL CLINIC|PIH:PRIMARY CARE CLINIC|CIEL:163558|CIEL:160449|CIEL:160448|CIEL:165048,Refer refer By,
+Refer refer By,Coded,Other,checkbox,No,no,PIH:Type of referring service,PIH:OTHER,,
+Refer refer By,Coded,Other PIH site,checkbox,No,no,PIH:Type of referring service,PIH:11956,,
+Refer refer By,Coded,Non-PIH facility,checkbox,No,no,PIH:Type of referring service,PIH:Non-ZL supported site,,
+Mentalhealth community Referral,Coded,CHW (Community Health Worker),checkbox,No,no,PIH:Type of referring service,CIEL:1555,,
+Mentalhealth community Referral,Coded,Community meeting,checkbox,No,no,PIH:Type of referring service,PIH:11965,,
+Blood type,Coded,A+ | A- | B+ | B- | O+ | O- | AB+ | AB-,radio,No,no,PIH:BLOOD TYPING,CIEL:690|CIEL:692|CIEL:694|CIEL:696|CIEL:699|CIEL:701|CIEL:1230|CIEL:1231,,
+Habits smoking,Coded,Currently | Never | In the past,radio,No,no,CIEL:163731,CIEL:159450|CIEL:1090|CIEL:159452,,
+Habits packs Per Year,Coded,N/A,radio,No,no,PIH:11949,,,
+Habits secondhand Smoke,Coded,Currently | Never | In the past,radio,No,no,CIEL:152721,CIEL:159450|CIEL:1090|CIEL:159452,,
+Habits alcohol,Coded,Currently | Never | In the past,radio,No,no,CIEL:159449,CIEL:159450|CIEL:1090|CIEL:159452,,
+Habits days Per Week,Coded,N/A,radio,No,no,PIH:2243,,,
+Habits drinks Per Day,Coded,N/A,radio,No,no,PIH:2246,,,
+Habits drugs,Coded,Currently | Never | In the past,radio,No,no,CIEL:162556,CIEL:159450|CIEL:1090|CIEL:159452,,
+Habits drug Name,Coded,N/A,radio,No,no,PIH:6489,,,
+Zl sexually Active,Coded,Yes | No,radio,No,no,PIH:SEXUALLY ACTIVE,PIH:YES|PIH:NO,,
+Family Planning History title,Coded,N/A,radio,No,no,PIH:METHOD OF FAMILY PLANNING,,,
+Zl if Other Specify,Coded,N/A,radio,No,no,PIH:2996,,,
+pihcore.pregnancy.status,Coded,Status,checkbox,No,no,CIEL:5272,CIEL:1065,,
+Last Period,Coded,N/A,radio,No,no,CIEL:1427,,,
+Due Date,Date,N/A,date,No,no,CIEL:5596,,,
+Family Planning method,Coded,Oral contraception | Medroxyprogesterone acetate (Depo-provera) | Condoms | Levonorgestrel | Intra uterine device (IUD) | Tubal ligation | Vasectomy | Other,checkbox,No,no,CIEL:374,CIEL:780|CIEL:907|CIEL:190|CIEL:78796|CIEL:5275|CIEL:1472|CIEL:1489|CIEL:5622,Family Planning method,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Zl if Other Specify,Coded,N/A,radio,No,no,PIH:2996,,,
+Admit Date,Coded,N/A,radio,No,no,CIEL:1640,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:1641,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162724,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162879,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:1640,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:1641,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162724,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162879,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:1640,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:1641,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162724,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Admit Date,Coded,N/A,radio,No,no,CIEL:162879,,Admit Date,PIH:HOSPITALIZATION CONSTRUCT
+Comment,Text,N/A,textarea,No,no,PIH:Hospitalization comment,,,
+Comment,Text,N/A,textarea,No,no,PIH:CURRENT MEDICATIONS,,,
+Zl consult Note diagnostic Tests History comment,Text,N/A,textarea,No,no,PIH:DIAGNOSTIC TESTS HISTORY,,,

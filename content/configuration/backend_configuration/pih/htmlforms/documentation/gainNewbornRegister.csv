@@ -1,0 +1,54 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Name of baby,Coded,N/A,radio,No,no,CIEL:1586,,,
+Chart #/ Patient #,Coded,N/A,radio,No,no,CIEL:164803,,,
+or Caregiver:,Coded,N/A,radio,No,no,PIH:2724,,or Caregiver:,PIH:13182
+or Caregiver:,Coded,N/A,radio,No,no,PIH:6194,,or Caregiver:,PIH:13182
+Encounter Date,Date,N/A,date/time,Yes,no,encounterDate,,,
+Refer internal,Coded,Maternal health clinic | Maternity ward | Emergency department,checkbox,No,no,PIH:Type of referring service,PIH:ANTENATAL CLINIC|PIH:MATERNITY WARD|CIEL:160473,Refer internal,
+Refer internal,Coded,Other,checkbox,No,no,PIH:Type of referring service,PIH:OTHER,,
+Refer external,Coded,Other PIH site,checkbox,No,no,PIH:Type of referring service,PIH:11956,,
+Refer external,Coded,Non-PIH supported site,checkbox,No,no,PIH:Type of referring service,PIH:8856,,
+Refer community,Coded,CHW (Community Health Worker),checkbox,No,no,PIH:Type of referring service,CIEL:1555,,
+Refer community,Coded,Community meeting,checkbox,No,no,PIH:Type of referring service,PIH:11965,,
+Referral reason (autocomplete),Coded,N/A,autocomplete,No,no,CIEL:159860,,,
+Other referral reason (free-text),Coded,N/A,radio,No,no,CIEL:164359,,,
+Referred by,Coded,CHW (Community Health Worker) | Doctor | Midwife | Nurse | Social Worker | Traditional birth attendant (TBA) | Other,radio,No,Other → show #other-referrer,PIH:10635,CIEL:1555|PIH:DOCTOR|CIEL:1578|PIH:NURSE|PIH:SOCIAL WORKER SERVICE|CIEL:1575|CIEL:5622,,
+"if other, specify:",Coded,N/A,radio,No,no,PIH:14415,,,
+Time,Date,N/A,date,No,no,PIH:14398,,,
+Name of the provider,Coded,N/A,radio,No,no,PIH:13326,,,
+Admission date/time,Date,N/A,date,No,no,CIEL:1640,,,
+Age at admission (days),Coded,N/A,radio,No,no,PIH:14393,,,
+Age at admission (hours),Coded,N/A,radio,No,no,PIH:14394,,,
+Sex,Coded,M | F,radio,No,no,CIEL:1587,CIEL:1534|CIEL:1535,,
+Weight at admission (kg),Coded,N/A,radio,No,no,CIEL:166604,,,
+Place of delivery,Coded,Hospital | Home | Peripheral Health Unit | Other,radio,No,Other → show #other-delivery-place,CIEL:163774,CIEL:1589|CIEL:1536|PIH:12368|CIEL:5622,,
+Zl if Other Specify,Coded,N/A,radio,No,no,PIH:1389,,,
+Which facility?,Coded,Gandorhun CHC | Kainkordu CHC | Kayima CHC | Sewafe CHC | Kombayendeh CHC | Tombodu CHC | UMC Jaima Nimikoro | Yengema CHC | Yormandu CHC | Kangama Gorama CHC | Wellbody | Koidu Government Hospital | Other,radio,No,Other → show #other-facility,PIH:12365,PIH:14400|PIH:14401|PIH:14402|PIH:14403|PIH:14404|PIH:14405|PIH:14406|PIH:14407|PIH:14408|PIH:14409|PIH:12366|PIH:12367|CIEL:5622,,
+Zl if Other Specify,Coded,N/A,radio,No,no,CIEL:163531,,,
+Number of ANCs,Coded,N/A,radio,No,no,CIEL:1590,,,
+Mode of delivery,Coded,Normal | Assisted (vacuum or instrument) | C-section,radio,No,no,PIH:11663,CIEL:1170|CIEL:166425|CIEL:155884,,
+Diagnosis at delivery unit prior to admission at SCBU,Coded,Premature infant | Low birth weight | Birth asphyxia | Feeding problem | Neonatal jaundice | Abnormal blood glucose | Hypothermia of newborn | Clinical infection,checkbox,No,no,PIH:DIAGNOSIS,CIEL:159908|CIEL:116222|PIH:7557|CIEL:140476|CIEL:115368|CIEL:147125|CIEL:137998|CIEL:145047,Diagnosis at delivery unit prior to admission at SCBU,PIH:14391
+Diagnosis at delivery unit prior to admission at SCBU,Coded,Other,checkbox,No,no,PIH:DIAGNOSIS,CIEL:5622,Diagnosis at delivery unit prior to admission at SCBU,PIH:14391
+"if other, specify:",Coded,N/A,radio,No,no,CIEL:161602,,Diagnosis at delivery unit prior to admission at SCBU,PIH:14391
+Treatment provided at delivery unit prior to admission at SCBU,Coded,Antibiotic therapy | Radiant warming | Kangaroo mother care (KMC) | Phototherapy | Aminophylline | Dextrose | Supplemental oxygen therapy,checkbox,No,no,PIH:3513,CIEL:164174|CIEL:167724|CIEL:164173|CIEL:167422|CIEL:71101|PIH:4037|CIEL:162738,Treatment provided at delivery unit prior to admission at SCBU,
+Treatment provided at delivery unit prior to admission at SCBU,Coded,Other,checkbox,No,no,PIH:3513,CIEL:5622,,
+"APGAR score at time at 1 minutes after birth (0-10, unknown)",Coded,N/A,radio,No,no,PIH:14419,,,
+"APGAR score at time at 1 minutes after birth (0-10, unknown)",Coded,Unknown,checkbox,No,no,PIH:12377,CIEL:1067,,
+"APGAR score at time at 5 minutes after birth (0-10, unknown)",Coded,N/A,radio,No,no,CIEL: 159604,,,
+"APGAR score at time at 5 minutes after birth (0-10, unknown)",Coded,Unknown,checkbox,No,no,PIH:11932,CIEL:1067,,
+Assisted ventilation at birth,Coded,Yes | No | Unknown,radio,No,no,CIEL:162131,CIEL:1065|CIEL:1066|CIEL:1067,,
+Birth weight (kg),Coded,N/A,radio,No,no,CIEL:5916,,,
+Gestation age,Coded,N/A,radio,No,no,CIEL:165425,,,
+Diagnosis at admission,Coded,Respiratory distress syndrome in the newborn | Birth asphyxia | Neonatal sepsis | Pneumonia | Meningitis | Premature birth | Congenital malformation | Neonatal jaundice | Exposure to HIV | Neonatal tetanus,checkbox,No,no,PIH:12564,CIEL:127638|PIH:7557|CIEL:226|CIEL:114100|CIEL:115835|CIEL:113841|CIEL:143849|CIEL:115368|CIEL:822|CIEL:124954,Diagnosis at admission,
+Diagnosis at admission,Coded,Other,checkbox,No,no,PIH:12564,CIEL:5622,,
+Management,Coded,Phototherapy | Antibiotic therapy | Supplemental oxygen therapy | CPAP | Intravenous fluids administered | Blood transfusion | Counseling about infant feeding practices | Newborn antiretroviral use,checkbox,No,no,CIEL:165995,CIEL:167422|CIEL:164174|CIEL:162738|CIEL:165944|CIEL:161911|CIEL:1063|CIEL:161651|CIEL:1187,Management,
+Management,Coded,Other,checkbox,No,no,CIEL:165995,CIEL:5622,,
+Outcome of admission at SCBU:,Coded,Discharged | Referral | Left against medical advice | Death,radio,No,Death → show #scbu-death,PIH:8620,CIEL:1692|PIH:11521|CIEL:1694|CIEL:159,,
+Date and time of death,Date,N/A,date,No,no,PIH:14399,,Death Outcome,CIEL:163528
+Cause of death/ mortality,Coded,Respiratory distress syndrome in the newborn | Birth asphyxia | Neonatal sepsis | Pneumonia | Pneumonia | Premature birth | Unknown,radio,No,no,CIEL:159482,CIEL:127638|PIH:7557|CIEL:226|CIEL:114100|CIEL:114100|CIEL:113841|CIEL:1067,Death Outcome,CIEL:163528
+"if other cause of death, specify:",Coded,N/A,radio,No,no,CIEL:160218,,Death Outcome,CIEL:163528
+Age at death (days),Coded,N/A,radio,No,no,PIH:14393,,Death Outcome,CIEL:163528
+Weight at time of death (kg),Coded,N/A,radio,No,no,CIEL:5089,,Death Outcome,CIEL:163528
+"If alive, date of discharge, or LAMA, or referral",Date,N/A,date,No,no,CIEL:1641,,,
+Name of staff/in-charge of completing the information,Coded,N/A,radio,No,no,PIH:2594,,,

@@ -1,0 +1,21 @@
+key: "mcoepreopdischargelist"
+uuid: "de55f20d-8c51-4473-b283-b4887f5399ac"
+name: "MCOE Pre-Op Discharge List"
+description: "Patients discharged from the MCOE Pre-Op on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "142de844-6850-11ee-ab8d-0242ac120002"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

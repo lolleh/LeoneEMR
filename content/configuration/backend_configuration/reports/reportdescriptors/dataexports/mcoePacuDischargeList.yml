@@ -1,0 +1,21 @@
+key: "mcoepacudischargelist"
+uuid: "ccd0bd58-4748-468d-8e0c-3e2ea7a91f73"
+name: "MCOE PACU Discharge List"
+description: "Patients discharged from the MCOE PACU on this date"
+parameters:
+  - key: "date"
+    type: "java.util.Date"
+    label: "Date"
+datasets:
+  - key: "Discharge_List"
+    type: "sql"
+    config: "sql/maternal_discharge_lists.sql"
+    parameters:
+      - key: "locationUUID"
+        type: "java.lang.String"
+        value: "17596678-6850-11ee-ab8d-0242ac120002"
+designs:
+  - type: "org.openmrs.module.reporting.web.renderers.DefaultWebRenderer"
+    name: "Web"
+    properties:
+      "pageSize": "15"

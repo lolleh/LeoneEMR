@@ -1,8 +1,0 @@
-<config>
-    <globalProperties>
-        <globalProperty>
-            <property>drugOrder.requireOutpatientQuantity</property>
-            <value>true</value>
-        </globalProperty>
-    </globalProperties>
-</config>

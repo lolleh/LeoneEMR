@@ -1,0 +1,62 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Family Planning Initial,Coded,Physical disability | Visual impairment | Speech and language impairment | Hearing impairment | Learning impairment | Multiple,checkbox,No,no,CIEL:162558,PIH:21469|CIEL:159298|CIEL:112846|CIEL:139075|CIEL:153343|PIH:21470,Family Planning Initial,
+Family Planning Initial,Coded,Method switch | Post abortion,checkbox,No,no,PIH:13236,CIEL:163494|PIH:14376,Family Planning Initial,
+For post-partum family planning,Coded,Less than 48 hours | 48 hours to 6 weeks | 7 weeks - 1 year,radio,No,no,PIH:21472,PIH:21473|PIH:21474|PIH:21475,,
+Subform: prior-vital-signs-widget.xml,Other,Subform — configuration/pih/subforms/prior-vital-signs-widget.xml,subform,No,no,,,,
+Subform: vital-signs-wt-ht-bp-widget.xml,Other,Subform — configuration/pih/subforms/vital-signs-wt-ht-bp-widget.xml,subform,No,no,,,,
+Start Date,Coded,Ethinyl estradoil / Levonorgestrel | Combined oral contraceptive pills | Levonorgestrel | Norethindrone | Condoms | Medroxyprogesterone acetate (Depo-provera) | Sayana press | Copper T IUD | Mirena hormone-eluting intrauterine device (IUD) | Jadelle (implantable contraceptive) | Etonogestrel | Implant | Natural family planning | Lactational amenorrhea | Tubal ligation | Vasectomy,checkbox,No,no,CIEL:374,CIEL:104625|CIEL:159783|CIEL:78796|CIEL:80784|CIEL:190|CIEL:907|PIH:21450|PIH:21478|CIEL:165464|CIEL:1873|CIEL:76022|CIEL:162422|CIEL:5277|CIEL:136163|CIEL:1472|CIEL:1489,Start Date,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning start date,Coded,N/A,radio,No,no,CIEL:163757,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning end date,Date,N/A,date,No,no,CIEL:163758,,,PIH:Family planning history construct
+Family planning counselling,Coded,Yes | No,radio,No,no,CIEL:1382,CIEL:1065|CIEL:1066,,
+Accepts and receives family planning,Coded,Yes | No,radio,No,no,CIEL:166421,CIEL:1065|CIEL:1066,,
+Combined oral contraceptive (COC),Coded,Ethinyl estradoil / Levonorgestrel,checkbox,No,no,CIEL:374,CIEL:104625,Combined oral contraceptive (COC),PIH:Family planning construct
+Combined oral contraceptive (COC),Coded,Other combined oral contraceptive (COC),checkbox,No,no,CIEL:374,CIEL:159783,Combined oral contraceptive (COC),PIH:Family planning construct
+Progestin-only orals,Coded,Levonorgestrel,checkbox,No,no,CIEL:374,CIEL:78796,Progestin-only orals,PIH:Family planning construct
+Progestin-only orals,Coded,Other progestin-only pill (POP),checkbox,No,no,CIEL:374,CIEL:80784,Progestin-only orals,PIH:Family planning construct
+Injectables,Coded,Medroxyprogesterone acetate (Depo-provera) | Sayana press,checkbox,No,no,CIEL:374,CIEL:907|PIH:21450,Injectables,PIH:Family planning construct
+Injectables,Coded,Other injectable contraceptive,checkbox,No,no,CIEL:374,CIEL:5279,Injectables,PIH:Family planning construct
+Intrauterine Contraceptive Device (IUCD),Coded,Copper T IUD | Mirena hormone-eluting intrauterine device (IUD),checkbox,No,no,CIEL:374,PIH:21478|CIEL:165464,Intrauterine Contraceptive Device (IUCD),PIH:Family planning construct
+Implants,Coded,Jadelle (implantable contraceptive) | Etonogestrel,checkbox,No,no,CIEL:374,CIEL:1873|CIEL:76022,Implants,PIH:Family planning construct
+Implants,Coded,Other implant,checkbox,No,no,CIEL:374,CIEL:162422,Implants,PIH:Family planning construct
+Date Implant,Coded,N/A,radio,No,no,PIH:3203,,,
+Condom,Coded,Male condom | Female condom,checkbox,No,no,CIEL:374,CIEL:164813|CIEL:164814,Condom,PIH:Family planning construct
+Other contraceptive methods,Coded,Emergency contraceptive pills,checkbox,No,no,CIEL:160693,CIEL:160570,,
+Permanent method,Coded,Tubal ligation,checkbox,No,no,CIEL:374,CIEL:1472,Permanent method,PIH:Family planning construct
+Permanent method,Coded,Vasectomy,checkbox,No,no,CIEL:374,CIEL:1489,Permanent method,PIH:Family planning construct
+Other family planning method,Coded,Lactation amenorrhea method (LAM),checkbox,No,no,CIEL:374,CIEL:136163,Other family planning method,PIH:Family planning construct
+specify other method,Text,N/A,text,No,no,PIH:2996,,,
+Client referred,Text,N/A,text,No,no,PIH:6421,,,
+Date of next appointment,Date,N/A,date,No,no,PIH:RETURN VISIT DATE,,,
+Referred in from CHW/Facility,Coded,Yes | No,radio,No,no,PIH:2536,CIEL:1065|CIEL:1066,,
+Referred out to other facility,Coded,Yes | No,radio,No,no,PIH:6547,CIEL:1065|CIEL:1066,,

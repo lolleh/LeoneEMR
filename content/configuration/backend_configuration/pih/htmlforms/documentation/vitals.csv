@@ -1,0 +1,20 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Subform: encounter-provider-location-date.xml,Other,Subform — configuration/pih/subforms/encounter-provider-location-date.xml,subform,No,no,,,,
+Vitals complaint title,Coded,N/A,radio,No,no,CIEL:160531,,,
+Vitals height title,Coded,N/A,radio,No,no,PIH:HEIGHT (CM),,,
+Vitals weight title,Coded,N/A,radio,No,no,PIH:WEIGHT (KG),,,
+Vitals Level Of Consciousness title,Coded,Awake | Responds to voice | Responds to pain | Unresponsive,radio,No,no,PIH:10674,CIEL:160282|CIEL:162645|CIEL:162644|PIH:6784,,
+Vitals sierra Leone confused,Coded,Confusion,radio,No,no,,PIH:CONFUSION,Vitals Level Of Consciousness title,PIH:Response triage symptom
+Vitals Level Of Consciousness title,Coded,Awake | Responds to voice | Responds to pain | Unresponsive,radio,No,no,PIH:10674,CIEL:160282|CIEL:162645|CIEL:162644|PIH:6784,,
+Vitals sierra Leone confused,Coded,Confusion,radio,No,no,,PIH:CONFUSION,Vitals sierra Leone confused,PIH:Response triage symptom
+Vitals mobility title,Coded,Able to walk without assistance | Able to walk with assistance | Bedridden,radio,No,no,CIEL:162753,CIEL:162750|CIEL:162751|CIEL:162752,,
+Vitals mobility title,Coded,Able to walk without assistance | Able to walk with assistance | Bedridden,radio,No,no,CIEL:162753,CIEL:162750|CIEL:162751|CIEL:162752,,
+Vitals temperature title,Coded,N/A,radio,No,no,PIH:TEMPERATURE (C),,,
+Vitals heart Rate title,Coded,N/A,radio,No,no,PIH:PULSE,,,
+Vitals blood Pressure title,Coded,N/A,radio,No,no,PIH:SYSTOLIC BLOOD PRESSURE,,,
+Vitals blood Pressure title,Coded,N/A,radio,No,no,PIH:DIASTOLIC BLOOD PRESSURE,,,
+Vitals respiratory Rate title,Coded,N/A,radio,No,no,PIH:RESPIRATORY RATE,,,
+Vitals o2sat title,Coded,N/A,radio,No,no,PIH:BLOOD OXYGEN SATURATION,,,
+Vitals or,Coded,N/A,radio,No,no,PIH:MIDDLE UPPER ARM CIRCUMFERENCE (MM),,,
+Vitals zscore title,Coded,N/A,radio,No,no,CIEL:162584,,,
+Vitals head title,Coded,N/A,radio,No,no,PIH:HEAD CIRCUMFERENCE,,,

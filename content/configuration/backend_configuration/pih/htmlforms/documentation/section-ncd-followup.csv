@@ -1,0 +1,27 @@
+Question,Datatype,Possible Answers,input type,required?,skip logic?,concept for question,concepts for answers,group name (if part of concept group),concept group mapping
+Type of visit,Coded,Scheduled | Non scheduled | Urgent,radio,Yes,no,PIH:6189,PIH:1246|PIH:12612|PIH:6192,,
+Social support,Coded,Yes | No,radio,Yes,Yes → show #specify-support,CIEL:163766,CIEL:1065|CIEL:1066,,
+"if yes, specify support:",Coded,Transport,radio,No,no,PIH:2156,PIH:990,,
+"if yes, specify support:",Coded,Food,radio,No,no,PIH:2156,PIH:1400,,
+"if yes, specify support:",Coded,School,radio,No,no,PIH:2156,PIH:2863,,
+"if yes, specify support:",Coded,Other,radio,No,no,PIH:2156,CIEL:5622,,
+Missed school,Coded,Yes | No,radio,Yes,Yes → show #days-missed,PIH:5629,CIEL:1065|CIEL:1066,,
+Days of lost schooling (related diseases),Coded,N/A,radio,No,no,PIH:14446,,,
+Category instructions,Coded,Diabetes | Hypertension | Heart failure | Chronic respiratory disease program | Chronic kidney disease | Cirrhosis of liver | Palliative treatment | Sickle cell disease | Other,checkbox,No,no,PIH:NCD category,PIH:DIABETES|PIH:HYPERTENSION|PIH:HEART FAILURE|PIH:Chronic respiratory disease program|CIEL:145438|PIH:3714|CIEL:160849|PIH:Sickle-Cell Anemia|CIEL:5622,Category instructions,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Diagnosis date,Coded,N/A,radio,No,no,CIEL:159948,,,PIH:15001
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5085,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5086,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5085,,,
+Vitals blood Pressure short title,Coded,N/A,radio,No,no,CIEL:5086,,,
+MUAC,Coded,Red | Yellow | Green,radio,No,no,CIEL:160908,CIEL:127778|CIEL:160910|CIEL:160909,,
+BMI results,Coded,Underweight (BMI under 18.5) | Normal (BMI 18.5 - 24.9) | Overweight (BMI 25.0 - 29.9) | Moderate obese (BMI 30.0 - 34.9) | Severe obese (BMI 35.0 - 39.9),radio,No,no,CIEL:167092,CIEL:123814|CIEL:167090|CIEL:114413|CIEL:115115|CIEL:133952,,
+Obesity,Coded,Obesity,radio,No,no,,CIEL:115115,BMI results,PIH:1292
+Plan title,Text,N/A,textarea,No,no,CIEL:161011,,,
