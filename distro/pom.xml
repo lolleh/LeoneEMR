@@ -4,19 +4,19 @@
 
     <parent>
         <groupId>org.sl.openmrs</groupId>
-        <artifactId>leone-emr</artifactId>
+        <artifactId>phu360</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>leone-emr-distro</artifactId>
+    <artifactId>phu360-distro</artifactId>
     <packaging>jar</packaging>
 
-    <name>LeoneEMR OpenMRS Distribution</name>
+    <name>PHU360 OpenMRS Distribution</name>
     <description>Reproducible PIH Sierra Leone OpenMRS distribution (OpenMRS 2.8.9 + full PIH SL module set + branded O3 SPA + SL config)</description>
 
     <properties>
         <contentGroup>org.sl.openmrs</contentGroup>
-        <contentArtifact>leone-emr-content</contentArtifact>
+        <contentArtifact>phu360-content</contentArtifact>
         <contentVersion>${project.version}</contentVersion>
         <contentType>zip</contentType>
         <frontendGroup>org.pih.openmrs</frontendGroup>

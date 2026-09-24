@@ -1,6 +1,6 @@
-# LeoneEMR
+# PHU360
 
-Reproducible **PIH Sierra Leone OpenMRS distribution** for the Leone EMR server: OpenMRS core **2.8.9**, the full PIH SL module set, Initializer 2.12, the MOH-branded O3 SPA, and the Sierra Leone (`sierraLeone`) site configuration — assembled fully **offline** by the OpenMRS SDK and runnable with Docker Compose.
+Peripheral Health Unit 360 — the reproducible **PIH Sierra Leone OpenMRS distribution**: OpenMRS core **2.8.9**, the full PIH SL module set, Initializer 2.12, the MOH-branded O3 SPA, and the Sierra Leone (`sierraLeone`) site configuration — assembled fully **offline** by the OpenMRS SDK and runnable with Docker Compose.
 
 ## Contents
 
@@ -66,8 +66,8 @@ The patient dashboard ships two age-gated register links:
 
 ## What each piece contributes
 
-- **`content/`** — the content package. `seed-distro-maven-repo.sh` materializes the full config into the gitignored `content/build/`: the stock PIH SL image config overlaid with the tracked `configuration/backend_configuration/` delta (MOH branding, `sl.css` + `dispensing-labs-theme.css` themes, htmlforms including the Under Five / Above Five registers, check-in/registration flows, the above-five reports, `patientdashboard_registers_extension.json`, the `-mongo`/`-falaba`/`-sinkunia` site profiles, etc.) minus the files in `content/exclusions.txt` (the 15 stock data-export descriptors replaced by the custom reports). Only the delta is committed; the content module packages the materialized set into `org.sl.openmrs:leone-emr-content` and the SDK installs it as `openmrs_config`.
-- **`distro/openmrs-distro.properties`** — the distribution manifest. Filtered from `openmrs-image/openmrs-distro.properties`, the resolved production baseline: `omod.*` pins identical to the stock PIH SL distribution, the branded `spa.*` coordinates, and `content.leone-emr-content=...`. `build-distro.sh` cleans `distro/target/distro` before each SDK run so config/content edits are never masked by stale output.
+- **`content/`** — the content package. `seed-distro-maven-repo.sh` materializes the full config into the gitignored `content/build/`: the stock PIH SL image config overlaid with the tracked `configuration/backend_configuration/` delta (MOH branding, `sl.css` + `dispensing-labs-theme.css` themes, htmlforms including the Under Five / Above Five registers, check-in/registration flows, the above-five reports, `patientdashboard_registers_extension.json`, the `-mongo`/`-falaba`/`-sinkunia` site profiles, etc.) minus the files in `content/exclusions.txt` (the 15 stock data-export descriptors replaced by the custom reports). Only the delta is committed; the content module packages the materialized set into `org.sl.openmrs:phu360-content` and the SDK installs it as `openmrs_config`.
+- **`distro/openmrs-distro.properties`** — the distribution manifest. Filtered from `openmrs-image/openmrs-distro.properties`, the resolved production baseline: `omod.*` pins identical to the stock PIH SL distribution, the branded `spa.*` coordinates, and `content.phu360-content=...`. `build-distro.sh` cleans `distro/target/distro` before each SDK run so config/content edits are never masked by stale output.
 - **`distro/Dockerfile`** — mirrors the SDK's generated Dockerfile but pins the stable core image (`openmrs/openmrs-core:2.8.9`) and copies the six distribution outputs (`openmrs_core/openmrs.war`, `openmrs-distro.properties`, `openmrs_modules`, `openmrs_config`, `openmrs_owas`, `openmrs_spa`).
 - **`openmrs-image/`** — provenance inputs: the resolved `openmrs-distro.properties` baseline, the branded `spa/` overlay (Ministry of Health logo, `moh-login.css` + `moh-login-logo.png`, app `config.json`/`base-config.json`/`index.html`/`logo.png`/`manifest`), and the patched `pihcore-2.2.0-SNAPSHOT.omod` carrying the SL registration id labels (`Voters ID` / `Driver's License`).
 - **`openmrs-forms/`** — the legacy patched-WAR custom-UI system for the registers: the standalone `form-above-five-treatment-register.html` source, custom `login.gsp` / `patient.gsp`, patched `coreapps-1.34.0` / `referenceapplication-2.12.0` / `initializer-2.9.0` omods, `entrypoint-custom.sh`, and the concept/attach/build scripts (`build-patched-war.sh`, `attach_form.sql`, `create_concepts.py`, ...). Kept for provenance; not consumed by the 2.8.9 image build.
@@ -82,7 +82,7 @@ Copy `.env.example` to `.env` and adjust. The OpenMRS image reads `OMRS_*` env v
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `OPENMRS_IMAGE` | `leoneemr:latest` | Name of the locally-built image |
+| `OPENMRS_IMAGE` | `phu360:latest` | Name of the locally-built image |
 | `OPENMRS_PIH_CONFIG` | `sierraLeone,sierraLeone-kgh,sierraLeone-kgh-test` | PIH site config chain. Stock image ships `sierraLeone`, `-kgh`, `-kgh-test`, `-wellbody`, `-wellbody-gladi`, `-wellbody-demo`; the materialized config adds `-mongo`, `-falaba`, `-sinkunia`. An unsupported profile fails startup with `HTTP Status 500` / `Error loading PIH config`. |
 | `OPENMRS_USERNAME` / `OPENMRS_PASSWORD` | `admin` / `Admin123` | admin user + password for the API/UI |
 | `OPENMRS_DB_*` | `openmrs` / `Admin123` | MySQL credentials |
@@ -93,7 +93,7 @@ Copy `.env.example` to `.env` and adjust. The OpenMRS image reads `OMRS_*` env v
 - **`HTTP Status 500` / `Error loading PIH config`** — the `OPENMRS_PIH_CONFIG` chain references a profile the image does not ship. Fix `.env`, wipe the half-initialized DB, and let first boot run cleanly:
   ```bash
   docker compose stop openmrs openmrs-db
-  docker volume rm <prefix>_leoneemr-data <prefix>_leoneemr-db-data   # docker volume ls | grep leoneemr
+  docker volume rm <prefix>_phu360-data <prefix>_phu360-db-data   # docker volume ls | grep phu360
   docker compose up -d openmrs && docker compose logs -f openmrs
   ```
 - **Ports** — `8090` (OpenMRS) and `3307` (MySQL) are the compose defaults; change the left-hand side if taken.

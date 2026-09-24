@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.sl.openmrs</groupId>
-  <artifactId>leone-emr</artifactId>
+  <artifactId>phu360</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>LeoneEMR</name>
+  <name>PHU360</name>
   <description>Reproducible PIH Sierra Leone OpenMRS distribution</description>
 
   <modules>

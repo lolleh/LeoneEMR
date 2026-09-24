@@ -10,7 +10,7 @@ services:
     ports:
       - "127.0.0.1:3307:3306"
     volumes:
-      - leoneemr-db-data:/var/lib/mysql
+      - phu360-db-data:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
       start_period: 30s
@@ -22,7 +22,7 @@ services:
     build:
       context: ./distro
       dockerfile: Dockerfile
-    image: ${OPENMRS_IMAGE:-leoneemr:latest}
+    image: ${OPENMRS_IMAGE:-phu360:latest}
     pull_policy: build
     depends_on:
       openmrs-db:
@@ -59,7 +59,7 @@ services:
       # App data (modules, config checksums, Lucene index, complex obs, runtime
       # properties). Startup wipes the modules/config/frontend subfolders and
       # re-copies them from the image's distribution dir on every boot.
-      - leoneemr-data:/openmrs/data
+      - phu360-data:/openmrs/data
     healthcheck:
       # Real readiness check: session REST endpoint returns 2xx (or a login
       # redirect) once the OpenMRS context is up. First boot runs the whole
@@ -71,5 +71,5 @@ services:
       retries: 60
 
 volumes:
-  leoneemr-db-data:
-  leoneemr-data:
+  phu360-db-data:
+  phu360-data:

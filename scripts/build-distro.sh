@@ -11,7 +11,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SL_GROUP="org.sl.openmrs"
-SL_ARTIFACT="leone-emr-content"
+SL_ARTIFACT="phu360-content"
 SL_VERSION="1.0.0-SNAPSHOT"
 OFFLINE=(-o)
 [[ "${1:-}" == "--online" ]] && OFFLINE=()

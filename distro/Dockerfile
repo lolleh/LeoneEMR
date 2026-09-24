@@ -1,4 +1,4 @@
-# Docker image for the LeoneEMR (Sierra Leone OpenMRS) server.
+# Docker image for the PHU360 (Sierra Leone OpenMRS) server.
 #
 # Build context is ./distro; the payload is produced by:
 #   scripts/seed-distro-maven-repo.sh && scripts/build-distro.sh

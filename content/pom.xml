@@ -6,13 +6,13 @@
 
   <parent>
     <groupId>org.sl.openmrs</groupId>
-    <artifactId>leone-emr</artifactId>
+    <artifactId>phu360</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>leone-emr-content</artifactId>
+  <artifactId>phu360-content</artifactId>
   <packaging>pom</packaging>
-  <name>LeoneEMR Content</name>
+  <name>PHU360 Content</name>
 
   <build>
     <pluginManagement>
