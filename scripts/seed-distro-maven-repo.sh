@@ -34,6 +34,7 @@ WORK_DIR="$ROOT_DIR/distro/template"
 CONFIG_BUILD="$ROOT_DIR/content/build"
 DELTA_DIR="$ROOT_DIR/content/configuration/backend_configuration"
 PATCHED_PIHCORE="$ROOT_DIR/openmrs-image/pihcore-2.2.0-SNAPSHOT.omod"
+PATCHED_PIHREPORTING="$ROOT_DIR/openmrs-image/pihreporting-1.0.0-SNAPSHOT.omod"
 EXCLUSIONS="$ROOT_DIR/content/exclusions.txt"
 
 # The OpenMRS SDK asks interactively for anonymous usage stats on first run,
@@ -85,6 +86,9 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
 print("    wrote", out)
 PY
 
+echo "==> Building PHU360 Reporting module (pihreporting omod)"
+bash "$ROOT_DIR/scripts/build-pihreporting-module.sh"
+
 install_file() {
   local file="$1" group="$2" artifact="$3" version="$4" packaging="$5"
   echo "    seeding $group:$artifact:$version:$packaging"
@@ -133,6 +137,9 @@ for m in "${OMODS[@]}"; do
   file="$WORK_DIR/modules/${name}-${version}.omod"
   if [[ "$name" == "pihcore" && -f "$PATCHED_PIHCORE" ]]; then
     file="$PATCHED_PIHCORE"
+  fi
+  if [[ "$name" == "pihreporting" && -f "$PATCHED_PIHREPORTING" ]]; then
+    file="$PATCHED_PIHREPORTING"
   fi
   if [[ "$type" == "jar" ]]; then
     ext="jar"

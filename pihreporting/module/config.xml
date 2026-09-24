@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<id>pihreporting</id>
+	<name>PHU360 Reporting</name>
+	<version>1.0.0-SNAPSHOT</version>
+	<package>org.openmrs.module.pihreporting</package>
+	<author>PHU360</author>
+	<description>
+		Facility reporting dashboard. Computes KPIs and trend indicators live
+		from the OpenMRS database, filterable by date range, health center and
+		encounter type. Aggregate data only - no patient identifiers.
+	</description>
+
+	<require_version>2.8.9</require_version>
+
+	<activator>org.openmrs.module.pihreporting.PihReportingActivator</activator>
+
+	<servlet>
+		<servlet-name>reportApi</servlet-name>
+		<servlet-class>org.openmrs.module.pihreporting.web.ReportApiServlet</servlet-class>
+	</servlet>
+
+</module>

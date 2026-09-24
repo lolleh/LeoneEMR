@@ -10,6 +10,16 @@
     "order": 20
   },
   {
+    "id": "home.app.pihReportDashboard",
+    "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+    "type": "link",
+    "label": "PHU360 Reporting Dashboard",
+    "url": "moduleResources/pihreporting/index.html",
+    "icon": "fas fa-fw fa-chart-pie",
+    "requiredPrivilege": "App: coreapps.summaryDashboard",
+    "order": 21
+  },
+  {
     "id": "home.app.morningMaternalHandoff",
     "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
     "type": "link",
