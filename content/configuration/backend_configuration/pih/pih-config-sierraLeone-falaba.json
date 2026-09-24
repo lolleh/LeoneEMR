@@ -95,6 +95,12 @@
       "value": "c09a1d24-7162-11eb-8aa6-0242ac110002",
       "label": "ui.i18n.PatientIdentifierType.name.c09a1d24-7162-11eb-8aa6-0242ac110002",
       "width": "80px"
+    },
+    {
+      "type": "identifierLocation",
+      "value": "c09a1d24-7162-11eb-8aa6-0242ac110002",
+      "label": "emr.regFacility",
+      "width": "160px"
     }
   ],
   "globalProperties": {
