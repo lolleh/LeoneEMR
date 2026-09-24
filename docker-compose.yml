@@ -8,7 +8,7 @@ services:
       MYSQL_USER: ${OPENMRS_DB_USER:-openmrs}
       MYSQL_PASSWORD: ${OPENMRS_DB_PASSWORD:-Admin123}
     ports:
-      - "127.0.0.1:3307:3306"
+      - "127.0.0.1:${OPENMRS_DB_PORT:-3307}:3306"
     volumes:
       - phu360-db-data:/var/lib/mysql
     healthcheck:
@@ -54,7 +54,7 @@ services:
       # 'continue_on_error' keeps the server bootable if a domain fails to load.
       OMRS_EXTRA_initializer_startup_load: continue_on_error
     ports:
-      - "127.0.0.1:8090:8080" # OpenMRS UI: http://localhost:8090/openmrs (O3 SPA)
+      - "127.0.0.1:${OPENMRS_PORT:-8090}:8080" # OpenMRS UI: http://localhost:8090/openmrs (O3 SPA)
     volumes:
       # App data (modules, config checksums, Lucene index, complex obs, runtime
       # properties). Startup wipes the modules/config/frontend subfolders and
