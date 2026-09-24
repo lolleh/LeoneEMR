@@ -1,16 +1,16 @@
 # LeoneEMR
 
-Reproducible **PIH Sierra Leone OpenMRS distribution** for the Leone EMR server: OpenMRS core **2.8.9** + the full PIH SL module set + Initializer 2.12 + the MOH-branded O3 SPA + the Sierra Leone (`sierraLeone`) site configuration, assembled fully **offline** by the OpenMRS SDK and runnable with Docker Compose.
+Reproducible **PIH Sierra Leone OpenMRS distribution** for the Leone EMR server: OpenMRS core **2.8.9**, the full PIH SL module set, Initializer 2.12, the MOH-branded O3 SPA, and the Sierra Leone (`sierraLeone`) site configuration — assembled fully **offline** by the OpenMRS SDK and runnable with Docker Compose.
 
-## What's inside
+## Contents
 
 ```
 pom.xml                     Maven parent (modules: content, distro; OpenMRS SDK 6.8.0)
-content/                    content package: materialized SL config -> openmrs_config
+content/                    content package -> installed as openmrs_config
   pom.xml / assembly.xml    Maven content module (zip: content.properties + configuration/**)
   content.properties        name/version (filtered)
-  exclusions.txt            stock files intentionally dropped (15 data-export descriptors)
-  configuration/backend_configuration/   tracked SL config delta (411 files)
+  exclusions.txt            stock config files intentionally dropped (15 data-export descriptors)
+  configuration/backend_configuration/   tracked SL config delta (413 files)
 distro/                     distribution module
   pom.xml                   OpenMRS SDK build-distro (prepare-package)
   openmrs-distro.properties distribution manifest (war/omod/spa/owa/content pins)
@@ -20,10 +20,9 @@ scripts/
   build-distro.sh           offline SDK build -> distro/target/distro/web
 openmrs-image/              provenance inputs (resolved distro baseline, branded SPA
                             overlay, patched pihcore omod carrying SL registration ids)
-openmrs-forms/              legacy patched-WAR custom-UI system (Above Five register
-                            htmlform + name/uuid of the Under Five register, custom
-                            login.gsp/patient.gsp, patched coreapps/referenceapplication
-                            omods, initializer 2.9.0 omod, concept/attach build scripts)
+openmrs-forms/              legacy patched-WAR custom-UI tooling (standalone register-form
+                            sources, custom login.gsp/patient.gsp, patched coreapps /
+                            referenceapplication / initializer omods, concept + attach scripts)
 docker-compose.yml          openmrs + openmrs-db (MySQL 5.7)
 ```
 
@@ -48,23 +47,38 @@ docker compose up -d --build
 
 Open [http://localhost:8090/openmrs](http://localhost:8090/openmrs) (O3 SPA at `/openmrs/spa`), log in with username `admin` / password `Admin123`, and pick a session location (e.g. KGH).
 
+Every artifact is resolved from `~/.m2`, so once seeded the build is reproducible from a pinned stock image + the tracked overlays with **no access to OpenMRS artifact repositories**.
+
+## Under Five & Above Five registers
+
+The patient dashboard ships two age-gated register links:
+
+| Button | Age gate | htmlform |
+|--------|----------|----------|
+| Above Five General Treatment Register (`patientdashboard.aboveFiveTreatmentRegister`) | `age >= 5` | `htmlFormId` 185 |
+| Under Five (General) Register (`patientdashboard.underFiveRegister`) | `age < 5` | `htmlFormId` 184 |
+
+- **Links** — `content/configuration/backend_configuration/appframework/patientdashboard_registers_extension.json` adds both buttons under the dashboard **Overall Actions** and **Visit Actions** (requires `App: coreapps.summaryDashboard`).
+- **Forms** — the register htmlforms ship in the config delta and are created in the DB by Initializer on first boot:
+  - `content/configuration/backend_configuration/pih/htmlforms/aboveFiveTreatmentRegister.xml` — "Above Five (General) Treatment Register", uuid `eaad2f41-de8f-48b7-9d40-50187fb95932`, v1.1
+  - `content/configuration/backend_configuration/pih/htmlforms/underFiveRegister.xml` — "Under Five (General) Register", uuid `26f8e5c5-8787-43bd-af4c-21674f434d37`, v1.1
+- **Standalone sources & legacy tooling** — the standalone form source, mockup, concept/attach SQL + rebuild scripts for an older patched-WAR image live in `openmrs-forms/`. That patched-WAR approach targets an earlier referenceapplication-based OpenMRS and is **not** part of this 2.8.9 distribution; the 2.8.9 image deploys the forms via the content package above.
+
 ## What each piece contributes
 
-- **`content/`** — the content package. `seed-distro-maven-repo.sh` materializes the full config into the gitignored `content/build/`: the stock PIH SL image config overlaid with the tracked `configuration/backend_configuration/` delta (MOH branding, `sl.css` theme, htmlforms, check-in/registration flows, the above-five register reports, `patientdashboard_registers_extension.json`, the `-mongo`/`-falaba`/`-sinkunia` site profiles, etc.) minus the files in `content/exclusions.txt` (the 15 stock data-export descriptors replaced by the custom reports). Only the delta is committed; the content module packages the materialized set into `org.sl.openmrs:leone-emr-content` and the SDK installs it as `openmrs_config`.
-- **The Under Five / Above Five registers** — the dashboard links ship in `content/configuration/backend_configuration/appframework/patientdashboard_registers_extension.json` (age-gated buttons for `htmlFormId` 184/185). The register forms themselves are tracked as `content/configuration/backend_configuration/pih/htmlforms/underFiveRegister.xml` and `aboveFiveTreatmentRegister.xml` (loaded by Initializer into the DB on first boot); their standalone sources/build tooling live in `openmrs-forms/`.
-- **`distro/openmrs-distro.properties`** — the distribution manifest. Filtered from `openmrs-image/openmrs-distro.properties`, the resolved production baseline: `omod.*` pins identical to the stock PIH SL distribution, the branded `spa.*` coordinates, and `content.leone-emr-content=...`.
+- **`content/`** — the content package. `seed-distro-maven-repo.sh` materializes the full config into the gitignored `content/build/`: the stock PIH SL image config overlaid with the tracked `configuration/backend_configuration/` delta (MOH branding, `sl.css` + `dispensing-labs-theme.css` themes, htmlforms including the Under Five / Above Five registers, check-in/registration flows, the above-five reports, `patientdashboard_registers_extension.json`, the `-mongo`/`-falaba`/`-sinkunia` site profiles, etc.) minus the files in `content/exclusions.txt` (the 15 stock data-export descriptors replaced by the custom reports). Only the delta is committed; the content module packages the materialized set into `org.sl.openmrs:leone-emr-content` and the SDK installs it as `openmrs_config`.
+- **`distro/openmrs-distro.properties`** — the distribution manifest. Filtered from `openmrs-image/openmrs-distro.properties`, the resolved production baseline: `omod.*` pins identical to the stock PIH SL distribution, the branded `spa.*` coordinates, and `content.leone-emr-content=...`. `build-distro.sh` cleans `distro/target/distro` before each SDK run so config/content edits are never masked by stale output.
 - **`distro/Dockerfile`** — mirrors the SDK's generated Dockerfile but pins the stable core image (`openmrs/openmrs-core:2.8.9`) and copies the six distribution outputs (`openmrs_core/openmrs.war`, `openmrs-distro.properties`, `openmrs_modules`, `openmrs_config`, `openmrs_owas`, `openmrs_spa`).
 - **`openmrs-image/`** — provenance inputs: the resolved `openmrs-distro.properties` baseline, the branded `spa/` overlay (Ministry of Health logo, `moh-login.css` + `moh-login-logo.png`, app `config.json`/`base-config.json`/`index.html`/`logo.png`/`manifest`), and the patched `pihcore-2.2.0-SNAPSHOT.omod` carrying the SL registration id labels (`Voters ID` / `Driver's License`).
-
-Every artifact is resolved from ~/.m2, so once seeded the build is reproducible from a pinned stock image + the tracked overlays with **no access to OpenMRS artifact repositories**.
+- **`openmrs-forms/`** — the legacy patched-WAR custom-UI system for the registers: the standalone `form-above-five-treatment-register.html` source, custom `login.gsp` / `patient.gsp`, patched `coreapps-1.34.0` / `referenceapplication-2.12.0` / `initializer-2.9.0` omods, `entrypoint-custom.sh`, and the concept/attach/build scripts (`build-patched-war.sh`, `attach_form.sql`, `create_concepts.py`, ...). Kept for provenance; not consumed by the 2.8.9 image build.
 
 ## Rebuilding after edits
 
-Edits to any tracked overlay or config file take effect with a plain `scripts/build-distro.sh && docker compose up -d --build`.
+Edits to any tracked overlay or config file (e.g. a register htmlform or the SPA branding) take effect with a plain `scripts/build-distro.sh && docker compose up -d --build`.
 
 ## Configuration
 
-Copy `.env.example` to `.env` and adjust. The OpenMRS image reads `OMRS_*` env vars, which compose maps from:
+Copy `.env.example` to `.env` and adjust. The OpenMRS image reads `OMRS_*` env vars (mapped by compose from the table below):
 
 | Variable | Default | Description |
 |----------|---------|-------------|
