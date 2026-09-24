@@ -13,7 +13,7 @@ scripts/build-distro.sh            # offline build -> distro/target/distro/web
 docker compose up -d --build       # first boot: 20-45 min (Initializer)
 ```
 
-Open [http://localhost:8090/openmrs](http://localhost:8090/openmrs) (O3 SPA at `/openmrs/spa`), log in `admin` / `Admin123`, pick a location (e.g. KGH).
+Open [http://localhost:8090/openmrs](http://localhost:8080/openmrs) (O3 SPA at `/openmrs/spa`), log in `admin` / `Admin123`, pick a location (e.g. KGH).
 
 > First build on a fresh machine: run `scripts/build-distro.sh --online` once (downloads the Maven plugin set), then offline builds thereafter.
 
