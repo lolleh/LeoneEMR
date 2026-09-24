@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="controls">
-        <a class="btn-home" href="../../index.htm" title="Back to the OpenMRS home page">&#8592; OpenMRS Home</a>
+        <a class="btn-home" id="homeLink" href="../index.htm" title="Back to the OpenMRS home page">&#8592; OpenMRS Home</a>
         <label class="district-label">District
           <select id="districtSelect">
             <option value="all" selected>All Districts</option>
@@ -137,5 +137,12 @@
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    (function () {
+      var m = window.location.pathname.match(/(.*?)\/(?:dashboard|owa\/[^\/]+)\/index\.html$/);
+      var el = document.getElementById('homeLink');
+      if (el) { el.href = (m ? m[1] : '') + '/index.htm'; }
+    })();
+  </script>
 </body>
 </html>
