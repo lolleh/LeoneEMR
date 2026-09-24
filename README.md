@@ -57,6 +57,33 @@ Copy `.env.example` to `.env` and adjust:
 | `OPENMRS_USERNAME` / `OPENMRS_PASSWORD` | `admin` / `Admin123` | Admin user |
 | `OPENMRS_DB_*` | `openmrs` / `Admin123` | MySQL credentials |
 
+## Running in production
+
+The compose stack starts `admin`/`Admin123` with `-test` profiles and well-known passwords — fine for evaluation, not for a live site. Before you go live:
+
+**Secrets & profiles**
+- `cp .env.example .env` and set strong values for `OPENMRS_PASSWORD`, `OPENMRS_DB_PASSWORD`, `OPENMRS_DB_ROOT_PASSWORD` (`.env` is gitignored).
+- Ditch the test profile: set `OPENMRS_PIH_CONFIG` to your real site chain (e.g. `sierraLeone,sierraLeone-kgh`), not `sierraLeone-kgh-test`.
+- Prefer a managed/external MySQL 8 over the bundled `mysql:5.7` (5.7 is EOL). Point `OMRS_DB_HOSTNAME` etc. at it and drop the `openmrs-db` service; if you keep the bundled DB, the `3307` port must stay `127.0.0.1`-bound (or remove the mapping so only the compose network reaches it).
+
+**TLS / exposure**
+- `8090` is also `127.0.0.1`-bound by default — put a TLS-terminating reverse proxy (Caddy, nginx, Traefik) in front of it. OpenMRS itself stays on plain HTTP inside the stack.
+- Remove the `3307` host-port mapping unless an operator really needs it.
+
+**Backups** (practice this before you need it):
+```bash
+docker compose exec -T openmrs-db sh -c 'exec mysqldump -uroot -p"$MYSQL_ROOT_PASSWORD" openmrs' > "openmrs-$(date +%F).sql"
+```
+Also snapshot the `phu360-data` volume (modules, Lucene index, complex obs, runtime properties). Restoring = restore both, then `docker compose up -d`.
+
+**Updates**
+- Upgrade in a maintenance window with a fresh backup. Pull the new config, then `scripts/build-distro.sh && docker compose up -d --build`; OpenMRS runs DB migrations automatically on boot (`OMRS_AUTO_UPDATE_DATABASE=true`), and the first boot of a new image can take a while (Initializer).
+- Add `restart: unless-stopped` to both services so the stack survives host reboots/crashes.
+
+**Monitoring & sizing**
+- The compose healthcheck already probes `/openmrs/ws/rest/v1/session` — wire it into an uptime monitor, and watch `docker compose logs -f openmrs`.
+- The image defaults to `-Xms512m -Xmx4g`; raise `-Xmx` with expected concurrent load and give MySQL its own 4-8 GB of host RAM.
+
 ## Rebuilding after edits
 
 ```bash
