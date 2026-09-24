@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
 
     <name>PHU360 OpenMRS Distribution</name>
-    <description>Reproducible PIH Sierra Leone OpenMRS distribution (OpenMRS 2.8.9 + full PIH SL module set + branded O3 SPA + SL config)</description>
+    <description>Reproducible PHU360 OpenMRS distribution (OpenMRS 2.8.9 + full PIH SL module set + PHU360-branded O3 SPA + SL config)</description>
 
     <properties>
         <contentGroup>org.sl.openmrs</contentGroup>

@@ -13,7 +13,7 @@
 
         <globalProperty>
             <property>emr.concept.diagnosisSetOfSets</property>
-            <!-- TODO: create a separate set for Sierra Leone separate from the HUM/ZL one -->
+            <!-- TODO: create a separate set for the PHU360 distribution separate from the HUM/ZL one -->
             <!-- Concept: HUM Diagnosis Sets -->
             <value>8fcd0b0c-f977-4a66-a1b5-ad7ce68e6770</value>
         </globalProperty>
@@ -29,14 +29,14 @@
         <!-- Order Entry OWA -->
         <globalProperty>
             <property>orderentryowa.labOrderablesConceptSet</property>
-            <!-- Concept: Sierra Leone laboratory categories -->
+            <!-- Concept: PHU360 laboratory categories -->
             <value>880468f0-eec0-4d70-861a-fe12d4ba5099</value>
         </globalProperty>
 
         <!-- Lab Workflow OWA -->
         <globalProperty>
             <property>labworkflowowa.locationOfLaboratory</property>
-            <!-- Concept: Location of laboratory (Sierra Leone) -->
+            <!-- Concept: Location of laboratory (PHU360) -->
             <value>449d5a8e-5da0-4e84-8eb7-819aaf67d824</value>
         </globalProperty>
 

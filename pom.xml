@@ -9,7 +9,7 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>PHU360</name>
-  <description>Reproducible PIH Sierra Leone OpenMRS distribution</description>
+  <description>Reproducible PHU360 OpenMRS distribution</description>
 
   <modules>
     <module>content</module>

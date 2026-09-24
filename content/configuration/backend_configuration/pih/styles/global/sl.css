@@ -268,7 +268,7 @@ body header .logo img {
 }
 
 /* ==========================================================================
-   Ministry of Health - login page theme (matches the DHIS2 login design)
+   PHU360 - login page theme (matches the DHIS2 login design)
    Scoped to body:has(#login-form) so it only affects the login screen and
    never the rest of the application. Loaded last on the login page
    (authenticationui -> standardLoginPage -> ui.resourceLinks()).
@@ -292,9 +292,9 @@ body:has(#login-form):after {
     display: none !important;
 }
 
-/* Ministry of Health / HEAP footer */
+/* PHU360 footer */
 body:has(#login-form)::after {
-    content: "Ministry of Health - Health Equity Acceleration Partnership (HEAP)";
+    content: "PHU360";
     position: fixed;
     left: 0;
     right: 0;
@@ -326,7 +326,7 @@ body:has(#login-form) > header {
     position: relative;
 }
 body:has(#login-form) > header::before {
-    content: "Ministry of Health\A Health Information Systems\A\A One platform for the nation\2019s health data";
+    content: "PHU360\A Health Information System\A\A One platform for national health data";
     order: 1;
     display: block !important;
     clear: none !important;
@@ -350,7 +350,7 @@ body:has(#login-form) > header .logo {
     box-shadow: none;
 }
 body:has(#login-form) > header .logo::after {
-    content: "Republic of Sierra Leone";
+    content: "PHU360";
     display: block;
     white-space: pre-line;
     margin-top: 44px;
@@ -391,7 +391,7 @@ body:has(#login-form) > header .logo img {
     display: none !important;
 }
 body:has(#login-form) > header::after {
-    content: "Securely access integrated national health information and analytics, supporting evidence-based decisions across districts, facilities and programmes of Sierra Leone.";
+    content: "Securely access integrated national health information and analytics, supporting evidence-based decisions across facilities, programmes and communities served by PHU360.";
     order: 2;
     display: block !important;
     clear: none !important;
@@ -585,7 +585,7 @@ body:has(#login-form) #login-form #sessionLocation {
 }
 
 /* ==========================================================================
-   Ministry of Health - "Choose login location" page (pihapps/loginLocation)
+   PHU360 - "Choose login location" page (pihapps/loginLocation)
    Scoped to body:has(#login-location-form) so it only affects that page.
    ========================================================================== */
 
@@ -764,7 +764,7 @@ body:has(#login-location-form) #cancel-button-section .cancel:hover {
 }
 
 /* ==========================================================================
-   Ministry of Health - Patient registration (registrationapp.registerPatient)
+   PHU360 - Patient registration (registrationapp.registerPatient)
    Scoped to body:has(#registration).
    ========================================================================== */
 
@@ -960,8 +960,8 @@ body:has(#registration) #confirmation {
 }
 
 /* ==========================================================================
-   Ministry of Health - application-wide brand baseline
-   Applies MOH branding to the shared OpenMRS chrome and common components
+   PHU360 - application-wide brand baseline
+   Applies PHU360 branding to the shared OpenMRS chrome and common components
    while page-specific themes (login, location, registration) override below.
    ========================================================================== */
 

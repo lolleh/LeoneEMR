@@ -121,7 +121,7 @@
   "@openmrs/esm-login-app": {
     "logo": {
       "src": "${openmrsSpaBase}/pih-logo.png",
-      "alt": "Ministry of Health"
+      "alt": "PHU360"
     },
     "links": {
       "loginSuccess": "${openmrsBase}/index.htm"

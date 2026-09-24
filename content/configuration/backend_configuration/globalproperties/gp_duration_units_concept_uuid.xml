@@ -2,7 +2,7 @@
     <globalProperties>
         <globalProperty>
             <property>order.durationUnitsConceptUuid</property>
-            <!-- override with custom set for Sierra Leone -->
+            <!-- override with custom set for PHU360 -->
             <!-- Concept: SL medication duration units -->
             <value>1922ebbd-8c1f-49a4-9121-a7d15062d98e</value>
         </globalProperty>

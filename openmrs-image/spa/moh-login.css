@@ -1,5 +1,5 @@
 /* ============================================================
-   Ministry of Health — custom OpenMRS (O3) login theme
+   PHU360 — custom OpenMRS (O3) login theme
    Matches the DHIS2 login design: green brand panel + white card.
    CSS-only: uses pseudo-elements so React's DOM is untouched.
    Selectors target data-testid / CSS-module name substrings
@@ -34,7 +34,7 @@ body [data-testid="login-container"]::before {
 
 /* Headline over the brand panel */
 body [data-testid="login-container"]::after {
-  content: "Republic of Sierra Leone \2014  Ministry of Health\A\AOne platform for the nation\2019s health data";
+  content: "PHU360\A\AOne platform for national health data";
   white-space: pre-line;
   position: absolute;
   left: 0;
