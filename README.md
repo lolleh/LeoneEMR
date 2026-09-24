@@ -53,9 +53,25 @@ Copy `.env.example` to `.env` and adjust:
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `OPENMRS_IMAGE` | `phu360:latest` | Locally-built image name |
-| `OPENMRS_PIH_CONFIG` | `sierraLeone,sierraLeone-kgh,sierraLeone-kgh-test` | PIH site config chain; unsupported profiles fail startup with `HTTP Status 500` / `Error loading PIH config` |
+| `OPENMRS_PIH_CONFIG` | `sierraLeone,sierraLeone-falaba` | PIH site config chain; unsupported profiles fail startup with `HTTP Status 500` / `Error loading PIH config` |
 | `OPENMRS_USERNAME` / `OPENMRS_PASSWORD` | `admin` / `Admin123` | Admin user |
 | `OPENMRS_DB_*` | `openmrs` / `Admin123` | MySQL credentials |
+
+### Patient EMR IDs
+
+- The legacy `Driver's License` identifier type is renamed **`EMR ID`** in
+  `content/configuration/backend_configuration/patientidentifiertypes/identifierTypes.csv`
+  (uuid `c09a1d24-7162-11eb-8aa6-0242ac110002`; also the queue/registration
+  display labels via `messageproperties/messages-sl_en.properties`).
+- pihcore 2.2.0 hardcodes a `KGH Primary Identifier Source`
+  (`idgen_seq_id_gen`, prefix `'KGH'yyMM` → e.g. `KGH26090001`) for Sierra
+  Leone and re-applies it on every boot. This distro targets the Falaba PHU, so
+  the generator is held on the **FAL** prefix:
+  - The OpenMRS db service runs with `--event-scheduler=ON`, and
+    `scripts/emr-id-falaba-guard.sql` installs two scheduler events that re-assert
+    the `'FAL'yyMM` prefix (and source name) every 15s. Apply it against a fresh
+    DB once (the running volume already has it): `docker exec -i
+    phu360-openmrs-db-1 mysql -uroot -pAdmin123 openmrs < scripts/emr-id-falaba-guard.sql`.
 
 ## Running in production
 
