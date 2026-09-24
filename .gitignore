@@ -11,6 +11,10 @@ distro/target/
 # transient helper dir used while assembling zips
 distro/template/
 
+# branding build artifacts (logos rasterized into Java at build time)
+.build/
+branding/zpl/gen/
+
 # local config / env
 .env
 
