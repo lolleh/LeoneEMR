@@ -1,0 +1,520 @@
+{
+  "created": [],
+  "existing": [
+    {
+      "formKey": "MALARIA_FEVER_CONCEPT_UUID",
+      "name": "Above Five treatment visit condition: Fever cases (suspected malaria)",
+      "uuid": "6b1b7255-4bdf-4c9d-b411-314de1c11f9a"
+    },
+    {
+      "formKey": "MALARIA_RDT_POS_CONCEPT_UUID",
+      "name": "RDT positive",
+      "uuid": "128b88e4-49cd-4a8f-85b3-de536741cd54"
+    },
+    {
+      "formKey": "MALARIA_RDT_NEG_CONCEPT_UUID",
+      "name": "RDT negative",
+      "uuid": "82752b4b-940a-462a-869a-d34e5f3c90b6"
+    },
+    {
+      "formKey": "MALARIA_MICRO_POS_CONCEPT_UUID",
+      "name": "Malaria microscopy positive",
+      "uuid": "31505342-ed59-4253-841f-43e8718467ca"
+    },
+    {
+      "formKey": "MALARIA_MICRO_NEG_CONCEPT_UUID",
+      "name": "Malaria microscopy negative",
+      "uuid": "953a35a2-c6f7-4977-a3da-7efa7e31e74e"
+    },
+    {
+      "formKey": "MALARIA_ACT_LT24_CONCEPT_UUID",
+      "name": "Malaria treated with ACT less than 24 hours",
+      "uuid": "ada12301-be11-4a63-9eb5-2a9d9b6e18de"
+    },
+    {
+      "formKey": "MALARIA_ACT_GT24_CONCEPT_UUID",
+      "name": "Malaria treated with ACT more than 24 hours",
+      "uuid": "da4dc155-856a-456e-bd82-4430d876bd35"
+    },
+    {
+      "formKey": "MALARIA_NOACT_CONCEPT_UUID",
+      "name": "Malaria treated at facility without ACT",
+      "uuid": "da85de75-b82d-4548-aa58-a9cf187dcfac"
+    },
+    {
+      "formKey": "MALARIA_ARTESUNATE_INJ_CONCEPT_UUID",
+      "name": "Treated with Artesunate injection",
+      "uuid": "85ba420b-17be-4f94-90a6-c253913cae93"
+    },
+    {
+      "formKey": "MALARIA_SEVERE_ARTESUNATE_CONCEPT_UUID",
+      "name": "Severe malaria treated with Artesunate (IV/IM & supp)",
+      "uuid": "da58522b-8e66-426f-9787-3d909918db56"
+    },
+    {
+      "formKey": "MALARIA_PARENTERAL_CONCEPT_UUID",
+      "name": "Treated with parenteral anti-malarial",
+      "uuid": "9965b265-a15f-4150-887c-ed73fbe879fe"
+    },
+    {
+      "formKey": "EYE_INFECTION_CONCEPT_UUID",
+      "name": "Eye infection",
+      "uuid": "3c960886-9501-4466-950a-5a6e30ac9034"
+    },
+    {
+      "formKey": "EYE_CONDITION_CONCEPT_UUID",
+      "name": "Eye condition other than infection",
+      "uuid": "217b71b7-d457-47e9-9f29-9f34f75c1be8"
+    },
+    {
+      "formKey": "MODERATE_MALNUTRITION_CONCEPT_UUID",
+      "name": "Moderate malnutrition",
+      "uuid": "50befc52-ebdc-44a8-92be-bb62eb0019ed"
+    },
+    {
+      "formKey": "SEVERE_MALNUTRITION_CONCEPT_UUID",
+      "name": "Severe malnutrition",
+      "uuid": "6b4685fe-b5f9-4634-8124-80045d9e269f"
+    },
+    {
+      "formKey": "AFP_CONCEPT_UUID",
+      "name": "Acute flaccid paralysis (AFP)",
+      "uuid": "9244f9b0-63e5-4dd9-a995-726214965b40"
+    },
+    {
+      "formKey": "AVHF_CONCEPT_UUID",
+      "name": "Acute viral haemorrhagic fever (AVHF)",
+      "uuid": "78158612-4c10-4f2a-b7d5-d13c849c9bbf"
+    },
+    {
+      "formKey": "DYSENTERY_CONCEPT_UUID",
+      "name": "Dysentery (bloody diarrhoea)",
+      "uuid": "5abb022f-406a-4ee6-a223-abf11a944ca1"
+    },
+    {
+      "formKey": "RUBELLA_CONCEPT_UUID",
+      "name": "Rubella",
+      "uuid": "933872e1-c068-44d9-a0be-96b465327402"
+    },
+    {
+      "formKey": "BURULI_ULCER_CONCEPT_UUID",
+      "name": "Buruli ulcer",
+      "uuid": "cba00176-dd4a-4024-b2a7-025680d7c621"
+    },
+    {
+      "formKey": "YELLOW_FEVER_CONCEPT_UUID",
+      "name": "Yellow fever",
+      "uuid": "9aafdba1-62ac-4e27-8637-28ee98548dcf"
+    },
+    {
+      "formKey": "TYPHOID_CONCEPT_UUID",
+      "name": "Typhoid fever / Paratyphoid",
+      "uuid": "a9796b0e-6e33-4bf9-a2bd-5c7b0524f0f3"
+    },
+    {
+      "formKey": "ANIMAL_BITE_CONCEPT_UUID",
+      "name": "Animal bites (dogs, snakes, cats)",
+      "uuid": "e5eeb46b-2e38-4de8-a8b8-511321173de8"
+    },
+    {
+      "formKey": "AIDS_CONCEPT_UUID",
+      "name": "AIDS",
+      "uuid": "b60b9d4d-718a-4180-8773-741876da2755"
+    },
+    {
+      "formKey": "PNEUMONIA_ABX_CONCEPT_UUID",
+      "name": "Pneumonia with antibiotic",
+      "uuid": "fe5cd35c-22c3-4af5-82bd-bbbc6763aa58"
+    },
+    {
+      "formKey": "PNEUMONIA_NOABX_CONCEPT_UUID",
+      "name": "Pneumonia without antibiotic",
+      "uuid": "6a30671e-c024-4559-bef5-bf71a80efc14"
+    },
+    {
+      "formKey": "PNEUMONIA_TX_CONCEPT_UUID",
+      "name": "Pneumonia treated in facility",
+      "uuid": "25a05262-2c2c-485a-9d0a-2c5e3cb9efdc"
+    },
+    {
+      "formKey": "CHICKENPOX_CONCEPT_UUID",
+      "name": "Chicken pox",
+      "uuid": "7d7c330f-12b1-4f1f-b379-3d4fb148f456"
+    },
+    {
+      "formKey": "DIARRHOEA_WATERY_ORSZINC_CONCEPT_UUID",
+      "name": "Watery diarrhoea treated with ORS and Zinc",
+      "uuid": "6ace0b14-465e-44a9-97ce-350c40a52989"
+    },
+    {
+      "formKey": "DIARRHOEA_WATERY_ORSONLY_CONCEPT_UUID",
+      "name": "Watery diarrhoea treated with ORS only",
+      "uuid": "29d49454-9cf6-43d1-8abe-7e37d065be54"
+    },
+    {
+      "formKey": "HEPATITIS_CONCEPT_UUID",
+      "name": "Hepatitis (all types)",
+      "uuid": "474bb6aa-d3dd-4080-a9d3-438ea418ec67"
+    },
+    {
+      "formKey": "LEPROSY_CONCEPT_UUID",
+      "name": "Leprosy",
+      "uuid": "116344AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "formKey": "SEVERE_PNEUMONIA_O2_CONCEPT_UUID",
+      "name": "Severe pneumonia treated with oxygen therapy",
+      "uuid": "9fd4090c-4f22-4b8a-9b17-25709cadc78b"
+    },
+    {
+      "formKey": "DIARRHOEA_DEHYDRATION_IV_CONCEPT_UUID",
+      "name": "Diarrhoea with severe dehydration treated with IV fluids (RL)",
+      "uuid": "362c147d-3215-4043-8775-51348506000d"
+    },
+    {
+      "formKey": "MUMPS_CONCEPT_UUID",
+      "name": "Mumps",
+      "uuid": "7ba8bd22-c70e-4914-8ea4-0758bd1b8e4d"
+    },
+    {
+      "formKey": "SEPSIS_CONCEPT_UUID",
+      "name": "Sepsis",
+      "uuid": "31f9e711-6b25-4fda-adb4-8e19aa00e2df"
+    },
+    {
+      "formKey": "SKIN_INFECTION_CONCEPT_UUID",
+      "name": "Skin infection",
+      "uuid": "510440a3-e05e-49d0-a833-0768740de721"
+    },
+    {
+      "formKey": "PID_CONCEPT_UUID",
+      "name": "Pelvic inflammatory disease (PID)",
+      "uuid": "f55df4ef-1b86-42f9-bbd8-66913a7ab74e"
+    },
+    {
+      "formKey": "GENITAL_DISCHARGE_CONCEPT_UUID",
+      "name": "Genital discharge",
+      "uuid": "e0eb290f-7b4f-40cd-bc91-e8cdd0d5aadd"
+    },
+    {
+      "formKey": "GENITAL_ULCER_CONCEPT_UUID",
+      "name": "Genital ulcer",
+      "uuid": "bee47d56-cbe0-47f2-a6fa-f2f867a9ce7e"
+    },
+    {
+      "formKey": "UTI_CONCEPT_UUID",
+      "name": "UTI (urinary tract infection)",
+      "uuid": "70d4fd36-cb4e-46a9-937f-0ef35ba4070c"
+    },
+    {
+      "formKey": "ONCHOCERCIASIS_CONCEPT_UUID",
+      "name": "Onchocerciasis",
+      "uuid": "e07eaa27-172c-4f82-906f-33cea93a57e8"
+    },
+    {
+      "formKey": "OTHER_INFECTIOUS_CONCEPT_UUID",
+      "name": "Other infectious conditions",
+      "uuid": "fb417656-f2c3-4ee7-83b2-b7dc6e5bf11b"
+    },
+    {
+      "formKey": "ADR_CONCEPT_UUID",
+      "name": "Adverse drug reaction",
+      "uuid": "a7f21431-5d05-483f-bc73-6b88b4413674"
+    },
+    {
+      "formKey": "SICKLE_CELL_CONCEPT_UUID",
+      "name": "Sickle cell disease",
+      "uuid": "f2b662e3-ce14-4d22-af0f-02a4e53a5f9f"
+    },
+    {
+      "formKey": "CANCER_CONCEPT_UUID",
+      "name": "Cancer (all types)",
+      "uuid": "e9468fa0-641c-443d-8648-cce2f2edcbd5"
+    },
+    {
+      "formKey": "LIVER_DISEASE_CONCEPT_UUID",
+      "name": "Liver disease",
+      "uuid": "fb9c870c-10e3-4095-acaf-70ffa4e7b5f2"
+    },
+    {
+      "formKey": "CVD_CONCEPT_UUID",
+      "name": "Cardiovascular disease (all types)",
+      "uuid": "5a66a22a-19df-41b7-8074-494255823bd4"
+    },
+    {
+      "formKey": "CHRONIC_RESP_CONCEPT_UUID",
+      "name": "Chronic respiratory disease",
+      "uuid": "94ae30bc-c3fa-4504-887a-8f4e7a773452"
+    },
+    {
+      "formKey": "UPPER_GI_CONCEPT_UUID",
+      "name": "Upper GI disease / Pancreatitis",
+      "uuid": "60214245-c173-4a64-a00b-82e1bc801e97"
+    },
+    {
+      "formKey": "CIRRHOSIS_CONCEPT_UUID",
+      "name": "Chronic liver disease / Cirrhosis",
+      "uuid": "62cab07d-026f-4992-8307-bbd24cc9dc32"
+    },
+    {
+      "formKey": "APPENDICITIS_CONCEPT_UUID",
+      "name": "Appendicitis",
+      "uuid": "28b0f52a-3c67-49f5-a633-814680e4cc43"
+    },
+    {
+      "formKey": "ILEUS_CONCEPT_UUID",
+      "name": "Ileus",
+      "uuid": "0b91a7b8-fa77-495c-8dbd-83e2dba0022c"
+    },
+    {
+      "formKey": "OBSTRUCTION_CONCEPT_UUID",
+      "name": "Obstruction",
+      "uuid": "3aaae386-ca7a-4a41-8fd2-163b339641df"
+    },
+    {
+      "formKey": "STROKE_CONCEPT_UUID",
+      "name": "Stroke",
+      "uuid": "d5c1995e-aaf9-4e46-87ab-a905f4bd32e1"
+    },
+    {
+      "formKey": "HEART_FAILURE_CONCEPT_UUID",
+      "name": "Heart failure",
+      "uuid": "fa1bc75b-f257-4da8-a68b-8e72e17e6387"
+    },
+    {
+      "formKey": "KIDNEY_DISORDER_CONCEPT_UUID",
+      "name": "Kidney disorders",
+      "uuid": "23edac37-c75e-415b-a7d9-760906840ad2"
+    },
+    {
+      "formKey": "MENTAL_DISORDER_CONCEPT_UUID",
+      "name": "Mental disorder (all types)",
+      "uuid": "f1a68e2a-1913-449c-a9d9-6af815bc0ef8"
+    },
+    {
+      "formKey": "OTHER_NCD_CONCEPT_UUID",
+      "name": "Other NCD conditions",
+      "uuid": "fb3f5ff6-f782-478b-9c1d-509291a6940b"
+    },
+    {
+      "formKey": "CANCER_BREAST_CONCEPT_UUID",
+      "name": "Suspected cancer: breast",
+      "uuid": "9c3b6256-5d3c-4a75-90d5-17b1be6da6f2"
+    },
+    {
+      "formKey": "CANCER_PROSTATE_CONCEPT_UUID",
+      "name": "Suspected cancer: prostate",
+      "uuid": "93b5bf5b-0dae-4f3e-b120-b3f8a8c90365"
+    },
+    {
+      "formKey": "CANCER_CERVICAL_CONCEPT_UUID",
+      "name": "Suspected cancer: cervical",
+      "uuid": "38be7097-2b04-4df1-80ec-9838750333ff"
+    },
+    {
+      "formKey": "CANCER_CHILDHOOD_CONCEPT_UUID",
+      "name": "Suspected cancer: childhood",
+      "uuid": "31005895-68de-4c61-a1e9-3b50f7d12200"
+    },
+    {
+      "formKey": "CANCER_LUNGS_CONCEPT_UUID",
+      "name": "Suspected cancer: lungs",
+      "uuid": "9b32e470-e11e-4af0-bbc8-12187a288626"
+    },
+    {
+      "formKey": "CANCER_LIVER_CONCEPT_UUID",
+      "name": "Suspected cancer: liver",
+      "uuid": "66c6cacd-fe9a-4bbc-870b-97c3bc8cba61"
+    },
+    {
+      "formKey": "CANCER_OTHER_CONCEPT_UUID",
+      "name": "Suspected cancer: others",
+      "uuid": "92fb8200-5f8d-43e3-b8cf-99693bf7305b"
+    },
+    {
+      "formKey": "LASSA_FEVER_CONCEPT_UUID",
+      "name": "Lassa fever",
+      "uuid": "97aa194b-ff8c-440f-bf5e-7def7cb64518"
+    },
+    {
+      "formKey": "MARBURG_CONCEPT_UUID",
+      "name": "Marburg",
+      "uuid": "8cf7feff-81b6-4389-a388-ecffc98910f4"
+    },
+    {
+      "formKey": "MPOX_CONCEPT_UUID",
+      "name": "Suspected MPOX",
+      "uuid": "937f42eb-57b4-43c5-aecf-a3037d4f17e5"
+    },
+    {
+      "formKey": "EBOLA_CONCEPT_UUID",
+      "name": "Ebola",
+      "uuid": "0f73b0aa-1ef3-4011-acc5-48d6ab3b1f93"
+    },
+    {
+      "formKey": "PPH_APH_CONCEPT_UUID",
+      "name": "Postpartum haemorrhage / Antepartum haemorrhage (PPH & APH)",
+      "uuid": "bce9f424-230a-45e0-8ae0-0f75166a3f5a"
+    },
+    {
+      "formKey": "WORM_INFESTATION_CONCEPT_UUID",
+      "name": "Worm infestation",
+      "uuid": "44ec868f-d821-4735-a896-b302fc0ec361"
+    },
+    {
+      "formKey": "CHRONIC_DISEASES_CONCEPT_UUID",
+      "name": "Chronic diseases",
+      "uuid": "13bc6a79-0fb9-49e9-bd80-82ef9f008b19"
+    },
+    {
+      "formKey": "AVHL_OTHER_CONCEPT_UUID",
+      "name": "Suspected AVHL other",
+      "uuid": "a6cf24da-b177-4dc4-b51e-df55dc0c5867"
+    },
+    {
+      "formKey": "CARIES_CONCEPT_UUID",
+      "name": "Dental caries",
+      "uuid": "119558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "formKey": "ABSESS_CONCEPT_UUID",
+      "name": "Dental abscess",
+      "uuid": "263225d8-cd15-442e-8cbe-20ab134c96e8"
+    },
+    {
+      "formKey": "FRACTURE_CONCEPT_UUID",
+      "name": "Dental fracture",
+      "uuid": "e669cbc5-76db-4199-88c2-753ffab30e41"
+    },
+    {
+      "formKey": "POISON_FOOD_CONCEPT_UUID",
+      "name": "Suspected poison: food",
+      "uuid": "10a4989f-e553-4235-ab02-dd1c0aa1bbe8"
+    },
+    {
+      "formKey": "POISON_CAUSTIC_CONCEPT_UUID",
+      "name": "Suspected poison: caustic soda",
+      "uuid": "7d538977-821a-4ac0-8d6d-25c4db7aafcc"
+    },
+    {
+      "formKey": "POISON_OTHER_CONCEPT_UUID",
+      "name": "Suspected poison: other",
+      "uuid": "39e47f61-3985-4539-b63e-c301612738a5"
+    },
+    {
+      "formKey": "DIARRHOEA_BLOOD_ORSZINC_CONCEPT_UUID",
+      "name": "Diarrhoea with blood treated with ORS and Zinc",
+      "uuid": "c25f1dd8-68ee-4c15-9649-53b889e0bd14"
+    },
+    {
+      "formKey": "DIARRHOEA_NOBLOOD_ORSZINC_CONCEPT_UUID",
+      "name": "Diarrhoea without blood treated with ORS and Zinc",
+      "uuid": "8170cef7-592d-4f3e-85b2-adc92c9694b2"
+    },
+    {
+      "formKey": "DIARRHOEA_SEVERE_DEHYD_CONCEPT_UUID",
+      "name": "Diarrhoea with severe dehydration",
+      "uuid": "1cb4c57d-9136-4409-9b7d-7bd1e45248d2"
+    },
+    {
+      "formKey": "DISABILITY_PHYSICAL_CONCEPT_UUID",
+      "name": "Disability: physical",
+      "uuid": "b382d354-d394-42d7-a629-1df356642c51"
+    },
+    {
+      "formKey": "DISABILITY_VISUAL_CONCEPT_UUID",
+      "name": "Disability: visual impairment",
+      "uuid": "18d7e813-dc2b-4d1f-802e-cde9fe2aa13a"
+    },
+    {
+      "formKey": "DISABILITY_HEARING_CONCEPT_UUID",
+      "name": "Disability: hearing impairment",
+      "uuid": "c3ab3553-0e5b-4342-b9cf-83968974f36c"
+    },
+    {
+      "formKey": "DISABILITY_SPEECH_CONCEPT_UUID",
+      "name": "Disability: speech and language",
+      "uuid": "3afa12ff-79aa-41d0-81a9-0cdfc22612a0"
+    },
+    {
+      "formKey": "DISABILITY_MULTIPLE_CONCEPT_UUID",
+      "name": "Disability: multiple",
+      "uuid": "1ff094d8-973a-4b58-9b94-f6bbc1f92169"
+    },
+    {
+      "formKey": "DISABILITY_INTELLECTUAL_CONCEPT_UUID",
+      "name": "Disability: intellectual",
+      "uuid": "7a4b0fb2-d87e-46c6-92ae-5a84656366dd"
+    },
+    {
+      "formKey": "ACUTE_ABDOMEN_CONCEPT_UUID",
+      "name": "Acute abdomen",
+      "uuid": "3a482da7-d298-40da-a43d-9ad2f6c74683"
+    },
+    {
+      "formKey": "ENT_DISORDER_CONCEPT_UUID",
+      "name": "ENT (ear, nose, throat) disorder",
+      "uuid": "8efe44ba-8f63-4198-9694-95b4a4c48d60"
+    },
+    {
+      "formKey": "HERNIA_CONCEPT_UUID",
+      "name": "Hernia",
+      "uuid": "24cb46b7-d971-4d94-9cd1-9a5d4f4037f1"
+    },
+    {
+      "formKey": "HYDROCELE_CONCEPT_UUID",
+      "name": "Hydrocele",
+      "uuid": "05bd7b50-666d-4722-b29a-c6f55d819c0d"
+    },
+    {
+      "formKey": "LYMPHOEDEMA_CONCEPT_UUID",
+      "name": "Lymphoedema",
+      "uuid": "6332df1f-fa74-4ea0-a4d7-3bf934f22ec4"
+    },
+    {
+      "formKey": "ORAL_DENTAL_CONCEPT_UUID",
+      "name": "Oral and dental conditions",
+      "uuid": "cc7139f8-83e1-420c-8079-954fdd57e0c5"
+    },
+    {
+      "formKey": "PUD_CONCEPT_UUID",
+      "name": "Peptic ulcer disease (PUD)",
+      "uuid": "51a97df0-cbdb-462d-98a7-dda3e326555f"
+    },
+    {
+      "formKey": "TRAUMA_RTA_CONCEPT_UUID",
+      "name": "Wounds/Trauma: road traffic accident (RTA)",
+      "uuid": "b3f91afa-0551-4cb1-a7bd-e2d1ec9afcc8"
+    },
+    {
+      "formKey": "TRAUMA_NONRTA_CONCEPT_UUID",
+      "name": "Wounds/Trauma: non-RTA",
+      "uuid": "9dbd12ef-9ce3-41c5-aee5-208d22e7a393"
+    },
+    {
+      "formKey": "BURNS_CONCEPT_UUID",
+      "name": "Burns",
+      "uuid": "c2861101-2405-42fe-b826-5806c96d9a8b"
+    },
+    {
+      "formKey": "TYPHOID_PERFORATION_CONCEPT_UUID",
+      "name": "Typhoid perforation",
+      "uuid": "7d0b12c4-b7fe-4233-a1a6-f3455bf0fb9c"
+    },
+    {
+      "formKey": "HAEMORRHOIDS_CONCEPT_UUID",
+      "name": "Haemorrhoids / Piles",
+      "uuid": "0fdb2054-695f-4495-8187-3d9e4d26a5e2"
+    },
+    {
+      "formKey": "OTHER_SURGICAL_CONCEPT_UUID",
+      "name": "Other surgical conditions",
+      "uuid": "afe6d69f-4ece-40cf-bf89-52990016d8ab"
+    },
+    {
+      "formKey": "OTHER_MORBIDITY_NOTE_CONCEPT_UUID",
+      "name": "Other morbidity (free text note)",
+      "uuid": "d03e30ca-e9d8-4511-8dca-7b8588ee5cea"
+    }
+  ]
+}

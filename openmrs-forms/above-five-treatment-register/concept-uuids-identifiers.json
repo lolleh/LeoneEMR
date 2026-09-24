@@ -1,0 +1,50 @@
+{
+  "created": [
+    {
+      "formKey": "FACILITY_NAME_CONCEPT_UUID",
+      "name": "Facility name and type",
+      "uuid": "c44b6b77-f80f-4873-9440-20efb657644e"
+    },
+    {
+      "formKey": "FACILITY_OWNERSHIP_CONCEPT_UUID",
+      "name": "Facility ownership",
+      "uuid": "b891e640-5fe6-4833-9a20-f52c980c4505"
+    },
+    {
+      "formKey": "CHIEFDOM_ZONE_CONCEPT_UUID",
+      "name": "Chiefdom / Zone",
+      "uuid": "4ed2680c-7339-48ba-a4ad-afe02beec097"
+    },
+    {
+      "formKey": "SERVICE_POINT_CONCEPT_UUID",
+      "name": "Service point (in facility / outreach)",
+      "uuid": "fb953d82-5042-41c0-ba7b-cab46e34dc5e"
+    },
+    {
+      "formKey": "PATIENT_REG_NUM_CONCEPT_UUID",
+      "name": "Patient registration number",
+      "uuid": "7657df04-2037-4fa8-a023-1d96b9c2ff65"
+    },
+    {
+      "formKey": "DATE_OF_ONSET_CONCEPT_UUID",
+      "name": "Date of onset",
+      "uuid": "41851ab2-7dc9-4530-897a-b90a1fc60517"
+    },
+    {
+      "formKey": "NATIONAL_ID_CONCEPT_UUID",
+      "name": "National identification number (NIN)",
+      "uuid": "222c6b93-2bf4-413f-a654-5676181cd07a"
+    },
+    {
+      "formKey": "TYPE_OF_VISIT_CONCEPT_UUID",
+      "name": "Type of visit (new / follow-up)",
+      "uuid": "1515414d-5e68-42ef-a239-34c86e494679"
+    },
+    {
+      "formKey": "CATEGORY_PATIENT_CONCEPT_UUID",
+      "name": "Category of patient",
+      "uuid": "1ce41cb6-3aca-424d-8545-5d7b56d8a343"
+    }
+  ],
+  "existing": []
+}

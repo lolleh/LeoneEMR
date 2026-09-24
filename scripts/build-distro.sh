@@ -32,6 +32,9 @@ mvn "${OFFLINE[@]}" -q org.apache.maven.plugins:maven-install-plugin:3.1.2:insta
   -Dversion="$SL_VERSION" -Dpackaging=zip -DgeneratePom=true
 
 echo "==> Build distro (OpenMRS SDK build-distro)"
+# The SDK writes its extraction into target/distro and does NOT clean it between
+# runs, so edits to the content package/config would silently not take effect.
+rm -rf "$ROOT_DIR/distro/target/distro"
 mvn "${OFFLINE[@]}" -q -pl distro package
 
 WEB_DIR="$ROOT_DIR/distro/target/distro/web"

@@ -1,0 +1,16 @@
+[
+  {"name":"Facility name and type","datatype":"Text","conceptClass":"Question","formKey":"FACILITY_NAME_CONCEPT_UUID"},
+  {"name":"Facility ownership","datatype":"Text","conceptClass":"Question","formKey":"FACILITY_OWNERSHIP_CONCEPT_UUID"},
+  {"name":"Chiefdom / Zone","datatype":"Text","conceptClass":"Question","formKey":"CHIEFDOM_ZONE_CONCEPT_UUID"},
+  {"name":"Service point (in facility / outreach)","datatype":"Text","conceptClass":"Question","formKey":"SERVICE_POINT_CONCEPT_UUID"},
+  {"name":"Patient registration number","datatype":"Text","conceptClass":"Question","formKey":"PATIENT_REG_NUM_CONCEPT_UUID"},
+  {"name":"Date of onset","datatype":"Date","conceptClass":"Question","formKey":"DATE_OF_ONSET_CONCEPT_UUID"},
+  {"name":"National identification number (NIN)","datatype":"Text","conceptClass":"Question","formKey":"NATIONAL_ID_CONCEPT_UUID"},
+  {"name":"Age in years","datatype":"Numeric","conceptClass":"Question","formKey":"AGE_YEARS_CONCEPT_UUID"},
+  {"name":"Sex","datatype":"Text","conceptClass":"Question","formKey":"SEX_CONCEPT_UUID"},
+  {"name":"Patient address","datatype":"Text","conceptClass":"Question","formKey":"ADDRESS_CONCEPT_UUID"},
+  {"name":"Marital status","datatype":"Text","conceptClass":"Question","formKey":"MARITAL_STATUS_CONCEPT_UUID"},
+  {"name":"Occupation","datatype":"Text","conceptClass":"Question","formKey":"OCCUPATION_CONCEPT_UUID"},
+  {"name":"Type of visit (new / follow-up)","datatype":"Text","conceptClass":"Question","formKey":"TYPE_OF_VISIT_CONCEPT_UUID"},
+  {"name":"Category of patient","datatype":"Text","conceptClass":"Question","formKey":"CATEGORY_PATIENT_CONCEPT_UUID"}
+]

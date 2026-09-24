@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Above Five (General) Treatment Register — Mockup</title>
+<style>
+  :root{
+    --brand:#1a73e8; --border:#c9d2de; --muted:#5f6b7a; --bg:#f4f6f9; --ok:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:#20262e}
+  header{background:linear-gradient(135deg,#1a73e8,#0f4c9e);color:#fff;padding:18px 24px}
+  header h1{margin:0;font-size:20px}
+  header p{margin:4px 0 0;opacity:.85;font-size:13px}
+  .wrap{max-width:1080px;margin:22px auto;padding:0 16px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:22px;overflow:hidden}
+  .card h2{margin:0;padding:12px 18px;background:#eef2f7;font-size:15px;border-bottom:1px solid var(--border)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;padding:18px}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;font-weight:600;color:var(--muted)}
+  .field input,.field select,.field textarea{border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:14px}
+  .checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;padding:14px 18px}
+  .check{display:flex;align-items:center;gap:8px;font-size:14px;padding:4px 6px;border-radius:6px}
+  .check:hover{background:#f0f4fb}
+  .check input{width:17px;height:17px;accent-color:var(--brand)}
+  .note{font-size:12px;color:var(--muted);padding:6px 18px 0}
+  .divider{margin:6px 18px;border-top:1px dashed var(--border)}
+  .group-hint{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#0f4c9e;font-weight:700;padding:16px 18px 4px}
+  footer{padding:16px;text-align:right;border-top:1px solid var(--border)}
+  .btn{background:var(--brand);color:#fff;border:0;border-radius:6px;padding:9px 18px;font-size:14px;cursor:pointer}
+  .btn:hover{background:#0f5cc0}
+  .btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+  .tag{display:inline-block;background:#e8f0fe;color:#0f4c9e;border-radius:4px;font-size:11px;padding:2px 8px;margin-left:8px}
+  .field--req label::after{content:"*";color:#d93025;margin-left:2px}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .grow{flex:1;min-width:180px}
+</style>
+</head>
+<body>
+<header>
+  <h1>ABOVE FIVE (GENERAL) TREATMENT REGISTER <span class="tag">MOCKUP — static preview</span></h1>
+  <p>Per-patient encounter form · Sections mirror the paper register · Not yet live in OpenMRS</p>
+</header>
+
+<div class="wrap">
+
+  <!-- FACILITY VISIT HEADER -->
+  <section class="card">
+    <h2>Facility / Visit</h2>
+    <div class="grid">
+      <div class="field"><label>Ownership</label>
+        <select><option value="">—</option><option>Public</option><option>Private</option><option>Faith-based</option></select>
+      </div>
+      <div class="field"><label>Service point</label>
+        <select><option value="">—</option><option>In Facility</option><option>Outreach</option></select>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIENT IDENTIFIERS -->
+  <section class="card">
+    <h2>Patient &amp; Visit Details</h2>
+    <div class="grid">
+      <div class="field"><label>Reg. No.</label><input type="text"></div>
+      <div class="field"><label>Date Seen</label><input type="date"></div>
+      <div class="field"><label>Date of Onset</label><input type="date"></div>
+      <div class="field"><label>NIN</label><input type="text"></div>
+      <div class="field"><label>Type of Visit</label>
+        <select><option value="">—</option><option>New</option><option>Follow-up</option></select>
+      </div>
+      <div class="field"><label>Category</label>
+        <select><option value="">—</option><option>General</option><option>Pregnant</option><option>Lactating</option><option>EVD survivor</option><option>Disabled</option></select>
+      </div>
+    </div>
+  </section>
+
+  <!-- MALARIA -->
+  <section class="card">
+    <h2>Malaria</h2>
+    <p class="note">Tick each confirmed/present condition for this visit.</p>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> No of Fever Cases (suspected malaria)</label>
+      <div class="divider" style="width:100%"></div>
+      <span class="group-hint">Fever tested for malaria — RDT</span>
+      <label class="check"><input type="checkbox"> RDT Positive</label>
+      <label class="check"><input type="checkbox"> RDT Negative</label>
+      <div class="divider" style="width:100%"></div>
+      <span class="group-hint">Fever tested for malaria — Microscopy</span>
+      <label class="check"><input type="checkbox"> Microscopy Positive</label>
+      <label class="check"><input type="checkbox"> Microscopy Negative</label>
+      <div class="divider" style="width:100%"></div>
+      <span class="group-hint">Malaria treated at facility with ACT</span>
+      <label class="check"><input type="checkbox"> Treated with ACT — less than 24 hours</label>
+      <label class="check"><input type="checkbox"> Treated with ACT — more than 24 hours</label>
+      <div class="divider" style="width:100%"></div>
+      <span class="group-hint">Malaria treated at facility without ACT (specify)</span>
+      <label class="check"><input type="checkbox"> Treated without ACT — less than 24 hours</label>
+      <label class="check"><input type="checkbox"> Treated with Artesunate injection</label>
+      <label class="check"><input type="checkbox"> Severe malaria treated with Artesunate (IV/IM &amp; Supp)</label>
+      <label class="check"><input type="checkbox"> Treated with parenteral anti-malarial</label>
+    </div>
+  </section>
+
+  <!-- EYE -->
+  <section class="card">
+    <h2>Eye</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Eye infection</label>
+      <label class="check"><input type="checkbox"> Eye condition (all types, except infection)</label>
+    </div>
+  </section>
+
+  <!-- INFECTIOUS -->
+  <section class="card">
+    <h2>Infectious Diseases</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Moderate malnutrition</label>
+      <div class="divider" style="width:100%"></div>
+      <span class="group-hint">Notifiable Medical Conditions (eIDSR / eCBDS)</span>
+      <label class="check"><input type="checkbox"> Severe malnutrition</label>
+      <label class="check"><input type="checkbox"> AFP (Acute Flaccid Paralysis)</label>
+      <label class="check"><input type="checkbox"> AVHF</label>
+      <label class="check"><input type="checkbox"> Cholera</label>
+      <label class="check"><input type="checkbox"> Dysentery (bloody diarrhoea)</label>
+      <label class="check"><input type="checkbox"> Measles</label>
+      <label class="check"><input type="checkbox"> Rubella</label>
+      <label class="check"><input type="checkbox"> Meningitis / Encephalitis</label>
+      <label class="check"><input type="checkbox"> Buruli ulcer</label>
+      <label class="check"><input type="checkbox"> Yellow fever</label>
+      <label class="check"><input type="checkbox"> Typhoid fever / Paratyphoid</label>
+      <label class="check"><input type="checkbox"> Tetanus</label>
+      <label class="check"><input type="checkbox"> Animal bites (dogs, snakes, cats)</label>
+      <div class="divider" style="width:100%"></div>
+      <label class="check"><input type="checkbox"> AIDS</label>
+      <span class="group-hint">Pneumonia with cough or cold treated</span>
+      <label class="check"><input type="checkbox"> Pneumonia — with antibiotic</label>
+      <label class="check"><input type="checkbox"> Pneumonia — without antibiotic</label>
+      <label class="check"><input type="checkbox"> Pneumonia treated in facility</label>
+      <label class="check"><input type="checkbox"> Chicken pox</label>
+      <span class="group-hint">Diarrhoea, watery — treated at facility</span>
+      <label class="check"><input type="checkbox"> With ORS and Zinc</label>
+      <label class="check"><input type="checkbox"> With ORS only</label>
+      <label class="check"><input type="checkbox"> Hepatitis (all types)</label>
+      <label class="check"><input type="checkbox"> Leprosy</label>
+      <label class="check"><input type="checkbox"> Severe pneumonia treated with oxygen therapy</label>
+      <label class="check"><input type="checkbox"> Diarrhoea with severe dehydration (IV fluids RL)</label>
+      <label class="check"><input type="checkbox"> Mumps</label>
+      <label class="check"><input type="checkbox"> Sepsis</label>
+      <label class="check"><input type="checkbox"> Skin infection</label>
+      <span class="group-hint">STI</span>
+      <label class="check"><input type="checkbox"> Pelvic inflammatory disease (PID)</label>
+      <label class="check"><input type="checkbox"> Genital discharge</label>
+      <label class="check"><input type="checkbox"> Genital ulcer</label>
+      <label class="check"><input type="checkbox"> Tuberculosis (TB)</label>
+      <label class="check"><input type="checkbox"> UTI (urinary tract infection)</label>
+      <label class="check"><input type="checkbox"> Onchocerciasis</label>
+      <label class="check"><input type="checkbox"> Schistosomiasis</label>
+      <label class="check"><input type="checkbox"> Trachoma</label>
+      <label class="check"><input type="checkbox"> Other infectious conditions</label>
+      <label class="check"><input type="checkbox"> Adverse drug reaction</label>
+    </div>
+  </section>
+
+  <!-- INTERNAL MEDICINE NCD MENTAL -->
+  <section class="card">
+    <h2>Internal Medicine, NCD &amp; Mental</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Anaemia</label>
+      <label class="check"><input type="checkbox"> Asthma</label>
+      <label class="check"><input type="checkbox"> Sickle cell disease</label>
+      <label class="check"><input type="checkbox"> Cancer (all types)</label>
+      <label class="check"><input type="checkbox"> Liver disease</label>
+      <label class="check"><input type="checkbox"> Cardiovascular disease (all types)</label>
+      <label class="check"><input type="checkbox"> Chronic respiratory disease (asthma, COPD, others)</label>
+      <label class="check"><input type="checkbox"> Diabetes (Type 1 or Type 2)</label>
+      <label class="check"><input type="checkbox"> Epilepsy</label>
+      <label class="check"><input type="checkbox"> Hypertension</label>
+      <label class="check"><input type="checkbox"> Upper GI disease / Pancreatitis</label>
+      <label class="check"><input type="checkbox"> Chronic liver disease / Cirrhosis</label>
+      <label class="check"><input type="checkbox"> Appendicitis</label>
+      <label class="check"><input type="checkbox"> Ileus</label>
+      <label class="check"><input type="checkbox"> Obstruction</label>
+      <label class="check"><input type="checkbox"> Stroke</label>
+      <label class="check"><input type="checkbox"> Heart failure</label>
+      <label class="check"><input type="checkbox"> Kidney disorders</label>
+      <label class="check"><input type="checkbox"> Mental disorder (all types)</label>
+      <label class="check"><input type="checkbox"> Other NCD conditions</label>
+    </div>
+  </section>
+
+  <!-- SUSPECTED CANCER -->
+  <section class="card">
+    <h2>Suspected Cancer</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Breast</label>
+      <label class="check"><input type="checkbox"> Prostate</label>
+      <label class="check"><input type="checkbox"> Cervical</label>
+      <label class="check"><input type="checkbox"> Childhood</label>
+      <label class="check"><input type="checkbox"> Lungs</label>
+      <label class="check"><input type="checkbox"> Liver</label>
+      <label class="check"><input type="checkbox"> Others</label>
+    </div>
+  </section>
+
+  <!-- SUSPECTED AVHL/F/D -->
+  <section class="card">
+    <h2>Suspected AVHL / Febrile &amp; Filariasis Diseases</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Lassa fever</label>
+      <label class="check"><input type="checkbox"> Marburg</label>
+      <label class="check"><input type="checkbox"> Yellow fever</label>
+      <label class="check"><input type="checkbox"> Others</label>
+      <label class="check"><input type="checkbox"> Suspected MPOX</label>
+      <label class="check"><input type="checkbox"> Ebola</label>
+      <label class="check"><input type="checkbox"> Severe malaria</label>
+      <label class="check"><input type="checkbox"> PPH &amp; APH</label>
+      <label class="check"><input type="checkbox"> Worm infestation</label>
+      <label class="check"><input type="checkbox"> Chronic diseases</label>
+    </div>
+  </section>
+
+  <!-- ANAEMIA -->
+  <section class="card">
+    <h2>Anaemia</h2>
+    <p class="note">Register source groups these under ANAEMIA; confirm grouping before production.</p>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Severe malaria</label>
+      <label class="check"><input type="checkbox"> PPH &amp; APH</label>
+      <label class="check"><input type="checkbox"> Worm infestation</label>
+      <label class="check"><input type="checkbox"> Chronic diseases</label>
+    </div>
+  </section>
+
+  <!-- DENTAL -->
+  <section class="card">
+    <h2>Dental Condition</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Caries</label>
+      <label class="check"><input type="checkbox"> Abscess</label>
+      <label class="check"><input type="checkbox"> Fracture</label>
+    </div>
+  </section>
+
+  <!-- POISON -->
+  <section class="card">
+    <h2>Suspected Poison</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Food</label>
+      <label class="check"><input type="checkbox"> Caustic soda</label>
+      <label class="check"><input type="checkbox"> Others</label>
+    </div>
+  </section>
+
+  <!-- DIARRHOEA -->
+  <section class="card">
+    <h2>Diarrhoea</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> With blood — treated with ORS &amp; Zinc</label>
+      <label class="check"><input type="checkbox"> Without blood — treated with ORS &amp; Zinc</label>
+      <label class="check"><input type="checkbox"> With severe dehydration</label>
+    </div>
+  </section>
+
+  <!-- DISABILITY -->
+  <section class="card">
+    <h2>Disability</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Physical</label>
+      <label class="check"><input type="checkbox"> Visual impairment</label>
+      <label class="check"><input type="checkbox"> Hearing impairment</label>
+      <label class="check"><input type="checkbox"> Speech and language</label>
+      <label class="check"><input type="checkbox"> Multiple</label>
+      <label class="check"><input type="checkbox"> Intellectual</label>
+    </div>
+  </section>
+
+  <!-- SURGICAL -->
+  <section class="card">
+    <h2>Surgical</h2>
+    <div class="checks">
+      <label class="check"><input type="checkbox"> Acute abdomen</label>
+      <label class="check"><input type="checkbox"> Appendicitis</label>
+      <label class="check"><input type="checkbox"> ENT (ear, nose, throat) disorder</label>
+      <label class="check"><input type="checkbox"> Hernia</label>
+      <label class="check"><input type="checkbox"> Hydrocele</label>
+      <label class="check"><input type="checkbox"> Lymphoedema</label>
+      <label class="check"><input type="checkbox"> Oral and dental conditions</label>
+      <label class="check"><input type="checkbox"> PUD (peptic ulcer disease)</label>
+      <span class="group-hint">Wounds / Trauma</span>
+      <label class="check"><input type="checkbox"> RTA (road traffic accident)</label>
+      <label class="check"><input type="checkbox"> Non-RTA</label>
+      <label class="check"><input type="checkbox"> Burns</label>
+      <label class="check"><input type="checkbox"> Typhoid perforation</label>
+      <label class="check"><input type="checkbox"> Haemorrhoids / Piles</label>
+      <label class="check"><input type="checkbox"> Other surgical conditions</label>
+    </div>
+  </section>
+
+  <!-- ALL OTHER MORBIDITIES -->
+  <section class="card">
+    <h2>All Other Morbidities</h2>
+    <div class="grid">
+      <div class="field"><label>Other condition(s) — notes</label><textarea rows="3" placeholder="Describe any condition not covered above."></textarea></div>
+    </div>
+  </section>
+
+  <footer>
+    <button class="btn" type="button" onclick="alert('Static mockup — no data submitted. Render complete.')">Preview only — not submit</button>
+    <button class="btn ghost" type="button" onclick="document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);document.querySelectorAll('input,select,textarea').forEach(f=>{if(f.type!=='checkbox')f.value=''});">Reset</button>
+  </footer>
+
+</div>
+</body>
+</html>

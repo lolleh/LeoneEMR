@@ -1,0 +1,34 @@
+{
+  "Ownership": {
+    "parent_uuid": "b891e640-5fe6-4833-9a20-f52c980c4505",
+    "answers": {
+      "Public": "01fdc579-378d-40cc-afcc-dcfc0c5c7133",
+      "Private": "8c83a580-bf3c-4438-ab82-f07e5d2e6975",
+      "Faithbase": "0fe727d2-30b3-4f2c-9ef5-637d01c01cd2"
+    }
+  },
+  "Service point": {
+    "parent_uuid": "fb953d82-5042-41c0-ba7b-cab46e34dc5e",
+    "answers": {
+      "In Facility": "cdc75415-678d-42ee-8d04-fe2404b6eb08",
+      "Outreach": "a27dc8c2-28df-4d93-abce-ec7e37a81907"
+    }
+  },
+  "Type of visit": {
+    "parent_uuid": "1515414d-5e68-42ef-a239-34c86e494679",
+    "answers": {
+      "New": "1bfff36f-5ee3-4c22-ba99-5b981649ea30",
+      "Follow up": "ce10f985-03ae-44c7-a63e-ec5fa7aae3c5"
+    }
+  },
+  "Category of patient": {
+    "parent_uuid": "1ce41cb6-3aca-424d-8545-5d7b56d8a343",
+    "answers": {
+      "Preg": "401b121b-59a2-46ed-862a-d15df25d7bac",
+      "Lact": "e5179039-ee3e-4634-aedb-803b0bb118f7",
+      "EVD surv": "71653506-cb1d-4411-994c-8018e245883a",
+      "Disability": "b72ad93c-69bd-4364-97cd-f3ebcd0f036a",
+      "Gen": "07586f12-635e-4c31-b293-aef383be4d9f"
+    }
+  }
+}
