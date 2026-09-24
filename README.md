@@ -68,10 +68,14 @@ Copy `.env.example` to `.env` and adjust:
   Leone and re-applies it on every boot. This distro targets the Falaba PHU, so
   the generator is held on the **FAL** prefix:
   - The OpenMRS db service runs with `--event-scheduler=ON`, and
-    `scripts/emr-id-falaba-guard.sql` installs two scheduler events that re-assert
-    the `'FAL'yyMM` prefix (and source name) every 15s. Apply it against a fresh
-    DB once (the running volume already has it): `docker exec -i
-    phu360-openmrs-db-1 mysql -uroot -pAdmin123 openmrs < scripts/emr-id-falaba-guard.sql`.
+    `scripts/emr-id-falaba-guard.sql` installs three scheduler events: two
+    re-assert the `'FAL'yyMM` prefix (and source name) every 15s, and a third
+    (`emr_id_reg_facility_guard`, every 30s) normalizes each EMR ID's location
+    up to its top-level CHC — so the patient-search **Reg Facility** column only
+    ever shows one of the three health centers (Falaba CHC, Mongo Bendugu CHC,
+    Sinkunia CHC) even when staff register from a sub-location (Clinic/Triage).
+    Apply against a fresh DB once (the running volume already has it):
+    `docker exec -i phu360-openmrs-db-1 mysql -uroot -pAdmin123 openmrs < scripts/emr-id-falaba-guard.sql`.
 
 ## Running in production
 

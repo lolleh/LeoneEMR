@@ -24,3 +24,23 @@ CREATE EVENT IF NOT EXISTS emr_id_falaba_source_name_guard
          i.description = 'Primary Identifier Generator for FAL'
      WHERE i.uuid = '809b23e3-7162-11eb-8aa6-0242ac110002'
        AND i.name <> 'FAL Primary Identifier Source';
+
+-- Registration-facility guard: a patient's registration facility must be one of
+-- the three CHCs (Falaba CHC, Mongo Bendugu CHC, Sinkunia CHC). Registration
+-- stamps the EMR identifier with the staff sub-location (e.g. "Falaba CHC
+-- Clinic", "Mongo Bendugu CHC Triage"), whose parent is the CHC. This event
+-- normalizes the EMR identifier location up to its top-level CHC (parent with
+-- parent_location IS NULL among the three CHCs) every 30s, so the patient
+-- search "Reg Facility" column only ever shows one of the three health centers.
+
+CREATE EVENT IF NOT EXISTS emr_id_reg_facility_guard
+  ON SCHEDULE EVERY 30 SECOND
+  DO UPDATE patient_identifier pi
+       JOIN location child ON child.location_id = pi.location_id
+       JOIN location root  ON root.location_id = child.parent_location
+       LEFT JOIN location grand ON grand.location_id = root.parent_location
+     SET pi.location_id = root.location_id
+     WHERE pi.identifier_type = 5 AND pi.voided = 0
+       AND child.parent_location IS NOT NULL
+       AND root.parent_location IS NULL
+       AND root.name IN ('Falaba CHC','Mongo Bendugu CHC','Sinkunia CHC');
