@@ -40,8 +40,8 @@ mvn "${OFFLINE[@]}" -q -pl distro package
 echo "==> Brand printed ID card / labels (MOH + HEAP logos)"
 bash "$ROOT_DIR/scripts/brand-zpl.sh"
 
-echo "==> Package DHMT KPI dashboard OWA"
-bash "$ROOT_DIR/scripts/build-dashboard-owa.sh"
+echo "==> Package DHMT KPI dashboard into the webapp"
+bash "$ROOT_DIR/scripts/embed-dashboard-war.sh"
 
 WEB_DIR="$ROOT_DIR/distro/target/distro/web"
 echo "==> Output: $WEB_DIR"
