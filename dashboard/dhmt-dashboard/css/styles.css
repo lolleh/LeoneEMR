@@ -103,6 +103,8 @@ img.logo {
 
 .btn-home:hover { background: rgba(255, 255, 255, 0.28); }
 
+.btn-home img { height: 16px; width: auto; display: block; }
+
 .container {
   max-width: 1280px;
   margin: 24px auto;
