@@ -1,10 +1,10 @@
-package org.openmrs.module.pihreporting;
+package org.openmrs.module.phu360reporting;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.BaseModuleActivator;
 
-public class PihReportingActivator extends BaseModuleActivator {
+public class Phu360ReportingActivator extends BaseModuleActivator {
 
     private final Log log = LogFactory.getLog(getClass());
 

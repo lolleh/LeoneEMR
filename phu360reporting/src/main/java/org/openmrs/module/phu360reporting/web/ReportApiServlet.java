@@ -1,4 +1,4 @@
-package org.openmrs.module.pihreporting.web;
+package org.openmrs.module.phu360reporting.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.pihreporting.report.IndicatorReport;
-import org.openmrs.module.pihreporting.report.JsonWriter;
+import org.openmrs.module.phu360reporting.report.IndicatorReport;
+import org.openmrs.module.phu360reporting.report.JsonWriter;
 
 /**
  * Module servlet, mounted by config.xml at
- *   /openmrs/moduleServlet/pihreporting/reportApi
+ *   /openmrs/moduleServlet/phu360reporting/reportApi
  *
  * Endpoints (action query parameter):
  *   action=filters  -> health centers + encounter types for the filter bar
@@ -59,7 +59,7 @@ public class ReportApiServlet extends HttpServlet {
                 return counts(req);
             } else if ("ping".equals(action)) {
                 out.put("ok", true);
-                out.put("module", "pihreporting");
+                out.put("module", "phu360reporting");
                 return out;
             } else {
                 out.put("error", "unknown action: " + action);

@@ -1,4 +1,4 @@
-package org.openmrs.module.pihreporting.report;
+package org.openmrs.module.phu360reporting.report;
 
 import java.util.List;
 import java.util.Map;

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var API = window.location.pathname.split("/moduleResources/")[0] + "/moduleServlet/pihreporting/reportApi";
+  var API = window.location.pathname.split("/moduleResources/")[0] + "/moduleServlet/phu360reporting/reportApi";
 
   var PALETTE = ["#0e6f4e", "#e8a13c", "#d64541", "#5b7c99", "#7a4fa3", "#2f8f6b", "#c47bb2", "#4f8df7", "#9aa7b0", "#b5a642", "#3f7d20", "#8f5c38"];
 
@@ -307,7 +307,7 @@
     var blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "pihreporting-" + (state.from || "all") + "_" + (state.to || "all") + ".csv";
+    a.download = "phu360reporting-" + (state.from || "all") + "_" + (state.to || "all") + ".csv";
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 200);

@@ -2,10 +2,10 @@
 
 <module configVersion="1.2">
 
-	<id>pihreporting</id>
+	<id>phu360reporting</id>
 	<name>PHU360 Reporting</name>
 	<version>1.0.0-SNAPSHOT</version>
-	<package>org.openmrs.module.pihreporting</package>
+	<package>org.openmrs.module.phu360reporting</package>
 	<author>PHU360</author>
 	<description>
 		Facility reporting dashboard. Computes KPIs and trend indicators live
@@ -15,11 +15,11 @@
 
 	<require_version>2.8.9</require_version>
 
-	<activator>org.openmrs.module.pihreporting.PihReportingActivator</activator>
+	<activator>org.openmrs.module.phu360reporting.Phu360ReportingActivator</activator>
 
 	<servlet>
 		<servlet-name>reportApi</servlet-name>
-		<servlet-class>org.openmrs.module.pihreporting.web.ReportApiServlet</servlet-class>
+		<servlet-class>org.openmrs.module.phu360reporting.web.ReportApiServlet</servlet-class>
 	</servlet>
 
 </module>

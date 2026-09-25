@@ -10,11 +10,11 @@
     "order": 20
   },
   {
-    "id": "home.app.pihReportDashboard",
+    "id": "home.app.phu360reportingDashboard",
     "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
     "type": "link",
     "label": "PHU360 Reporting Dashboard",
-    "url": "moduleResources/pihreporting/index.html",
+    "url": "moduleResources/phu360reporting/index.html",
     "icon": "fas fa-fw fa-chart-pie",
     "requiredPrivilege": "App: coreapps.summaryDashboard",
     "order": 21

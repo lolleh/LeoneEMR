@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# Builds the PHU360 Reporting module (pihreporting) into an omod the distro can
+# Builds the PHU360 Reporting module (phu360reporting) into an omod the distro can
 # ship, without any Maven/remote dependency: javac against jars lifted from the
 # OpenMRS WAR, then assemble the OpenMRS module layout by hand into
-# openmrs-image/pihreporting-<version>.omod (the same path the seed script
+# openmrs-image/phu360reporting-<version>.omod (the same path the seed script
 # installs to the local Maven repo).
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MOD_DIR="$ROOT_DIR/pihreporting"
-OUT="$ROOT_DIR/openmrs-image/pihreporting-1.0.0-SNAPSHOT.omod"
+MOD_DIR="$ROOT_DIR/phu360reporting"
+OUT="$ROOT_DIR/openmrs-image/phu360reporting-1.0.0-SNAPSHOT.omod"
 WAR="$ROOT_DIR/distro/target/distro/web/openmrs_core/openmrs.war"
 
-BUILD="/tmp/opencode/pihreporting-build"
+BUILD="/tmp/opencode/phu360reporting-build"
 CLASSES="$BUILD/classes"
 STAGE="$BUILD/omod"
 
