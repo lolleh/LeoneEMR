@@ -22,6 +22,14 @@ echo "==> Ensure config is materialized"
 if [[ ! -d "content/build/configuration/backend_configuration" ]]; then
   echo "    materializing via seed script"
   bash scripts/seed-distro-maven-repo.sh
+else
+  # The seed script is skipped here, so re-apply the tracked delta over the
+  # materialized config. Without this, edits to
+  # content/configuration/backend_configuration never reach the content zip
+  # and the distro keeps shipping the config that was seeded on this machine.
+  echo "    re-applying content/configuration/backend_configuration"
+  cp -a content/configuration/backend_configuration/. \
+    content/build/configuration/backend_configuration/
 fi
 
 echo "==> Build + install content zip artifact"
