@@ -56,6 +56,7 @@ cp -a "$CLASSES/." "$STAGE/"
 cp -a "$MOD_DIR/web/module/resources/." "$STAGE/web/module/resources/"
 
 mkdir -p "$(dirname "$OUT")"
+rm -f "$OUT"
 (
   cd "$STAGE"
   zip -q -r -X "$OUT" .
