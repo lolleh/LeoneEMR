@@ -55,6 +55,8 @@ img.logo {
   display: inline-block;
   background: transparent;
   filter: brightness(0.98);
+  height: auto;
+  max-width: 100%;
 }
 
 .brand h1 { font-size: 18px; font-weight: 700; }
@@ -446,7 +448,7 @@ td.comment-cell {
   .topbar { padding: 12px 16px; }
   .topbar-inner { gap: 12px; }
   .brand h1 { font-size: 16px; }
-  img.logo { width: 72px; height: 72px; }
+  img.logo { width: 120px; }
   .container { padding: 0 14px 30px; }
   .controls { gap: 8px; }
   .controls label, .inline-label { flex: 1; min-width: 130px; }
@@ -458,7 +460,7 @@ td.comment-cell {
   body { font-size: 13px; }
   .topbar { padding: 10px 12px; }
   .brand { gap: 10px; }
-  img.logo { width: 54px; height: 54px; }
+  img.logo { width: 90px; }
   .brand h1 { font-size: 14px; line-height: 1.3; }
   .brand .subtitle { font-size: 11px; }
   .container { padding: 0 10px 24px; }
@@ -495,5 +497,5 @@ td.comment-cell {
 
 @media (max-width: 400px) {
   .chips { grid-template-columns: 1fr; }
-  img.logo { width: 46px; height: 46px; }
+  img.logo { width: 76px; }
 }

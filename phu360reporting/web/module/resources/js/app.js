@@ -3,7 +3,7 @@
 
   var API = window.location.pathname.split("/moduleResources/")[0] + "/moduleServlet/phu360reporting/reportApi";
 
-  var PALETTE = ["#0e6f4e", "#e8a13c", "#d64541", "#5b7c99", "#7a4fa3", "#2f8f6b", "#c47bb2", "#4f8df7", "#9aa7b0", "#b5a642", "#3f7d20", "#8f5c38"];
+  var PALETTE = ["#2563eb", "#0f8a3d", "#f6be00", "#323372", "#3ab4b1", "#e8a13c", "#0f5149", "#5b5c8e", "#0077ff", "#3e3e3e", "#8e6a53", "#9999b9"];
 
   var state = { from: null, to: null, location: "", encounterType: "" };
 
@@ -111,7 +111,7 @@
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { labels: { color: "#66788a", boxWidth: 12, font: { size: 11 } } }
+        legend: { labels: { color: "#4a4235", boxWidth: 12, font: { size: 11 } } }
       }
     };
   }
@@ -125,15 +125,15 @@
         labels: (monthly || []).map(function (m) { return m.ym; }),
         datasets: [
           { label: "Encounters", data: (monthly || []).map(function (m) { return m.encounters; }),
-            borderColor: "#0e6f4e", backgroundColor: "rgba(14,111,78,0.12)", fill: true, tension: 0.35, borderWidth: 2, pointRadius: 3 },
+            borderColor: "#2563eb", backgroundColor: "rgba(37,99,235,0.12)", fill: true, tension: 0.35, borderWidth: 2, pointRadius: 3 },
           { label: "Patients seen", data: (monthly || []).map(function (m) { return m.patients; }),
-            borderColor: "#e8a13c", backgroundColor: "rgba(232,161,60,0.12)", fill: true, tension: 0.35, borderWidth: 2, pointRadius: 3 }
+            borderColor: "#0f8a3d", backgroundColor: "rgba(15,138,61,0.12)", fill: true, tension: 0.35, borderWidth: 2, pointRadius: 3 }
         ]
       },
       options: Object.assign(chartBase(), {
         scales: {
-          x: { grid: { display: false }, ticks: { color: "#66788a", maxRotation: 45, autoSkip: true } },
-          y: { beginAtZero: true, grid: { color: "#edf1f4" }, ticks: { color: "#66788a" } }
+          x: { grid: { display: false }, ticks: { color: "#4a4235", maxRotation: 45, autoSkip: true } },
+          y: { beginAtZero: true, grid: { color: "#d9d2c4" }, ticks: { color: "#4a4235" } }
         }
       })
     });
@@ -149,12 +149,12 @@
       type: "doughnut",
       data: {
         labels: labels.length ? labels : ["No data"],
-        datasets: [{ data: labels.length ? values : [1], backgroundColor: labels.join(",") === "No data" ? ["#e2e8f0"] : PALETTE, borderWidth: 2, borderColor: "#ffffff" }]
+        datasets: [{ data: labels.length ? values : [1], backgroundColor: labels.join(",") === "No data" ? ["#d9d2c4"] : PALETTE, borderWidth: 2, borderColor: "#ffffff" }]
       },
       options: Object.assign(chartBase(), {
         cutout: "62%",
         plugins: Object.assign(chartBase().plugins, {
-          legend: { position: "bottom", labels: { color: "#66788a", boxWidth: 12, font: { size: 11 }, padding: 8 } }
+          legend: { position: "bottom", labels: { color: "#4a4235", boxWidth: 12, font: { size: 11 }, padding: 8 } }
         })
       })
     });
@@ -180,7 +180,7 @@
         labels: rows.map(function (r) { return r.label; }),
         datasets: [{
           data: rows.map(function (r) { return r.count; }),
-          backgroundColor: rows[0].label === "No data" ? ["#e2e8f0"] : PALETTE,
+          backgroundColor: rows[0].label === "No data" ? ["#d9d2c4"] : PALETTE,
           borderRadius: 5
         }]
       },
@@ -188,8 +188,8 @@
         indexAxis: "y",
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { color: "#edf1f4" }, ticks: { color: "#66788a" } },
-          y: { grid: { display: false }, ticks: { color: "#66788a" } }
+          x: { grid: { color: "#d9d2c4" }, ticks: { color: "#4a4235" } },
+          y: { grid: { display: false }, ticks: { color: "#4a4235" } }
         }
       })
     });
@@ -213,8 +213,8 @@
       options: Object.assign(chartBase(), {
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { display: false }, ticks: { color: "#66788a" } },
-          y: { beginAtZero: true, grid: { color: "#edf1f4" }, ticks: { color: "#66788a" } }
+          x: { grid: { display: false }, ticks: { color: "#4a4235" } },
+          y: { beginAtZero: true, grid: { color: "#d9d2c4" }, ticks: { color: "#4a4235" } }
         }
       })
     });
@@ -230,12 +230,12 @@
       type: "doughnut",
       data: {
         labels: labels,
-        datasets: [{ data: values, backgroundColor: labels.length === 1 && labels[0] === "No data" ? ["#e2e8f0"] : PALETTE, borderWidth: 2, borderColor: "#fff" }]
+        datasets: [{ data: values, backgroundColor: labels.length === 1 && labels[0] === "No data" ? ["#d9d2c4"] : PALETTE, borderWidth: 2, borderColor: "#fff" }]
       },
       options: Object.assign(chartBase(), {
         cutout: "62%",
         plugins: Object.assign(chartBase().plugins, {
-          legend: { position: "bottom", labels: { color: "#66788a", boxWidth: 12, font: { size: 11 }, padding: 8 } }
+          legend: { position: "bottom", labels: { color: "#4a4235", boxWidth: 12, font: { size: 11 }, padding: 8 } }
         })
       })
     });
