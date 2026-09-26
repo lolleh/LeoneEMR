@@ -50,6 +50,13 @@ mvn -q org.apache.maven.plugins:maven-install-plugin:3.1.2:install-file \
   -DgroupId="org.openmrs.module" -DartifactId="phu360reporting-omod" \
   -Dversion="1.0.0-SNAPSHOT" -Dpackaging=omod -DgeneratePom=true
 
+echo "==> Patch reportingui module (DASHBOARDS section on the reports page)"
+bash "$ROOT_DIR/scripts/patch-reportingui-module.sh"
+mvn -q org.apache.maven.plugins:maven-install-plugin:3.1.2:install-file \
+  -Dfile="$ROOT_DIR/openmrs-image/reportingui-1.15.0-SNAPSHOT.omod" \
+  -DgroupId="org.openmrs.module" -DartifactId="reportingui-omod" \
+  -Dversion="1.15.0-SNAPSHOT" -Dpackaging=omod -DgeneratePom=true
+
 echo "==> Build distro (OpenMRS SDK build-distro)"
 # The SDK writes its extraction into target/distro and does NOT clean it between
 # runs, so edits to the content package/config would silently not take effect.
@@ -67,6 +74,7 @@ echo "==> Output: $WEB_DIR"
 echo "    openmrs_core/openmrs.war : $([ -f "$WEB_DIR/openmrs_core/openmrs.war" ] && stat -c%s "$WEB_DIR/openmrs_core/openmrs.war" || echo MISSING) bytes"
 echo "    modules                  : $(find "$WEB_DIR/openmrs_modules" -name '*.omod' | wc -l)"
 echo "    phu360reporting omod        : $([ -f "$ROOT_DIR/openmrs-image/phu360reporting-1.0.0-SNAPSHOT.omod" ] && echo present || echo MISSING)"
+echo "    reportingui omod         : $([ -f "$ROOT_DIR/openmrs-image/reportingui-1.15.0-SNAPSHOT.omod" ] && echo present || echo MISSING)"
 echo "    config files             : $(find "$WEB_DIR/openmrs_config" -type f | wc -l)"
 echo "    spa                      : $(find "$WEB_DIR/openmrs_spa" -type f | wc -l)"
 echo "    owas                     : $(find "$WEB_DIR/openmrs_owas" -type f | wc -l)"

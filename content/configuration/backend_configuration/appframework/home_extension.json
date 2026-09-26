@@ -1,7 +1,7 @@
 [
   {
     "id": "home.app.dhmtDashboard",
-    "extensionPointId": "org.openmrs.module.reportingui.reports.overview",
+    "extensionPointId": "org.openmrs.module.reportingui.reports.dashboards",
     "type": "link",
     "label": "DHMT KPI Dashboard",
     "url": "dashboard/index.html",
@@ -11,7 +11,7 @@
   },
   {
     "id": "home.app.phu360reportingDashboard",
-    "extensionPointId": "org.openmrs.module.reportingui.reports.overview",
+    "extensionPointId": "org.openmrs.module.reportingui.reports.dashboards",
     "type": "link",
     "label": "PHU360 Reporting Dashboard",
     "url": "moduleResources/phu360reporting/index.html",

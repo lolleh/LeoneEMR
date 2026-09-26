@@ -21,9 +21,9 @@ Open [http://localhost:8090/openmrs](http://localhost:8080/openmrs) (O3 SPA at `
 
 ```
 pom.xml / content/ / distro/   Maven parent + content package + SDK distro (see below)
-scripts/                       install-prereqs.sh, seed-distro-maven-repo.sh, build-distro.sh
+scripts/                       install-prereqs.sh, seed-distro-maven-repo.sh, build-distro.sh, patch-reportingui-module.sh
 docker-compose.yml, .env.example   openmrs + MySQL 5.7 stack
-openmrs-image/                 provenance inputs: distro manifest baseline, branded SPA overlay, patched pihcore omod
+openmrs-image/                 provenance inputs: distro manifest baseline, branded SPA overlay, patched pihcore omod, patched reportingui omod
 openmrs-forms/                 legacy patched-WAR tooling (standalone register forms, custom gsp, patched omods) — provenance only
 ```
 
@@ -32,6 +32,37 @@ openmrs-forms/                 legacy patched-WAR tooling (standalone register f
 - **`content/`** — the content package. `seed-distro-maven-repo.sh` materializes the full config into the gitignored `content/build/`: the stock PIH SL image config overlaid with the tracked `configuration/backend_configuration/` delta (MOH branding, themes, htmlforms, registers, reports, `-mongo`/`-falaba`/`-sinkunia` site profiles) minus `content/exclusions.txt` (15 stock data-export descriptors). The SDK installs it as `openmrs_config`.
 - **`distro/openmrs-distro.properties`** — the distribution manifest: `omod.*` pins identical to the stock PIH SL baseline plus the branded SPA coordinates and `content.phu360-content`. `build-distro.sh` cleans `distro/target/distro` before each SDK run so stale output never masks edits.
 - **`distro/Dockerfile`** — pins `openmrs/openmrs-core:2.8.9` and copies the six distribution outputs from `target/distro/web`.
+
+## Reports page: the DASHBOARDS category
+
+`/openmrs/reportingui/reportsapp/home.page` lists the dashboards under a
+**DASHBOARDS** heading of their own, above Overview Reports and Data Exports:
+
+| Section | Contents |
+|---------|----------|
+| DASHBOARDS | DHMT KPI Dashboard, PHU360 Reporting Dashboard |
+| Overview Reports | Registration Overview, Check-in Overview (stock PIH SL) |
+| Data Exports | stock PIH SL data exports |
+
+reportingui renders that page from a hand-written GSP whose section headings
+are hardcoded, and its extension points are fixed at module build time, so a
+new category is not a config-only change. `scripts/patch-reportingui-module.sh`
+therefore ships a patched reportingui omod:
+
+- **Links** — the two entries in
+  `content/configuration/backend_configuration/appframework/home_extension.json`
+  bound to `org.openmrs.module.reportingui.reports.dashboards`.
+- **Extension point** — declared in `openmrs-image/reportingui/apps/reports_app.json`
+  alongside the stock overview/dataquality/dataexport points.
+- **Page** — `openmrs-image/reportingui/web/module/pages/reportsapp/home.gsp`
+  is a full copy of the upstream page with one extra `reportBox`; every stock
+  section is unchanged.
+- **Resolution** — `omod.reportingui.type=omod` in `distro/openmrs-distro.properties`
+  makes the SDK pick the patched omod up from `~/.m2`. Without it the SDK
+  resolves the stock omod (staged as a `.jar`) and the patch is silently lost.
+
+Bumping reportingui means re-checking the two overlay files against the new
+upstream page; the patch script fails if the page is not the one it expects.
 
 ## Under Five & Above Five registers
 
@@ -109,6 +140,11 @@ Also snapshot the `phu360-data` volume (modules, Lucene index, complex obs, runt
 ```bash
 scripts/build-distro.sh && docker compose up -d --build
 ```
+
+`build-distro.sh` re-applies `content/configuration/backend_configuration` over
+the materialized `content/build/` config, rebuilds the phu360reporting omod and
+the patched reportingui omod, and clears `distro/target/distro` before the SDK
+run — so config, module and page edits all reach the image.
 
 ## Troubleshooting
 
